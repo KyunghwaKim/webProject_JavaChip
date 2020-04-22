@@ -1,5 +1,5 @@
 package model.service;
 
-public class nonono {
+public class NoNoNo {
 
 }

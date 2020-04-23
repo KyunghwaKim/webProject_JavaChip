@@ -5,13 +5,13 @@ import java.sql.Date;
 public class Customer extends Person {
 	private int age;
 	private String email;
-	private char coupon;
+	private String coupon;
 	private String howToCome;
 	private Date regDate;
 	
 	public Customer() {}
 
-	public Customer(int age, String email, char coupon, String howToCome, Date regDate) {
+	public Customer(int age, String email, String coupon, String howToCome, Date regDate) {
 		super();
 		this.age = age;
 		this.email = email;
@@ -36,11 +36,11 @@ public class Customer extends Person {
 		this.email = email;
 	}
 
-	public char getCoupon() {
+	public String getCoupon() {
 		return coupon;
 	}
 
-	public void setCoupon(char coupon) {
+	public void setCoupon(String coupon) {
 		this.coupon = coupon;
 	}
 

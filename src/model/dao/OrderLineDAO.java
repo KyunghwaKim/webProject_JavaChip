@@ -19,8 +19,13 @@ public interface OrderLineDAO {
 	/**
 	 * 환불하기
 	 */
-	int update(OrderLine orderLine) throws SQLException;
+	int update(int totalPrice) throws SQLException;
 	
+	
+	/**
+	 * 주문번호로 주문내역 가져오기
+	 */
+	OrderLine selectBylLineNo(int lineNo) throws SQLException;
 	
 	
 }

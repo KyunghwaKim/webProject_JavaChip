@@ -67,7 +67,7 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int update(OrderLine orderLine) throws SQLException {
+	public int update(int totalPrice) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -81,6 +81,12 @@ Properties pro = new Properties();
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
+	}
+
+	@Override
+	public OrderLine selectBylLineNo(int lineNo) throws SQLException {
+		// 추가해주세요
+		return null;
 	}
 
 }

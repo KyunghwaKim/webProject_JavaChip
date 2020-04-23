@@ -26,11 +26,11 @@ public class OrderLine {
 		this.lineNo = lineNo;
 	}
 
-	public int getTotal() {
+	public int getTotalPrice() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotalPrice(int total) {
 		this.total = total;
 	}
 

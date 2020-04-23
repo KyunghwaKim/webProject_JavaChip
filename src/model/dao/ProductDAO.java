@@ -39,11 +39,8 @@ public interface ProductDAO {
 	 */
 	List<Product> selectByJogun(Map<String, String> map) throws SQLException;
 	
-		
-
-	
-	
-	
-	
-	
+	/**
+	 * 상품아이디로 상품조회
+	 */
+	Product selectById(String id) throws SQLException;	
 }

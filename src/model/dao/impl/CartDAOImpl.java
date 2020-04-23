@@ -50,28 +50,7 @@ public class CartDAOImpl implements CartDAO {
 		return list;
 	}
 
-	@Override
-	public Product selectById(String id) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Product product = null;
-		String sql = pro.getProperty("");
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				
-				
-				product = new Product();
-			}
-		}finally {
-			DbUtil.dbClose(con, ps, rs);
-		}
-		return product;
-	}
+	
 
 	@Override
 	public int insert(Product product) throws SQLException {
@@ -91,7 +70,7 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public int delete(Product product) throws SQLException {
+	public int delete(List<Product> list) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps =null;
 		int result =0;

@@ -14,10 +14,10 @@ public interface OrderItemDAO {
 	/**
 	 * 주문하기
 	 */
-	int insert(OrderItem orderItem) throws SQLException;	
+	int insert(List<OrderItem> list) throws SQLException;	
 	
 	/**
 	 * 환불하기
 	 */
-	int update(OrderItem orderItem) throws SQLException;
+	int update(List<OrderItem> list) throws SQLException;
 }

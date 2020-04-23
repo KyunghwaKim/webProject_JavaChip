@@ -50,7 +50,7 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int insert(OrderItem orderItem) throws SQLException {
+	public int insert(List<OrderItem> list) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -67,7 +67,7 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int update(OrderItem orderItem) throws SQLException {
+	public int update(List<OrderItem> list) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;

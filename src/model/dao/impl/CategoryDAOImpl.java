@@ -48,7 +48,7 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public List<Teacher> selectById(String id) throws SQLException{
+	public List<Teacher> selectById(String categoryid) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -56,7 +56,7 @@ Properties pro = new Properties();
 		String sql = pro.getProperty("");
 		try {
 			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql);			
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Teacher teacher = new Teacher();

@@ -26,11 +26,7 @@ public interface CustomerDAO {
 	 * id에 해당하는 레코드 검색
 	 *  : 결과 레코드가 0 또는 1이면 Member
 	 */
-	Customer selectById(String id) throws SQLException;	
-	
-	/**
-	 * 회원정보수정 - 탈퇴는 status 변경
-	 */
-	int update(Customer customer) throws SQLException;
+	Customer selectById(String id) throws SQLException;		
+
 	
 }

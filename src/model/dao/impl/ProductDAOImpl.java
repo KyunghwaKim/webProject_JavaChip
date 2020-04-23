@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import model.dao.ProductDAO;
@@ -72,6 +74,22 @@ Properties pro = new Properties();
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
+	}
+	
+	
+	@Override
+	public List<Product> selectAll() throws SQLException {
+		
+		// 추가할것
+		
+		return null;
+	}
+	@Override
+	public List<Product> selectByJogun(Map<String, String> map) throws SQLException {
+		
+		// 추가할것
+		
+		return null;
 	}
 
 }

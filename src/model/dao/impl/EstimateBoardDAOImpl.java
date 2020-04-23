@@ -82,11 +82,11 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public List<QnABoard> selectByName(String id) throws SQLException {
+	public List<EstimateBoard> selectByName(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<QnABoard> list = new ArrayList<QnABoard>();
+		List<EstimateBoard> list = new ArrayList<EstimateBoard>();
 		String sql = pro.getProperty("");
 		try {
 			con = DbUtil.getConnection();
@@ -95,9 +95,9 @@ Properties pro = new Properties();
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				QnABoard qnABoard = new QnABoard();
+				EstimateBoard estBoard = new EstimateBoard();
 				
-				list.add(qnABoard);
+				list.add(estBoard);
 			}
 		}finally {
 			DbUtil.dbClose(con, ps, rs);
@@ -106,20 +106,20 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public List<QnABoard> selectAll() throws SQLException {
+	public List<EstimateBoard> selectAll() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<QnABoard> list = new ArrayList<QnABoard>();
+		List<EstimateBoard> list = new ArrayList<EstimateBoard>();
 		String sql = pro.getProperty("");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				QnABoard qnABoard = new QnABoard();
+				EstimateBoard estBoard = new EstimateBoard();
 				
-				list.add(qnABoard);
+				list.add(estBoard);
 			}
 		}finally {
 			DbUtil.dbClose(con, ps, rs);
@@ -128,11 +128,11 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public List<QnABoard> selectByKeyword(String keyField, String keyword) throws SQLException {
+	public List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<QnABoard> list = new ArrayList<QnABoard>();
+		List<EstimateBoard> list = new ArrayList<EstimateBoard>();
 		String sql = pro.getProperty("");
 		try {
 			con = DbUtil.getConnection();
@@ -142,9 +142,9 @@ Properties pro = new Properties();
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				QnABoard qnABoard = new QnABoard();
+				EstimateBoard estBoard = new EstimateBoard();
 				
-				list.add(qnABoard);
+				list.add(estBoard);
 			}
 		}finally {
 			DbUtil.dbClose(con, ps, rs);

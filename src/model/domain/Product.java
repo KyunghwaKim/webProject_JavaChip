@@ -11,8 +11,31 @@ public class Product {
 	private Teacher teacher;
 	private Category category;
 	private Date uploadDate;
+	private int validDate;
 	
 	public Product() {}
+	
+	public Product(String id, String name, int price, String description, String level, Teacher teacher,
+			Category category, Date uploadDate, int validDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.level = level;
+		this.teacher = teacher;
+		this.category = category;
+		this.uploadDate = uploadDate;
+		this.validDate = validDate;
+	}
+
+	public int getValidDate() {
+		return validDate;
+	}
+
+	public void setValidDate(int validDate) {
+		this.validDate = validDate;
+	}
 
 	public String getId() {
 		return id;

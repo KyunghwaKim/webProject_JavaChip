@@ -25,16 +25,16 @@ public interface EstimateBoardDAO {
 	/**
 	 * 내글에 해당하는 글을 전부 조회한다.	
 	 */
-	List<QnABoard> selectByName(String id) throws SQLException;
+	List<EstimateBoard> selectByName(String id) throws SQLException;
 	
 	/**
 	 *  전체글조회
 	 */	
-	List<QnABoard> selectAll() throws SQLException;
+	List<EstimateBoard> selectAll() throws SQLException;
 		
 	/**
 	 * (강의명 / 강사명 / 평점 조회) 키워드조회
 	 */
-	List<QnABoard> selectByKeyword(String keyField, String keyword) throws SQLException;
+	List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException;
 	
 }

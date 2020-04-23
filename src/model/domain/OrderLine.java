@@ -10,12 +10,19 @@ public class OrderLine {
 	
 	public OrderLine() {}
 	
-	public OrderLine(int lineNo, int total, Date payDate, Customer customer) {
+	/**
+	 * 등록(insert) 시 lineNo은 시퀀스 값으로, payDate는 그 당시 날짜로 자동 설정된다.
+	 */
+	public OrderLine(int total, Customer customer) {
 		super();
-		this.lineNo = lineNo;
 		this.total = total;
-		this.payDate = payDate;
 		this.customer = customer;
+	}
+	
+	public OrderLine(int lineNo, int total, Date payDate, Customer customer) {
+		this(total, customer);
+		this.lineNo = lineNo;
+		this.payDate = payDate;
 	}
 
 	public int getLineNo() {

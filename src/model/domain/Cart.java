@@ -5,7 +5,7 @@ public class Cart {
 	private Customer customer;
 	private Product product;
 	
-	private Cart() {}
+	public Cart() {}
 
 	public Cart(int cartNo, Customer customer, Product product) {
 		super();

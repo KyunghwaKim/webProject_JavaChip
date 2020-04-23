@@ -1,20 +1,20 @@
 package model.domain;
 
 public class Admin extends Person {
-	private String acessNo;
+	private String accessNo;
 	
 	public Admin() {}
 
-	public Admin(String acessNo) {
+	public Admin(String accessNo) {
 		super();
-		this.acessNo = acessNo;
+		this.accessNo = accessNo;
 	}
 
-	public String getAcessNo() {
-		return acessNo;
+	public String getAccessNo() {
+		return accessNo;
 	}
 
-	public void setAcessNo(String acessNo) {
-		this.acessNo = acessNo;
+	public void setAccessNo(String accessNo) {
+		this.accessNo = accessNo;
 	}
 }

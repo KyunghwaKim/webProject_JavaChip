@@ -2,8 +2,8 @@ package model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale.Category;
 
+import model.domain.Category;
 import model.domain.Teacher;
 
 public interface CategoryDAO {

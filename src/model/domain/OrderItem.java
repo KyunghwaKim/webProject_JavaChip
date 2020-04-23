@@ -10,6 +10,16 @@ public class OrderItem {
 	private Product product;
 	
 	public OrderItem() {}
+	
+	/**
+	 * 등록(insert) 시 itemNo은 시퀀스 값으로, isRefund는 0(구매)로 자동 설정된다.
+	 */
+	public OrderItem(Date endDate, OrderLine orderLine, Product product) {
+		super();
+		this.endDate = endDate;
+		this.orderLine = orderLine;
+		this.product = product;
+	}
 
 	public OrderItem(int itemNo, Date endDate, int isRefund, OrderLine orderLine, Product product) {
 		super();

@@ -1,8 +1,5 @@
 package controller.orderLine;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,23 +14,18 @@ public class InsertOrderLineController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String lineNo = request.getParameter("lineNo");
+		//lineNo은 시퀀스이므로 값을 전달받지 않는다.
 		String totalPrice = request.getParameter("totalPrice");
-		String payDate = request.getParameter("payDate");
 		String customerId = request.getParameter("customerId");
 
-		if (lineNo == null || lineNo.equals("") || totalPrice == null || totalPrice.equals("") || payDate == null
-				|| payDate.equals("") || customerId == null || customerId.equals("")) {
+		if (totalPrice == null || totalPrice.equals("") || customerId == null || customerId.equals("")) {
 			throw new AddException("입력값이 부족합니다.");
 		}
 
 		Customer customer = new Customer();
 		customer.setId(customerId);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = sdf.parse(payDate);
-
-		OrderLine orderLine = new OrderLine(Integer.parseInt(lineNo), Integer.parseInt(totalPrice), date, customer);
+		OrderLine orderLine = new OrderLine(Integer.parseInt(totalPrice), customer);
 
 		OrderLineService.insert(orderLine);
 		

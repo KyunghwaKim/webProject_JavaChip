@@ -26,18 +26,7 @@ public interface CustomerDAO {
 	 * id에 해당하는 레코드 검색
 	 *  : 결과 레코드가 0 또는 1이면 Member
 	 */
-	Customer selectById(String id) throws SQLException;
-	
-	/**
-	 * keyField에 해당하는(필드명) keyword를 포함한 레코드 검색하기
-	 *  : 결과 레코드가 0개이상
-	 *  ex)
-	 *  select * from member where id like '%a%' or
-	 *  select * from member where name like '%a%' or
-	 *  select * from member where addr like '%a%'
-	 */
-	List<Customer> searchByKeyword(String keyField, String keyWord) throws SQLException;
-	
+	Customer selectById(String id) throws SQLException;	
 	
 	/**
 	 * 회원정보수정 - 탈퇴는 status 변경

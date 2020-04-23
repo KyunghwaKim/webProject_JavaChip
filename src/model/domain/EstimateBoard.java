@@ -1,6 +1,6 @@
 package model.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class EstimateBoard {
 	private int sequence;

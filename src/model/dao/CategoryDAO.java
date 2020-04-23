@@ -16,5 +16,5 @@ public interface CategoryDAO {
 	/**
 	 * 카테고리별 강사조회(강사의 카테고리 아이디로 검색)
 	 */
-	List<Teacher> selectById(String id);
+	List<Teacher> selectById(String id) throws SQLException;
 }

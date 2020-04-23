@@ -10,7 +10,10 @@ public class UpdateOrderLineController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String lineNo = request.getParameter("lineNo");
+		String prodId = request.getParameter("prodId");
 		
+		//int lineNo, String prodId;
 		return null;
 	}
 

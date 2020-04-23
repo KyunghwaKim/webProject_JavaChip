@@ -31,6 +31,6 @@ public interface CustomerDAO {
 	/**
 	 * 회원정보수정 - 탈퇴는 status 변경
 	 */
-	int update(Customer customer);
+	int update(Customer customer) throws SQLException;
 	
 }

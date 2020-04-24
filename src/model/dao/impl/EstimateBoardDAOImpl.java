@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Properties;
 
 import model.dao.EstimateBoardDAO;
+import model.domain.Customer;
 import model.domain.EstimateBoard;
+import model.domain.Product;
 import model.domain.QnABoard;
 import util.DbUtil;
 
@@ -29,16 +31,18 @@ Properties pro = new Properties();
 	}
 	
 	@Override
-	public int insert(EstimateBoard estimate) throws SQLException {
+	public int insert(String subject, String userId, String prodId, int grade) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("insertEst");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
-			
+			ps.setString(1, subject);
+			ps.setString(2, userId);
+			ps.setString(3, prodId);
+			ps.setInt(4, grade);
 			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(con, ps);
@@ -63,23 +67,6 @@ Properties pro = new Properties();
 		return result;
 	}
 
-	@Override
-	public int delete(EstimateBoard estimate) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps =null;
-		int result =0;
-		String sql=pro.getProperty("");
-		try {
-			con = DbUtil.getConnection();
-			ps = con .prepareStatement(sql);
-			
-			result = ps.executeUpdate();
-			
-		}finally {
-			DbUtil.dbClose(con, ps);
-		}
-		return result;
-	}
 
 	@Override
 	public List<EstimateBoard> selectByName(String id) throws SQLException {
@@ -118,7 +105,6 @@ Properties pro = new Properties();
 			rs = ps.executeQuery();
 			while(rs.next()) {//객체 생성을 위한 rs.get~~ 추가 필요
 				EstimateBoard estimateBoard = new EstimateBoard();
-				
 				list.add(estimateBoard);
 			}
 		}finally {
@@ -140,14 +126,65 @@ Properties pro = new Properties();
 			ps.setString(1, keyField);
 			ps.setString(2, keyword);
 			rs = ps.executeQuery();
-			
 			while(rs.next()) {
 				EstimateBoard estBoard = new EstimateBoard();
-				
 				list.add(estBoard);
 			}
 		}finally {
 			DbUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+	@Override
+	public int insert(EstimateBoard estimate) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = pro.getProperty("deleteEst");
+		int result=0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+
+	@Override
+	public int delete(EstimateBoard estimate) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<EstimateBoard> selectByGrade() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs=null;
+		String sql = pro.getProperty("selectEstByGrade");
+		List<EstimateBoard> list=null;
+		try{
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery(); //select * from estimateboard order by grade
+			while(rs.next()) {
+				Product product = new Product(rs.getString("prod_id"));
+				Customer customer = new Customer(rs.getString("user_id"));
+				EstimateBoard estimateBoard 
+					= new EstimateBoard(rs.getInt("sequence"), rs.getString("subject"), customer
+							,product , rs.getDate("writeday"), rs.getInt("grade"));
+				list.add(estimateBoard);
+			}
+		}finally {
+			DbUtil.dbClose(con, ps);
 		}
 		return list;
 	}

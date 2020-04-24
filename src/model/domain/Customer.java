@@ -10,7 +10,10 @@ public class Customer extends Person {
 	private Date regDate;
 	
 	public Customer() {}
-
+	
+	public Customer(String id) {
+		super.setId(id);
+	}
 	public Customer(int age, String email, String coupon, String howToCome, Date regDate) {
 		super();
 		this.age = age;

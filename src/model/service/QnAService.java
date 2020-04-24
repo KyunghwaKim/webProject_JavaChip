@@ -28,10 +28,10 @@ public class QnAService {
 	/**
 	 * 게시글 내용 수정
 	 */
-//	public static int update(String content, int no) throws SQLException{
-//		return dao.update(content, no);
-//		
-//	}
+	public static int update(String content, int no) throws SQLException{
+		return dao.update(content, no);
+		
+	}
 		
 	/**
 	 * 전체 게시글 조회

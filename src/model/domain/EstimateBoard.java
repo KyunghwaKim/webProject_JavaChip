@@ -6,14 +6,14 @@ public class EstimateBoard {
 	private int sequence;
 	private String subject;
 	private Customer customer;
-	private Date writeDay;
 	private Product product;
-	private String grade;
+	private Date writeDay;
+	private int grade;
 
 	public EstimateBoard() {}
 
-	public EstimateBoard(int sequence, String subject, Customer customer, Date writeDay, Product product,
-			String grade) {
+	public EstimateBoard(int sequence, String subject, Customer customer, Product product, Date writeDay,
+			int grade) {
 		super();
 		this.sequence = sequence;
 		this.subject = subject;
@@ -63,11 +63,11 @@ public class EstimateBoard {
 		this.product = product;
 	}
 
-	public String getGrade() {
+	public int getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 }

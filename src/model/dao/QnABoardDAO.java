@@ -35,6 +35,8 @@ public interface QnABoardDAO {
 	 * (내용 or 제목으로 조회) 키워드조회
 	 */
 	List<QnABoard> selectByKeyword(String keyField, String keyword) throws SQLException;
+
+	int update(String content, int no) throws SQLException;
 	
 	
 }

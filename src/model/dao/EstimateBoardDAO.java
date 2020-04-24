@@ -20,7 +20,7 @@ public interface EstimateBoardDAO {
 	/**
 	 * 게시물 삭제
 	 */
-	int delete(EstimateBoard estimate) throws SQLException;
+	int delete(int no) throws SQLException;
 	
 	/**
 	 * 내글에 해당하는 글을 전부 조회한다.	
@@ -36,5 +36,14 @@ public interface EstimateBoardDAO {
 	 * (강의명 / 강사명 / 평점 조회) 키워드조회
 	 */
 	List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException;
+	
+	/**
+	 * 게시물 등록
+	 */
+	int insert(String subject, String userId, String prodId, int grade) throws SQLException;
+
+	int delete(EstimateBoard estimate) throws SQLException;
+
+	List<EstimateBoard> selectByGrade() throws SQLException;
 	
 }

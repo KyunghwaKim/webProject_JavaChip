@@ -13,7 +13,7 @@ public class UpdateQnAController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String content = request.getParameter("content");
 		String no = request.getParameter("no");
-//		QnAService.update(content, Integer.parseInt(no));
+		QnAService.update(content, Integer.parseInt(no));
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setRedirect(true);

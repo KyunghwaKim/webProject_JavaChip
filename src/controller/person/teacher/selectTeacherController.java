@@ -1,4 +1,4 @@
-package controller.teacher;
+package controller.person.teacher;
 
 import java.util.List; 
 

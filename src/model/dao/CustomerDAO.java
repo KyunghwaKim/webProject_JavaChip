@@ -11,6 +11,16 @@ public interface CustomerDAO {
 	int insert(Customer customer) throws SQLException;
 	
 	/**
+	 * 비밀번호 변경
+	 */
+	int update(String id, String pwd) throws SQLException;
+	
+	/**
+	 * 회원탈퇴
+	 */
+	int update(String id) throws SQLException;
+	
+	/**
 	 * id 중복체크
 	 * @return : true이면 중복, false이면 중복아님
 	 */
@@ -26,7 +36,5 @@ public interface CustomerDAO {
 	 * id에 해당하는 레코드 검색
 	 *  : 결과 레코드가 0 또는 1이면 Member
 	 */
-	Customer selectById(String id) throws SQLException;		
-
-	
+	Customer selectById(String id) throws SQLException;
 }

@@ -16,14 +16,14 @@ public class InsertOrderLineController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//lineNo은 시퀀스이므로 값을 전달받지 않는다.
 		String totalPrice = request.getParameter("totalPrice");
-		String customerId = request.getParameter("customerId");
+		String id = request.getParameter("id");
 
-		if (totalPrice == null || totalPrice.equals("") || customerId == null || customerId.equals("")) {
+		if (totalPrice == null || totalPrice.equals("") || id == null || id.equals("")) {
 			throw new AddException("입력값이 부족합니다.");
 		}
 
 		Customer customer = new Customer();
-		customer.setId(customerId);
+		customer.setId(id);
 
 		OrderLine orderLine = new OrderLine(Integer.parseInt(totalPrice), customer);
 

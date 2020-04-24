@@ -13,8 +13,8 @@ import model.domain.Customer;
 import model.service.CustomerService; 
 
 
-public class selectCustomerController {
-	
+public class SelectCustomerController implements Controller {
+	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception  { 
 			
 	 		List<Customer> list = CustomerService.selectAll(); 

@@ -29,7 +29,6 @@ public class CartDAOImpl implements CartDAO {
 	}
 	
 	
-	//수빈 수정
 	/**
 	 * 카트 목록 조회
 	 * @param userId
@@ -63,8 +62,6 @@ public class CartDAOImpl implements CartDAO {
 		return list;
 	}
 
-	
-	//수빈 수정
 	@Override
 	public int insert(String userId, String prodId) throws SQLException {
 		Connection con = null;
@@ -83,7 +80,6 @@ public class CartDAOImpl implements CartDAO {
 		return result;
 	}
 	
-	//수빈 수정
 	/**
 	 * 해당 user의 장바구니 목록 전체 삭제
 	 */
@@ -104,7 +100,6 @@ public class CartDAOImpl implements CartDAO {
 		return result;
 	}
 	
-	//수빈 추가
 	/**
 	 * 
 	 */
@@ -127,10 +122,24 @@ public class CartDAOImpl implements CartDAO {
 		return result;
 	}
 
-
 	@Override
 	public int delete(String userId, List<Product> list) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql=pro.getProperty("deleteCart");
+		try {
+			for(Product p:list) {
+				String prodId = p.getId();
+				con=DbUtil.getConnection();
+				ps=con.prepareStatement(sql);
+				ps.setString(1, userId);
+				ps.setString(2, prodId);
+				result=ps.executeUpdate(sql);
+			}//end for
+		}finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
 	}
 }

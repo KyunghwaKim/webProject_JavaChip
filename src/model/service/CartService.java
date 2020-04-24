@@ -55,5 +55,14 @@ public class CartService {
 		}
 	}
 	
+	/**
+	 * 선택 상품 장바구니 목록에서 삭제 - 여러 개
+	 */
+	public static void delete(String userId, List<Product> list) throws SQLException {
+		int result = dao.delete(userId, list);
+		if(result==0) {
+			throw new SQLException("삭제하는데 실패했습니다.");
+		}
+	}
 	
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import model.dao.CartDAO;
+import model.domain.Cart;
 import model.domain.Product;
 import util.DbUtil;
 
@@ -26,21 +27,33 @@ public class CartDAOImpl implements CartDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
+	//수빈 수정
+	/**
+	 * 카트 목록 조회
+	 * @param userId
+	 */
 	@Override
-	public List<Product> selectAll() throws SQLException {
+	public List<Product> selectAll(String userId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Product> list = new ArrayList<Product>();
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("selectCart");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				Product product = new Product();
+				//가져오는 컬럼 순서 확인필요
 				
+				//Customer customer = new Customer();
+				//Cart cart = new Cart(cartNo, customer, product);
+				
+			
+				Product product = new Product();//getter로 생성해야 함
 				list.add(product);
 			}
 		}finally {
@@ -51,39 +64,73 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	
-
+	//수빈 수정
 	@Override
-	public int insert(Product product) throws SQLException {
+	public int insert(String userId, String prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("insertCart");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+			ps.setString(1, userId);
+			ps.setString(2, prodId);
 			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
 	}
-
+	
+	//수빈 수정
+	/**
+	 * 해당 user의 장바구니 목록 전체 삭제
+	 */
 	@Override
-	public int delete(List<Product> list) throws SQLException {
+	public int deleteAll(String userId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps =null;
 		int result =0;
-		String sql=pro.getProperty("");
+		String sql=pro.getProperty("deleteAllCart");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+			ps.setString(1, userId);
 			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
 	}
+	
+	//수빈 추가
+	/**
+	 * 
+	 */
+	@Override
+	public int deleteById(String userId, String prodId) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql=pro.getProperty("deleteCart");
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setString(2, prodId);
+			result=ps.executeUpdate(sql);
+		}finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+	}
 
+
+	@Override
+	public int delete(String userId, List<Product> list) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

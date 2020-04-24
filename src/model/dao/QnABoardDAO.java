@@ -19,7 +19,7 @@ public interface QnABoardDAO {
 	/**
 	 * 게시물 삭제
 	 */
-	int delete(QnABoard qaBoard) throws SQLException;	
+	int delete(int sequence) throws SQLException;	
 	
 	/**
 	 * 내글에 해당하는 글을 전부 조회한다.	

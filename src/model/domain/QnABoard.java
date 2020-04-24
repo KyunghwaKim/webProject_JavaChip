@@ -12,16 +12,22 @@ public class QnABoard {
 	private QnABoard parentNo;
 
 	public QnABoard() {}
+	
+	
 
-	public QnABoard(int sequence, String subject, Date writeDay, Customer customer, Product product, String title,
-			QnABoard parentNo) {
+	public QnABoard(String subject, Customer customer, Product product, String title) {
 		super();
-		this.sequence = sequence;
 		this.subject = subject;
-		this.writeDay = writeDay;
 		this.customer = customer;
 		this.product = product;
 		this.title = title;
+	}
+
+	public QnABoard(int sequence, String subject, Date writeDay, Customer customer, Product product, String title,
+			QnABoard parentNo) {
+		this(subject, customer, product, title);
+		this.sequence = sequence;
+		this.writeDay = writeDay;
 		this.parentNo = parentNo;
 	}
 

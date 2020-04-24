@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
 import model.dao.CategoryDAO;
 import model.domain.Category;
 import model.domain.Teacher;
@@ -34,11 +35,16 @@ Properties pro = new Properties();
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result=0;
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("insertCate");
+		/**
+		 * insertCate=insert into category (category_id, category_name) 
+		 * values (cate_seq.nextval, ?)
+		 */
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
+			ps.setString(1, category.getName());
 			
 			result = ps.executeUpdate();
 		}finally {
@@ -56,7 +62,8 @@ Properties pro = new Properties();
 		String sql = pro.getProperty("");
 		try {
 			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);			
+			ps = con.prepareStatement(sql);		
+			
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Teacher teacher = new Teacher();

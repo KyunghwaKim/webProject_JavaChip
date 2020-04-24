@@ -111,15 +111,15 @@ Properties pro = new Properties();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<EstimateBoard> list = new ArrayList<EstimateBoard>();
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("selectAllEst");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				EstimateBoard estBoard = new EstimateBoard();
+			while(rs.next()) {//객체 생성을 위한 rs.get~~ 추가 필요
+				EstimateBoard estimateBoard = new EstimateBoard();
 				
-				list.add(estBoard);
+				list.add(estimateBoard);
 			}
 		}finally {
 			DbUtil.dbClose(con, ps, rs);

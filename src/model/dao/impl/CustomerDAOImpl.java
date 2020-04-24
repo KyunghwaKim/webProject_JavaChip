@@ -55,44 +55,20 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 		return result;
 	}
-
-	@Override
-	public int update(String id, String pwd) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		int result = 0;
-		String sql = "";
-		
-		sql = pro.getProperty("updatePwdCustomer");
-		
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			
-			ps.setString(1, pwd);
-			ps.setString(2, id);
-			
-			result = ps.executeUpdate();
-		}finally {
-			DbUtil.dbClose(con, ps);
-		}
-		return result;
-	}
 	
 	@Override
-	public int update(String id) throws SQLException {
+	public int update(Customer customer) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = "";
-		
-		sql = pro.getProperty("updateStatusCustomer");
+
+		String sql = pro.getProperty("updateCustomer");
 		
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setString(1, id);
+			ps.setString(1, customer.getId());
 			
 			result = ps.executeUpdate();
 		}finally {

@@ -56,9 +56,9 @@ public class CustomerService {
 			throw new SQLException("비밀번호를 다시 확인해주세요.");
 		}
 
-		int result = customerDAO.update(id, pwd);
-		if (result == 0)
-			throw new SQLException("수정되지 않았습니다.");
+//		int result = customerDAO.update(id, pwd);
+//		if (result == 0)
+//			throw new SQLException("수정되지 않았습니다.");
 
 	}
 	public static void update(String id) throws SQLException {

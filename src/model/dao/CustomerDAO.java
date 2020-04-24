@@ -11,14 +11,9 @@ public interface CustomerDAO {
 	int insert(Customer customer) throws SQLException;
 	
 	/**
-	 * 비밀번호 변경
+	 * 회원정보수정(비밀번호, 전화번호, 이메일, 상태(가입or탈퇴회원)
 	 */
-	int update(String id, String pwd) throws SQLException;
-	
-	/**
-	 * 회원탈퇴
-	 */
-	int update(String id) throws SQLException;
+	int update(Customer customer) throws SQLException;
 	
 	/**
 	 * id 중복체크

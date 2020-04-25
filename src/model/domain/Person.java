@@ -10,14 +10,18 @@ public class Person {
 	
 	public Person() {}
 	
-	public Person(String id, String pwd, String name, String phone, String gender, int status) {
+	public Person(String id, String pwd, String phone, int status) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
-		this.name = name;
 		this.phone = phone;
-		this.gender = gender;
 		this.status = status;
+	}
+	
+	public Person(String id, String pwd, String name, String phone, String gender, int status) {
+		this(id, pwd, phone, status);
+		this.name = name;
+		this.gender = gender;
 	}
 
 	public String getId() {

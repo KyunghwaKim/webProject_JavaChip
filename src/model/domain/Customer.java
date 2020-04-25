@@ -11,6 +11,11 @@ public class Customer extends Person {
 	
 	public Customer() {}
 
+	public Customer(String id, String pwd, String phone, int status, String email) {
+		super(id, pwd, phone, status);
+		this.email = email;
+	}
+
 	public Customer(String id, String pwd, String name, String phone, String gender, int status,
 			int age, String email, String coupon, String howToCome, Date regDate) {
 		super(id, pwd, name, phone, gender, status);

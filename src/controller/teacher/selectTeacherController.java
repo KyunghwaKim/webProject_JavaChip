@@ -1,7 +1,11 @@
-package controller.person.teacher;
+package controller.teacher;
+
+import java.util.List; 
+
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse; 
+ 
  
 import controller.Controller; 
 import controller.ModelAndView; 
@@ -9,20 +13,19 @@ import model.domain.Teacher;
 import model.service.TeacherService; 
  
 
-public class selectByNameTeacherController implements Controller {
-	@Override
+public class selectTeacherController {
+	
+ 	
  	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception { 
-		String name = request.getParameter("name");
 		
- 		Teacher teacher = TeacherService.selectByName(name); 
+ 		List<Teacher> list = TeacherService.selectAll(); 
  		 
- 		request.setAttribute("teacher", teacher); 
+ 		request.setAttribute("list", list); 
  		 
  		ModelAndView mv = new ModelAndView(); 
  		mv.setViewName(""); 
 		 
  		return mv; 
- 	} 
+} 
 
 }
-

@@ -67,7 +67,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+
+			ps.setString(1, customer.getEmail());
 			ps.setString(1, customer.getId());
 			
 			result = ps.executeUpdate();

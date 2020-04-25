@@ -1,4 +1,4 @@
-package controller.person.customer;
+package controller.customer;
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;

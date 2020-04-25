@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.AddException;
+import model.domain.Customer;
+import model.domain.Product;
+import model.domain.QnABoard;
 import model.service.QnAService;
 
 public class InsertQnAController implements Controller {
@@ -13,16 +16,27 @@ public class InsertQnAController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String subject = request.getParameter("subject");
-		String title = request.getParameter("title");
-		String prodId = request.getParameter("prod_id");
 		String id = request.getParameter("id");
-		if(subject==null || subject.equals("") || title==null || title.equals("")) {
+		String prodId = request.getParameter("prod_id");
+		String title = request.getParameter("title");
+		
+		if (subject == null || subject.equals("") || title == null || title.equals("") || prodId == null
+				|| prodId.equals("") || id == null || id.equals("")) {
 			new AddException("게시글 추가에 필요한 입력값이 부족합니다.");
 		}
-//		QnAService.insert(subject, title, prodId, id);
-		ModelAndView mv = new ModelAndView();
-		mv.setRedirect(true);
-		mv.setViewName("");
+		
+		Customer customer = new Customer();
+		customer.setId(id);
+		
+		Product product = new Product();
+		product.setId(prodId);
+
+		QnABoard qaBoard = new QnABoard(subject, customer, product, title);
+
+		QnAService.insert(qaBoard);
+		
+		ModelAndView mv = new ModelAndView(true, "");
+		
 		return mv;
 	}
 

@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Properties;
 
 import model.dao.QnABoardDAO;
+import model.domain.Customer;
+import model.domain.Product;
 import model.domain.QnABoard;
 import util.DbUtil;
 
@@ -69,10 +71,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("");
-		/**
-		 * deleteQnA=delete from qnaboard where sequence=?
-		 */
+		String sql = pro.getProperty("deleteQnA");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -87,23 +86,29 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 	}
 
 	@Override
-	public List<QnABoard> selectByName(String id) throws SQLException {
+	public List<QnABoard> selectById(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<QnABoard> list = new ArrayList<QnABoard>();
-		String sql = pro.getProperty("");
-		/**
-		 * selectQnAById=select * from QnAboard where id=? order by sequence desc;
-		 */
+		String sql = pro.getProperty("selectQnAById");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				Customer customer = new Customer();
+				customer.setId(rs.getString("id"));
 
-				QnABoard qnABoard = new QnABoard();
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
+
+				QnABoard qaBoard = new QnABoard();
+				qaBoard.setQaBoardNo(rs.getInt("parentnumber"));
+
+				QnABoard qnABoard = new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday"),
+						customer, product, rs.getString("title"), qaBoard);
 
 				list.add(qnABoard);
 			}
@@ -119,16 +124,23 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<QnABoard> list = new ArrayList<QnABoard>();
-		String sql = pro.getProperty("");
-		/**
-		 * selectAllQnA=select * from QnAboard order by sequence desc;
-		 */
+		String sql = pro.getProperty("selectAllQnA");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				QnABoard qnABoard = new QnABoard();
+				Customer customer = new Customer();
+				customer.setId(rs.getString("id"));
+
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
+
+				QnABoard qaBoard = new QnABoard();
+				qaBoard.setQaBoardNo(rs.getInt("parentnumber"));
+
+				QnABoard qnABoard = new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday"),
+						customer, product, rs.getString("title"), qaBoard);
 
 				list.add(qnABoard);
 			}
@@ -144,20 +156,30 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<QnABoard> list = new ArrayList<QnABoard>();
-		String sql = pro.getProperty("");
-		/**
-		 * selectQnABySub=select * from QnAboard where subject LIKE ? order by sequence
-		 * desc;
-		 * 
-		 * selectQnAByTitle=select * from QnAboard where title LIKE ? order by sequence
-		 * desc;
-		 */
+		String field = "";
+		if(keyField.equals("subject")) {
+			field = "selectQnABySub";
+		} else {
+			field = "selectQnAByTitle";			
+		}
+		String sql = pro.getProperty(field);
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				QnABoard qnABoard = new QnABoard();
+				Customer customer = new Customer();
+				customer.setId(rs.getString("id"));
+
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
+
+				QnABoard qaBoard = new QnABoard();
+				qaBoard.setQaBoardNo(rs.getInt("parentnumber"));
+
+				QnABoard qnABoard = new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday"),
+						customer, product, rs.getString("title"), qaBoard);
 
 				list.add(qnABoard);
 			}

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.ModelAndView;
-import exception.NotEnoughException;
+import exception.NotFoundException;
 import model.domain.Customer;
 import model.service.CustomerService;
 
@@ -21,7 +21,7 @@ public class UpdateCustomerController implements Controller {
 
 		if (id == null || id.equals("") || pwd == null || pwd.equals("") || phone == null || phone.equals("")
 				|| status == null || status.equals("") || email == null || email.equals("")) {
-			throw new NotEnoughException("입력값이 부족합니다.");
+			throw new NotFoundException("입력값이 부족합니다.");
 		}
 
 		Customer customer = new Customer(id, pwd, phone, Integer.parseInt(status), email);

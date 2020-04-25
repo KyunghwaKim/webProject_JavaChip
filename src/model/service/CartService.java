@@ -15,8 +15,8 @@ public class CartService {
 	 * @return List<Product>
 	 * @throws SQLException
 	 */
-	public static List<Product> selectAll(String userId) throws SQLException {
-		List<Product> list = dao.selectAll(userId);
+	public static List<Product> selectAll(String customerId) throws SQLException {
+		List<Product> list = dao.selectAll(customerId);
 		return list;
 	}
 	
@@ -25,8 +25,8 @@ public class CartService {
 	 * @param product
 	 * @throws SQLException
 	 */
-	public static void insert(String userId, String prodId) throws SQLException {
-		int result = dao.insert(userId, prodId);
+	public static void insert(String customerId, String prodId) throws SQLException {
+		int result = dao.insert(customerId, prodId);
 		if(result==0) { //실패
 			throw new SQLException("장바구니 담기에 실패했습니다.");
 		}
@@ -36,8 +36,8 @@ public class CartService {
 	 * 장바구니 목록 전체 삭제
 	 * @throws SQLException 
 	 */
-	public static void deleteAll(String userId) throws SQLException {
-		int result = dao.deleteAll(userId);
+	public static void deleteAll(String customerId) throws SQLException {
+		int result = dao.deleteAll(customerId);
 		if(result==0) {
 			throw new SQLException("장바구니 모두 비우기에 실패했습니다.");
 		}
@@ -48,8 +48,8 @@ public class CartService {
 	 * @param userId, prodId
 	 * @throws SQLException
 	 */
-	public static void deleteById(String userId, String prodId) throws SQLException {
-		int result = dao.deleteById(userId, prodId);
+	public static void deleteById(String customerId, String prodId) throws SQLException {
+		int result = dao.deleteById(customerId, prodId);
 		if(result==0) {
 			throw new SQLException("장바구니에서 삭제하는데 실패했습니다.");
 		}
@@ -58,8 +58,8 @@ public class CartService {
 	/**
 	 * 선택 상품 장바구니 목록에서 삭제 - 여러 개
 	 */
-	public static void delete(String userId, List<Product> list) throws SQLException {
-		int result = dao.delete(userId, list);
+	public static void delete(String customerId, List<Product> list) throws SQLException {
+		int result = dao.delete(customerId, list);
 		if(result==0) {
 			throw new SQLException("삭제하는데 실패했습니다.");
 		}

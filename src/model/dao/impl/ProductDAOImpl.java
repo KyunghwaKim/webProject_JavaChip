@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import model.dao.ProductDAO;
+import model.domain.Category;
 import model.domain.Product;
 import model.domain.Teacher;
 import util.DbUtil;
@@ -96,16 +98,29 @@ Properties pro = new Properties();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Product> list = new ArrayList<Product>();
-		String sql = pro.getProperty("");
+		String sql = "SELECT * FROM PRODUCT ORDER BY pro_id DESC";
+		
+		Teacher t = new Teacher();
+		Category cate = new Category();
+		
+		
+		
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				Product product = new Product();
+			
+				
+				
+				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"), rs.getInt("prod_price"), 
+											  rs.getString("description"), rs.getString("prod_level"), t, 
+											  cate, rs.getDate("upload_date"), rs.getInt("valid_Date"));
 				
 				list.add(product);
 			}
+			
+
 		}finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
@@ -180,3 +195,5 @@ Properties pro = new Properties();
 	}
 
 }
+
+

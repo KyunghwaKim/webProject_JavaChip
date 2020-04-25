@@ -17,7 +17,8 @@ public class insertCategoryController implements Controller {
 		String cateid = request.getParameter("id");
 		String catename = request.getParameter("name");
 				
-			if(catename==null || catename.equals("")) {
+			if(cateid==null || cateid.equals("") || catename==null || 
+					catename.equals("") ) {
 				throw new AddException("입력값이 부족합니다");
 			}
 		Category category = new Category(Integer.parseInt(cateid),catename);

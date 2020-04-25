@@ -5,8 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.ModelAndView;
-import exception.InconsistencyException;
-import exception.NotEnoughException;
+import exception.NotFoundException;
 import model.domain.Customer;
 import model.service.CustomerService;
 
@@ -18,13 +17,13 @@ public class CheckPwdCustomerController implements Controller {
 		String pwd = request.getParameter("pwd");
 		
 		if(id==null||id.equals("")||pwd==null||pwd.equals("")) {
-			throw new NotEnoughException("입력값이 부족합니다.");
+			throw new NotFoundException("입력값이 부족합니다.");
 		}
 		
 		Customer customer = CustomerService.selectById(id);
 		
 		if(!customer.getPwd().equals(pwd)) {
-			throw new InconsistencyException("잘못된 비밀번호입니다.");
+			throw new NotFoundException("잘못된 비밀번호입니다.");
 		}
 		
 		ModelAndView mv = new ModelAndView();

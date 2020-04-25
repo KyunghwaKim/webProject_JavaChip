@@ -34,7 +34,7 @@ public class CartDAOImpl implements CartDAO {
 	 * @param userId
 	 */
 	@Override
-	public List<Product> selectAll(String userId) throws SQLException {
+	public List<Product> selectAll(String customerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -43,7 +43,7 @@ public class CartDAOImpl implements CartDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, userId);
+			ps.setString(1, customerId);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				//가져오는 컬럼 순서 확인필요
@@ -63,7 +63,7 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public int insert(String userId, String prodId) throws SQLException {
+	public int insert(String customerId, String prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -71,7 +71,7 @@ public class CartDAOImpl implements CartDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, userId);
+			ps.setString(1, customerId);
 			ps.setString(2, prodId);
 			result = ps.executeUpdate();
 		}finally {
@@ -84,7 +84,7 @@ public class CartDAOImpl implements CartDAO {
 	 * 해당 user의 장바구니 목록 전체 삭제
 	 */
 	@Override
-	public int deleteAll(String userId) throws SQLException {
+	public int deleteAll(String customerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps =null;
 		int result =0;
@@ -92,7 +92,7 @@ public class CartDAOImpl implements CartDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, userId);
+			ps.setString(1, customerId);
 			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(con, ps);
@@ -104,7 +104,7 @@ public class CartDAOImpl implements CartDAO {
 	 * 
 	 */
 	@Override
-	public int deleteById(String userId, String prodId) throws SQLException {
+	public int deleteById(String customerId, String prodId) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
@@ -113,7 +113,7 @@ public class CartDAOImpl implements CartDAO {
 		try {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
-			ps.setString(1, userId);
+			ps.setString(1, customerId);
 			ps.setString(2, prodId);
 			result=ps.executeUpdate(sql);
 		}finally {
@@ -123,7 +123,7 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public int delete(String userId, List<Product> list) throws SQLException {
+	public int delete(String customerId, List<Product> list) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;
@@ -133,7 +133,7 @@ public class CartDAOImpl implements CartDAO {
 				String prodId = p.getId();
 				con=DbUtil.getConnection();
 				ps=con.prepareStatement(sql);
-				ps.setString(1, userId);
+				ps.setString(1, customerId);
 				ps.setString(2, prodId);
 				result=ps.executeUpdate(sql);
 			}//end for

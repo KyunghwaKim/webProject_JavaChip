@@ -54,19 +54,26 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public List<Teacher> selectById(String categoryid) throws SQLException{
+	public List<Teacher> selectById(int categoryId) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Teacher> list = new ArrayList<Teacher>();
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("selectteacherbyid");
+		/**
+		 * selectteacherbyid = select * from teacher t join category c on
+		 * t.category_id = c.category_id where category_id = ?
+		 */
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);		
-			
+			ps.setInt(1, categoryId);
 			rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				Teacher teacher = new Teacher();
+				Category category = new Category(rs.getInt("id"),rs.getString("name"));
+				
+				Teacher teacher = new Teacher(category);
 				
 				list.add(teacher);
 			}

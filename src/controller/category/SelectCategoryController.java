@@ -16,12 +16,13 @@ public class SelectCategoryController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String categoryname = request.getParameter("categoryname"); 
-		if(categoryname==null || categoryname.equals("")) {
+		String categoryId = request.getParameter("categoryId"); 
+		
+		if(categoryId==null || categoryId.equals("")) {
 			throw new NotFoundException("이름이 없습니다");
 		}
 		
-		List<Teacher> list = CategoryService.selectById(categoryname);
+		List<Teacher> list = CategoryService.selectById(Integer.parseInt(categoryId));
 		request.setAttribute("teacherlist", list);
 		
 		ModelAndView mv = new ModelAndView();

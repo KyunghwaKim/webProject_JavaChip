@@ -21,15 +21,15 @@ public class QnAService {
 	 * 게시글 삭제
 	 * @param 게시글 번호
 	 */
-	public static int delete(int no) throws SQLException{
-		return dao.delete(no);
+	public static int delete(int qaBoardNo) throws SQLException{
+		return dao.delete(qaBoardNo);
 	}
 	
 	/**
 	 * 게시글 내용 수정
 	 */
-	public static int update(String content, int no) throws SQLException{
-		return dao.update(content, no);
+	public static int update(int qaBoardNo, String content) throws SQLException{
+		return dao.update(qaBoardNo, content);
 		
 	}
 		
@@ -47,8 +47,8 @@ public class QnAService {
 	 * @param id
 	 * @throws SQLException 
 	 */
-	public static List<QnABoard> selectById(String id) throws SQLException {
-		return dao.selectByName(id);
+	public static List<QnABoard> selectById(String customerId) throws SQLException {
+		return dao.selectByName(customerId);
 		
 	}
 }

@@ -12,9 +12,9 @@ import model.service.TeacherService;
 public class selectByNameTeacherController implements Controller {
 	@Override
  	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception { 
-		String name = request.getParameter("name");
+		String teacherName = request.getParameter("teacherName");
 		
- 		Teacher teacher = TeacherService.selectByName(name); 
+ 		Teacher teacher = TeacherService.selectByName(teacherName); 
  		 
  		request.setAttribute("teacher", teacher); 
  		 

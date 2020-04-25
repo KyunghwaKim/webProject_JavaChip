@@ -3,7 +3,7 @@ package model.domain;
 import java.util.Date;
 
 public class QnABoard {
-	private int sequence;
+	private int qaBoardNo;
 	private String subject;
 	private Date writeDay;
 	private Customer customer;
@@ -13,8 +13,6 @@ public class QnABoard {
 
 	public QnABoard() {}
 	
-	
-
 	public QnABoard(String subject, Customer customer, Product product, String title) {
 		super();
 		this.subject = subject;
@@ -23,20 +21,20 @@ public class QnABoard {
 		this.title = title;
 	}
 
-	public QnABoard(int sequence, String subject, Date writeDay, Customer customer, Product product, String title,
+	public QnABoard(int qaBoardNo, String subject, Date writeDay, Customer customer, Product product, String title,
 			QnABoard parentNo) {
 		this(subject, customer, product, title);
-		this.sequence = sequence;
+		this.qaBoardNo = qaBoardNo;
 		this.writeDay = writeDay;
 		this.parentNo = parentNo;
 	}
 
-	public int getSequence() {
-		return sequence;
+	public int getQaBoardNo() {
+		return qaBoardNo;
 	}
 
-	public void setSequence(int sequence) {
-		this.sequence = sequence;
+	public void setQaBoardNo(int qaBoardNo) {
+		this.qaBoardNo = qaBoardNo;
 	}
 
 	public String getSubject() {

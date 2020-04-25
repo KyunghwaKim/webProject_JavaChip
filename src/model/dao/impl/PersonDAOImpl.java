@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import model.dao.PersonDAO;
-import model.domain.Customer;
+import model.domain.Person;
 import util.DbUtil;
 
 public class PersonDAOImpl implements PersonDAO {
@@ -23,7 +23,7 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 	@Override
-	public int update(Customer customer) throws SQLException {
+	public int update(Person person) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -34,10 +34,10 @@ public class PersonDAOImpl implements PersonDAO {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 
-			ps.setString(1, customer.getPwd());
-			ps.setString(1, customer.getPhone());
-			ps.setInt(1, customer.getStatus());
-			ps.setString(1, customer.getId());
+			ps.setString(1, person.getPwd());
+			ps.setString(2, person.getPhone());
+			ps.setInt(3, person.getStatus());
+			ps.setString(4, person.getId());
 			
 			result = ps.executeUpdate();
 		}finally {

@@ -12,14 +12,14 @@ public interface QnABoardDAO {
 	int insert(QnABoard qaBoard) throws SQLException;
 	
 	/**
-	 * 게시물 수정
+	 * 게시물 수정(글내용만)
 	 */
-	int update(QnABoard qaBoard) throws SQLException;
+	int update(int qaBoardNo, String content) throws SQLException;
 	
 	/**
 	 * 게시물 삭제
 	 */
-	int delete(int sequence) throws SQLException;	
+	int delete(int qaBoardNo) throws SQLException;	
 	
 	/**
 	 * 내글에 해당하는 글을 전부 조회한다.	
@@ -35,8 +35,4 @@ public interface QnABoardDAO {
 	 * (내용 or 제목으로 조회) 키워드조회
 	 */
 	List<QnABoard> selectByKeyword(String keyField, String keyword) throws SQLException;
-
-	int update(String content, int no) throws SQLException;
-	
-	
 }

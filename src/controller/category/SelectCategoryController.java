@@ -15,15 +15,14 @@ public class SelectCategoryController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		String categoryId = request.getParameter("categoryId"); 
 		
 		if(categoryId==null || categoryId.equals("")) {
-			throw new NotFoundException("이름이 없습니다");
+			throw new NotFoundException("입력값이 부족합니다.");
 		}
 		
-		List<Teacher> list = CategoryService.selectById(Integer.parseInt(categoryId));
-		request.setAttribute("teacherlist", list);
+		List<Teacher> teacherList = CategoryService.selectById(Integer.parseInt(categoryId));
+		request.setAttribute("teacherList", teacherList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("");

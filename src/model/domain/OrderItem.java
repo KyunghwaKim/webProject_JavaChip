@@ -22,12 +22,9 @@ public class OrderItem {
 	}
 
 	public OrderItem(int itemNo, Date endDate, int isRefund, OrderLine orderLine, Product product) {
-		super();
+		this(endDate, orderLine, product);
 		this.itemNo = itemNo;
-		this.endDate = endDate;
 		this.isRefund = isRefund;
-		this.orderLine = orderLine;
-		this.product = product;
 	}
 
 	public int getItemNo() {

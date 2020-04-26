@@ -9,15 +9,15 @@ public interface OrderItemDAO {
 	/**
 	 * 결제내역 확인
 	 */
-	List<OrderItem> selectAll() throws SQLException;
+	List<OrderItem> selectAll(String customerId) throws SQLException;
 	
 	/**
 	 * 주문하기
 	 */
-	int insert(List<OrderItem> list) throws SQLException;	
+	int insert(OrderItem orderItem) throws SQLException;	
 	
 	/**
 	 * 환불하기
 	 */
-	int update(List<OrderItem> list) throws SQLException;
+	int update(int itemNo) throws SQLException;
 }

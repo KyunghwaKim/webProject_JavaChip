@@ -7,17 +7,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.ModelAndView;
-import model.domain.OrderLine;
-import model.service.OrderLineService;
+import exception.NotFoundException;
+import model.domain.OrderItem;
+import model.service.OrderItemService;
 
 public class SelectOrderItemController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 전체 검색
-		List<OrderLine> list = OrderLineService.selectAll();
+		String customerId = request.getParameter("id");
+		
+		if (customerId == null || customerId.equals("")) {
+			throw new NotFoundException("입력값이 부족합니다.");
+		}
+		
+		List<OrderItem> itemList = OrderItemService.selectAll(customerId);
 
-		request.setAttribute("list", list);
+		request.setAttribute("itemList", itemList);
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("");

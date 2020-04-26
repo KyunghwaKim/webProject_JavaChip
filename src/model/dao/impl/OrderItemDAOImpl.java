@@ -13,6 +13,8 @@ import java.util.Properties;
 
 import model.dao.OrderItemDAO;
 import model.domain.OrderItem;
+import model.domain.OrderLine;
+import model.domain.Product;
 import util.DbUtil;
 
 public class OrderItemDAOImpl implements OrderItemDAO {
@@ -29,25 +31,27 @@ Properties pro = new Properties();
 	}
 	
 	@Override
-	public List<OrderItem> selectAll() throws SQLException {
+	public List<OrderItem> selectAll(String customerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<OrderItem> list = new ArrayList<OrderItem>();
-		String sql = pro.getProperty("");
-		/**
-		 * selectOrder=select l.user_id, i.orderitem_no, i.end_date, i.order_no, 
-		 * i.prod_id, i.isrefund, p.prod_name, p.prod_price from orderline l 
-		 * join orderitem i on l.order_no = i.order_no join product p 
-		 * on i.prod_id = p.prod_id where l.user_id=?
-		 */
+		String sql = pro.getProperty("selectOrder");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setString(1, customerId);
 			rs = ps.executeQuery();
 			while(rs.next()) {
+				OrderLine orderLine = new OrderLine();
+				orderLine.setLineNo(rs.getInt("order_no"));
 				
-				OrderItem orderItem = new OrderItem();
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
+				product.setName(rs.getString("prod_name"));
+				product.setPrice(rs.getInt("prod_price"));
+
+				OrderItem orderItem = new OrderItem(rs.getInt("orderitem_no"), rs.getDate("end_date"), rs.getInt("isrefund"), orderLine, product);
 				
 				list.add(orderItem);
 			}
@@ -58,16 +62,12 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int insert(List<OrderItem> list) throws SQLException {
+	public int insert(OrderItem orderItem) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		OrderItem orderItem = new OrderItem();
-		String sql = pro.getProperty("");
-		/**
-		 * insertItem=insert into orderitem (orderitem_no, end_date, order_no, 
-		 * prod_id, isrefund) values (orderItem_seq.nextval, ?, ?, ?, 0)
-		 */
+		String sql = pro.getProperty("insertOrderItem");
+		
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -84,15 +84,15 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int update(List<OrderItem> list) throws SQLException {
+	public int update(int itemNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("updateItem");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+			ps.setInt(1, itemNo);
 			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(con, ps);

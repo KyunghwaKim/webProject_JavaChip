@@ -15,21 +15,21 @@ public class Product {
 	
 	public Product() {}
 	
-	public Product(String id) {
-		this.id = id;
-	}
-	public Product(String id, String name, int price, String description, String level, Teacher teacher,
-			Category category, Date uploadDate, int validDate) {
-		super();
+	public Product(String id, String name, int price, String description, int validDate) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.description = description;
+		this.validDate = validDate;
+	}
+	
+	public Product(String id, String name, int price, String description, String level, Teacher teacher,
+			Category category, Date uploadDate, int validDate) {
+		this(id, name, price, description, validDate);
 		this.level = level;
 		this.teacher = teacher;
 		this.category = category;
 		this.uploadDate = uploadDate;
-		this.validDate = validDate;
 	}
 
 	public int getValidDate() {

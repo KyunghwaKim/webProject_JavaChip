@@ -15,14 +15,14 @@ public class InsertProductController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = request.getParameter("prod_id");
-		String name = request.getParameter("prod_name");
-		String price = request.getParameter("prod_price");
+		String id = request.getParameter("prodId");
+		String name = request.getParameter("prodName");
+		String price = request.getParameter("price");
 		String description = request.getParameter("description");
-		String level = request.getParameter("prod_level");
-		String teacherId = request.getParameter("teacher_id");
-		String categoryId = request.getParameter("category_id");
-		String validDate = request.getParameter("valid_Date");
+		String level = request.getParameter("level");
+		String teacherId = request.getParameter("teacherId");
+		String categoryId = request.getParameter("categoryId");
+		String validDate = request.getParameter("validDate");
 
 		if (id == null || id.equals("") || name == null || name.equals("") || price == null || price.equals("")
 				|| description == null || description.equals("") || level == null || level.equals("")

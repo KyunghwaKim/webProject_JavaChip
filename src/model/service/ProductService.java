@@ -33,34 +33,21 @@ public class ProductService {
 		return list;
 	}
 
-	/**
-	 * ProductDAOImpl의 모든레코드 수정하는 메소드 호출
-	 */
-	public static void update(List<Product> list) throws SQLException {
-
+	public static void update(Product product) throws SQLException {
+		int result = productDAO.update(product);
+		if (result == 0)
+			throw new SQLException("수정되지 않았습니다.");
 	}
 
 	/**
-	 * ProductDAOImpl의 모델번호에 해당하는 레코드 삭제 메소드 호출
-	 * 
-	 * @param path
+	 * ProductDAOImpl의 Id에 해당하는 레코드 검색하는 메소드 호출
 	 */
-	public static void delete() throws SQLException {
-
+	public static Product selectById(String prodId) throws SQLException {
+		return productDAO.selectById(prodId);
 	}
 
-	/**
-	   * ProductDAOImpl의 Id에 해당하는 레코드 검색하는 메소드 호출
-	   * */
-//	public static Product selectByJogun(String id) 
-//			                        throws SQLException{
-//		
-//
-//		
-//		Product pro = ProductDAOImpl.selectByJogun(Map<K, V>);
-//		if(pro==null)throw new SQLException("Id에 해당하는 정보를 검색할수 없습니다.");
-//		
-//		return pro;
-//	}
+	public static List<Product> selectByJogun(Map<String, String> map) throws SQLException {
+		return productDAO.selectByJogun(map);
+	}
 
 }

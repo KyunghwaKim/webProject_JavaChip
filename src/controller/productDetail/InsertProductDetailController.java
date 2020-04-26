@@ -17,10 +17,10 @@ public class InsertProductDetailController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String chapter = request.getParameter("chapter");
-		String url = request.getParameter("prod_url");
-		String title = request.getParameter("prod_title");
-		String fileId = request.getParameter("file_id");
-		String prodId = request.getParameter("prod_id");
+		String url = request.getParameter("url");
+		String title = request.getParameter("prodTitle");
+		String fileId = request.getParameter("fileId");
+		String prodId = request.getParameter("prodId");
 		if (chapter == null || chapter.equals("") || url == null || url.equals("") || title == null || title.equals("")
 				|| fileId == null || fileId.equals("") || prodId == null || prodId.equals("")) {
 			new AddException("인자가 부족합니다.");

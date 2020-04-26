@@ -15,7 +15,7 @@ public class DeleteProductDetailController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String prodId = request.getParameter("prod_id");
+		String prodId = request.getParameter("prodId");
 		String chapter = request.getParameter("chapter");
 
 		if (prodId == null || prodId.equals("") || chapter == null || chapter.equals("")) {

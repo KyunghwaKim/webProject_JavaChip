@@ -13,14 +13,9 @@ public interface ProductDAO {
 	int insert(Product product) throws SQLException;
 	
 	/**
-	 * 상품 수정
+	 * 상품 수정 - 상품명, 가격, 설명, 유효기간 변경
 	 */
-	int upate(Product product) throws SQLException;
-	
-	/**
-	 * 상품 삭제
-	 */
-	int delete(Product product) throws SQLException;
+	int update(Product product) throws SQLException;
 		
 	/**
 	 *  상품전체조회 (SQL구문에서 최근날짜별로 정렬해서 출력한다)
@@ -42,5 +37,5 @@ public interface ProductDAO {
 	/**
 	 * 상품아이디로 상품조회
 	 */
-	Product selectById(String id) throws SQLException;	
+	Product selectById(String prodId) throws SQLException;	
 }

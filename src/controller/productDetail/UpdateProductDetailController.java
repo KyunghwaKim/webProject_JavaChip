@@ -17,8 +17,8 @@ public class UpdateProductDetailController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String chapter = request.getParameter("chapter");
-		String fileId = request.getParameter("file_id");
-		String prodId = request.getParameter("prod_id");
+		String fileId = request.getParameter("fileId");
+		String prodId = request.getParameter("prodId");
 
 		if (chapter == null || chapter.equals("") || fileId == null || fileId.equals("") || prodId == null
 				|| prodId.equals("")) {

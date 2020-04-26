@@ -17,8 +17,8 @@ public class InsertQnAController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String subject = request.getParameter("subject");
 		String id = request.getParameter("id");
-		String prodId = request.getParameter("prod_id");
-		String title = request.getParameter("title");
+		String prodId = request.getParameter("prodId");
+		String title = request.getParameter("qaTitle");
 		
 		if (subject == null || subject.equals("") || title == null || title.equals("") || prodId == null
 				|| prodId.equals("") || id == null || id.equals("")) {

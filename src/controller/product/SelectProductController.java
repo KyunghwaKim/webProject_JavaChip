@@ -17,7 +17,7 @@ public class SelectProductController implements Controller {
 
  		List<Product> list = ProductService.selectAll(); 
  		 
- 		request.setAttribute("list", list); 
+ 		request.setAttribute("prodList", list); 
  		 
  		ModelAndView mv = new ModelAndView(); 
  		mv.setViewName(""); 

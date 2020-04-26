@@ -176,7 +176,8 @@ Properties pro = new Properties();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery(); //select * from estimateboard order by grade
 			while(rs.next()) {
-				Product product = new Product(rs.getString("prod_id"));
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
 				Customer customer = new Customer();
 				customer.setId(rs.getString("user_id"));
 				EstimateBoard estimateBoard 

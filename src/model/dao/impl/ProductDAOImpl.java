@@ -38,15 +38,18 @@ Properties pro = new Properties();
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("insertProd");
-		/**
-		 * insertProd=insert into product (prod_id, prod_name, prod_price,
-		 *  description, prod_level, teacher_id, category_id, upload_date)
-		 *   values (?, ?, ?, ?, ?, ?, ?, sysdate)
-		 */
+		
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+			ps.setString(1, product.getId());
+			ps.setString(2, product.getName());
+			ps.setInt(3, product.getPrice());
+			ps.setString(4, product.getDescription());
+			ps.setString(5, product.getLevel());
+			ps.setString(6, product.getTeacher().getId());
+			ps.setInt(7, product.getCategory().getId());
+			ps.setInt(8, product.getValidDate());
 			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(con, ps);
@@ -98,7 +101,7 @@ Properties pro = new Properties();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Product> list = new ArrayList<Product>();
-		String sql = "SELECT * FROM PRODUCT ORDER BY pro_id DESC";
+		String sql = "selectProd";
 		
 		Teacher t = new Teacher();
 		Category cate = new Category();

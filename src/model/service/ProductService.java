@@ -19,7 +19,6 @@ public class ProductService {
 	/**
 	 * ProductDAOImpl의 레코드 삽입하는 메소드 호출
 	 */
-
 	public static void insert(Product product) throws SQLException {
 		int result = productDAO.insert(product);
 		if (result == 0)

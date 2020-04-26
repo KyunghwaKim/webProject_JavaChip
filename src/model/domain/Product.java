@@ -15,10 +15,15 @@ public class Product {
 	
 	public Product() {}
 	
-	public Product(String id, String name, int price, String description, int validDate) {
+	public Product(String id, String name, int price) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
+	}
+	
+	public Product(String id, String name, int price, String description, int validDate) {
+		this(id, name, price);
 		this.description = description;
 		this.validDate = validDate;
 	}

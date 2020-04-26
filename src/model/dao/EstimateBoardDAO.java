@@ -13,19 +13,19 @@ public interface EstimateBoardDAO {
 	int insert(EstimateBoard estimate) throws SQLException;
 	
 	/**
-	 * 게시물 수정
+	 * 게시물 수정 - 제목, 점수 수정 가능
 	 */
 	int update(EstimateBoard estimate) throws SQLException;
 	
 	/**
 	 * 게시물 삭제
 	 */
-	int delete(int no) throws SQLException;
+	int delete(int estimateNo) throws SQLException;
 	
 	/**
 	 * 내글에 해당하는 글을 전부 조회한다.	
 	 */
-	List<EstimateBoard> selectByName(String id) throws SQLException;
+	List<EstimateBoard> selectByCustomerId(String customerId) throws SQLException;
 	
 	/**
 	 *  전체글조회
@@ -35,15 +35,5 @@ public interface EstimateBoardDAO {
 	/**
 	 * (강의명 / 강사명 / 평점 조회) 키워드조회
 	 */
-	List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException;
-	
-	/**
-	 * 게시물 등록
-	 */
-	int insert(String subject, String userId, String prodId, int grade) throws SQLException;
-
-	int delete(EstimateBoard estimate) throws SQLException;
-
-	List<EstimateBoard> selectByGrade() throws SQLException;
-	
+	List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException;	
 }

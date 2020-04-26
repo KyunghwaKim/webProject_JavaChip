@@ -14,10 +14,13 @@ public class SelectAllEstController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<EstimateBoard> list = EstimateService.selectAll();
-		request.setAttribute("allEstimateList", list);
+		List<EstimateBoard> estimateList = EstimateService.selectAll();
+
+		request.setAttribute("estimateList", estimateList);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("");
+
 		return mv;
 	}
 

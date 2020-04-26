@@ -32,7 +32,15 @@ public class OrderLineService {
 		int beforePrice = lineDAO.selectBylLineNo(lineNo).getTotalPrice();
 		int prodPrice = prodDAO.selectById(prodId).getPrice();
 		int totalPrice = beforePrice - prodPrice;
-		int result = lineDAO.update(totalPrice);
+		int result = lineDAO.update(lineNo, totalPrice);
 		if(result==0) throw new SQLException("수정되지 않았습니다.");
+	}
+
+	public static OrderLine selectByLineNo(int lineNo) throws SQLException {
+		return lineDAO.selectBylLineNo(lineNo);
+	}
+	
+	public static List<OrderLine> selectByCustomerId(String customerId) throws SQLException{
+		return lineDAO.selectByCustomerId(customerId);
 	}
 }

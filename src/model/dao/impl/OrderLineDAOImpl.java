@@ -17,40 +17,39 @@ import util.DbUtil;
 
 public class OrderLineDAOImpl implements OrderLineDAO {
 
-Properties pro = new Properties();
-	
+	Properties pro = new Properties();
+
 	public OrderLineDAOImpl() {
 		InputStream input = getClass().getClassLoader().getResourceAsStream("model/dao/sqlQuery.properties");
 		try {
 			pro.load(input);
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public List<OrderLine> selectAll() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<OrderLine> list = new ArrayList<OrderLine>();
-		String sql = pro.getProperty("");
-		/**
-		 * selectOrder=select l.user_id, i.orderitem_no, i.end_date, i.order_no, 
-		 * i.prod_id, i.isrefund, p.prod_name, p.prod_price from orderline l 
-		 * join orderitem i on l.order_no = i.order_no join product p 
-		 * on i.prod_id = p.prod_id where l.user_id=?
-		 */
+		String sql = pro.getProperty("selectLines");
+
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				OrderLine orderLine = new OrderLine();
-				
+			while (rs.next()) {
+				Customer customer = new Customer();
+				customer.setId(rs.getString("user_id"));
+
+				OrderLine orderLine = new OrderLine(rs.getInt("order_no"), rs.getInt("total_price"),
+						rs.getDate("pay_date"), customer);
+
 				list.add(orderLine);
 			}
-		}finally {
+		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return list;
@@ -61,44 +60,42 @@ Properties pro = new Properties();
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("");
-		/**
-		 * insertLine=insert into orderline (order_no, total_price, pay_date,
-		 *  user_id) values (order_seq.nextval, ?, sysdate, ?)
-		 */
+		String sql = pro.getProperty("insertLine");
+
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+
 			ps.setInt(1, orderLine.getTotalPrice());
 			ps.setString(2, orderLine.getCustomer().getId());
-			
+
 			result = ps.executeUpdate();
-		}finally {
+		} finally {
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
 	}
 
 	@Override
-	public int update(int totalPrice) throws SQLException {
+	public int update(int lineNo, int totalPrice) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("updateLine");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
+			ps.setInt(1, totalPrice);
+			ps.setInt(2, lineNo);
 			result = ps.executeUpdate();
-		}finally {
+		} finally {
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
 	}
-	
+
 	@Override
-	public OrderLine selectBylLineNo(int lineNo) throws SQLException{
+	public OrderLine selectBylLineNo(int lineNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -109,19 +106,44 @@ Properties pro = new Properties();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, lineNo);
 			rs = ps.executeQuery();
-			
+
 			Customer customer = new Customer();
-			
-			if(rs.next()) {
-				
-				orderLine = new OrderLine(rs.getInt(lineNo),
-						rs.getInt("total"), rs.getDate("payDate"), customer);
+
+			if (rs.next()) {
+				orderLine = new OrderLine(rs.getInt(lineNo), rs.getInt("total"), rs.getDate("payDate"), customer);
 			}
-		}finally {
+		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return orderLine;
 	}
 
+	@Override
+	public List<OrderLine> selectByCustomerId(String customerId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<OrderLine> list = new ArrayList<OrderLine>();
+		String sql = pro.getProperty("");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, customerId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Customer customer = new Customer();
+				customer.setId(rs.getString("user_id"));
+
+				OrderLine orderLine = new OrderLine(rs.getInt("order_no"), rs.getInt("total_price"),
+						rs.getDate("pay_date"), customer);
+
+				list.add(orderLine);
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
 
 }

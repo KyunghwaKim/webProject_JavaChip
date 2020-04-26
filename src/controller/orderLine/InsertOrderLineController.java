@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.AddException;
+import exception.NotFoundException;
 import model.domain.Customer;
 import model.domain.OrderLine;
 import model.service.OrderLineService;
@@ -14,16 +15,19 @@ public class InsertOrderLineController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//lineNo은 시퀀스이므로 값을 전달받지 않는다.
+		/**
+		 * lineNo은 시퀀스이므로 값을 전달받지 않는다.
+		 * totalPrice는 총 금액으로 프론트단에서 구매상품들의 가격을 더해서 넘겨주도록 한다
+		 */
 		String totalPrice = request.getParameter("totalPrice");
-		String id = request.getParameter("id");
+		String customerId = request.getParameter("id");
 
-		if (totalPrice == null || totalPrice.equals("") || id == null || id.equals("")) {
-			throw new AddException("입력값이 부족합니다.");
+		if (totalPrice == null || totalPrice.equals("") || customerId == null || customerId.equals("")) {
+			throw new NotFoundException("입력값이 부족합니다.");
 		}
 
 		Customer customer = new Customer();
-		customer.setId(id);
+		customer.setId(customerId);
 
 		OrderLine orderLine = new OrderLine(Integer.parseInt(totalPrice), customer);
 

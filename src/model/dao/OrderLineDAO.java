@@ -19,7 +19,7 @@ public interface OrderLineDAO {
 	/**
 	 * 환불하기
 	 */
-	int update(int totalPrice) throws SQLException;
+	int update(int lineNo, int totalPrice) throws SQLException;
 	
 	
 	/**
@@ -27,5 +27,8 @@ public interface OrderLineDAO {
 	 */
 	OrderLine selectBylLineNo(int lineNo) throws SQLException;
 	
-	
+	/**
+	 * 주문자별 주문내역 가져오기
+	 */
+	List<OrderLine> selectByCustomerId(String customerId) throws SQLException;	
 }

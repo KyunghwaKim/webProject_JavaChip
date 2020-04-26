@@ -60,4 +60,13 @@ public class CustomerService {
 			throw new SQLException("수정되지 않았습니다.");
 
 	}
+	
+	/**
+	 * 회원탈퇴
+	 */
+	public static void withdrawal(String id) throws SQLException {
+		int result = personDAO.updateStatus(id);
+		if (result == 0)
+			throw new SQLException("수정되지 않았습니다.");
+	}
 }

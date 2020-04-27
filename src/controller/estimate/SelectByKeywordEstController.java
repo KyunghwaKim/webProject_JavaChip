@@ -11,7 +11,7 @@ import exception.NotFoundException;
 import model.domain.EstimateBoard;
 import model.service.EstimateService;
 
-public class SelectByKeywordController implements Controller {
+public class SelectByKeywordEstController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

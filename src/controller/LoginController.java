@@ -22,7 +22,8 @@ public class LoginController implements Controller {
 		
 		PersonService.login(id, pwd);
 		
-		ModelAndView mv = new ModelAndView(true, "");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("marga/index.jsp");
 		
 		return mv;
 	}

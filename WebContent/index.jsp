@@ -9,6 +9,8 @@
 </head>
 <body>
 <a href="javaChip?command=selectCart">장바구니</a> <p>
-<a href="selectUser">admin)고객관리</a>
+<a href="selectUser">admin)고객관리</a> <p>
+<a href="javaChip?command=selectAllEst">강의평보기</a> <p>
+
 </body>
 </html>

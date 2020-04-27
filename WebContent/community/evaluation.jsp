@@ -1,9 +1,11 @@
+<%@page import="model.domain.EstimateBoard"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -11,10 +13,10 @@
   <title>JavaChip-Community</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+  <link href="${path}/community/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
 
   <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 table{
@@ -115,9 +117,18 @@ table{
 
 </style>
 
+<script>
+
+// 	window.addEventListener("load", function(){
+		
+// 		top.location.href="community/evaluation.jsp";
+		
+// 	});
+
+</script>
 
 </head>
-
+\${estimateList} /${estimateList}
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -217,6 +228,10 @@ table{
 	    	</tr>
 	    	</thead>
 	    	<tbody>
+	    	<c:forEach items="<%=estimateList%>" var="est" varStatus="state">
+				${"est"} / ${state.index} / ${state.count}<br>
+				<%-- ${product.id} / ${product.name} / ${product.price} / ${product.description} --%>
+			</c:forEach>
 	    	<tr>
 	    		<td>(신진섭강사)자바왕초보</td>
 	    		<td><span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span></td>
@@ -277,8 +292,8 @@ table{
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${path}/community/vendor/jquery/jquery.min.js"></script>
+  <script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

@@ -11,6 +11,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import controller.Controller;
+import oracle.net.aso.a;
 
 /**
  * 사용자 요청에 해당하는 key에 따른 객체를 미리 생성해서 
@@ -45,6 +46,7 @@ public class HandlerMappingListener implements ServletContextListener {
     	
     	//application영역에 저장한다.
     	application.setAttribute("map", map);
+    	application.setAttribute("path", application.getContextPath());
     }
 	
 }

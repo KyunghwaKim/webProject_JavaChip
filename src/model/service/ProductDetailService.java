@@ -3,18 +3,24 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import exception.NotFoundException;
+import model.dao.ProductDAO;
 import model.dao.ProductDetailDAO;
+import model.dao.impl.ProductDAOImpl;
 import model.dao.impl.ProductDetailDAOImpl;
 import model.domain.ProductDetail;
 
 public class ProductDetailService {
 	static ProductDetailDAO  productDetailDAO = new ProductDetailDAOImpl();
+	static ProductDAO productDAO = new ProductDAOImpl();
 
 	/**
 	 * ProductDetailDAOImpl의 레코드 삽입하는 메소드 호출
 	 */
 	public static void insert(ProductDetail productDetail) throws Exception {
-		
+		if(productDAO.selectById(productDetail.getProduct().getId())==null) {
+			throw new NotFoundException("존재하지 않는 강의입니다.");
+		}
 		int result = productDetailDAO.insert(productDetail);
 		if(result==0) throw new SQLException("등록되지 않았습니다.");
 	}

@@ -19,7 +19,7 @@
   <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
-table{
+table{ 
 	width: 1200px;
 	margin-top: 20px;
 

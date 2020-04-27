@@ -25,9 +25,6 @@ $(function(){
 		
 	});//end click
 	
-	
-	
-	
 	$('#list').click(function(){
 		location.href="index.jsp";
 	});//end click

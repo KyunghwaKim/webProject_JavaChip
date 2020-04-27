@@ -2,6 +2,7 @@ package controller.customer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.ModelAndView;
@@ -27,7 +28,15 @@ public class CheckPwdCustomerController implements Controller {
 		}
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("");
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("sessonid", id);
+		
+		if(customer.getStatus()==3) {
+			mv.setViewName("../../Admin/index.jsp");	
+		}else {
+			mv.setViewName("");
+		}
 		
 		return mv;
 	}

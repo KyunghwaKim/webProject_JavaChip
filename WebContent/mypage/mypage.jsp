@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <title>JavaChip - MyPage</title>
@@ -164,6 +167,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <hr class="w3-clear" style="margin: 0">
         <table style="width: 900px; height: 150px;">
         <tr><th>강의명</th><th>강사명</th><th>결제금액</th><th>승인날짜</th></tr>
+        <c:forEach items="" var="">
+       		<tr>
+       			<td></td><td></td><td></td><td></td>
+       		</tr>
+        </c:forEach>
         <tr><td>JAVA왕초보</td><td>김민호</td><td>200,000원</td><td>2020.04.27</td></tr>
         <tr><td>JAVA고수</td><td>김민호</td><td>250,000원</td><td>2020.04.27</td></tr>
         <tr><td>JAVA중수</td><td>김민호</td><td>370,000원</td><td>2020.04.27</td></tr> 

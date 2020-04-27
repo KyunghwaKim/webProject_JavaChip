@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * : 요청을 받아 Model(Service-BusinessLogin, DAO)쪽으로 전달하고
  *   그 결과를 받아서 결과뷰로 이동하는 역할.
  */
-@WebServlet(urlPatterns="/elec", loadOnStartup=1)
+@WebServlet(urlPatterns="/javaChip", loadOnStartup=1)
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

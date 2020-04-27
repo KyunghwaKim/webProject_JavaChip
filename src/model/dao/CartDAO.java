@@ -23,4 +23,11 @@ public interface CartDAO {
 	 * @return int - 0: 실패 / 0이 아니면 성공
 	 */
 	int delete(String customerId, String prodId) throws SQLException;
+
+	/**
+	 * 장바구니 상품 전체 삭제
+	 * @return int - 0: 실패 / 0이 아니면 성공
+	 * @throws SQLException 
+	 */
+	int deleteAll(String customerId) throws SQLException;
 }

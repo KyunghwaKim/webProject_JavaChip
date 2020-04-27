@@ -42,5 +42,12 @@ public class CartService {
 			}
 		}
 	}
-	
+
+	public static void deleteAll(String customerId) throws SQLException {
+		int result = cartDAO.deleteAll(customerId);
+		if (result == 0) {
+			throw new SQLException("전체삭제하는데 실패했습니다.");
+		}
+		
+	}
 }

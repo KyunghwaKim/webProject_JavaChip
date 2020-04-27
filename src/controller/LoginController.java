@@ -1,4 +1,4 @@
-package controller.customer;
+package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.NotFoundException;
-import model.service.CustomerService;
+import model.service.PersonService;
 
 public class LoginController implements Controller {
 
@@ -20,7 +20,7 @@ public class LoginController implements Controller {
 			throw new NotFoundException("입력값이 부족합니다");
 		}
 		
-		CustomerService.login(id, pwd);
+		PersonService.login(id, pwd);
 		
 		ModelAndView mv = new ModelAndView(true, "");
 		

@@ -98,4 +98,21 @@ public class CartDAOImpl implements CartDAO {
 		}
 		return result;
 	}
+
+	@Override
+	public int deleteAll(String customerId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = pro.getProperty("deleteAllCart");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, customerId);
+			result = ps.executeUpdate(sql);
+		} finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+	}
 }

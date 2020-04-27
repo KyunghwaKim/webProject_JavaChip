@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 <!DOCTYPE html>
 <html>
 <title>JavaChip - MyPage</title>
@@ -57,37 +54,34 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.html">J A V A C H I P</a>
+			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
 			      <div class="collapse navbar-collapse" id="navbarResponsive">
 			        <ul class="navbar-nav ml-auto">
 			          <li class="nav-item active">
-			            <a class="nav-link" href="../marga/index.html">Home
-			              <span class="sr-only">(current)</span>
-			            </a>
+			          </li>
+					  <li class="nav-item">
+					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../Login/login.jsp">로그인</a>
+			            <a class="nav-link" href="../marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
+			          </li>
+			         <li class="nav-item">
+			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+			         </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../marga/index.jsp">로그아웃</a>
+						<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
+					  </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');">회원가입</a>
-			          </li>
-			          <li class="nav-item">
-			            <a class="nav-link" href="../mypage/mypage.jsp">마이페이지</a>
-			          </li>
-			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
-			          </li>
-			          <li class="nav-item">
-			            <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
-			          </li>
-			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -152,9 +146,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <hr class="w3-clear" style="margin: 0">
         <table style="width: 900px; height: 150px;">
         <tr><th>강의명</th><th>강사명</th><th>수강종료기간</th></tr>
-        <tr><td><a href="">JAVA왕초보</a></td><td>김민호</td><td>~2020.05.05</td></tr>
-        <tr><td><a href="">JAVA고수</a></td><td>김민호</td><td>~2020.07.05</td></tr>
-        <tr><td><a href="">JAVA중수</a></td><td>김민호</td><td>~2020.07.05</td></tr> 
+        <tr><td><a href="../mychapter/mychapter.jsp">JAVA왕초보</a></td><td>김민호</td><td>~2020.05.05</td></tr>
+        <tr><td><a href="../mychapter/mychapter.jsp">JAVA고수</a></td><td>김민호</td><td>~2020.07.05</td></tr>
+        <tr><td><a href="../mychapter/mychapter.jsp">JAVA중수</a></td><td>김민호</td><td>~2020.07.05</td></tr> 
         </table> 
         </div>        
       </div>
@@ -167,11 +161,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <hr class="w3-clear" style="margin: 0">
         <table style="width: 900px; height: 150px;">
         <tr><th>강의명</th><th>강사명</th><th>결제금액</th><th>승인날짜</th></tr>
-        <c:forEach items="" var="">
-       		<tr>
-       			<td></td><td></td><td></td><td></td>
-       		</tr>
-        </c:forEach>
         <tr><td>JAVA왕초보</td><td>김민호</td><td>200,000원</td><td>2020.04.27</td></tr>
         <tr><td>JAVA고수</td><td>김민호</td><td>250,000원</td><td>2020.04.27</td></tr>
         <tr><td>JAVA중수</td><td>김민호</td><td>370,000원</td><td>2020.04.27</td></tr> 

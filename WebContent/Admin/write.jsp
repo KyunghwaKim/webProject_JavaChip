@@ -7,44 +7,38 @@
 <link rel="stylesheet" href="css/style.css">
 
 <SCRIPT language=javascript>
-function checkValid() {
-    var f = window.document.writeForm;
+
+	window.addEventListener("load", function(){
 		
-	if ( f.model_num.value == "") {
-	    alert( "모델번호를 입력해 주세요." );
-	    f.model_num.focus();
-		return false;
-    }
-	if ( f.model_name.value == "" ) {
-		alert( "모델이름을 입력해 주세요." );
-		f.model_name.focus();
-		return false;
-	}
-	if ( f.price.value == "" ) {
-		alert( "가격을 입력해 주세요." );
-		f.price.focus();
-		return false;
-	}
-	if ( f.description.value == "" ) {
-        alert( "상품 설명을 입력해 주세요." );
-        f.description.focus();
-        return false;
-    }
-	if ( f.password.value == "" ) {
-        alert( "비밀번호를 입력해 주세요" );
-        f.password.focus();
-        return false;
-    }
-	
-    return true;
-}
+		var isit = document.getElementById("isit");
+		
+		
+		isit.onclick = function(){
+			
+			var num = document.getElementById("prodnum").value;
+			
+			if(num=="12345"){
+				
+				alert("상품번호 중복입니다.");
+				return;
+				
+			} else {
+				
+				alert("등록가능합니다");				
+				
+			}
+			
+		}
+		
+	});
+
 </SCRIPT>
 
 
 </HEAD>
 <BODY>
 
-<form name="writeForm" method="post" action="../elec?command=insert" 
+<form name="writeForm" method="post" action="" 
   onSubmit='return checkValid()' enctype="multipart/form-data">
 
 <table align="center" cellpadding="5" cellspacing="2" width="600" border="2" >
@@ -57,9 +51,10 @@ function checkValid() {
     <tr>
         <td width="150" height="20" >
             <p align="right"><b><span style="font-size:9pt;">상품번호</span></b></p>
+            
         </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="model_num" size="30"></span></b></td>
+        <td width="450" height="20"><b><span style="font-size:9pt;">		
+		<input type=text name="model_num" size="30" id="prodnum" ></span></b><button type="button" id="isit">중복체크</button></td>
     </tr>
     <tr>
         <td width="150" height="20">
@@ -129,28 +124,7 @@ function checkValid() {
         </td>
         <td width="450" height="20"><b><span style="font-size:9pt;">
 		<textarea name="description" cols="50" rows="10"></textarea></span></b></td>
-    </tr>    
-     <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">*동영상첨부</span></b></p>
-        </td>
-        <td width="450" height="20">
-        	<b><span style="font-size:9pt;">
-        		 <input type="file" name="file" maxlength="60" size="40">
-        	   </span></b>
-        </td>
     </tr>  
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">*강의자료첨부</span></b></p>
-        </td>
-        <td width="450" height="20">
-        	<b><span style="font-size:9pt;">
-        		 <input type="file" name="file" maxlength="60" size="40">
-        	   </span></b>
-        </td>
-    </tr>   
-
     <tr>
         <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;"><input type=submit value=상품등록> 
         <input type=reset value=초기화></span></b></td>

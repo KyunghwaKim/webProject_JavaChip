@@ -31,7 +31,69 @@ td, th{
 	text-align: center;
 }
 
+.jumbotron{
+	padding: 0;
+}
+
+#tdteacher, #tdlevel{
+
+	display: none;
+
+}
+
 </style>
+
+<script>
+
+	window.addEventListener("load", function(){
+		
+		var tdcate = document.getElementById("tdcate");
+		var tdteacher = document.getElementById("tdteacher");
+		var tdlevel = document.getElementById("tdlevel");
+		
+		var selectcate2 = document.getElementById("selectcate");
+		var selectteacher2 = document.getElementById("selectteacher");
+		var selectlevel2 = document.getElementById("selectlevel");
+		
+		selectcate2.onclick = function(){
+			
+			var selectcate = document.getElementById("selectcate").value;
+			
+			if(selectcate == "카테고리별"){
+				
+				tdteacher.style.display = "none";				
+				
+			} else {
+				
+				tdteacher.style.display = "inline-block";
+				
+			}		
+		}
+		
+		selectteacher2.onclick = function(){
+			
+			var selectteacher = document.getElementById("selectteacher").value;
+			
+			if(selectteacher == "강사별"){			
+				
+				tdlevel.style.display = "none";
+				
+			} else {
+				
+				tdlevel.style.display = "inline-block";
+				
+			}
+			
+		}
+		
+		
+		
+		
+		
+		
+	});
+
+</script>
 
 
 </head>
@@ -48,30 +110,27 @@ td, th{
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="../marga/index.jsp">Home
-              <span class="sr-only">(current)</span>
-            </a>
           </li>
 		  <li class="nav-item">
-		  <a class="nav-link" href="../Login/login.jsp">로그인</a>
+		  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../marga/index.jsp">로그아웃</a>
+            <a class="nav-link" href="../marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
           </li>
          <li class="nav-item">
-           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');">회원가입</a>
+           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
          </li>
           <li class="nav-item">
-            <a class="nav-link" href="../mypage/mypage.jsp">마이페이지</a>
+            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
-          </li>
-          <li class="nav-item">
-			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
+			<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
           </li>
         </ul>
       </div>
@@ -83,9 +142,17 @@ td, th{
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">★BEST★</h1>
-      <p class="lead">자바칩의 자랑 장희정 강사! 프로그래밍계의 전설! 패키지로 바로 만나보세요!</p>
+    <div class="row" style="text-align: center; box-shadow: 1px;">
+     <div class="col-4" style="background-color: white;">
+     <img src="images/1jangteacher.jpg" style="width: 350px; height: 270px;">
+     </div>
+     <div class="col-8" style="background-color: white;">
+      <h3>※ 최  다  판  매  량 ※</h3>
+      <hr>
+      <p class="lead">자바칩의 자랑 장희정 강사!<br> 프로그래밍계의 전설!<br> 패키지로 바로 만나보세요!<br><br></p>
       <a href="#" class="btn btn-primary btn-lg">패키지구매하기</a>
+      </div>
+      </div>
     </header>
 
 	<div>
@@ -93,8 +160,8 @@ td, th{
 	<table>
 		<tr><th rowspan="2">구분별</th><th colspan="3">검색조건을 선택하세요!</th></tr>
 		<tr>
-		<td>
-		<select name="category">
+		<td id="tdcate">
+		<select name="category" id="selectcate">
 			<option>카테고리별</option>
 			<option>JAVA</option>
 			<option>Python</option>
@@ -103,8 +170,8 @@ td, th{
 			<option>C언어</option>		
 		</select>
 		</td>
-		<td>
-		<select name="teacher">
+		<td id="tdteacher">
+		<select name="teacher" id="selectteacher">
 			<option>강사별</option>
 			<option>장희정강사</option>
 			<option>김민호강사</option>
@@ -114,8 +181,8 @@ td, th{
 			<option>신선호강사</option>
 		</select>
 		</td>
-		<td>
-		<select name="level">
+		<td id="tdlevel">
+		<select name="level" id="selectlevel">
 			<option>레벨별</option>
 			<option>왕초보</option>
 			<option>초보</option>

@@ -1,11 +1,9 @@
-<%@page import="model.domain.EstimateBoard"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -13,13 +11,13 @@
   <title>JavaChip-Community</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${path}/community/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
 
   <!-- Custom styles for this template -->
-  <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
+  <link href="css/simple-sidebar.css" rel="stylesheet">
 
 <style>
-table{ 
+table{
 	width: 1200px;
 	margin-top: 20px;
 
@@ -117,18 +115,9 @@ table{
 
 </style>
 
-<script>
-
-// 	window.addEventListener("load", function(){
-		
-// 		top.location.href="community/evaluation.jsp";
-		
-// 	});
-
-</script>
 
 </head>
-\${estimateList} /${estimateList}
+
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -140,30 +129,27 @@ table{
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="../marga/index.jsp">Home
-              <span class="sr-only">(current)</span>
-            </a>
+          </li>
+		  <li class="nav-item">
+		  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Login/login.jsp">로그인</a>
+            <a class="nav-link" href="../marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
+          </li>
+         <li class="nav-item">
+           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+         </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../marga/index.jsp">로그아웃</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');">회원가입</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../mypage/mypage.jsp">마이페이지</a>
-          </li>        
-            <li class="nav-item">
-            <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
-          </li>
-          <li class="nav-item">
-			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
+			<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
           </li>
         </ul>
       </div>
@@ -228,10 +214,6 @@ table{
 	    	</tr>
 	    	</thead>
 	    	<tbody>
-	    	<c:forEach items="<%=estimateList%>" var="est" varStatus="state">
-				${"est"} / ${state.index} / ${state.count}<br>
-				<%-- ${product.id} / ${product.name} / ${product.price} / ${product.description} --%>
-			</c:forEach>
 	    	<tr>
 	    		<td>(신진섭강사)자바왕초보</td>
 	    		<td><span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span></td>
@@ -292,8 +274,8 @@ table{
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="${path}/community/vendor/jquery/jquery.min.js"></script>
-  <script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

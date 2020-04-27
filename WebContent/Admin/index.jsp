@@ -174,9 +174,6 @@
                             <div class="col-md-12">
                                 <div class="overview-wrap">
                                     <h2 class="title-1">한눈에보기</h2>
-                                    <button class="au-btn au-btn-icon au-btn--blue" 
-                                   onclick="window.open('write.jsp','상품등록','width=700,height=540,location=no,status=no,scrollbars=yes');">
-                                        <i class="zmdi zmdi-plus"></i>add item</button>
                                 </div>
                             </div>
                         </div>

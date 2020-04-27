@@ -179,9 +179,6 @@ table{
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="../marga/index.jsp">Home
-              <span class="sr-only">(current)</span>
-            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../Login/login.jsp">로그인</a>
@@ -194,8 +191,11 @@ table{
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../mypage/mypage.jsp">마이페이지</a>
-          </li>        
-            <li class="nav-item">
+          </li>     
+          <li class="nav-item">
+			<a class="nav-link" href="../mycart/newmycart.jsp">장바구니</a>
+		  </li>    
+          <li class="nav-item">
             <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
           </li>
           <li class="nav-item">

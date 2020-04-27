@@ -8,7 +8,7 @@ import controller.ModelAndView;
 import exception.AddException;
 import model.service.CategoryService;
 
-public class insertCategoryController implements Controller {
+public class InsertCategoryController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

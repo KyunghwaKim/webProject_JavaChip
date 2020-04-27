@@ -10,7 +10,7 @@ import controller.ModelAndView;
 import model.domain.Teacher;
 import model.service.TeacherService;
 
-public class selectTeacherController implements Controller {
+public class SelectTeacherController implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 

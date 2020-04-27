@@ -9,7 +9,7 @@ import model.domain.Teacher;
 import model.service.TeacherService; 
  
 
-public class selectByNameTeacherController implements Controller {
+public class SelectByNameTeacherController implements Controller {
 	@Override
  	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception { 
 		String teacherName = request.getParameter("teacherName");

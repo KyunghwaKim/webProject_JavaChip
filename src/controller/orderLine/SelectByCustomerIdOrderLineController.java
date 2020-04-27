@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.NotFoundException;
+import model.domain.OrderItem;
 import model.domain.OrderLine;
 import model.service.OrderLineService;
 
@@ -21,7 +22,7 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
 		
-		List<OrderLine> orderList = OrderLineService.selectByCustomerId(customerId);
+		List<OrderItem> orderList = OrderLineService.selectByCustomerId(customerId);
 		request.setAttribute("orderList", orderList);
 
 		ModelAndView mv = new ModelAndView();

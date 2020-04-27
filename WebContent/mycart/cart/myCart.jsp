@@ -12,19 +12,11 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
 <script>
 $(function(){
 	$('#empty').click(function(){
 		alert("장바구니 비우기 성공!");
 		location.href="deleteAllCart?userId="+"<%=request.getAttribute("userId") %>";
-		<%-- $.ajax({
-			url : "deleteAllCart",
-			data : "userId="+"<%=request.getAttribute("userId") %>",
-			success : function(){
-				alert("장바구니 비우기 성공!!")
-			} 
-		});//end ajax--%>
 	});//end click
 	
 	$('#purchase').click(function(){
@@ -34,16 +26,7 @@ $(function(){
 	});//end click
 	
 	
-	<%-- $('[name=delete]').click(function(){	
-		var prodId = $(this).attr("value");
-		$.ajax({
-			url : "deleteProduct",
-			data : "?prodId="+prodId+"&userId="+"<%=request.getAttribute("userId") %>",
-			success : function(){
-				alert(1);
-			}
-		});//end ajax
-	});//end click --%>
+	
 	
 	$('#list').click(function(){
 		location.href="index.jsp";
@@ -55,7 +38,6 @@ $(function(){
 <%=request.getAttribute("userId") %>
 <% List<Product> cartList = (List<Product>)request.getAttribute("cartList"); %>
 <%=cartList %> <!-- 확인용  -->
-
 <%
 	int total=0;
 	for(Product p:cartList){

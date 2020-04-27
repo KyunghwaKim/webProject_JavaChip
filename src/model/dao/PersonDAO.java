@@ -27,4 +27,8 @@ public interface PersonDAO {
 	  * 불량회원 강제탈퇴기능(상태값 변경) - 관리자
 	  */
 	 int updateStatus(String adminId, String customerId) throws SQLException;
+	 /**
+	  * 강사, 관리자 등록 - 관리자
+	  */
+	 int insert(String id, String pwd, String name, String phone, String gender, int status) throws SQLException;
 }

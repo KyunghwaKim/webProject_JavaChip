@@ -129,5 +129,25 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		return person;
 	}
-
+	@Override
+	public int insert(String id, String pwd, String name, String phone, String gender, int status) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = pro.getProperty("inserPerson");
+		int result=0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pwd);
+			ps.setString(3, name);
+			ps.setString(4, phone);
+			ps.setString(5, gender);
+			ps.setInt(6, status);
+			result = ps.executeUpdate();
+		} finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+	}
 }

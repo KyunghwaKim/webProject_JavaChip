@@ -128,10 +128,6 @@ table{
 </script>
 
 </head>
-<% List<EstimateBoard> estimateList = (List<EstimateBoard>)request.getAttribute("estimateList"); 
- out.println("estimateList=" + estimateList);
-%>
-
 \${estimateList} /${estimateList}
 <body>
 

@@ -10,6 +10,7 @@ import model.dao.PersonDAO;
 import model.dao.impl.CustomerDAOImpl;
 import model.dao.impl.PersonDAOImpl;
 import model.domain.Customer;
+import model.domain.Person;
 
 public class CustomerService {
 	private static CustomerDAO customerDAO = new CustomerDAOImpl();
@@ -54,13 +55,13 @@ public class CustomerService {
 		int result = personDAO.update(customer);
 		if (result == 0)
 			throw new SQLException("수정되지 않았습니다.");
-		
+
 		result = customerDAO.update(customer);
 		if (result == 0)
 			throw new SQLException("수정되지 않았습니다.");
 
 	}
-	
+
 	/**
 	 * 회원탈퇴
 	 */
@@ -68,5 +69,28 @@ public class CustomerService {
 		int result = personDAO.updateStatus(id);
 		if (result == 0)
 			throw new SQLException("수정되지 않았습니다.");
+	}
+
+	/**
+	 * 이름과 전화번호로 id찾기
+	 */
+	public static String findId(String name, String phone) throws SQLException {
+		String id = personDAO.selectByNameAndPhone(name, phone);
+		if (id == null)
+			throw new SQLException("해당 정보가 없습니다");
+
+		return id;
+	}
+
+	/**
+	 * id 이름 전화번호로 패스워드 찾기
+	 */
+	public static String findPwd(String id, String name, String phone) throws SQLException {
+		Person dbPerson = customerDAO.selectById(id);
+
+		if (dbPerson == null || !name.equals(dbPerson.getName()) || !phone.equals(dbPerson.getPhone())) {
+			throw new SQLException("해당 정보가 없습니다");
+		}
+		return dbPerson.getPwd();
 	}
 }

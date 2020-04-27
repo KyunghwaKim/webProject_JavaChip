@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import model.dao.PersonDAO;
+import model.domain.Customer;
 import model.domain.Person;
 import util.DbUtil;
 
@@ -80,6 +82,52 @@ public class PersonDAOImpl implements PersonDAO {
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
+	}
+	
+	/**
+	 * 이름, 핸드폰번호로 id 찾기
+	 */
+	@Override
+	public String selectByNameAndPhone(String name, String phone) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String id=null;
+		String sql = pro.getProperty("selectPersonByName");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, phone);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				id = rs.getString("id");
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return id;
+	}
+	@Override
+	public Person selectByIdAndPwd(String id, String pwd) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Person person = null;
+		String sql = pro.getProperty("selectPersonById");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pwd);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				person = new Person();	//회원확인이기 때문에 값 필요 없음
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return person;
 	}
 
 }

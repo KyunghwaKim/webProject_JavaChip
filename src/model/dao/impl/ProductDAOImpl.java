@@ -97,6 +97,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 				Category category = new Category();
 				category.setId(rs.getInt("category_id"));
+				
+				teacher.setCategory(category);
 
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,

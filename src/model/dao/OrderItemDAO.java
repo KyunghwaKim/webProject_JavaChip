@@ -21,4 +21,9 @@ public interface OrderItemDAO {
 	 * 환불하기
 	 */
 	int update(int itemNo) throws SQLException;
+	
+	/**
+	 * 현재 주문번호
+	 */
+	int findCurrentSeq() throws SQLException;
 }

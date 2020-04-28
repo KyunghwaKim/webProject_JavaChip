@@ -11,6 +11,7 @@ import model.dao.impl.CustomerDAOImpl;
 import model.dao.impl.PersonDAOImpl;
 import model.dao.impl.ProductDAOImpl;
 import model.domain.Customer;
+import model.domain.GangiMokRok;
 import model.domain.Product;
 
 public class ProductService {
@@ -49,5 +50,17 @@ public class ProductService {
 	public static List<Product> selectByJogun(Map<String, String> map) throws SQLException {
 		return productDAO.selectByJogun(map);
 	}
+	
+	
+	/**
+	 *  강의목록에 뿌릴 데이터 
+	 * 
+	 */
+	public static List<GangiMokRok> selectGangiMokRokAll() throws SQLException{
+		
+		return productDAO.GangiMokRokAll();
+		
+	}
+	
 
 }

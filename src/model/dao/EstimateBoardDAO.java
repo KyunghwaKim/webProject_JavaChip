@@ -10,7 +10,7 @@ public interface EstimateBoardDAO {
 	/**
 	 * 게시물 등록
 	 */
-	int insert(EstimateBoard estimate) throws SQLException;
+	int insert(EstimateBoard estimate) throws SQLException; 
 	
 	/**
 	 * 게시물 수정 - 제목, 점수 수정 가능

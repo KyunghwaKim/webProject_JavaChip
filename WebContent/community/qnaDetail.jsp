@@ -128,7 +128,7 @@
 
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 
-				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="Q&Aboard.jsp"'>목록</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllQnA"'>목록</button>
 
 			</div>
       </div>

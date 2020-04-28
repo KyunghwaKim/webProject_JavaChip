@@ -55,7 +55,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -64,16 +64,16 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			          <li class="nav-item active">
 			          </li>
 					  <li class="nav-item" id="login">
-					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
+					  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
 			          </li>
 			         <li class="nav-item">
-			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -89,7 +89,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -104,13 +104,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			            <a class="nav-link" href="${path}/javaChip?command=selectByCusIdOrderLine"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-						<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
+						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -137,15 +137,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <hr class="w3-clear" style="margin: 0">
         <table class="table table-striped" style="width: 880px; height: 150px; font-size: 20px; text-align: center;">
         <tr><th>챕터</th><th>강의명</th><th>강의자료</th></tr>
-        <tr><td>1강</td><td><a href="../myvideo/myvideo.jsp">JAVA기본용어</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>2강</td><td><a href="../myvideo/myvideo.jsp">제어문</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>3강</td><td><a href="../myvideo/myvideo.jsp">반복문1</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="../myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="../myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="../myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="../myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="../myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="../myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>        
+        <tr><td>1강</td><td><a href="${path}/myvideo/myvideo.jsp">JAVA기본용어</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>2강</td><td><a href="${path}/myvideo/myvideo.jsp">제어문</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>3강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문1</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
+        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>        
         </table> 
         </div>        
       </div>
@@ -171,7 +171,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
-                    <a href="../community/Q&Aboard.jsp">질문게시판이동</a>
+                    <a href="${path}/community/Q&Aboard.jsp">질문게시판이동</a>
                   </li>
                 </ul>
               </div>

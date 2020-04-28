@@ -9,6 +9,6 @@
 <script></script>
 </head>
 <body>
-<a href="../javaChip?command=selectAllEst">강의평보기</a> <p>
+<a href="${path}javaChip?command=selectAllEst">강의평보기</a> <p>
 </body>
 </html>

@@ -134,12 +134,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center" style="margin-top: 15px;">장희정 회원님</h4>
+         <h4 class="w3-center" style="margin-top: 15px;">${user.name} 회원님</h4>
          <p class="w3-center"><img src="images/teacherjang.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>가입일</p>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ${user.email}</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> ${user.phone}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>가입일 : ${user.regDate}</p>
         </div>
       </div>
       <br>

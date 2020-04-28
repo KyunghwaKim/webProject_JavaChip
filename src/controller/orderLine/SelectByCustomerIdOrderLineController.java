@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.NotFoundException;
+import model.domain.Customer;
 import model.domain.OrderItem;
+import model.service.CustomerService;
 import model.service.OrderLineService;
 
 public class SelectByCustomerIdOrderLineController implements Controller {
@@ -22,8 +24,10 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 		}
 		
 		List<OrderItem> orderList = OrderLineService.selectByCustomerId(customerId);
+		Customer customer = CustomerService.selectById(customerId);
 		
 		request.setAttribute("orderList", orderList);
+		request.setAttribute("user", customer);
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/mypage.jsp");

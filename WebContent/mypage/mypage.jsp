@@ -11,14 +11,14 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animate.min.css">
-	<link rel="stylesheet" href="css/jquery.fancybox.min.css">
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-	<link rel="stylesheet" href="css/aos.css">
+	<link rel="stylesheet" href="${path}/mypage/css/style.css">
+	<link rel="stylesheet" href="${path}/mypage/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/mypage/css/animate.min.css">
+	<link rel="stylesheet" href="${path}/mypage/css/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="${path}/mypage/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${path}/mypage/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="${path}/mypage/fonts/flaticon/font/flaticon.css">
+	<link rel="stylesheet" href="${path}/mypage/css/aos.css">
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
@@ -103,7 +103,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			            <a class="nav-link" href="${path}/javaChip?command=logout"><span style="color: white; font-weight: bold">로그아웃</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectByCusIdOrderLine"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
 						<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>

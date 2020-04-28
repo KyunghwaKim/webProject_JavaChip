@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +12,10 @@
   <title>JavaChip-Community</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+  <link href="${path}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
 
   <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="${path}/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 table{
@@ -215,42 +216,16 @@ table{
 	    	</tr>
 	    	</thead>
 	    	<tbody>
-	    	<tr>
-	    		<td>101010</td>
-	    		<td>JAVA왕초보</td>
-	    		<td>JAVA 입문자를 위한 강의</td>
-	    		<td>210,000원</td>
-	    		<td><button>주문하기</button></td>
-	    		<td><button>삭제</button></td>
-	    		
-	    	</tr>
-	    	<tr>
-	    		<td>101010</td>
-	    		<td>JAVA왕초보</td>
-	    		<td>JAVA 입문자를 위한 강의</td>
-	    		<td>210,000원</td>
-	    		<td><button>주문하기</button></td>
-	    		<td><button>삭제</button></td>
-	    		
-	    	</tr>
-	    	<tr>
-	    		<td>101010</td>
-	    		<td>JAVA왕초보</td>
-	    		<td>JAVA 입문자를 위한 강의</td>
-	    		<td>210,000원</td>
-	    		<td><button>주문하기</button></td>
-	    		<td><button>삭제</button></td>
-	    		
-	    	</tr>
-	    	<tr>
-	    		<td>101010</td>
-	    		<td>JAVA왕초보</td>
-	    		<td>JAVA 입문자를 위한 강의</td>
-	    		<td>210,000원</td>
-	    		<td><button>주문하기</button></td>
-	    		<td><button>삭제</button></td>	    		
-	    	</tr>
-
+	    	<c:forEach items="${cartList}" var="cart" varStatus="state">
+		    	<tr>
+		    		<td>${state.count}</td>
+		    		<td>${cart.product.name}</td>
+		    		<td>${cart.product.description}</td>
+		    		<td>${cart.product.price}원</td>
+		    		<td><button>주문하기</button></td>
+		    		<td><button>삭제</button></td>
+		    	</tr>
+	    	</c:forEach>
 	    	</tbody>	    	
 	    </table>
 	    
@@ -290,8 +265,8 @@ table{
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${path}/vendor/jquery/jquery.min.js"></script>
+  <script src="${path}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

@@ -238,6 +238,7 @@ td, th{
 		<tr><th rowspan="2">구분별</th><th colspan="3">검색조건을 선택하세요!</th></tr>
 		<tr>
 		<td id="tdcate">
+		<c:forEach items=""></c:forEach>
 		<select name="category" id="selectcate">
 			<option>카테고리별</option>
 			<option>JAVA</option>
@@ -281,6 +282,7 @@ td, th{
         <div class="card h-100">
           <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
           <div class="card-body">
+            <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr>
             <h4 class="card-title">${list.product.name}</h4>
             <p class="card-text">${list.product.description}</p>
           </div>

@@ -206,9 +206,10 @@ public class ProductDAOImpl implements ProductDAO {
 			ResultSet rs = null;
 			List<GangiMokRok> list = new ArrayList<GangiMokRok>();
 			String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
-					   + "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE "
+					   + "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME "
 					   + "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
-					   + "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID";
+					   + "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID "
+					   + "JOIN PERSON pe on pe.id = t.teacher_id";
 
 			try {
 				con = DbUtil.getConnection();
@@ -218,7 +219,7 @@ public class ProductDAOImpl implements ProductDAO {
 					Teacher teacher = new Teacher();
 					teacher.setId(rs.getString("teacher_id"));
 					teacher.setPictureName(rs.getString("picture_name"));
-					
+					teacher.setName(rs.getString("name"));
 					
 					Category category = new Category();
 					category.setId(rs.getInt("category_id"));

@@ -133,7 +133,7 @@ $(function(){
 		alert(1);
 		$.ajax({
 			url:"javaChip?command=insertOrderLine",
-			data:"prodId="+$(this).val()+"&totalPrice="+$('td>span').text(),
+			data:"prodId="+$(this).val()+"&prodId="+$('td>span').text(),
 			success:function(){
 				alert("주문이 완료되었습니다!");
 			}
@@ -198,7 +198,7 @@ $(function(){
 			            <a class="nav-link" href="${path}/javaChip?command=logout"><span style="color: white; font-weight: bold">로그아웃</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectByCusIdOrderLine"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
 						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
@@ -270,7 +270,7 @@ $(function(){
 	    <table class="table table-striped">
 	    	<thead>
 	    	<tr>
-	    		<th>물품번호</th>
+	    		<th>상품번호</th>
 	    		<th>이름</th>
 	    		<th>설명</th>	    		
 	    		<th>가격</th>
@@ -279,12 +279,12 @@ $(function(){
 	    	</tr>
 	    	</thead>
 	    	<tbody>
-	    	<c:forEach items="${cartList}" var="cart" varStatus="state">
+	    	<c:forEach items="${cartList}" var="cart">
 		    	<tr>
-		    		<td>${state.count}</td>
+		    		<td><span>${cart.product.id}</span></td>
 		    		<td>${cart.product.name}</td>
 		    		<td>${cart.product.description}</td>
-		    		<td><span>${cart.product.price}</span>원</td>
+		    		<td>${cart.product.price}원</td>
 		    		<td><button value="${cart.product.id}" name="order">주문하기</button></td>
 		    		<td><button value="${cart.product.id}" name="delete">삭제</button></td>
 		    	</tr>

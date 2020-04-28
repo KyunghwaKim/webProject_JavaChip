@@ -69,12 +69,20 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 			con = DbUtil.getConnection();
 			con.setAutoCommit(false);
 
-			insert(con, orderItem.getOrderLine());
-			OrderItemDAO itemDAO = new OrderItemDAOImpl();
-			itemDAO.insert(con, orderItem);
-			
-			// 트랜잭션 완료
-			con.commit();
+			if(insert(con, orderItem.getOrderLine())!=0) {
+				OrderItemDAO itemDAO = new OrderItemDAOImpl();
+				int lineNo = itemDAO.findCurrentSeq();
+				if(lineNo != 0) {
+					OrderLine orderLine = orderItem.getOrderLine();
+					orderLine.setLineNo(lineNo);
+					orderItem.setOrderLine(orderLine);
+					if(itemDAO.insert(con, orderItem)!=0) {
+				
+						// 트랜잭션 완료
+						con.commit();
+					}
+				}
+			}
 		} catch (Exception e) {
 			if (con != null) {
 				try {

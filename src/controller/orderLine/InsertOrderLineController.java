@@ -8,31 +8,40 @@ import controller.ModelAndView;
 import exception.AddException;
 import exception.NotFoundException;
 import model.domain.Customer;
+import model.domain.OrderItem;
 import model.domain.OrderLine;
+import model.domain.Product;
 import model.service.OrderLineService;
 
 public class InsertOrderLineController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		/**
-		 * lineNo은 시퀀스이므로 값을 전달받지 않는다.
-		 * totalPrice는 총 금액으로 프론트단에서 구매상품들의 가격을 더해서 넘겨주도록 한다
-		 */
-		String totalPrice = request.getParameter("totalPrice");
+		String prodId = request.getParameter("prodId");
+		String price = request.getParameter("price");
+		String validDate = request.getParameter("validDate");
 		String customerId = (String) request.getSession().getAttribute("userId");
-		
-		if (totalPrice == null || totalPrice.equals("") || customerId == null || customerId.equals("")) {
+
+		if (prodId == null || prodId.equals("") || price == null || price.equals("") || validDate == null
+				|| validDate.equals("") || customerId == null || customerId.equals("")) {
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
 
 		Customer customer = new Customer();
 		customer.setId(customerId);
-
-		OrderLine orderLine = new OrderLine(Integer.parseInt(totalPrice), customer);
-
-		OrderLineService.insert(orderLine);
 		
+		OrderLine orderLine = new OrderLine();
+		orderLine.setCustomer(customer);
+		
+		Product product = new Product();
+		product.setId(prodId);
+		product.setPrice(Integer.parseInt(price));
+		product.setValidDate(Integer.parseInt(validDate));
+		
+		OrderItem orderIem = new OrderItem(null, orderLine, product);
+
+		OrderLineService.insert(orderIem);
+
 		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectCart");
 		return mv;
 	}

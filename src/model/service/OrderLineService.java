@@ -18,9 +18,8 @@ public class OrderLineService {
 		return lineDAO.selectAll();
 	}
 	
-	public static void insert(OrderLine orderLine) throws SQLException {
-		int result = lineDAO.insert(orderLine);
-		if(result==0) throw new SQLException("등록되지 않았습니다.");
+	public static void insert(OrderItem orderItem) throws Exception {
+		lineDAO.insert(orderItem);
 	}
 	
 	/**

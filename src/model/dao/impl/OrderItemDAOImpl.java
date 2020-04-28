@@ -62,8 +62,7 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int insert(OrderItem orderItem) throws SQLException {
-		Connection con = null;
+	public int insert(Connection con, OrderItem orderItem) throws SQLException {
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("insertOrderItem");
@@ -78,7 +77,7 @@ Properties pro = new Properties();
 			
 			result = ps.executeUpdate();
 		}finally {
-			DbUtil.dbClose(con, ps);
+			DbUtil.dbClose(null, ps);
 		}
 		return result;
 	}

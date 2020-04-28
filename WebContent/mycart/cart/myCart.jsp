@@ -32,7 +32,7 @@ $(function(){
 </script>
 </head>
 <body>
-<%=request.getAttribute("userId") %>
+<%-- <%=request.getAttribute("userId") %>
 <% List<Product> cartList = (List<Product>)request.getAttribute("cartList"); %>
 <%=cartList %> <!-- 확인용  -->
 <%
@@ -40,8 +40,8 @@ $(function(){
 	for(Product p:cartList){
 		total += p.getPrice();
 	}
-%>
-<c:forEach items="<%=cartList %>" var="product" varStatus="state">
+%> --%>
+<c:forEach items="${cartList}" var="product" varStatus="state">
 ${product} / ${state.index} / ${state.count}<br>
 ${product.id} / ${product.name} / ${product.price} / ${product.description}
 </c:forEach>
@@ -64,7 +64,7 @@ ${product.id} / ${product.name} / ${product.price} / ${product.description}
 						</div>
 					</div>
 				</div>
-				<c:forEach items="<%=cartList %>" var="product" varStatus="state">
+				<c:forEach items="${cartList}" var="product" varStatus="state">
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
@@ -80,7 +80,7 @@ ${product.id} / ${product.name} / ${product.price} / ${product.description}
 								<input type="text" class="form-control input-sm" value="1" disabled>
 							</div>
 							<div class="col-xs-2">
-								<a href="deleteProduct?prodId=${product.id}&userId=<%=request.getAttribute("userId") %>">
+								<a href="deleteProduct?prodId=${product.id}&userId=user1001">
 								<button type="button" class="btn btn-link btn-xs" name="delete" value="">
 									<span class="glyphicon glyphicon-trash"> </span>
 								</button>
@@ -107,7 +107,7 @@ ${product.id} / ${product.name} / ${product.price} / ${product.description}
 				<div class="panel-footer">
 					<div class="row text-center">
 						<div class="col-xs-9">
-							<h4 class="text-right">Total <strong><%=total %>원</strong></h4>
+							<h4 class="text-right">Total <strong>원</strong></h4>
 						</div>
 						<div class="col-xs-3">
 							<button type="button" class="btn btn-success btn-block" id="purchase">

@@ -2,6 +2,7 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.ModelAndView;
@@ -22,9 +23,12 @@ public class LoginController implements Controller {
 		
 		PersonService.login(id, pwd);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("marga/index.jsp");
+		HttpSession session = request.getSession();
+		session.setAttribute("userId" , id);
 		
+		ModelAndView mv = new ModelAndView();
+		mv.setRedirect(true);
+		mv.setViewName("marga/index.jsp");
 		return mv;
 	}
 

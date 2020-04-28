@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -187,6 +188,36 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public QnABoard selectByNo(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = pro.getProperty("selectQnAByNo");
+		QnABoard qnaBoard=null; 
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, no);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				Customer customer = new Customer();
+				customer.setId(rs.getString("id"));
+				
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
+				
+				QnABoard qna = new QnABoard();
+				qnaBoard 
+				= new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday")
+						, customer, product, rs.getString("title"), qna);
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return qnaBoard;
 	}
 
 }

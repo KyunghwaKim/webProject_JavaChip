@@ -44,6 +44,7 @@ td, th{
 
 </style>
 
+<script src="../marga/js/jquery-3.3.1.min.js"></script>
 <script>
 
 	window.addEventListener("load", function(){
@@ -68,6 +69,7 @@ td, th{
 				
 				tdteacher.style.display = "inline-block";
 				
+								
 			}		
 		}
 		
@@ -102,7 +104,6 @@ td, th{
 <body>
 
   <!-- Navigation -->
-<<<<<<< HEAD
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
@@ -139,7 +140,6 @@ td, th{
     </div>
   </nav>
 
-=======
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
@@ -148,7 +148,7 @@ td, th{
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -163,7 +163,7 @@ td, th{
 			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -182,7 +182,7 @@ td, th{
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -215,7 +215,6 @@ td, th{
 			</c:otherwise>
 		</c:choose>	  
 	</header>
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->
@@ -280,7 +279,7 @@ td, th{
 	<c:forEach items="${Gangi}" var="list">
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.fileName}" alt="">
+          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
           <div class="card-body">
             <h4 class="card-title">${list.product.name}</h4>
             <p class="card-text">${list.product.description}</p>

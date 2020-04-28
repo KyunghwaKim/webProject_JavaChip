@@ -122,7 +122,7 @@ public class PersonDAOImpl implements PersonDAO {
 			ps.setString(2, pwd);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				person = new Person();	//회원확인이기 때문에 값 필요 없음
+				person = new Person(rs.getString("id"), rs.getInt("status"));	//회원확인이기 때문에 값 필요 없음
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

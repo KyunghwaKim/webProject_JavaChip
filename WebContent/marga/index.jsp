@@ -10,18 +10,18 @@
 
     <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="${path}/marga/fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="${path}/marga/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${path}/marga/css/animate.min.css">
+    <link rel="stylesheet" href="${path}/marga/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="${path}/marga/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${path}/marga/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${path}/marga/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="${path}/marga/css/aos.css">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${path}/marga/css/style.css">
 
 <style>
 html,body{
@@ -178,7 +178,7 @@ background-color: black;
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -187,16 +187,16 @@ background-color: black;
 			          <li class="nav-item active">
 			          </li>
 					  <li class="nav-item" id="login">
-					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
+					  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
 			          </li>
 			         <li class="nav-item">
-			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -212,7 +212,7 @@ background-color: black;
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -227,13 +227,13 @@ background-color: black;
 			            <a class="nav-link" href="${path}/javaChip?command=selectByCusIdOrderLine"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-						<a class="nav-link" href="../javaChip?command=selectCart&id=${userId}"><span style="color: white; font-weight: bold">장바구니</span></a>
+						<a class="nav-link" href="${path}/javaChip?command=selectCart&id=${userId}"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -256,7 +256,7 @@ background-color: black;
               <div class="toast_ban" id="toast2">
               	<div class="toast_in">
               	<a href="javascript:;" class="toast_close2" id="x2"><span>X</span></a>
-              	<a href="../community/evaluation.jsp"><img src="images/tost2.jpg" class='tost2'></a>
+              	<a href="${path}/community/evaluation.jsp"><img src="images/tost2.jpg" class='tost2'></a>
               	</div>
               </div> 
               
@@ -270,18 +270,18 @@ background-color: black;
           <div>
             <h1 class="text-uppercase mb-3">자칭 1등 프로그래밍 인터넷 강의</h1>
             <p class="mb-5"> 'KOSTA' 출신 명문강사들 총 집합!! </p>
-            <p class="mb-0"><a href="../classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
           <div>
             <h2 class="text-uppercase mb-3">여러분들의 꿈을 자바칩에서 키우세요!</h2>
             <p class="mb-5"> 자바칩과 함께라면 어려울것이 없어요!</p>
-            <p class="mb-0"><a href="../classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
 
           <div>
             <h2 class="text-uppercase mb-3">자랑스러운 취업률</h2> <h1>"100%" !</h1>
             <p class="mb-5">역대 최대 취업률을 경험하시려면 바로 신청하세요!</p>            
-            <p class="mb-0"><a href="../classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
 
         </div>

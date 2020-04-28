@@ -102,7 +102,7 @@ td, th{
 <body>
 
   <!-- Navigation -->
-<<<<<<< HEAD
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
@@ -114,32 +114,32 @@ td, th{
           <li class="nav-item active">
           </li>
 		  <li class="nav-item">
-		  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
+		  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
+            <a class="nav-link" href="${path}/marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
           </li>
          <li class="nav-item">
-           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
          </li>
           <li class="nav-item">
-            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
+            <a class="nav-link" href="${path}/mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
           </li>
           <li class="nav-item">
-			<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
+			<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-=======
+
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
@@ -148,7 +148,7 @@ td, th{
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -157,16 +157,16 @@ td, th{
 			          <li class="nav-item active">
 			          </li>
 					  <li class="nav-item" id="login">
-					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
+					  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
 			          </li>
 			         <li class="nav-item">
-			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -182,7 +182,7 @@ td, th{
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -194,16 +194,16 @@ td, th{
 			            <a class="nav-link" href="${path}/javaChip?command=logout"><span style="color: white; font-weight: bold">로그아웃</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
+			            <a class="nav-link" href="${path}/mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-						<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
+						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -215,7 +215,7 @@ td, th{
 			</c:otherwise>
 		</c:choose>	  
 	</header>
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
+
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->
@@ -286,7 +286,7 @@ td, th{
             <p class="card-text">${list.product.description}</p>
           </div>
           <div class="card-footer">
-            <a href="../detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
+            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>
@@ -303,7 +303,7 @@ td, th{
             <p class="card-text"> 다양한 예제를 통해 실습으로 기본기를 더욱 탄탄하게 다져줄 수 있는 구성!</p>
           </div>
           <div class="card-footer">
-            <a href="../detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
+            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>
@@ -316,7 +316,7 @@ td, th{
             <p class="card-text"> JAVA 프로그래밍 고수로 가는 지름길!<br> 기본기와 심화학습을 동시에!</p>
           </div>
           <div class="card-footer">
-            <a href="../detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
+            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>
@@ -329,7 +329,7 @@ td, th{
             <p class="card-text"> 키보드 피아니스트가 <br>가능하게 해주는 교육!</p>
           </div>
           <div class="card-footer">
-            <a href="../detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
+            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>
@@ -342,7 +342,7 @@ td, th{
             <p class="card-text"> C언어 입문자에게 적합한 강의</p>
           </div>
           <div class="card-footer">
-            <a href="../detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
+            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>     -->

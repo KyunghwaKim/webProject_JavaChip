@@ -18,7 +18,7 @@ public class SelectProductController implements Controller {
 
  		List<GangiMokRok> list = ProductService.selectGangiMokRokAll();
  		 					 
- 		String filename = list.get(0).getProduct().getTeacher().getFileName();
+ 		String filename = list.get(0).getProduct().getTeacher().getPictureName();
  		System.out.println(filename);
  		
  		request.setAttribute("Gangi", list); 

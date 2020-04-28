@@ -90,13 +90,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 			while (rs.next()) {
 				Category category = new Category(categoryId, rs.getString("category_name"));
 
-<<<<<<< HEAD
-				Teacher teacher = new Teacher(category, "");
-=======
 				Teacher teacher = new Teacher();
 				teacher.setCategory(category);
 				
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
 				teacher.setName(rs.getString("name"));
 
 				list.add(teacher);

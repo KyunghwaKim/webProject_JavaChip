@@ -217,7 +217,7 @@ public class ProductDAOImpl implements ProductDAO {
 				while (rs.next()) {
 					Teacher teacher = new Teacher();
 					teacher.setId(rs.getString("teacher_id"));
-					teacher.setFileName(rs.getString("picture_name"));
+					teacher.setPictureName(rs.getString("picture_name"));
 					
 					
 					Category category = new Category();

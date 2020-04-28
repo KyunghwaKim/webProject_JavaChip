@@ -16,6 +16,7 @@ import java.util.Set;
 
 import model.dao.ProductDAO;
 import model.domain.Category;
+import model.domain.GangiMokRok;
 import model.domain.Product;
 import model.domain.Teacher;
 import util.DbUtil;
@@ -193,6 +194,51 @@ public class ProductDAOImpl implements ProductDAO {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return product;
+	}	
+	
+	@Override
+	public List<GangiMokRok> GangiMokRokAll() throws SQLException {
+				
+			Connection con = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			List<GangiMokRok> list = new ArrayList<GangiMokRok>();
+			String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
+					   + "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE "
+					   + "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
+					   + "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID";
+
+			try {
+				con = DbUtil.getConnection();
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					Teacher teacher = new Teacher();
+					teacher.setId(rs.getString("teacher_id"));
+					teacher.setFileName(rs.getString("picture_name"));
+					
+					
+					Category category = new Category();
+					category.setId(rs.getInt("category_id"));
+					category.setName(rs.getString("category_name"));
+					
+					teacher.setCategory(category);
+					
+					Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
+							rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
+							category, rs.getDate("upload_date"), rs.getInt("valid_Date"));
+					
+					GangiMokRok gangimokrok = new GangiMokRok(product, category);
+
+					list.add(gangimokrok);
+				}
+
+			} finally {
+				DbUtil.dbClose(con, ps, rs);
+			}
+
+			return list;
+		
 	}
 
 }

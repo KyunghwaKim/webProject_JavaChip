@@ -90,7 +90,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 			while (rs.next()) {
 				Category category = new Category(categoryId, rs.getString("category_name"));
 
-				Teacher teacher = new Teacher(category);
+				Teacher teacher = new Teacher(category, "");
 				teacher.setName(rs.getString("name"));
 
 				list.add(teacher);

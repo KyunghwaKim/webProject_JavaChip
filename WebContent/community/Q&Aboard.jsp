@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,106 +22,10 @@
 table{
 	width: 1200px;
 	margin-top: 20px;
-
 }
-
-/*
-
-.page{
-	text-align: center;
-	width: 50%;
-}
-
-.pagination{
-	list-style: none;
-	display: inline-block;
-	padding: 0;
-	margin-top: 20px;
-}
-
-.pagination li{
-	display: inline;
-	text-align: center;
-}
-
-.pagination a{
-	float:left;
-	display: block;
-	font-size: 14px;
-	text-decoration: none;
-	padding: 5px 12px;
-	color: #96a0ad;
-	line-height: 1.5;
-	
-}
-
-.first{
-	margin-right: 15px;
-
-}
-
-.last{
-	margin-left: 15px;
-
-}
-
-.first:hover, .last:hover, .left:hover, .right:hover {
-	color: #2e9cdf;
-	
-}
-
-.pagination a.active{
-	cursor : default;
-	color : #ffffff;
-}
-
-.pagination a:active{
-	outline: none;
-}
-
-.modal .num{
-	margin-left: 3px;
-	padding: 0;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	-moz-border-radius:100%;
-	-webkit-border-radius: 100%;
-	border-radius: 100%;
-}
-
-.modal .num:hover {
-	background-color: #2e9cdf;
-	color: #ffffff;
-}
-
-.modal .num.active, .modal .num:active{
-	background-color: #2e9cdf;
-	cursor: pointer;
-}
-
-.arrow-left{
-	width: 0px;
-	height: 0;
-	border-top: 10px solid transparent;
-	border-bottom: 10px solid transparent;
-	border-right: 10px solid blue;
-}
-
-
-*/
-
-
-
-
-
 </style>
-
-
 </head>
-
 <body>
-
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
@@ -203,7 +108,7 @@ table{
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
         <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
@@ -250,54 +155,31 @@ table{
 	    		<th>번호</th>
 	    		<th>제목</th>
 	    		<th>작성자</th>
-	    		<th>날짜</th>
+	    		<th>작성일</th>
 	    		<th>조회수</th>
 	    	</tr>
 	    	</thead>
 	    	<tbody>
-	    	<tr>
-	    		<td>1</td>
-	    		<td>자바1강 for문 질문이요!</td>
-	    		<td>낑깡낑깡</td>
-	    		<td>2020-04-24</td>
-	    		<td>1</td>
-	    	</tr>
-	    	<tr>
-	    		<td>2</td>
-	    		<td>자바3강 if문 질문이요!</td>
-	    		<td>홀짝홀짝</td>
-	    		<td>2020-04-24</td>
-	    		<td>37</td>
-	    	</tr>
-	    	<tr>
-	    		<td>3</td>
-	    		<td>파이썬2강 while문 질문이요!</td>
-	    		<td>고수될꺼야</td>
-	    		<td>2020-04-24</td>
-	    		<td>12</td>
-	    	</tr>
+		    	<c:forEach items="${QnAList}" var="qna" varStatus="state">
+		    		<tr>
+			    		<td>${state.count}</td>
+			    		<td><a href="${path}/community/qnaDetail.jsp?qna=">${qna.title}</a></td>	
+			    		<td>${qna.customer.id}</td>
+			    		<td>${qna.writeDay}</td>
+			    		<td>${qna.qaBoardNo}</td>
+	   				</tr>
+		    	</c:forEach>
 	    	</tbody>	    	
 	    </table>
 	    
-<!-- 	 <div class="page">
-	    	<ul class="pagination modal">
-	    	<li><a href="#" class="first">처음페이지</a></li>
-	    	<li><a href="#" class="arrow left">&lt;&lt;</a></li>
-	    	<li><a href="#" class="num">1</a></li>
-	    	<li><a href="#" class="num">2</a></li>
-	    	<li><a href="#" class="num">3</a></li>
-	    	<li><a href="#" class="num">4</a></li>
-	    	<li><a href="#" class="arrow right">>></a></li>	 
-	    	<li><a href="#" class="last">끝페이지</a></li>   	
-	    	</ul>	    
-	    </div>
-	    
--->	    
-	    
 	    <hr>
-	    <button style="float: right" onclick="location.href='${path}/community/writeform.jsp'">질문하기</button>
+
+	    <button style="float: right" onclick="location.href='community/writeform.jsp'">질문하기</button>
+
+	   <%--  <button style="float: right" onclick="location.href='${path}/community/writeform.jsp'">질문하기</button> --%>
+
 		
-      </div>     
+      </div>     	
     </div>
     <!-- /#page-content-wrapper -->
     
@@ -314,8 +196,8 @@ table{
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${path}/community/vendor/jquery/jquery.min.js"></script>
+  <script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

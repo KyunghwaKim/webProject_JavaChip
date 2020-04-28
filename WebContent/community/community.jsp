@@ -63,8 +63,13 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+
+        <a href="../javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+
+        <%-- <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a> --%>
+
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -106,7 +111,7 @@
       <div class="container-fluid">
         <h1 class="mt-4">C O M M U N I T Y</h1>
         <h2 style="color: blue"><p>자바칩 커뮤니티에 오신것을 환영합니다!</p></h2>
-        <img src="images/community1.jpg" width="1200px" height="500px"></img>      
+        <img src="${path}/community/images/community1.jpg" width="1200px" height="500px"></img>      
       </div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -124,8 +129,8 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${path}/community/vendor/jquery/jquery.min.js"></script>
+  <script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

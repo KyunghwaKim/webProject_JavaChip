@@ -24,4 +24,7 @@ public interface CategoryDAO {
 	 */
 	List<Teacher> selectById(int categoryId) throws SQLException;
 	
+	
+	List<Category> selectAll() throws SQLException;
+	
 }

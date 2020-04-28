@@ -19,6 +19,7 @@ public class InsertOrderItemController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("insertOrderItem called..");
 		/**
 		 * 객체를 리스트에 담아 넘겨받아 처리해야함 수정할 것
 		 */

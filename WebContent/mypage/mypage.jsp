@@ -32,13 +32,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 		
 		updatepwd.onclick = function(){
 			
-			window.open('pwdcheck.html', '_blank', 'width=600, height=400');
+			window.open('${path}/mypage/pwdcheck.html', '_blank', 'width=600, height=400');
 			
 		};
 		
 		destoryid.onclick = function(){
 			
-			window.open('destoryidcheck.html', '_blank', 'width=600, height=400');
+			window.open('${path}/mypage/destoryidcheck.html', '_blank', 'width=600, height=400');
 			
 		}
 		
@@ -137,8 +137,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
          <h4 class="w3-center" style="margin-top: 15px;">${user.name} 회원님</h4>
          <p class="w3-center"><img src="images/teacherjang.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ${user.email}</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> ${user.phone}</p>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>email : ${user.email}</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>phone : ${user.phone}</p>
          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>가입일 : ${user.regDate}</p>
         </div>
       </div>

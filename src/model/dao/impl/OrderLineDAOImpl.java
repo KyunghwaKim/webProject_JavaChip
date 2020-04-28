@@ -146,6 +146,7 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 				
 				Product product = new Product();
 				product.setName(rs.getString("prod_name"));
+				product.setPrice(rs.getInt("prod_price"));
 				product.setTeacher(teacher);
 				
 				

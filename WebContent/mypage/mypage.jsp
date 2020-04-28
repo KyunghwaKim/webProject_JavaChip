@@ -167,10 +167,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         
         <c:forEach items="${orderList}" var="list">
         	<tr>
-        		<td>${list.product.prodName}</td>
-        		<td>${list.teacher.name}</td>
+        		<td>${list.product.name}</td>
+        		<td>${list.product.teacher.name}</td>
         		<td>${list.product.price}</td>
-        		<td>${list.orderLine.payDate }</td>
+        		<td>${list.orderLine.payDate}</td>
         	</tr>
         </c:forEach>
 <!--         <tr><td>JAVA왕초보</td><td>김민호</td><td>200,000원</td><td>2020.04.27</td></tr> -->

@@ -140,21 +140,20 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 
 				OrderLine orderLine = new OrderLine(rs.getInt("order_no"), rs.getInt("total_price"),
 						rs.getDate("pay_date"), customer);
-				
+
 				Teacher teacher = new Teacher();
 				teacher.setName(rs.getString("name"));
-				
+
 				Product product = new Product();
 				product.setName(rs.getString("prod_name"));
 				product.setPrice(rs.getInt("prod_price"));
 				product.setTeacher(teacher);
-				
-				
+
 				OrderItem orderItem = new OrderItem();
 				orderItem.setItemNo(rs.getInt("orderitem_no"));
 				orderItem.setOrderLine(orderLine);
 				orderItem.setProduct(product);
-				
+				orderItem.setEndDate(rs.getDate("end_date"));
 
 				list.add(orderItem);
 			}
@@ -183,15 +182,14 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 
 				OrderLine orderLine = new OrderLine(rs.getInt("order_no"), rs.getInt("total_price"),
 						rs.getDate("pay_date"), customer);
-				
+
 				Teacher teacher = new Teacher();
 				teacher.setName(rs.getString("name"));
-				
+
 				Product product = new Product();
 				product.setName(rs.getString("prod_name"));
 				product.setTeacher(teacher);
-				
-				
+
 				orderItem = new OrderItem();
 				orderItem.setItemNo(rs.getInt("orderitem_no"));
 				orderItem.setOrderLine(orderLine);

@@ -179,9 +179,16 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <hr class="w3-clear" style="margin: 0">
         <table style="width: 900px; height: 150px;">
         <tr><th>강의명</th><th>강사명</th><th>수강종료기간</th></tr>
-        <tr><td><a href="../mychapter/mychapter.jsp">JAVA왕초보</a></td><td>김민호</td><td>~2020.05.05</td></tr>
-        <tr><td><a href="../mychapter/mychapter.jsp">JAVA고수</a></td><td>김민호</td><td>~2020.07.05</td></tr>
-        <tr><td><a href="../mychapter/mychapter.jsp">JAVA중수</a></td><td>김민호</td><td>~2020.07.05</td></tr> 
+        <c:forEach items="${orderList}" var="list">
+        	<tr>
+        		<td>${list.product.name}</td>
+        		<td>${list.product.teacher.name}</td>
+        		<td>${list.endDate}</td>
+        	</tr>
+        </c:forEach>
+<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA왕초보</a></td><td>김민호</td><td>~2020.05.05</td></tr> -->
+<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA고수</a></td><td>김민호</td><td>~2020.07.05</td></tr> -->
+<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA중수</a></td><td>김민호</td><td>~2020.07.05</td></tr>  -->
         </table> 
         </div>        
       </div>

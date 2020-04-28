@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import exception.AddException;
+import model.dao.OrderItemDAO;
 import model.dao.OrderLineDAO;
 import model.domain.Customer;
 import model.domain.OrderItem;
@@ -59,8 +61,38 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 	}
 
 	@Override
-	public int insert(OrderLine orderLine) throws SQLException {
+	public void insert(OrderItem orderItem) throws Exception {
 		Connection con = null;
+		// 테이블 : OrderLine, OrderItem
+		// 트랜잭션 시작, Connection의 autoCommit을 해제
+		try {
+			con = DbUtil.getConnection();
+			con.setAutoCommit(false);
+
+			insert(con, orderItem.getOrderLine());
+			OrderItemDAO itemDAO = new OrderItemDAOImpl();
+			itemDAO.insert(con, orderItem);
+			
+			// 트랜잭션 완료
+			con.commit();
+		} catch (Exception e) {
+			if (con != null) {
+				try {
+					con.rollback();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					throw new AddException(e1.getMessage());
+				}
+			}
+			e.printStackTrace();
+			throw new AddException(e.getMessage());
+		} finally {
+			DbUtil.dbClose(con, null);
+		}
+	}
+
+	@Override
+	public int insert(Connection con, OrderLine orderLine) throws SQLException {
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("insertLine");
@@ -74,7 +106,7 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 
 			result = ps.executeUpdate();
 		} finally {
-			DbUtil.dbClose(con, ps);
+			DbUtil.dbClose(null, ps);
 		}
 		return result;
 	}

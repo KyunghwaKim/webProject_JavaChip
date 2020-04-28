@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface OrderItemDAO {
 	/**
 	 * 주문하기
 	 */
-	int insert(OrderItem orderItem) throws SQLException;	
+	int insert(Connection con, OrderItem orderItem) throws SQLException;	
 	
 	/**
 	 * 환불하기

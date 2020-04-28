@@ -19,7 +19,7 @@ public class LoginController implements Controller {
 		String pwd = request.getParameter("pwd");
 		
 		if(id == null || id.equals("") || pwd == null || pwd.equals("")) {
-			throw new NotFoundException("입력값이 부족합니다");
+			throw new NotFoundException("입력값이 없습니다");
 		}
 		
 		Person person = PersonService.login(id, pwd);

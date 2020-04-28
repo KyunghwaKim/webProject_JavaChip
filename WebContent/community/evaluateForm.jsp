@@ -22,28 +22,22 @@
 table{
 	width: 1200px;
 	margin-top: 20px;
-
 }
-
 /*
-
 .page{
 	text-align: center;
 	width: 50%;
 }
-
 .pagination{
 	list-style: none;
 	display: inline-block;
 	padding: 0;
 	margin-top: 20px;
 }
-
 .pagination li{
 	display: inline;
 	text-align: center;
 }
-
 .pagination a{
 	float:left;
 	display: block;
@@ -54,31 +48,23 @@ table{
 	line-height: 1.5;
 	
 }
-
 .first{
 	margin-right: 15px;
-
 }
-
 .last{
 	margin-left: 15px;
-
 }
-
 .first:hover, .last:hover, .left:hover, .right:hover {
 	color: #2e9cdf;
 	
 }
-
 .pagination a.active{
 	cursor : default;
 	color : #ffffff;
 }
-
 .pagination a:active{
 	outline: none;
 }
-
 .modal .num{
 	margin-left: 3px;
 	padding: 0;
@@ -89,17 +75,14 @@ table{
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
 }
-
 .modal .num:hover {
 	background-color: #2e9cdf;
 	color: #ffffff;
 }
-
 .modal .num.active, .modal .num:active{
 	background-color: #2e9cdf;
 	cursor: pointer;
 }
-
 .arrow-left{
 	width: 0px;
 	height: 0;
@@ -107,15 +90,11 @@ table{
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
-
-
 */
-
 #formpwd{
 	
 	display: none;
 }
-
 #star_grade a{
         text-decoration: none;
         color: gray;
@@ -124,17 +103,14 @@ table{
        
         color: red;
 }
-
 #teacher{
 	display: none; 
 }
-
 </style>
 
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <script>
-
 	$(function(){
 		
 		$('#star_grade a').click(function(){
@@ -162,7 +138,6 @@ table{
 			}
 			
 	});
-
 </script>
 
 
@@ -215,8 +190,8 @@ table{
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="Q&Aboard.html" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="evaluation.html" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>

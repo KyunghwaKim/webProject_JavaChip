@@ -17,12 +17,13 @@ public class SelectProductController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
  		List<GangiMokRok> list = ProductService.selectGangiMokRokAll();
- 		 					 
+ 		 		
  		String filename = list.get(0).getProduct().getTeacher().getPictureName();
  		System.out.println(filename);
  		
  		request.setAttribute("Gangi", list); 
  		 
+ 		
  		ModelAndView mv = new ModelAndView(); 
  		mv.setViewName("classlist/cart.jsp"); 
 		 

@@ -104,6 +104,13 @@ td, th{
 <body>
 
   <!-- Navigation -->
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
@@ -140,6 +147,13 @@ td, th{
     </div>
   </nav>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
@@ -215,6 +229,13 @@ td, th{
 			</c:otherwise>
 		</c:choose>	  
 	</header>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->
@@ -238,6 +259,7 @@ td, th{
 		<tr><th rowspan="2">구분별</th><th colspan="3">검색조건을 선택하세요!</th></tr>
 		<tr>
 		<td id="tdcate">
+		<c:forEach items=""></c:forEach>
 		<select name="category" id="selectcate">
 			<option>카테고리별</option>
 			<option>JAVA</option>
@@ -281,6 +303,7 @@ td, th{
         <div class="card h-100">
           <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
           <div class="card-body">
+            <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr>
             <h4 class="card-title">${list.product.name}</h4>
             <p class="card-text">${list.product.description}</p>
           </div>

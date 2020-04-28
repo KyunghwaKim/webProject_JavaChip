@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,9 +14,14 @@ public interface OrderLineDAO {
 	List<OrderLine> selectAll() throws SQLException;
 	
 	/**
+	 * 주문하기(트랜잭션 오픈, 클로즈)
+	 */
+	void insert(OrderItem orderItem) throws SQLException, Exception;
+	
+	/**
 	 * 주문하기
 	 */
-	int insert(OrderLine orderLine) throws SQLException;
+	int insert(Connection con, OrderLine orderLine) throws SQLException;
 	
 	/**
 	 * 환불하기

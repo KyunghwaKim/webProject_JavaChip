@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +13,10 @@
   <title>JavaChip-Community</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+  <link href="${path}/community/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
 
   <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 table{
@@ -250,52 +251,25 @@ table{
 	    		<th>번호</th>
 	    		<th>제목</th>
 	    		<th>작성자</th>
-	    		<th>날짜</th>
+	    		<th>작성일</th>
 	    		<th>조회수</th>
 	    	</tr>
 	    	</thead>
 	    	<tbody>
-	    	<tr>
-	    		<td>1</td>
-	    		<td>자바1강 for문 질문이요!</td>
-	    		<td>낑깡낑깡</td>
-	    		<td>2020-04-24</td>
-	    		<td>1</td>
-	    	</tr>
-	    	<tr>
-	    		<td>2</td>
-	    		<td>자바3강 if문 질문이요!</td>
-	    		<td>홀짝홀짝</td>
-	    		<td>2020-04-24</td>
-	    		<td>37</td>
-	    	</tr>
-	    	<tr>
-	    		<td>3</td>
-	    		<td>파이썬2강 while문 질문이요!</td>
-	    		<td>고수될꺼야</td>
-	    		<td>2020-04-24</td>
-	    		<td>12</td>
-	    	</tr>
+		    	<c:forEach items="${QnAList}" var="qnaList" varStatus="state">
+		    		<tr>
+			    		<td>${state.count}</td>
+			    		<td><a href="community/qnaDetail.jsp">${qnaList.title}</a></td>
+			    		<td>${qnaList.customer.id}</td>
+			    		<td>${qnaList.writeDay}</td>
+			    		<td>1</td>
+	   				</tr>
+		    	</c:forEach>
 	    	</tbody>	    	
 	    </table>
 	    
-<!-- 	 <div class="page">
-	    	<ul class="pagination modal">
-	    	<li><a href="#" class="first">처음페이지</a></li>
-	    	<li><a href="#" class="arrow left">&lt;&lt;</a></li>
-	    	<li><a href="#" class="num">1</a></li>
-	    	<li><a href="#" class="num">2</a></li>
-	    	<li><a href="#" class="num">3</a></li>
-	    	<li><a href="#" class="num">4</a></li>
-	    	<li><a href="#" class="arrow right">>></a></li>	 
-	    	<li><a href="#" class="last">끝페이지</a></li>   	
-	    	</ul>	    
-	    </div>
-	    
--->	    
-	    
 	    <hr>
-	    <button style="float: right" onclick="location.href='writeform.jsp'">질문하기</button>
+	    <button style="float: right" onclick="location.href='community/writeform.jsp'">질문하기</button>
 		
       </div>     
     </div>
@@ -314,8 +288,8 @@ table{
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${path}/community/vendor/jquery/jquery.min.js"></script>
+  <script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

@@ -18,7 +18,7 @@ public class SelectAllQnAController implements Controller {
 		request.setAttribute("QnAList", list);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("");
+		mv.setViewName("community/Q&Aboard.jsp");
 		return mv;
 	}
 

@@ -120,7 +120,7 @@ table{
 
 
 </style>
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 
 	window.addEventListener("load", function(){
@@ -130,22 +130,27 @@ table{
 		var formpwd = document.getElementById("formpwd");	
 		
 		secret.onclick = function(){
-			
 			formpwd.style.display = 'inline-block';
-			
 		}
-		
 		normal.onclick = function(){
-			
 			formpwd.style.display = 'none';
 		}
-		
-	});
-	
-
+});
 </script>
-
-
+<script>
+	$(function(){
+		$('#btnSave').click(function(){
+			$.ajax({
+				url : "../javaChip?command=insertQnA",
+				data : "title="+$('[name=title]').val()+"&content="+$('[name=content]').val(),
+				type : "post",
+				success : function(){
+					alert(1)
+				}
+			})
+		});
+	});//end load
+</script>
 </head>
 
 <body>
@@ -179,10 +184,10 @@ table{
             <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
           </li>
           <li class="nav-item">
-			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
+			 <a class="nav-link" href="../mygangisil/mygangisil.jsp">내강의실</span></a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</a>
           </li>
         </ul>
       </div>
@@ -269,27 +274,12 @@ table{
 			<div >
 
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-
-				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="Q&Aboard.jsp"'>목록</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="../javaChip?command=selectAllQnA"'>목록</button>
 
 			</div>
 
 		</div>
-	    
-<!-- 	 <div class="page">
-	    	<ul class="pagination modal">
-	    	<li><a href="#" class="first">처음페이지</a></li>
-	    	<li><a href="#" class="arrow left">&lt;&lt;</a></li>
-	    	<li><a href="#" class="num">1</a></li>
-	    	<li><a href="#" class="num">2</a></li>
-	    	<li><a href="#" class="num">3</a></li>
-	    	<li><a href="#" class="num">4</a></li>
-	    	<li><a href="#" class="arrow right">>></a></li>	 
-	    	<li><a href="#" class="last">끝페이지</a></li>   	
-	    	</ul>	    
-	    </div>
-	    
--->	    
+
 	   </div>
 	 </div>
 	   
@@ -312,7 +302,7 @@ table{
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-
+${id}
 </body>
 
 </html>

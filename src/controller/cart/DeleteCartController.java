@@ -17,7 +17,7 @@ public class DeleteCartController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String prodId = request.getParameter("prodId");
-		String customerId = request.getParameter("userId");
+		String customerId = (String) request.getSession().getAttribute("userId");
 		
 		List<String> prodIdList = new ArrayList<>();;
 		prodIdList.add(prodId);
@@ -26,12 +26,12 @@ public class DeleteCartController implements Controller {
 		for(String prod:prodIdList) {
 			System.out.println(prod);
 		}
-		
+		System.out.println("userId : "+customerId);
 		CartService.delete(customerId, prodIdList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setRedirect(true);
-		mv.setViewName("selectCart");
+		mv.setViewName("javaChip?command=selectCart");
 		return mv;
 	}
 

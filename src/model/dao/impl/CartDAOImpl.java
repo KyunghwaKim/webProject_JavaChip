@@ -82,6 +82,7 @@ public class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public int delete(String customerId, String prodId) throws SQLException {
+		System.out.println("daoImpl called..");
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -92,10 +93,11 @@ public class CartDAOImpl implements CartDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, customerId);
 			ps.setString(2, prodId);
-			result = ps.executeUpdate(sql);
+			result = ps.executeUpdate();
 		} finally {
 			DbUtil.dbClose(con, ps);
 		}
+		System.out.println(result);
 		return result;
 	}
 

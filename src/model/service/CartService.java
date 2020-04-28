@@ -35,6 +35,7 @@ public class CartService {
 	 * 선택 상품 장바구니 목록에서 삭제
 	 */
 	public static void delete(String customerId, List<String> list) throws SQLException {
+		System.out.println("cartService called..");
 		for (String prodId : list) {
 			int result = cartDAO.delete(customerId, prodId);
 			if (result == 0) {

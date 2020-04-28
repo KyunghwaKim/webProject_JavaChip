@@ -12,10 +12,10 @@
   <title>JavaChip-Community</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${path}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
+  <link href="${path}/mycart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
 
   <!-- Custom styles for this template -->
-  <link href="${path}/css/simple-sidebar.css" rel="stylesheet">
+  <link href="${path}/mycart/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 table{
@@ -115,10 +115,33 @@ table{
 
 
 </style>
-
-
 </head>
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$("[name=delete]").click(function(){
+		$.ajax({
+			url:"javaChip?command=deleteCart",
+			data:"prodId="+$(this).val(),
+			success:function(){
+				alert("장바구니에서 삭제하였습니다.");
+			}
+		});//end ajax
+	});//end click
+	
+	$("[name=order]").click(function(){
+		alert(1);
+		$.ajax({
+			url:"javaChip?command=insertOrderLine",
+			data:"prodId="+$(this).val()+"&totalPrice="+$('td>span').text(),
+			success:function(){
+				alert("주문이 완료되었습니다!");
+			}
+		});//end ajax
+		
+	});//end click
+});//end load
+</script>
 <body>
 
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
@@ -261,9 +284,9 @@ table{
 		    		<td>${state.count}</td>
 		    		<td>${cart.product.name}</td>
 		    		<td>${cart.product.description}</td>
-		    		<td>${cart.product.price}원</td>
-		    		<td><button>주문하기</button></td>
-		    		<td><button>삭제</button></td>
+		    		<td><span>${cart.product.price}</span>원</td>
+		    		<td><button value="${cart.product.id}" name="order">주문하기</button></td>
+		    		<td><button value="${cart.product.id}" name="delete">삭제</button></td>
 		    	</tr>
 	    	</c:forEach>
 	    	</tbody>	    	

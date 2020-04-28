@@ -151,6 +151,7 @@ background-color: black;
 </script>
 
 </head>
+
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
     
@@ -222,7 +223,7 @@ background-color: black;
 			            <a class="nav-link" href="${path}/javaChip?command=selectByCusIdOrderLine"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-						<a class="nav-link" href="../javaChip?command=selectCart&id=user1001"><span style="color: white; font-weight: bold">장바구니</span></a>
+						<a class="nav-link" href="../javaChip?command=selectCart&id=${userId}"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
@@ -384,5 +385,4 @@ background-color: black;
 
 
   </body>
-
 </html>

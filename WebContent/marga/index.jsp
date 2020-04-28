@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -141,9 +142,12 @@ background-color: black;
 		
 		x2.onclick = function(){
 			
-			toast2.style.display = 'none';
-			
+			toast2.style.display = 'none';			
 		}
+		
+		
+		
+		
 		
 	
 	});
@@ -163,13 +167,11 @@ background-color: black;
           </div>
         </div>
         <div class="site-mobile-menu-body"></div>
-      </div>
-
-
-
-      <header class="site-navbar site-navbar-target bg-white" role="banner">
-
-		
+      </div>      
+    
+       <header class="site-navbar site-navbar-target bg-white" role="banner">		
+		<c:choose>
+			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
         <div class="container">
           <div class="row align-items-center position-relative">          				
             <div class="col-lg-4">
@@ -183,15 +185,43 @@ background-color: black;
 			        <ul class="navbar-nav ml-auto">
 			          <li class="nav-item active">
 			          </li>
-					  <li class="nav-item">
+					  <li class="nav-item" id="login">
 					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
-			          </li>
-			          <li class="nav-item">
-			            <a class="nav-link" href="../marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
 			          </li>
 			         <li class="nav-item">
 			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			          </li>
+			          <li class="nav-item">
+			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			          </li>
+			        </ul>
+			      </div>
+			    </div>
+			  </nav>
+			</div>
+    	 </div>
+       </div> 
+			</c:when>
+			<c:otherwise> <!-- 로그인하였다면.. -->
+	  <div class="container">
+          <div class="row align-items-center position-relative">          				
+            <div class="col-lg-4">
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
+			    <div class="container">
+			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+			      </button>
+			      <div class="collapse navbar-collapse" id="navbarResponsive">
+			        <ul class="navbar-nav ml-auto">
+			          <li class="nav-item active">
+			          </li>
+			          <li class="nav-item" id="logout">
+			            <a class="nav-link" href="${path}/javaChip?command=logout"><span style="color: white; font-weight: bold">로그아웃</span></a>
+			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
@@ -208,6 +238,11 @@ background-color: black;
 			      </div>
 			    </div>
 			  </nav>
+			</div>
+    	 </div>
+       </div>
+			</c:otherwise>
+		</c:choose>	  
 			  
 			  <!-- 토스트 배너부분 -->
                 
@@ -226,9 +261,7 @@ background-color: black;
               
               <!-- 토스트 배너 끝 -->
                        
-            </div>
-    	 </div>
-        </div>
+
       </header>
     <div class="owl-carousel-wrapper">
       <div class="box-92819">

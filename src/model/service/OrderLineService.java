@@ -7,6 +7,7 @@ import model.dao.OrderLineDAO;
 import model.dao.ProductDAO;
 import model.dao.impl.OrderLineDAOImpl;
 import model.dao.impl.ProductDAOImpl;
+import model.domain.OrderItem;
 import model.domain.OrderLine;
 
 public class OrderLineService {
@@ -40,7 +41,7 @@ public class OrderLineService {
 		return lineDAO.selectBylLineNo(lineNo);
 	}
 	
-	public static List<OrderLine> selectByCustomerId(String customerId) throws SQLException{
+	public static List<OrderItem> selectByCustomerId(String customerId) throws SQLException{
 		return lineDAO.selectByCustomerId(customerId);
 	}
 }

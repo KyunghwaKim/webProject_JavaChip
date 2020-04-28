@@ -17,6 +17,8 @@ public class CheckPwdCustomerController implements Controller {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		
+		System.out.println(id + " : " + pwd);
+		
 		if(id==null||id.equals("")||pwd==null||pwd.equals("")) {
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
@@ -35,7 +37,7 @@ public class CheckPwdCustomerController implements Controller {
 		if(customer.getStatus()==3) {
 			mv.setViewName("../../Admin/index.jsp");	
 		}else {
-			mv.setViewName("");
+			mv.setViewName("../../marga/index.jsp");
 		}
 		
 		return mv;

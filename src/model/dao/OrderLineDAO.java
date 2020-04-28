@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.domain.OrderItem;
 import model.domain.OrderLine;
 
 public interface OrderLineDAO {
@@ -21,7 +22,6 @@ public interface OrderLineDAO {
 	 */
 	int update(int lineNo, int totalPrice) throws SQLException;
 	
-	
 	/**
 	 * 주문번호로 주문내역 가져오기
 	 */
@@ -29,6 +29,13 @@ public interface OrderLineDAO {
 	
 	/**
 	 * 주문자별 주문내역 가져오기
+	 * - 출력정보 : 상품구매번호, 상품명, 강사이름, 가격, 결제일자
 	 */
-	List<OrderLine> selectByCustomerId(String customerId) throws SQLException;	
+	List<OrderItem> selectByCustomerId(String customerId) throws SQLException;	
+	
+	/**
+	 * 현재수강목록
+	 * - 출력정보 : 상품명, 강사이름, 강의를 들을 수 있는 날짜
+	 */
+	OrderItem selectMyLecture(String customerId) throws SQLException;
 }

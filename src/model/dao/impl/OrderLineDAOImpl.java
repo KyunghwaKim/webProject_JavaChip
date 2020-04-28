@@ -12,7 +12,10 @@ import java.util.Properties;
 
 import model.dao.OrderLineDAO;
 import model.domain.Customer;
+import model.domain.OrderItem;
 import model.domain.OrderLine;
+import model.domain.Product;
+import model.domain.Teacher;
 import util.DbUtil;
 
 public class OrderLineDAOImpl implements OrderLineDAO {
@@ -100,7 +103,7 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		OrderLine orderLine = null;
-		String sql = pro.getProperty("");
+		String sql = pro.getProperty("selectLineByLineNo");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -119,12 +122,12 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 	}
 
 	@Override
-	public List<OrderLine> selectByCustomerId(String customerId) throws SQLException {
+	public List<OrderItem> selectByCustomerId(String customerId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<OrderLine> list = new ArrayList<OrderLine>();
-		String sql = pro.getProperty("");
+		List<OrderItem> list = new ArrayList<OrderItem>();
+		String sql = pro.getProperty("selectMyOrderList");
 
 		try {
 			con = DbUtil.getConnection();
@@ -133,17 +136,70 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Customer customer = new Customer();
-				customer.setId(rs.getString("user_id"));
+				customer.setId(customerId);
 
 				OrderLine orderLine = new OrderLine(rs.getInt("order_no"), rs.getInt("total_price"),
 						rs.getDate("pay_date"), customer);
 
-				list.add(orderLine);
+				Teacher teacher = new Teacher();
+				teacher.setName(rs.getString("name"));
+
+				Product product = new Product();
+				product.setName(rs.getString("prod_name"));
+				product.setPrice(rs.getInt("prod_price"));
+				product.setTeacher(teacher);
+
+				OrderItem orderItem = new OrderItem();
+				orderItem.setItemNo(rs.getInt("orderitem_no"));
+				orderItem.setOrderLine(orderLine);
+				orderItem.setProduct(product);
+				orderItem.setEndDate(rs.getDate("end_date"));
+
+				list.add(orderItem);
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public OrderItem selectMyLecture(String customerId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		OrderItem orderItem = null;
+		String sql = pro.getProperty("selectMyOrderList");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, customerId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				Customer customer = new Customer();
+				customer.setId(customerId);
+
+				OrderLine orderLine = new OrderLine(rs.getInt("order_no"), rs.getInt("total_price"),
+						rs.getDate("pay_date"), customer);
+
+				Teacher teacher = new Teacher();
+				teacher.setName(rs.getString("name"));
+
+				Product product = new Product();
+				product.setName(rs.getString("prod_name"));
+				product.setTeacher(teacher);
+
+				orderItem = new OrderItem();
+				orderItem.setItemNo(rs.getInt("orderitem_no"));
+				orderItem.setOrderLine(orderLine);
+				orderItem.setProduct(product);
+				orderItem.setEndDate(rs.getDate("end_date"));
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return orderItem;
 	}
 
 }

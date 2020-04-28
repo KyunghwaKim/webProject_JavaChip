@@ -29,25 +29,13 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 
-<script>
-
-	window.addEventListener("load", function(){
-		
-		
-		
-		
-	});
-	
-
-</script>
-
 </head>
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-90 p-b-30">
-				<form class="login100-form validate-form" action="../javaChip?command=login" method="post">
+				<form class="login100-form validate-form" action="${path}/javaChip?command=login" method="post">
 					<span class="login100-form-title p-b-40">
 						JAVACHIP Login
 					</span>

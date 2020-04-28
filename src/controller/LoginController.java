@@ -7,8 +7,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.NotFoundException;
-import model.domain.Customer;
-import model.service.CustomerService;
+import model.domain.Person;
 import model.service.PersonService;
 
 public class LoginController implements Controller {
@@ -20,24 +19,27 @@ public class LoginController implements Controller {
 		String pwd = request.getParameter("pwd");
 		
 		if(id == null || id.equals("") || pwd == null || pwd.equals("")) {
-			throw new NotFoundException("입력값이 부족합니다");
+			throw new NotFoundException("입력값이 없습니다");
 		}
 		
-		//Customer customer = CustomerService.selectById(id);
-		
-		PersonService.login(id, pwd);
-		
-		ModelAndView mv = new ModelAndView();
+		Person person = PersonService.login(id, pwd);
+		System.out.println(person.getStatus());
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("sessonid", id);
+		session.setAttribute("userId" , id);
 		
-		//if(customer.getStatus()==3) {
-			//mv.setViewName("Admin/index.jsp");	
-		//}else {
-			//mv.setViewName("marga/index.jsp");
-		//}
-		mv.setViewName("marga/index.jsp");
+		ModelAndView mv = new ModelAndView();
+		mv.setRedirect(true);
+		
+		if(person.getStatus() == 3) {
+			
+			mv.setViewName("Admin/index.jsp");
+			
+		} else {
+			
+			mv.setViewName("marga/index.jsp");
+		}
+		
 		
 		return mv;
 	}

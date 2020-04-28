@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import model.domain.GangiMokRok;
 import model.domain.Product;
 
 public interface ProductDAO {
@@ -38,4 +39,15 @@ public interface ProductDAO {
 	 * 상품아이디로 상품조회
 	 */
 	Product selectById(String prodId) throws SQLException;	
+	
+	
+	/**
+	 *  강의목록 띄울 전체 상품 조회
+	 */
+	List<GangiMokRok> GangiMokRokAll() throws SQLException;
+	
+	
+	
+	
+	
 }

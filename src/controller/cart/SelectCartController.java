@@ -15,6 +15,7 @@ public class SelectCartController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("selectCart...");
 		String customerId = request.getParameter("id");
 		if(customerId==null || customerId.equals("")) {
 			throw new NotFoundException("장바구니 조회를 위한 고객 id를 찾을 수 없습니다.");
@@ -23,7 +24,7 @@ public class SelectCartController implements Controller {
 		request.setAttribute("cartList", list);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("mycart/cart/myCart.jsp");
+		mv.setViewName("mycart/newmycart.jsp");
 		return mv;
 	}
 

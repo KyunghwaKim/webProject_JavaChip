@@ -42,7 +42,7 @@ public class CartDAOImpl implements CartDAO {
 			ps.setString(1, customerId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"), rs.getInt("price"));
+				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"), rs.getInt("prod_price"), rs.getString("description"));
 				
 				Teacher teacher = new Teacher();
 				teacher.setName(rs.getString("name"));

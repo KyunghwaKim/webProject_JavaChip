@@ -79,29 +79,28 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 	
 	@Override
-	public boolean idCheck(String id) throws SQLException {
+	public int idCheck(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		boolean flag = false;
+		int result = 0;
 		String sql = pro.getProperty("selectIdChk");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
-
-			if (id.equals(rs)) {
-				flag = true;
-			} else {
-				flag = false;
+			
+			if (rs.next()) {
+				
+				result = 1;
 			}
 
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
-
-		return flag;
+		
+		return result;
 	}
 
 	@Override

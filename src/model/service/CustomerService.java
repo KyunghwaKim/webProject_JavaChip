@@ -28,12 +28,22 @@ public class CustomerService {
 	 * CustomerDAOImpl의 레코드 삽입하는 메소드 호출
 	 */
 	public static void insert(Customer customer) throws Exception {
-		if (customerDAO.idCheck(customer.getId())) {
-			throw new DuplicatedException("사용하실 수 없는 아이디입니다.");
-		}
+		
 		int result = customerDAO.insert(customer);
 		if (result == 0)
 			throw new AddException("등록되지 않았습니다.");
+	}
+	
+	/**
+	 * CustomerDAOImpl의 id 체크하는 메소드호출
+	 */
+	public static int idCheck(String id) throws Exception{
+		int result = customerDAO.idCheck(id);
+		if (result!=0) {
+			throw new DuplicatedException("사용하실 수 없는 아이디입니다.");
+		}
+		
+		return result;
 	}
 
 	/**

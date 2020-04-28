@@ -22,20 +22,21 @@ public class InsertCustomerController implements Controller {
 
 		String age = request.getParameter("age");
 		String email = request.getParameter("email");
-		String howToCome = request.getParameter("howToCome");
+		//String howToCome = request.getParameter("howToCome");
 		
 		if(id==null||id.equals("")||id==null||pwd.equals("")||name==null||name.equals("")
 				||phone==null||phone.equals("")||gender==null||gender.equals("")||age==null||age.equals("")
-				||email==null||email.equals("")||howToCome==null||howToCome.equals("")) {
+				||email==null||email.equals("")) {
+			
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
 		
 		Customer customer = new Customer(id, pwd, name, phone, gender, 0
-				, Integer.parseInt(age), email, null, howToCome, null);
+				, Integer.parseInt(age), email, null, null, null);
 		
 		CustomerService.insert(customer);
 		
-		ModelAndView mv = new ModelAndView(true, "");
+		ModelAndView mv = new ModelAndView(true, "Login/login.jsp");
 		
 		return mv;
 	}

@@ -19,7 +19,7 @@ public interface CustomerDAO {
 	 * id 중복체크
 	 * @return : true이면 중복, false이면 중복아님
 	 */
-	boolean idCheck(String id) throws SQLException;
+	int idCheck(String id) throws SQLException;
 	
 	/**
 	 * 회원 전체검색

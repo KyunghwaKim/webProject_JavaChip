@@ -145,10 +145,6 @@ background-color: black;
 			toast2.style.display = 'none';			
 		}
 		
-		
-		
-		
-		
 	
 	});
 

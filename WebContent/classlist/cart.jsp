@@ -44,6 +44,7 @@ td, th{
 
 </style>
 
+<script src="../marga/js/jquery-3.3.1.min.js"></script>
 <script>
 
 	window.addEventListener("load", function(){
@@ -68,6 +69,7 @@ td, th{
 				
 				tdteacher.style.display = "inline-block";
 				
+								
 			}		
 		}
 		
@@ -102,7 +104,10 @@ td, th{
 <body>
 
   <!-- Navigation -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
@@ -139,7 +144,10 @@ td, th{
     </div>
   </nav>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
@@ -215,7 +223,10 @@ td, th{
 			</c:otherwise>
 		</c:choose>	  
 	</header>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->
@@ -280,7 +291,7 @@ td, th{
 	<c:forEach items="${Gangi}" var="list">
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.fileName}" alt="">
+          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
           <div class="card-body">
             <h4 class="card-title">${list.product.name}</h4>
             <p class="card-text">${list.product.description}</p>

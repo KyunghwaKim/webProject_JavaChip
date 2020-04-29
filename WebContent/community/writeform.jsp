@@ -183,17 +183,11 @@ table{
 
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록하기</button>
 				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="../javaChip?command=selectAllQnA"'>목록</button>
-
-
 			</div>
-
 		</div>
 
 	   </div>
 	 </div>
-	   
-        
-   
     <!-- /#page-content-wrapper -->
     
 

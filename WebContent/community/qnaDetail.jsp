@@ -18,7 +18,14 @@
   <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 </head>
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$('#btnSave').click(function(){
+		location.href="javaChip?command=updateQnA&qaBoardNo="+${qnaBoard.qaBoardNo}+"&content="+$('#content').val();
+	});//end save
+});//end load
+</script>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -110,12 +117,12 @@
 			<form name="form" id="form" role="form" method="post" action="/webProject_JavaChip/board/saveBoard">
 	
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">제목</label>
-					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+					<label for="title" style="font-weight: bold">제목</label>${qnaBoard}
+					<input type="text" class="form-control" name="title" id="title" value="${qnaBoard.title}" disabled>
 				</div>			
 				<div class="mb-3">
 					<label for="content" style="font-weight: bold">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="질문작성" ></textarea>
+					<textarea class="form-control" rows="5" name="content" id="content" placeholder="${qnaBoard.subject}" ></textarea>
 				</div>
 		
 			<div class="mb-3" id="formpwd">
@@ -126,7 +133,7 @@
 
 			<div >
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>
 
 				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllQnA"'>목록</button>
 

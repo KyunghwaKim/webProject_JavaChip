@@ -15,10 +15,11 @@ public class InsertQnAController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String subject = request.getParameter("subject");
-		String id = request.getParameter("id");
+		String subject = request.getParameter("content");
+		//String id = request.getParameter("id");
+		String id = (String) request.getSession().getAttribute("id"); //세션에서 받는 것으로 수정
 		String prodId = request.getParameter("prodId");
-		String title = request.getParameter("qaTitle");
+		String title = request.getParameter("title");
 		
 		if (subject == null || subject.equals("") || title == null || title.equals("") || prodId == null
 				|| prodId.equals("") || id == null || id.equals("")) {

@@ -32,8 +32,8 @@ public class CategoryService {
 	 */
 	public static List<Category> selectAll() throws SQLException{
 		
+		return categoryDAO.selectAll();
 		
-		return null;
 	}
 	
 	

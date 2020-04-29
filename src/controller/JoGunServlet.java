@@ -31,28 +31,50 @@ public class JoGunServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String value = request.getParameter("value");
+		String value2 = request.getParameter("value2");
 		
 		ProductDAO productdao = new ProductDAOImpl();
-		List<GangiMokRok> list =null;
+		List<GangiMokRok> list = null;
 		List<GangiMokRok> reallist = new ArrayList<GangiMokRok>();
 		
 		try {
 			list = productdao.GangiMokRokAll();
+			
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
 		
-		for(GangiMokRok g : list) {
+			if(value2 == null) {
 			
-			if( (g.getCategory().getName()).equals(value)) {
-				Product pro = g.getProduct();
-				pro.setUploadDateConvert(pro.getUploadDate().toString());
-				pro.setUploadDate(null);
-				
-				reallist.add(g);
+				for(GangiMokRok g : list) {				
+					if( (g.getCategory().getName()).equals(value)) {
+						
+						Product pro = g.getProduct();
+						pro.setUploadDateConvert(pro.getUploadDate().toString());
+						pro.setUploadDate(null);					
+						reallist.add(g);
+					}			
+				}		
+			} else {
+			
+				for(GangiMokRok g : list) {
+					
+					System.out.println("-------------------------------------------------");
+					System.out.println("value="+value);
+					System.out.println("value2="+value2);
+					System.out.println("강의목록에 강사명"+g.getProduct().getTeacher().getName());
+					System.out.println("-------------------------------------------------");
+					
+					if( g.getCategory().getName().equals(value) && g.getProduct().getTeacher().getName().equals(value2)) {
+						
+						System.out.println("몇개?");
+						Product pro = g.getProduct();
+						pro.setUploadDateConvert(pro.getUploadDate().toString());
+						pro.setUploadDate(null);					
+						reallist.add(g);
+					}					
+				}				
 			}
-			
-		}			
 		
 		System.out.println("reallist : " + reallist);
         

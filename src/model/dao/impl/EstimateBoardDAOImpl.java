@@ -191,4 +191,25 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 		return list;
 	}
 
+	@Override
+	public EstimateBoard selectByNo(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		EstimateBoard estBoard=null;
+		String sql = pro.getProperty("selectQnAByNo");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, no);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				EstimateBoard
+				}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return null;
+	}
+
 }

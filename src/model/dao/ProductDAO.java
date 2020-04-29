@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import model.domain.EstimateBoard;
 import model.domain.GangiMokRok;
 import model.domain.Product;
+import model.domain.ProductDetail;
 
 public interface ProductDAO {
 	/**
@@ -40,14 +42,14 @@ public interface ProductDAO {
 	 */
 	Product selectById(String prodId) throws SQLException;	
 	
-	
 	/**
 	 *  강의목록 띄울 전체 상품 조회
 	 */
 	List<GangiMokRok> GangiMokRokAll() throws SQLException;
 	
-	
-	
-	
-	
+	/**
+	 * [강의목록] > [자세히보기] 에 나올 정보
+	 * : 강의명(prod_name), 설명(description), 가격(price), 동영상(url)
+	 */
+	Map<ProductDetail, EstimateBoard> selectProdInfo() throws SQLException;
 }

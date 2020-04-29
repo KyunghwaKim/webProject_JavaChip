@@ -121,7 +121,7 @@
             <h3 class="card-title"> Python 기본기를 다질 수 있는 강의</h3>
             <h4 style="text-decoration: line-through;">230,000원</h4><h3 style="font-weight: bold">210,000원</h3>
             <p class="card-text"> Python의 끝판왕 김민호 강사의 초급다지기!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
             5.0 stars
           </div>
         </div>

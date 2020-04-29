@@ -68,45 +68,18 @@ Properties pro = new Properties();
 		String sql = pro.getProperty("insertOrderItem");
 		
 		try {
-			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			System.out.println("item1");
 
 		    java.util.Date utilDate = orderItem.getEndDate();
 		    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 			ps.setDate(1, sqlDate);
-
-			System.out.println("item2");
 			ps.setInt(2, orderItem.getOrderLine().getLineNo());
-
-			System.out.println("item3");
 			ps.setString(3, orderItem.getProduct().getId());
 			
 			result = ps.executeUpdate();
-
-			System.out.println("item4");
+			if(result==0) throw new SQLException();
 		}finally {
 			DbUtil.dbClose(null, ps);
-		}
-		return result;
-	}
-
-	@Override
-	public int findCurrentSeq() throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		int result = 0;
-		String sql = pro.getProperty("currentSeq");
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1);
-			}
-		}finally {
-			DbUtil.dbClose(con, ps, rs);
 		}
 		return result;
 	}

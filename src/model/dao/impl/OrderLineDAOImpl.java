@@ -63,24 +63,31 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 	@Override
 	public void insert(OrderItem orderItem) throws Exception {
 		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int lineNo = 0;
 		// 테이블 : OrderLine, OrderItem
 		// 트랜잭션 시작, Connection의 autoCommit을 해제
 		try {
 			con = DbUtil.getConnection();
 			con.setAutoCommit(false);
 
-			if(insert(con, orderItem.getOrderLine())!=0) {
+			String sql = pro.getProperty("makeOrderNo");
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				lineNo = rs.getInt(1);
+			}
+			OrderLine orderLine = orderItem.getOrderLine();
+			orderLine.setLineNo(lineNo);
+			orderItem.setOrderLine(orderLine);
+
+			if (insert(con, orderItem.getOrderLine()) != 0) {
 				OrderItemDAO itemDAO = new OrderItemDAOImpl();
-				int lineNo = itemDAO.findCurrentSeq();
-				if(lineNo != 0) {
-					OrderLine orderLine = orderItem.getOrderLine();
-					orderLine.setLineNo(lineNo);
-					orderItem.setOrderLine(orderLine);
-					if(itemDAO.insert(con, orderItem)!=0) {
-				
-						// 트랜잭션 완료
-						con.commit();
-					}
+				if (itemDAO.insert(con, orderItem) != 0) {
+					// 트랜잭션 완료
+					con.commit();
 				}
 			}
 		} catch (Exception e) {
@@ -99,6 +106,38 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 		}
 	}
 
+//	publi void insertEst() {
+//		String sql="insert 1";
+//		String sql="insert i";
+//		try {
+//			con = Dbutiol.getConection();
+//			con.setAutoCommit(false);
+//			
+//			con.prepareSatement(sql);
+//			
+//			result = ps.executeUpdate();
+//			
+//			if(result>0) {
+//				con.prepareSatement(sql2);
+//				
+//				
+//				result = ps.executeUpdate();
+//			    if(result>0) con.commit();
+//			    else com.rollback();
+//			}
+//			
+//			
+//		}catch(Exception e) {
+//			com.rollback();
+//		}finally {
+//			com.rollback();
+//			
+//			닫기
+//		}
+//		
+//		
+//	}
+
 	@Override
 	public int insert(Connection con, OrderLine orderLine) throws SQLException {
 		PreparedStatement ps = null;
@@ -106,13 +145,17 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 		String sql = pro.getProperty("insertLine");
 
 		try {
-			con = DbUtil.getConnection();
+
 			ps = con.prepareStatement(sql);
 
-			ps.setInt(1, orderLine.getTotalPrice());
-			ps.setString(2, orderLine.getCustomer().getId());
+			ps.setInt(1, orderLine.getLineNo());
+			ps.setInt(2, orderLine.getTotalPrice());
+			ps.setString(3, orderLine.getCustomer().getId());
 
 			result = ps.executeUpdate();
+			if (result == 0)
+				throw new SQLException();
+
 		} finally {
 			DbUtil.dbClose(null, ps);
 		}

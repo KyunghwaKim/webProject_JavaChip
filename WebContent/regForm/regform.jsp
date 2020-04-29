@@ -81,7 +81,9 @@
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1" type="text" placeholder="나이" name="age">
+                                    <input class="input--style-1" type="text" id="agechk" placeholder="나이" name="age" 
+                                    onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                                	<font id="agecheck" size="2"></font>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +98,7 @@
                             </div>
                         </div>
                         <div class="p-t-20">
-                            <button class="btn btn--radius btn--green" type="submit" id="join">가입</button>                            
+                            <button class="btn btn--radius btn--green" type="submit" id="join" >가입</button>                            
                         </div>                        
                     </form>
                     
@@ -119,6 +121,7 @@
     <script src="js/global.js"></script>
 
 	<script type="text/javascript">
+	
 	function button_onclick(){
 		var over = $('#inserid').val();
 		
@@ -146,6 +149,15 @@
 	
 	///////////////////////////////////////
 	
+	function repassward(){
+		var form = document.userinfo;
+		var pw1 = form.pwd.value;
+		var pw2 = form.repassward.value;
+		
+		if(pw1!=pw2){
+			
+		}
+	}
 	
 	function checkValue() {
 		var form = document.userinfo;
@@ -160,7 +172,7 @@
 			return false;
 		}
 		
-		if(form.pwd.value != form.repassword.value){
+		if(form.pwd.value != form.repassward.value){
 			alert("비밀번호를 동일하게 입력해주세요");
 			return false;
 		}
@@ -208,7 +220,12 @@
 			}
 		});
 		
-		
+		$('#agechk').keyup(function(){
+			if(event.keyCode<48 || event.keyCode>57){
+				$('#agecheck').html('숫자만 입력해주세요<br>');
+				$('#agecheck').attr('color', '#f82a2aa3');
+			}
+		});
 	});
 </script>
 

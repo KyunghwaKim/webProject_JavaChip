@@ -44,7 +44,7 @@ td, th{
 
 </style>
 
-<script src="../marga/js/jquery-3.3.1.min.js"></script>
+<script src="${path}/marga/js/jquery-3.3.1.min.js"></script>
 <script>
 
 	window.addEventListener("load", function(){
@@ -57,7 +57,7 @@ td, th{
 		var selectteacher2 = document.getElementById("selectteacher");
 		var selectlevel2 = document.getElementById("selectlevel");
 		
-		selectcate2.onclick = function(){
+		selectcate2.onchange = function(){
 			
 			var selectcate = document.getElementById("selectcate").value;
 			
@@ -69,6 +69,44 @@ td, th{
 				
 				tdteacher.style.display = "inline-block";
 				
+				
+	    		$.ajax({
+	    			url: "${path}/jogun" ,
+	    			type: "post",
+	    			data: {"value" : selectcate},
+	    		    dataType:"json" , 
+	    		    success : function(result){ 
+	    		    	//alert(result)
+	    		    	var str = ""; 
+	    		    	
+	    		    	$.each(result, function(index, item){
+	    		    		
+	    		    		alert(item.product.teacher.pictureName)
+	    		    		
+	    		    		str+= "<div class='col-lg-3 col-md-6 mb-4'>";
+	    		    		str+= "<div class='card h-100'>";
+	    		    		str+= "<img class='card-img-top' src='${path}/classlist/images/'"+item.product.teacher.pictureName+"' alt=''>"
+	    		    		str+= "<div class='card-body'>";
+	    		    		str+= "<h4 class='card-title' style='color: green; font-weight: bold;'>"+item.product.teacher.name+"강사</h4><hr>"
+	    		    		str+= "<h4 class='card-title'>"+item.product.name+"</h4>";
+	    		    		str+= "<p class='card-text'>"+item.product.description+"</p>"
+	    		    		str+= "</div>";
+	    		    		str+= "<div class='card-footer'>";
+	    		    		str+= "<a href='${path}/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
+	    		    		str+= "</div>";
+	    		    		str+= "</div>";
+	    		    		str+= "</div>";
+	    		    	});  
+	    		    	
+	    		    //	$('#jogunlist').remove();
+	    		    	$('#jogunlist').after(str);
+	    		    	$("a").css("textDecoration", "none");
+	    		    	
+	    		    } , 
+	    		    error:function(err){
+	    		    	alert("에럳 : "+err)
+	    		    } 
+	    		});
 								
 			}		
 		}
@@ -104,13 +142,6 @@ td, th{
 <body>
 
   <!-- Navigation -->
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
@@ -147,13 +178,6 @@ td, th{
     </div>
   </nav>
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
@@ -214,7 +238,7 @@ td, th{
 						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -229,13 +253,7 @@ td, th{
 			</c:otherwise>
 		</c:choose>	  
 	</header>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->
@@ -259,35 +277,28 @@ td, th{
 		<tr><th rowspan="2">구분별</th><th colspan="3">검색조건을 선택하세요!</th></tr>
 		<tr>
 		<td id="tdcate">
-		<c:forEach items=""></c:forEach>
+		
 		<select name="category" id="selectcate">
 			<option>카테고리별</option>
-			<option>JAVA</option>
-			<option>Python</option>
-			<option>HTML&CSS</option>
-			<option>JavaScript</option>
-			<option>C언어</option>		
+			<c:forEach items="${cate}" var="catelist">
+			<option>${catelist.name}</option>		
+			</c:forEach>
 		</select>
 		</td>
 		<td id="tdteacher">
 		<select name="teacher" id="selectteacher">
 			<option>강사별</option>
-			<option>장희정강사</option>
-			<option>김민호강사</option>
-			<option>이영진강사</option>
-			<option>김경화강사</option>
-			<option>정준영강사</option>
-			<option>신선호강사</option>
+			<c:forEach items="${set}" var="set">
+			<option>${set}강사</option>
+			</c:forEach>
 		</select>
 		</td>
 		<td id="tdlevel">
 		<select name="level" id="selectlevel">
 			<option>레벨별</option>
-			<option>왕초보</option>
-			<option>초보</option>
-			<option>중수</option>
-			<option>고수</option>
-			<option>마스터</option>			
+			<c:forEach items="${set2}" var="set2">
+			<option>${set2}</option>
+			</c:forEach>		
 		</select>
 		</td>
 		</tr>		
@@ -296,24 +307,24 @@ td, th{
 	
 	</div>
     <!-- Page Features -->
-    <div class="row text-center">
+    <div class="row text-center" id="jogunlist">
 
-	<c:forEach items="${Gangi}" var="list">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
-          <div class="card-body">
-            <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr>
-            <h4 class="card-title">${list.product.name}</h4>
-            <p class="card-text">${list.product.description}</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
-      </div>
+<%-- 	<c:forEach items="${Gangi}" var="list"> --%>
+<!--       <div class="col-lg-3 col-md-6 mb-4"> -->
+<!--         <div class="card h-100"> -->
+<%--           <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt=""> --%>
+<!--           <div class="card-body"> -->
+<%--             <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr> --%>
+<%--             <h4 class="card-title">${list.product.name}</h4> --%>
+<%--             <p class="card-text">${list.product.description}</p> --%>
+<!--           </div> -->
+<!--           <div class="card-footer"> -->
+<%--             <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a> --%>
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
         
-      </c:forEach>
+<%--       </c:forEach> --%>
         
       </div>
 

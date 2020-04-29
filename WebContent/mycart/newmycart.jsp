@@ -106,41 +106,50 @@ table{
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
-
-
 */
-
-
-
-
 
 </style>
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
+// $(function(){
+// 	$("[name=delete]").click(function(){
+// 		$.ajax({
+// 			url:"javaChip?command=deleteCart",
+// 			data:"prodId="+$(this).val(),
+// 			success:function(){
+// 				alert("장바구니에서 삭제하였습니다."); 
+// 			}
+// 		});//end ajax
+// 	});//end click
+	
+// 	$("[name=order]").click(function(){
+// 		alert(1);
+// 		$.ajax({
+// 			url:"javaChip?command=insertOrderLine",
+// 			data:"prodId="+$(this).val()+"&prodId="+$('td>span').text(),
+// 			success:function(){
+// 				alert("주문이 완료되었습니다!");
+// 				$("[name=delete]").trigger("click");
+// 			}
+// 		});//end ajax
+		
+// 	});//end click
+// });//end load
+
 $(function(){
 	$("[name=delete]").click(function(){
-		$.ajax({
-			url:"javaChip?command=deleteCart",
-			data:"prodId="+$(this).val(),
-			success:function(){
-				alert("장바구니에서 삭제하였습니다."); 
-			}
-		});//end ajax
+		confirm("정말 삭제하시겠습니까?");
+		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
 	});//end click
 	
 	$("[name=order]").click(function(){
-		alert(1);
-		$.ajax({
-			url:"javaChip?command=insertOrderLine",
-			data:"prodId="+$(this).val()+"&prodId="+$('td>span').text(),
-			success:function(){
-				alert("주문이 완료되었습니다!");
-			}
-		});//end ajax
-		
+		location.href="javaChip?command=insertOrderLine&prodId="+$(this).val()+"&prodId="+$('td>span').text();
+		alert("주문이 완료되었습니다!");
+		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
 	});//end click
-});//end load
+});
+
 </script>
 <body>
 

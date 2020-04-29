@@ -21,7 +21,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	public CategoryDAOImpl() {
 		// sqlQuery.properties파일을 로딩하기
-		InputStream input = getClass().getClassLoader().getResourceAsStream("kosta/mvc/model/dao/sqlQuery.properties");
+		InputStream input = getClass().getClassLoader().getResourceAsStream("model/dao/sqlQuery.properties");
 		try {
 			pro.load(input);
 		} catch (IOException e) {
@@ -122,7 +122,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 			
 			while(rs.next()) {
 				
-				Category category = new Category();
+				Category category = new Category(rs.getInt("category_id"), rs.getString("category_name"));
+				
+				list.add(category);
 				
 			}
 			
@@ -133,7 +135,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		
 		
 		
-		return null;
+		return list;
 	}
 
 }

@@ -204,12 +204,19 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 			ps.setInt(1, no);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				estBoard = new EstimateBoard(rs.get)
+				Customer customer = new Customer();
+				customer.setId(rs.getString("user_id"));
+				
+				Product product = new Product();
+				product.setId(rs.getString("prod_id"));
+				
+				estBoard = new EstimateBoard(rs.getInt("sequence"), rs.getString("subject"), customer
+						,product , rs.getDate("writeday"), rs.getInt("grade"));
 				}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
-		return null;
+		return estBoard;
 	}
 
 }

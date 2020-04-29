@@ -111,33 +111,33 @@ table{
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <script>
-	$(function(){
-		
-		$('#star_grade a').click(function(){
-		    $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-		    $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-		    return false;
+	$(function() {
+
+		$('#star_grade a').click(function() {
+			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			return false;
 		});
-	
-				
-			var cate = document.getElementById("category");
-			var tea = document.getElementById("teacher");				
-			
-			
-			cate.onclick = function(){
-			
-				if(cate.value != "cate"){
-					
-					tea.style.display = 'inline-block';
-					
-				} else {
-					
-					tea.style.display = 'none';
-				}			
-			
+
+		var cate = document.getElementById("category");
+		var tea = document.getElementById("teacher");
+
+		cate.onclick = function() {
+
+			if (cate.value != "cate") {
+
+				tea.style.display = 'inline-block';
+
+			} else {
+
+				tea.style.display = 'none';
 			}
-			
-	});
+		}
+		
+		$('#btnSave').click(function() {
+			location.href="javaChip?command=insertEst?content="+$([name=content]).val()+"&prodId=";
+		});
+	});//end load
 </script>
 
 
@@ -174,10 +174,10 @@ table{
             <a class="nav-link" href="${path}/javaChip?command=selectProd">강의목록</a>
           </li>
           <li class="nav-item">
-			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
+			 <a class="nav-link" href="../mygangisil/mygangisil.jsp">내강의실</a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
           </li>
         </ul>
       </div>
@@ -190,8 +190,8 @@ table{
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -237,7 +237,7 @@ table{
 			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
 				
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">강의명/강사명</label>
+					<label for="title" style="font-weight: bold">강좌선택</label>${userId}
 					<select id="category">
 						<option value="cate">강의명</option>
 						<option value="java">JAVA</option>
@@ -276,9 +276,9 @@ table{
 
 			<div >
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록</button>
 
-				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="evaluation.jsp"'>목록</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
 
 			</div>
 

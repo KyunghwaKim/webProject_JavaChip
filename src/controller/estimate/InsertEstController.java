@@ -15,12 +15,12 @@ public class InsertEstController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String subject = request.getParameter("subject");
-		String customerId = request.getParameter("customerId");
+		String content = request.getParameter("content");
+		String customerId = (String) request.getSession().getAttribute("id");//id는 세션에서 가져오는 것으로 수정
 		String prodId = request.getParameter("prodId");
 		String grade = request.getParameter("grade");
-
-		if (subject == null || subject.equals("") || customerId == null || customerId.equals("") || prodId == null
+		System.out.println(customerId);
+		if (content == null || content.equals("") || customerId == null || customerId.equals("") || prodId == null
 				|| prodId.equals("") || grade == null || grade.equals("")) {
 			throw new NotFoundException("인자값이 부족합니다.");
 		}
@@ -31,7 +31,7 @@ public class InsertEstController implements Controller {
 		Product product = new Product();
 		product.setId(prodId);
 
-		EstimateBoard estBoard = new EstimateBoard(subject, customer, product, Integer.parseInt(grade));
+		EstimateBoard estBoard = new EstimateBoard(content, customer, product, Integer.parseInt(grade));
 
 		EstimateService.insert(estBoard);
 

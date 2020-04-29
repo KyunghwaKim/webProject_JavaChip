@@ -110,8 +110,8 @@ table{
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -151,7 +151,7 @@ table{
       </nav>
       
       <div class="container-fluid">
-	    <table class="table table-striped">${estimateList}
+	    <table class="table table-striped">${estimateList} / ${itemList}
 	    <thead>
 	    	<tr>
 	    		<th>번호</th>
@@ -177,7 +177,7 @@ table{
 	    </table>
 	    
 	    <hr>
-	    <button style="float: right" onclick="location.href='evaluateForm.jsp'">후기작성</button>
+	    <button style="float: right" onclick="location.href='community/evaluateForm.jsp'">후기작성</button>
 		
       </div>     
     </div>

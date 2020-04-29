@@ -264,7 +264,7 @@ td, th{
       <hr>
       <p class="lead">자바칩의 자랑 장희정 강사!<br> 프로그래밍계의 전설!<br> 패키지로 바로 만나보세요!<br><br></p>
       <a href="#" class="btn btn-primary btn-lg">패키지구매하기</a>
-      </div>
+      </div> 
       </div>
     </header>
 

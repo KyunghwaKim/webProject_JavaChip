@@ -75,7 +75,7 @@ td, th{
 	    			type: "post",
 	    			data: {"value" : selectcate},
 	    		    dataType:"json" , 
-	    		    success : function(result){
+	    		    success : function(result){ 
 	    		    	//alert(result)
 	    		    	var str = ""; 
 	    		    	

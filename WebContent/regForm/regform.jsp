@@ -54,8 +54,9 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1 " type="text" placeholder="성함" name="name">
-                                    
+                                    <input class="input--style-1 " type="text" placeholder="성함" name="name" id="namechk" 
+                                    onKeyup="this.value=this.value.replace(/[^(ㄱ-힣a-zA-Z)]/gi,'');"/>
+                                    <font id="namecheck" size="2"></font>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -149,15 +150,6 @@
 	
 	///////////////////////////////////////
 	
-	function repassward(){
-		var form = document.userinfo;
-		var pw1 = form.pwd.value;
-		var pw2 = form.repassward.value;
-		
-		if(pw1!=pw2){
-			
-		}
-	}
 	
 	function checkValue() {
 		var form = document.userinfo;
@@ -226,6 +218,14 @@
 				$('#agecheck').attr('color', '#f82a2aa3');
 			}
 		});
+		
+		$('#namechk').keyup(function(){
+			if(event.keyCode>=37 || event.keyCode<=40){
+				$('#namecheck').html('문자만 입력해주세요<br>');
+				$('#namecheck').attr('color', '#f82a2aa3');
+			}
+		});
+		
 	});
 </script>
 

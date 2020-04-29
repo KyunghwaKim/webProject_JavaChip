@@ -278,7 +278,7 @@ td, th{
 			<option>강사별</option>
 			<c:forEach items="${set}" var="set">
 			<option>${set}</option>
-			</c:forEach>
+			</c:forEach> 
 		</select>
 		</td>
 		</tr>		

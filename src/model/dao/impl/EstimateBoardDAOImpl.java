@@ -204,7 +204,7 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 			ps.setInt(1, no);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				EstimateBoard
+				estBoard = new EstimateBoard(rs.get)
 				}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>JavaChip-Community</title>
 
   <!-- Bootstrap core CSS -->
@@ -17,108 +16,16 @@
 
   <!-- Custom styles for this template -->
   <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
-
 <style>
 table{
 	width: 1200px;
 	margin-top: 20px;
 
 }
-
-/*
-
-.page{
-	text-align: center;
-	width: 50%;
-}
-
-.pagination{
-	list-style: none;
-	display: inline-block;
-	padding: 0;
-	margin-top: 20px;
-}
-
-.pagination li{
-	display: inline;
-	text-align: center;
-}
-
-.pagination a{
-	float:left;
-	display: block;
-	font-size: 14px;
-	text-decoration: none;
-	padding: 5px 12px;
-	color: #96a0ad;
-	line-height: 1.5;
-	
-}
-
-.first{
-	margin-right: 15px;
-
-}
-
-.last{
-	margin-left: 15px;
-
-}
-
-.first:hover, .last:hover, .left:hover, .right:hover {
-	color: #2e9cdf;
-	
-}
-
-.pagination a.active{
-	cursor : default;
-	color : #ffffff;
-}
-
-.pagination a:active{
-	outline: none;
-}
-
-.modal .num{
-	margin-left: 3px;
-	padding: 0;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	-moz-border-radius:100%;
-	-webkit-border-radius: 100%;
-	border-radius: 100%;
-}
-
-.modal .num:hover {
-	background-color: #2e9cdf;
-	color: #ffffff;
-}
-
-.modal .num.active, .modal .num:active{
-	background-color: #2e9cdf;
-	cursor: pointer;
-}
-
-.arrow-left{
-	width: 0px;
-	height: 0;
-	border-top: 10px solid transparent;
-	border-bottom: 10px solid transparent;
-	border-right: 10px solid blue;
-}
-
-
-*/
-
 #formpwd{
 	
 	display: none;
 }
-
-
-
-
 </style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
@@ -139,16 +46,9 @@ table{
 </script>
 <script>
 	$(function(){
-		$('#btnSave').click(function(){
-			$.ajax({
-				url : "../javaChip?command=insertQnA",
-				data : "title="+$('[name=title]').val()+"&content="+$('[name=content]').val(),
-				type : "post",
-				success : function(){
-					alert(1)
-				}
-			})
-		});
+		$('#btnSave').click(function(){ //qna등록
+			location.href="javaChip?command=insertQnA&prodId"+$('option').val()+"&title="+$('#content').val()+"&content="+$('#content').val();
+		});//end save
 	});//end load
 </script>
 </head>
@@ -256,7 +156,14 @@ table{
 				
 				</table>			
 				<p>
-	
+				<div class="mb-3">
+					<label for="title" style="font-weight: bold">강의</label>${userId}
+					<select>
+					<c:forEach items="${itemList}" var="item" varStatus="state">
+						<option>${item.itemNo}</option>
+					</c:forEach>
+					</select>
+				</div>
 				<div class="mb-3">
 					<label for="title" style="font-weight: bold">제목</label>
 					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
@@ -274,7 +181,7 @@ table{
 
 			<div >
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록하기</button>
 				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="../javaChip?command=selectAllQnA"'>목록</button>
 
 

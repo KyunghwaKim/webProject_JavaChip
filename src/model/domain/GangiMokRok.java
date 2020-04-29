@@ -29,7 +29,12 @@ public class GangiMokRok {
 		this.category = category;
 	}
 
+	@Override
+	public String toString() {
+		return "GangiMokRok [product=" + product + ", category=" + category + "]";
+	}
 
-	
+   
+    
 	
 }

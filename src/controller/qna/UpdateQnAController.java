@@ -23,7 +23,7 @@ public class UpdateQnAController implements Controller {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setRedirect(true);
-		mv.setViewName("");
+		mv.setViewName("javaChip?command=selectAllQnA");
 		
 		return mv;
 	}

@@ -171,7 +171,7 @@ table{
 			<a class="nav-link" href="../mycart/newmycart.jsp">장바구니</a>
 		  </li>    
           <li class="nav-item">
-            <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
+            <a class="nav-link" href="${path}/javaChip?command=selectProd">강의목록</a>
           </li>
           <li class="nav-item">
 			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>

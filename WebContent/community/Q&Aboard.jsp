@@ -25,6 +25,15 @@ table{
 }
 </style>
 </head>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#quest').click(function(){
+		//sessionId에 해당하는 prodId를 찾아서 넘겨주어야 한다.
+		location.href="javaChip?command=selectOrderItem&userId="+${};
+	});//quest end
+})//end load
+</script>
 <body>
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
@@ -49,7 +58,7 @@ table{
 			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -163,7 +172,7 @@ table{
 		    	<c:forEach items="${QnAList}" var="qna" varStatus="state">
 		    		<tr>
 			    		<td>${state.count}</td>
-			    		<td><a href="${path}/javaChip?command=selectQnAByNo">${qna.title}</a></td>
+			    		<td><a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}">${qna.title}</a></td>
 			    		<td>${qna.customer.id}</td>
 			    		<td>${qna.writeDay}</td>
 			    		<td>${qna.qaBoardNo}</td>
@@ -174,7 +183,9 @@ table{
 	    
 	    <hr>
 
-	    <button style="float: right" onclick="location.href='community/writeform.jsp'">질문하기</button>
+	    <button style="float: right" " id="quest">질문하기</button>
+	    <!-- onclick="location.href='community/writeform.jsp' -->
+	    <!-- 세션id에 해당하는 prodId조회해주는servlet호출해야함  -->
 
 	   <%--  <button style="float: right" onclick="location.href='${path}/community/writeform.jsp'">질문하기</button> --%>
 

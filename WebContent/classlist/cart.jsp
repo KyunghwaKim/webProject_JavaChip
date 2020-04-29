@@ -50,12 +50,10 @@ td, th{
 	window.addEventListener("load", function(){
 		
 		var tdcate = document.getElementById("tdcate");
-		var tdteacher = document.getElementById("tdteacher");
-		var tdlevel = document.getElementById("tdlevel");
+		var tdteacher = document.getElementById("tdteacher");		
 		
 		var selectcate2 = document.getElementById("selectcate");
-		var selectteacher2 = document.getElementById("selectteacher");
-		var selectlevel2 = document.getElementById("selectlevel");
+		var selectteacher2 = document.getElementById("selectteacher");		
 		
 		selectcate2.onchange = function(){
 			
@@ -68,38 +66,34 @@ td, th{
 			} else {
 				
 				tdteacher.style.display = "inline-block";
-				
-				
-	    		$.ajax({
-	    			url: "${path}/jogun" ,
+								
+	   		$.ajax({
+	    			url: "/webProject_JavaChip/jogun" ,
 	    			type: "post",
 	    			data: {"value" : selectcate},
 	    		    dataType:"json" , 
-	    		    success : function(result){ 
-	    		    	//alert(result)
+	    		    success : function(result){ 	    		    
 	    		    	var str = ""; 
 	    		    	
-	    		    	$.each(result, function(index, item){
-	    		    		
-	    		    		alert(item.product.teacher.pictureName)
-	    		    		
+	    		    	$.each(result, function(index, item){	    		    		
+	    		    			    		    		
 	    		    		str+= "<div class='col-lg-3 col-md-6 mb-4'>";
 	    		    		str+= "<div class='card h-100'>";
-	    		    		str+= "<img class='card-img-top' src='${path}/classlist/images/'"+item.product.teacher.pictureName+"' alt=''>"
+	    		    		str+= "<img class='card-img-top' src='/webProject_JavaChip/classlist/images/"+item.product.teacher.pictureName+"' alt=''>"
 	    		    		str+= "<div class='card-body'>";
 	    		    		str+= "<h4 class='card-title' style='color: green; font-weight: bold;'>"+item.product.teacher.name+"강사</h4><hr>"
 	    		    		str+= "<h4 class='card-title'>"+item.product.name+"</h4>";
 	    		    		str+= "<p class='card-text'>"+item.product.description+"</p>"
 	    		    		str+= "</div>";
 	    		    		str+= "<div class='card-footer'>";
-	    		    		str+= "<a href='${path}/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
+	    		    		str+= "<a href='/webProject_JavaChip/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
 	    		    		str+= "</div>";
 	    		    		str+= "</div>";
-	    		    		str+= "</div>";
+	    		    		str+= "</div>";		    		    		
 	    		    	});  
 	    		    	
-	    		    //	$('#jogunlist').remove();
-	    		    	$('#jogunlist').after(str);
+	    		  	 	$('#jogunlist').empty();
+	    		    	$('#jogunlist').append(str);
 	    		    	$("a").css("textDecoration", "none");
 	    		    	
 	    		    } , 
@@ -107,13 +101,14 @@ td, th{
 	    		    	alert("에럳 : "+err)
 	    		    } 
 	    		});
-								
+	   		
 			}		
 		}
 		
-		selectteacher2.onclick = function(){
+		selectteacher2.onchange = function(){
 			
 			var selectteacher = document.getElementById("selectteacher").value;
+			var selectcate = document.getElementById("selectcate").value;
 			
 			if(selectteacher == "강사별"){			
 				
@@ -121,16 +116,46 @@ td, th{
 				
 			} else {
 				
-				tdlevel.style.display = "inline-block";
+				console.log(selectteacher);				
+				
+		   		$.ajax({
+	    			url: "${path}/jogun" ,
+	    			type: "post",
+	    			data: {"value" : selectcate , "value2" : selectteacher},
+	    		    dataType:"json" , 
+	    		    success : function(result){ 
+	    		    	 
+	    		    	var str = ""; 	    		    	
+	    		    	$.each(result, function(index, item){	    		    		
+	    		    			    		    		
+	    		    		str+= "<div class='col-lg-3 col-md-6 mb-4'>";
+	    		    		str+= "<div class='card h-100'>";
+	    		    		str+= "<img class='card-img-top' src='/webProject_JavaChip/classlist/images/"+item.product.teacher.pictureName+"' alt=''>"
+	    		    		str+= "<div class='card-body'>";
+	    		    		str+= "<h4 class='card-title' style='color: green; font-weight: bold;'>"+item.product.teacher.name+"강사</h4><hr>"
+	    		    		str+= "<h4 class='card-title'>"+item.product.name+"</h4>";
+	    		    		str+= "<p class='card-text'>"+item.product.description+"</p>"
+	    		    		str+= "</div>";
+	    		    		str+= "<div class='card-footer'>";
+	    		    		str+= "<a href='/webProject_JavaChip/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
+	    		    		str+= "</div>";
+	    		    		str+= "</div>";
+	    		    		str+= "</div>";		    		    		
+	    		    	});  
+	    		    	
+	    		  	 	$('#jogunlist').empty();
+	    		    	$('#jogunlist').append(str);
+	    		    	$("a").css("textDecoration", "none"); 
+	    		    	
+	    		    } , 
+	    		    error:function(err){
+	    		    	alert("에러 : "+err)
+	    		    } 
+	    		});
 				
 			}
 			
 		}
-		
-		
-		
-		
-		
 		
 	});
 
@@ -140,43 +165,6 @@ td, th{
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-          </li>
-		  <li class="nav-item">
-		  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${path}/marga/index.jsp"><span style="color: white; font-weight: bold">로그아웃</span></a>
-          </li>
-         <li class="nav-item">
-           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
-         </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${path}/mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
-          </li>
-          <li class="nav-item">
-			<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
-		  </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
@@ -201,7 +189,7 @@ td, th{
 			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -267,7 +255,7 @@ td, th{
       <hr>
       <p class="lead">자바칩의 자랑 장희정 강사!<br> 프로그래밍계의 전설!<br> 패키지로 바로 만나보세요!<br><br></p>
       <a href="#" class="btn btn-primary btn-lg">패키지구매하기</a>
-      </div>
+      </div> 
       </div>
     </header>
 
@@ -289,16 +277,8 @@ td, th{
 		<select name="teacher" id="selectteacher">
 			<option>강사별</option>
 			<c:forEach items="${set}" var="set">
-			<option>${set}강사</option>
-			</c:forEach>
-		</select>
-		</td>
-		<td id="tdlevel">
-		<select name="level" id="selectlevel">
-			<option>레벨별</option>
-			<c:forEach items="${set2}" var="set2">
-			<option>${set2}</option>
-			</c:forEach>		
+			<option>${set}</option>
+			</c:forEach> 
 		</select>
 		</td>
 		</tr>		
@@ -309,81 +289,29 @@ td, th{
     <!-- Page Features -->
     <div class="row text-center" id="jogunlist">
 
-<%-- 	<c:forEach items="${Gangi}" var="list"> --%>
-<!--       <div class="col-lg-3 col-md-6 mb-4"> -->
-<!--         <div class="card h-100"> -->
-<%--           <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt=""> --%>
-<!--           <div class="card-body"> -->
-<%--             <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr> --%>
-<%--             <h4 class="card-title">${list.product.name}</h4> --%>
-<%--             <p class="card-text">${list.product.description}</p> --%>
-<!--           </div> -->
-<!--           <div class="card-footer"> -->
-<%--             <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a> --%>
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-        
-<%--       </c:forEach> --%>
-        
-      </div>
-
-<!--       <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="images/1HTMLTeacher.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">JAVA 초보</h4>
-            <p class="card-text"> 다양한 예제를 통해 실습으로 기본기를 더욱 탄탄하게 다져줄 수 있는 구성!</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
-      </div>
-
+	<c:forEach items="${Gangi}" var="list">
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="images/1JAVASCRIPTTeacher.jpg" alt="">
+          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
           <div class="card-body">
-            <h4 class="card-title"> JAVA 중수</h4>
-            <p class="card-text"> JAVA 프로그래밍 고수로 가는 지름길!<br> 기본기와 심화학습을 동시에!</p>
+            <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr>
+            <h4 class="card-title">${list.product.name}</h4>
+            <p class="card-text">${list.product.description}</p>
           </div>
           <div class="card-footer">
             <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="images/1PythonTeacher.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title"> JAVA 고수</h4>
-            <p class="card-text"> 키보드 피아니스트가 <br>가능하게 해주는 교육!</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
+        
+      </c:forEach>
+        
       </div>
       
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="images/1CTeacher.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title"> C언어 왕초보</h4>
-            <p class="card-text"> C언어 입문자에게 적합한 강의</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
-      </div>     -->
-
     </div>
     <!-- /.row -->
 
-  </div>
+
   <!-- /.container -->
 
   <!-- Footer -->

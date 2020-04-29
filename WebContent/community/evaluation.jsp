@@ -151,7 +151,7 @@ table{
       </nav>
       
       <div class="container-fluid">
-	    <table class="table table-striped">${estimateList} / ${itemList}
+	    <table class="table table-striped">${estimateList} / ${itemList} / ${userId}
 	    <thead>
 	    	<tr>
 	    		<th>번호</th>

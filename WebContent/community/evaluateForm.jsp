@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,7 +120,7 @@ table{
 			return false;
 		});
 
-		var cate = document.getElementById("category");
+		/* var cate = document.getElementById("category");
 		var tea = document.getElementById("teacher");
 
 		cate.onclick = function() {
@@ -132,10 +133,11 @@ table{
 
 				tea.style.display = 'none';
 			}
-		}
+		} */
 		
-		$('#btnSave').click(function() {
-			location.href="javaChip?command=insertEst?content="+$([name=content]).val()+"&prodId=";
+		$('#btnSave').click(function() { //강의평 등록
+			alert($('option').val()+$('[name=content]').val());
+			//location.href="javaChip?command=insertEst?content="+$('[name=content]').val()+"&prodId="+$('option').val();
 		});
 	});//end load
 </script>
@@ -237,22 +239,11 @@ table{
 			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
 				
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">강좌선택</label>${userId}
-					<select id="category">
-						<option value="cate">강의명</option>
-						<option value="java">JAVA</option>
-						<option value="python">Python</option>
-						<option value="html">HTML</option>
-						<option value="css">CSS</option>
-						<option value="javascript">JavaScript</option>
-					</select>					
-					<select id="teacher">
-						<option>강사명</option>
-						<option>김민호강사</option>
-						<option>신진섭강사</option>
-						<option>이영진강사</option>
-						<option>김경화강사</option>
-						<option>신선호강사</option>
+					<label for="title" style="font-weight: bold">강좌 선택</label> <br>
+					<select>
+					<c:forEach items="${itemList}" var="item" varStatus="state">
+						<option value="111">${item.product.name}</option>
+					</c:forEach>
 					</select>
 				</div>
 				

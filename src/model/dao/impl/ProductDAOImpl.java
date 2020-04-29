@@ -270,7 +270,7 @@ public class ProductDAOImpl implements ProductDAO {
 //						rs.getString("description"), rs.getString("prod_level"), teacher, category,
 //						rs.getDate("upload_date"), rs.getInt("valid_date"));
 			}
-		} finally {
+		} finally { 
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return map;

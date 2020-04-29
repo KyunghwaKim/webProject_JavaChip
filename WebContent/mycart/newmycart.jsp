@@ -124,7 +124,7 @@ $(function(){
 			url:"javaChip?command=deleteCart",
 			data:"prodId="+$(this).val(),
 			success:function(){
-				alert("장바구니에서 삭제하였습니다.");
+				alert("장바구니에서 삭제하였습니다."); 
 			}
 		});//end ajax
 	});//end click

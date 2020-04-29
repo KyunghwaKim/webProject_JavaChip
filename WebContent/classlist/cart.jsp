@@ -68,9 +68,8 @@ td, th{
 			} else {
 				
 				tdteacher.style.display = "inline-block";
-				
-				
-	    		$.ajax({
+								
+	   		$.ajax({
 	    			url: "${path}/jogun" ,
 	    			type: "post",
 	    			data: {"value" : selectcate},
@@ -82,24 +81,24 @@ td, th{
 	    		    	$.each(result, function(index, item){
 	    		    		
 	    		    		alert(item.product.teacher.pictureName)
-	    		    		
+	    		    			    		    		
 	    		    		str+= "<div class='col-lg-3 col-md-6 mb-4'>";
 	    		    		str+= "<div class='card h-100'>";
-	    		    		str+= "<img class='card-img-top' src='${path}/classlist/images/'"+item.product.teacher.pictureName+"' alt=''>"
+	    		    		str+= "<img class='card-img-top' src='/webProject_JavaChip/classlist/images/"+item.product.teacher.pictureName+"' alt=''>"
 	    		    		str+= "<div class='card-body'>";
 	    		    		str+= "<h4 class='card-title' style='color: green; font-weight: bold;'>"+item.product.teacher.name+"강사</h4><hr>"
 	    		    		str+= "<h4 class='card-title'>"+item.product.name+"</h4>";
 	    		    		str+= "<p class='card-text'>"+item.product.description+"</p>"
 	    		    		str+= "</div>";
 	    		    		str+= "<div class='card-footer'>";
-	    		    		str+= "<a href='${path}/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
+	    		    		str+= "<a href='/webProject_JavaChip/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
 	    		    		str+= "</div>";
 	    		    		str+= "</div>";
-	    		    		str+= "</div>";
+	    		    		str+= "</div>";		    		    		
 	    		    	});  
 	    		    	
-	    		    //	$('#jogunlist').remove();
-	    		    	$('#jogunlist').after(str);
+	    		  	 	$('#jogunlist').empty();
+	    		    	$('#jogunlist').append(str);
 	    		    	$("a").css("textDecoration", "none");
 	    		    	
 	    		    } , 
@@ -107,6 +106,9 @@ td, th{
 	    		    	alert("에럳 : "+err)
 	    		    } 
 	    		});
+	
+	
+	
 								
 			}		
 		}
@@ -126,11 +128,6 @@ td, th{
 			}
 			
 		}
-		
-		
-		
-		
-		
 		
 	});
 
@@ -309,81 +306,29 @@ td, th{
     <!-- Page Features -->
     <div class="row text-center" id="jogunlist">
 
-<%-- 	<c:forEach items="${Gangi}" var="list"> --%>
-<!--       <div class="col-lg-3 col-md-6 mb-4"> -->
-<!--         <div class="card h-100"> -->
-<%--           <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt=""> --%>
-<!--           <div class="card-body"> -->
-<%--             <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr> --%>
-<%--             <h4 class="card-title">${list.product.name}</h4> --%>
-<%--             <p class="card-text">${list.product.description}</p> --%>
-<!--           </div> -->
-<!--           <div class="card-footer"> -->
-<%--             <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a> --%>
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-        
-<%--       </c:forEach> --%>
-        
-      </div>
-
-<!--       <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="images/1HTMLTeacher.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">JAVA 초보</h4>
-            <p class="card-text"> 다양한 예제를 통해 실습으로 기본기를 더욱 탄탄하게 다져줄 수 있는 구성!</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
-      </div>
-
+	<c:forEach items="${Gangi}" var="list">
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="images/1JAVASCRIPTTeacher.jpg" alt="">
+          <img class="card-img-top" src="${path}/classlist/images/${list.product.teacher.pictureName}" alt="">
           <div class="card-body">
-            <h4 class="card-title"> JAVA 중수</h4>
-            <p class="card-text"> JAVA 프로그래밍 고수로 가는 지름길!<br> 기본기와 심화학습을 동시에!</p>
+            <h4 class="card-title" style="color: green; font-weight: bold;">${list.product.teacher.name}강사</h4><hr>
+            <h4 class="card-title">${list.product.name}</h4>
+            <p class="card-text">${list.product.description}</p>
           </div>
           <div class="card-footer">
             <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="images/1PythonTeacher.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title"> JAVA 고수</h4>
-            <p class="card-text"> 키보드 피아니스트가 <br>가능하게 해주는 교육!</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
+        
+      </c:forEach>
+        
       </div>
       
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="images/1CTeacher.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title"> C언어 왕초보</h4>
-            <p class="card-text"> C언어 입문자에게 적합한 강의</p>
-          </div>
-          <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
-          </div>
-        </div>
-      </div>     -->
-
     </div>
     <!-- /.row -->
 
-  </div>
+
   <!-- /.container -->
 
   <!-- Footer -->

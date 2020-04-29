@@ -55,4 +55,8 @@ public class QnAService {
 	public static List<QnABoard> selectByKeyword(String keyField, String keyword) throws SQLException {
 		return qaDAO.selectByKeyword(keyField, keyword);
 	}
+
+	public static QnABoard selectByNo(int no) throws SQLException {
+		return qaDAO.selectByNo(no);	
+	}
 }

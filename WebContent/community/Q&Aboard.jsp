@@ -163,7 +163,7 @@ table{
 		    	<c:forEach items="${QnAList}" var="qna" varStatus="state">
 		    		<tr>
 			    		<td>${state.count}</td>
-			    		<td><a href="${path}/community/qnaDetail.jsp?qna=">${qna.title}</a></td>	
+			    		<td><a href="${path}/javaChip?command=selectQnAByNo">${qna.title}</a></td>
 			    		<td>${qna.customer.id}</td>
 			    		<td>${qna.writeDay}</td>
 			    		<td>${qna.qaBoardNo}</td>
@@ -182,8 +182,6 @@ table{
       </div>     	
     </div>
     <!-- /#page-content-wrapper -->
-    
-
   </div>
   <!-- /#wrapper -->
 

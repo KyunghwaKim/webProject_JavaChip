@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,38 +112,39 @@ table{
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <script>
-	$(function(){
-		
-		$('#star_grade a').click(function(){
-		    $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-		    $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-		    return false;
+	$(function() {
+
+		$('#star_grade a').click(function() {
+			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			return false;
 		});
+
+		/* var cate = document.getElementById("category");
+		var tea = document.getElementById("teacher");
+
+		cate.onclick = function() {
+
+			if (cate.value != "cate") {
+
+				tea.style.display = 'inline-block';
+
+			} else {
 	
-				
-			var cate = document.getElementById("category");
-			var tea = document.getElementById("teacher");				
-			
-			
-			cate.onclick = function(){
-			
-				if(cate.value != "cate"){
-					
-					tea.style.display = 'inline-block';
-					
-				} else {
-					
-					tea.style.display = 'none';
-				}			
-			
+				tea.style.display = 'none';
 			}
-			
-	});
+		} */
+		
+		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
+		$('#btnSave').click(function() { //강의평 등록
+			//alert($('option').val()+$('[name=content]').val());
+			location.href="../javaChip?command=insertEst&prodId="+$('option').val()+"&content="+$('[name=content]').val()+"&grade=5";
+		});
+	});//end load
 </script>
 
 
 </head>
-
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -174,10 +176,10 @@ table{
             <a class="nav-link" href="${path}/javaChip?command=selectProd">강의목록</a>
           </li>
           <li class="nav-item">
-			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
+			 <a class="nav-link" href="../mygangisil/mygangisil.jsp">내강의실</a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
           </li>
         </ul>
       </div>
@@ -190,8 +192,8 @@ table{
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -237,25 +239,13 @@ table{
 			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
 				
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">강의명/강사명</label>
-					<select id="category">
-						<option value="cate">강의명</option>
-						<option value="java">JAVA</option>
-						<option value="python">Python</option>
-						<option value="html">HTML</option>
-						<option value="css">CSS</option>
-						<option value="javascript">JavaScript</option>
-					</select>					
-					<select id="teacher">
-						<option>강사명</option>
-						<option>김민호강사</option>
-						<option>신진섭강사</option>
-						<option>이영진강사</option>
-						<option>김경화강사</option>
-						<option>신선호강사</option>
+					<label for="title" style="font-weight: bold">강좌 선택</label> <br>
+					<select>
+					<c:forEach items="${itemList}" var="item" varStatus="state">
+						<option value="${item.product.id}">${item.product.name} / ${item.product.teacher.name}</option>
+					</c:forEach>
 					</select>
 				</div>
-				
 				<div class="mb-3">
 					<label for="title" style="font-weight: bold">별점주기</label>
 					<p id="star_grade">
@@ -271,14 +261,13 @@ table{
 					<label for="content" style="font-weight: bold">내용</label>
 					<textarea class="form-control" rows="5" name="content" id="content" placeholder="후기작성" ></textarea>
 				</div>	
-
 			</form>
 
 			<div >
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록</button>
 
-				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="evaluation.jsp"'>목록</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
 
 			</div>
 

@@ -26,14 +26,7 @@ table{
 </style>
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('#quest').click(function(){
-		//sessionId에 해당하는 prodId를 찾아서 넘겨주어야 한다.
-		location.href="javaChip?command=selectOrderItem&userId="+${};
-	});//quest end
-})//end load
-</script>
+
 <body>
  <header class="site-navbar site-navbar-target bg-white" role="banner">		
 		<c:choose>
@@ -118,7 +111,7 @@ $(function(){
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
         <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -183,7 +176,7 @@ $(function(){
 	    
 	    <hr>
 
-	    <button style="float: right" " id="quest">질문하기</button>
+	   <!--  <button style='float: right id="quest"'>질문하기</button> -->
 	    <!-- onclick="location.href='community/writeform.jsp' -->
 	    <!-- 세션id에 해당하는 prodId조회해주는servlet호출해야함  -->
 

@@ -35,5 +35,10 @@ public interface EstimateBoardDAO {
 	/**
 	 * (강의명 / 강사명 / 평점 조회) 키워드조회
 	 */
-	List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException;	
+	List<EstimateBoard> selectByKeyword(String keyField, String keyword) throws SQLException;
+	
+	/**
+	 * 게시글 번호로 조회
+	 */
+	EstimateBoard selectByNo(int no) throws SQLException;	
 }

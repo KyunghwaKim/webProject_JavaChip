@@ -50,4 +50,8 @@ public class EstimateService {
 		return estimateDAO.selectByKeyword(keyField, keyword);
 	}
 
+	public static EstimateBoard selectByNo(int no) throws SQLException {
+		return estimateDAO.selectByNo(no);
+	}
+
 }

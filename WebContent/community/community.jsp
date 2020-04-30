@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,11 +65,8 @@
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
 
-        <a href="../javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
-
-        <%-- <a href="${path}/community/Q&Aboard.jsp" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="${path}/community/evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a> --%>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">QnA게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
 
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
@@ -84,7 +82,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
@@ -107,15 +104,13 @@
           </ul>
         </div>
       </nav>
-
       <div class="container-fluid">
         <h1 class="mt-4">C O M M U N I T Y</h1>
         <h2 style="color: blue"><p>자바칩 커뮤니티에 오신것을 환영합니다!</p></h2>
-        <img src="${path}/community/images/community1.jpg" width="1200px" height="500px"></img>      
+        <img src="${path}/community/images/community1.jpg" width="1200px" height="500px"></img>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
-
   </div>
   <!-- /#wrapper -->
 

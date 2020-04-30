@@ -161,12 +161,14 @@ table{
 	    		<th>작성일</th>	    		
 	    	</tr>
 	    </thead>
-	    <tbody>${userId} / ${itemList} / ${estimateList}
-	    	<c:forEach items="${estimateList}" var="est" varStatus="state">
+	    <tbody>
+	    	<c:forEach items="${estimateList}" var="est" varStatus="state">${estimateList}
 	    	<tr>
 	    		<td>${state.count}</td>
 	    		<td><a href="javaChip?command=selectEstByNo&no=${est.estimateNo}">${est.product.name}</a></td>
-	    		<td><span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span></td> <!-- 평점 -->
+	    		<td>
+	    		<!-- 평점 -->
+	    		</td>
 	    		<td>${est.subject}</td>
 	    		<td>${est.customer.id}</td>
 	    		<td>${est.writeDay}</td>

@@ -175,14 +175,12 @@ table{
 	    </table>
 	    
 	    <hr>
-
-	   <!--  <button style='float: right id="quest"'>질문하기</button> -->
-	    <!-- onclick="location.href='community/writeform.jsp' -->
-	    <!-- 세션id에 해당하는 prodId조회해주는servlet호출해야함  -->
-
-	   <%--  <button style="float: right" onclick="location.href='${path}/community/writeform.jsp'">질문하기</button> --%>
-
-		
+		<c:if test="${userId == admin}"> <!-- admin에게는 삭제 버튼 보이기 -->
+	    	<button style="float: right" onclick="location.href='community/evaluateForm.jsp'">삭제</button>
+		</c:if>
+		 <c:if test="${not empty itemList}"> <!-- 구매한 상품이 있으면 질문하기 버튼 보이기 -->
+	    	<button style="float: right" onclick="location.href='community/qnaForm.jsp'">질문하기</button>
+		</c:if>
       </div>     	
     </div>
     <!-- /#page-content-wrapper -->

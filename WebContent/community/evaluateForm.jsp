@@ -24,74 +24,6 @@ table{
 	width: 1200px;
 	margin-top: 20px;
 }
-/*
-.page{
-	text-align: center;
-	width: 50%;
-}
-.pagination{
-	list-style: none;
-	display: inline-block;
-	padding: 0;
-	margin-top: 20px;
-}
-.pagination li{
-	display: inline;
-	text-align: center;
-}
-.pagination a{
-	float:left;
-	display: block;
-	font-size: 14px;
-	text-decoration: none;
-	padding: 5px 12px;
-	color: #96a0ad;
-	line-height: 1.5;
-	
-}
-.first{
-	margin-right: 15px;
-}
-.last{
-	margin-left: 15px;
-}
-.first:hover, .last:hover, .left:hover, .right:hover {
-	color: #2e9cdf;
-	
-}
-.pagination a.active{
-	cursor : default;
-	color : #ffffff;
-}
-.pagination a:active{
-	outline: none;
-}
-.modal .num{
-	margin-left: 3px;
-	padding: 0;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	-moz-border-radius:100%;
-	-webkit-border-radius: 100%;
-	border-radius: 100%;
-}
-.modal .num:hover {
-	background-color: #2e9cdf;
-	color: #ffffff;
-}
-.modal .num.active, .modal .num:active{
-	background-color: #2e9cdf;
-	cursor: pointer;
-}
-.arrow-left{
-	width: 0px;
-	height: 0;
-	border-top: 10px solid transparent;
-	border-bottom: 10px solid transparent;
-	border-right: 10px solid blue;
-}
-*/
 #formpwd{
 	
 	display: none;
@@ -137,16 +69,12 @@ table{
 		
 		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록
-			//alert($('option').val()+$('[name=content]').val());
 			location.href="../javaChip?command=insertEst&prodId="+$('option').val()+"&content="+$('[name=content]').val()+"&grade=5";
 		});
 	});//end load
 </script>
-
-
 </head>
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="../marga/index.html">J A V A C H I P</a>
@@ -247,19 +175,8 @@ table{
 					</select>
 				</div>
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">별점주기</label>
-					<p id="star_grade">
-        			<a href="#">★</a>
-        			<a href="#">★</a>
-       				<a href="#">★</a>
-        			<a href="#">★</a>
-        			<a href="#">★</a>
-					</p>				
-
-				</div>			
-				<div class="mb-3">
 					<label for="content" style="font-weight: bold">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="후기작성" ></textarea>
+					<textarea class="form-control" rows="5" name="content" id="content" placeholder="강의평을 작성해주세요." ></textarea>
 				</div>	
 			</form>
 

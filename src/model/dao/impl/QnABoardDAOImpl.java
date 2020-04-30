@@ -76,9 +76,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-
 			ps.setInt(1, qaBoardNo);
-
 			result = ps.executeUpdate();
 		} finally {
 			DbUtil.dbClose(con, ps);

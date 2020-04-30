@@ -136,14 +136,11 @@ $(function(){
 				</div>	
 			</form>
 			<div>
-			${userId} / ${qnaBoard.customer.id}
-			
 				<c:if test="${userId == qnaBoard.customer.id}"> <!-- 본인이 쓴 글이 아니면 수정, 삭제 불가능 -->
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnDel">삭제</button>
 				</c:if>
 				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllQnA"'>목록</button>
-
 			</div>
       </div>
     </div>

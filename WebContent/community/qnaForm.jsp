@@ -46,7 +46,13 @@ table{
 <script>
 	$(function(){
 		$('#btnSave').click(function(){ //qna등록
-			location.href="javaChip?command=insertQnA&prodId"+$('option').val()+"&title="+$('#content').val()+"&content="+$('#content').val();
+			if($('option').val() == null || $('#title').val() == null || $('#content').val()){
+				alert("입력값이 부족합니다.");
+				return;
+			}else{
+				location.href="javaChip?command=insertQnA&prodId"+$('option').val()+"&title="+$('#title').val()+"&content="+$('#content').val();
+			}
+			
 		});//end save
 	});//end load
 </script>
@@ -84,7 +90,6 @@ table{
 			 <a class="nav-link" href="${path}/mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
 		  </li>
           <li class="nav-item">
-<!--             <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</a> -->
             <a class="nav-link" href="${path}/community/community.jsp">커뮤니티</a>
           </li>
         </ul>
@@ -154,10 +159,12 @@ table{
 				</table>			
 				<p>
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">강의</label>${userId}
+					<label for="title" style="font-weight: bold">작성자</label> ${userId}</div>
+				<div class="mb-3">
+					<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 					<select>
 					<c:forEach items="${itemList}" var="item" varStatus="state">
-						<option>${item.itemNo}</option>
+						<option value="${item.product.id}">${item.product.name} / ${item.product.teacher.name}</option>
 					</c:forEach>
 					</select>
 				</div>

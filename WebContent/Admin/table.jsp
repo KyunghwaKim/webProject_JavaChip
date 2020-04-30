@@ -178,8 +178,7 @@
                                    onclick="window.open('writeChapter.jsp','강의등록','width=700,height=540,location=no,status=no,scrollbars=yes');">
                                         <i class="zmdi zmdi-plus"></i>강의등록</button>
                                         
-                                        <hr>
-                                        
+                                        <hr>                                        
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">                                        
                                          <thead>

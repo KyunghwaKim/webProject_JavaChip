@@ -10,16 +10,24 @@ import model.domain.OrderItem;
 public class OrderItemService {
 	public static OrderItemDAO itemDAO = new OrderItemDAOImpl();
 	
-	public static List<OrderItem> selectAll(String customerId) throws SQLException{
-		return itemDAO.selectAll(customerId);
+	public static int selectAll() throws SQLException{
+		return itemDAO.selectAll();
 	}
 	
-//	public static void insert(List<OrderItem> list) throws SQLException{
-//		for(OrderItem item : list) {
-//			int result = itemDAO.insert(item);
-//			if(result==0) throw new SQLException("등록되지 않았습니다.");
-//		}
-//	}
+	public static int selectSevenDayAll() throws SQLException{
+		
+		return itemDAO.selectBySevenDay();
+	}
+	
+	public static long selectTotal() throws SQLException{
+		
+		return itemDAO.selectpriceAll();
+	}
+	
+	public static List<OrderItem> selectBySevenitemlist() throws SQLException{
+		
+		return itemDAO.selectBySevenitemlist();
+	}
 	
 	public static void update(List<Integer> list) throws SQLException{
 		for(int itemNo : list) {

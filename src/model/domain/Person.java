@@ -10,6 +10,10 @@ public class Person {
 	
 	public Person() {}
 	
+	public Person(String id) {
+		this.id = id;
+	}
+	
 	public Person(String id, int status) {
 		super();
 		this.id = id;

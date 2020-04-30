@@ -11,8 +11,10 @@ import model.dao.impl.CustomerDAOImpl;
 import model.dao.impl.PersonDAOImpl;
 import model.dao.impl.ProductDAOImpl;
 import model.domain.Customer;
+import model.domain.EstimateBoard;
 import model.domain.GangiMokRok;
 import model.domain.Product;
+import model.domain.ProductDetail;
 
 public class ProductService {
 	private static ProductDAO productDAO = new ProductDAOImpl();
@@ -56,11 +58,27 @@ public class ProductService {
 	 *  강의목록에 뿌릴 데이터 
 	 * 
 	 */
-	public static List<GangiMokRok> selectGangiMokRokAll() throws SQLException{
+	public static List<GangiMokRok> selectGangiMokRokAll() throws SQLException {
 		
 		return productDAO.GangiMokRokAll();
 		
 	}
 	
-
+	/**
+	 * [강의목록] > [자세히보기] 에 나올 정보
+	 * : 강의명(prod_name), 설명(description), 가격(price), 동영상(url)
+	 */
+	public static Map<EstimateBoard, ProductDetail> selectProdInfo(String prodId) throws SQLException {
+		return productDAO.selectProdInfo(prodId);
+	}
+	
+	
+	public static int deleteProd(String id) throws SQLException{
+		
+		return productDAO.deleteProd(id);
+	}
+	
+	
+	
+	
 }

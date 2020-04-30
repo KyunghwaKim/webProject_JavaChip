@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import model.dao.OrderItemDAO;
+import model.domain.Customer;
 import model.domain.OrderItem;
 import model.domain.OrderLine;
 import model.domain.Product;
@@ -31,36 +32,117 @@ Properties pro = new Properties();
 	}
 	
 	@Override
-	public List<OrderItem> selectAll(String customerId) throws SQLException {
+	public int selectAll() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<OrderItem> list = new ArrayList<OrderItem>();
-		String sql = pro.getProperty("selectOrder");
+		int num = 0;
+		String sql = "SELECT ORDERITEM_NO FROM ORDERITEM";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, customerId);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				OrderLine orderLine = new OrderLine();
-				orderLine.setLineNo(rs.getInt("order_no"));
 				
-				Product product = new Product();
-				product.setId(rs.getString("prod_id"));
-				product.setName(rs.getString("prod_name"));
-				product.setPrice(rs.getInt("prod_price"));
-
-				OrderItem orderItem = new OrderItem(rs.getInt("orderitem_no"), rs.getDate("end_date"), rs.getInt("isrefund"), orderLine, product);
-				
-				list.add(orderItem);
+				num++;
 			}
 		}finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
-		return list;
+		return num;
 	}
 
+	@Override
+	public int selectBySevenDay() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int num = 0;
+		String sql = "SELECT * FROM ORDERITEM oi JOIN ORDERLINE ol ON oi.ORDER_NO = ol.ORDER_NO " + 
+					 "WHERE ol.PAY_DATE >= TO_CHAR(SYSDATE-7,'YYYYMMDD')";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				
+				num++;
+			}
+		}finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return num;
+	}
+	
+	
+	@Override
+		public long selectpriceAll() throws SQLException {
+			
+			Connection con = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			long sum = 0;
+			String sql = "SELECT * FROM ORDERLINE";
+			
+			try {
+				
+				con = DbUtil.getConnection();
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					
+					long lo = rs.getLong("TOTAL_PRICE");
+					
+					sum += lo;
+					
+				}
+				
+			} finally {
+				DbUtil.dbClose(con, ps, rs);
+			}
+			
+				return sum;
+		}
+	
+	
+	@Override
+		public List<OrderItem> selectBySevenitemlist() throws SQLException {
+			Connection con = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			List<OrderItem> list = new ArrayList<OrderItem>();
+			String sql = "SELECT * FROM (SELECT ROW_NUMBER() over (ORDER BY ORDERITEM_NO DESC) NUM, A.* "+
+						 "FROM ORDERITEM A ORDER BY ORDERITEM_NO DESC) NATURAL JOIN ORDERLINE " +
+						 "WHERE NUM<=7 ORDER BY NUM ASC";
+			
+			try {
+				
+				con = DbUtil.getConnection();
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					
+					Customer customer = new Customer(rs.getString("USER_ID"));
+					OrderLine orderline = new OrderLine(rs.getInt("ORDER_NO"), rs.getInt("TOTAL_PRICE"), 
+							rs.getDate("PAY_DATE"), customer);
+					Product product = new Product(rs.getString("PROD_ID"));
+					
+					OrderItem orderitem = new OrderItem(orderline, product);
+					
+					list.add(orderitem);					
+				}
+				
+			} finally {
+				DbUtil.dbClose(con, ps, rs);
+			}
+			
+			return list;
+		}
+	
+	/////////////////////////////////////////////////////////////////////////////////// 위는 사용중
+		
 	@Override
 	public int insert(Connection con, OrderItem orderItem) throws SQLException {
 		PreparedStatement ps = null;

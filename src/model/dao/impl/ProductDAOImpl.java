@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -100,7 +101,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 				Category category = new Category();
 				category.setId(rs.getInt("category_id"));
-				
+
 				teacher.setCategory(category);
 
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
@@ -116,6 +117,33 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return list;
 	}
+	
+	@Override
+	public int deleteProd(String id) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int i = 0;
+		String sql = "UPDATE PRODUCT SET STATUS=2 WHERE PROD_ID=?";
+		
+		try {
+			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			i = ps.executeUpdate();
+			
+		} finally {
+			
+			DbUtil.dbClose(con, ps);
+			
+		}
+		return i;
+	}
+	
+	
+	
+	
 
 	@Override
 	public List<Product> selectByJogun(Map<String, String> map) throws SQLException {
@@ -198,79 +226,88 @@ public class ProductDAOImpl implements ProductDAO {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return product;
-	}	
-	
-	@Override
-	public List<GangiMokRok> GangiMokRokAll() throws SQLException {
-				
-			Connection con = null;
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-			List<GangiMokRok> list = new ArrayList<GangiMokRok>();
-			String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
-					   + "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME "
-					   + "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
-					   + "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID "
-					   + "JOIN PERSON pe on pe.id = t.teacher_id";
-
-			try {
-				con = DbUtil.getConnection();
-				ps = con.prepareStatement(sql);
-				rs = ps.executeQuery();
-				while (rs.next()) {
-					Teacher teacher = new Teacher();
-					teacher.setId(rs.getString("teacher_id"));
-					teacher.setPictureName(rs.getString("picture_name"));
-					teacher.setName(rs.getString("name"));
-					
-					Category category = new Category();
-					category.setId(rs.getInt("category_id"));
-					category.setName(rs.getString("category_name"));
-					
-					teacher.setCategory(category);
-					
-					Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
-							rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
-							category, rs.getDate("upload_date"), rs.getInt("valid_Date"));
-					
-					GangiMokRok gangimokrok = new GangiMokRok(product, category);
-
-					list.add(gangimokrok);
-				}
-
-			} finally {
-				DbUtil.dbClose(con, ps, rs);
-			}
-
-			return list;
-		
 	}
 
 	@Override
-	public Map<ProductDetail, EstimateBoard> selectProdInfo() throws SQLException {
+	public List<GangiMokRok> GangiMokRokAll() throws SQLException {
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Map<ProductDetail, EstimateBoard> map = null;
-		String sql = pro.getProperty("selectProdInfo");
+		List<GangiMokRok> list = new ArrayList<GangiMokRok>();
+		String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
+				+ "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME, p.STATUS "
+				+ "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
+				+ "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID " + "JOIN PERSON pe on pe.id = t.teacher_id " 
+				+ "WHERE P.STATUS=1";
 
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-
-			if (rs.next()) {
+			while (rs.next()) {
 				Teacher teacher = new Teacher();
 				teacher.setId(rs.getString("teacher_id"));
+				teacher.setPictureName(rs.getString("picture_name"));
+				teacher.setName(rs.getString("name"));
 
 				Category category = new Category();
 				category.setId(rs.getInt("category_id"));
+				category.setName(rs.getString("category_name"));
 
-//				map = new Product(rs.getString("prod_id"), rs.getString("prod_name"), rs.getInt("prod_price"),
-//						rs.getString("description"), rs.getString("prod_level"), teacher, category,
-//						rs.getDate("upload_date"), rs.getInt("valid_date"));
+				teacher.setCategory(category);
+
+				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
+						rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
+						category, rs.getDate("upload_date"), rs.getInt("valid_Date"), rs.getInt("STATUS"));
+
+				GangiMokRok gangimokrok = new GangiMokRok(product, category);
+
+				list.add(gangimokrok);
 			}
-		} finally { 
+
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+
+		return list;
+
+	}
+
+	@Override
+	public Map<EstimateBoard, ProductDetail> selectProdInfo(String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Map<EstimateBoard, ProductDetail> map = new HashMap<EstimateBoard, ProductDetail>();
+		String sql = pro.getProperty("selectProdInfo");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, prodId);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Teacher teacher = new Teacher();
+				teacher.setName(rs.getString("name"));
+				
+				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
+						rs.getInt("prod_price"), rs.getString("description"));
+				product.setTeacher(teacher);
+				
+				ProductDetail prodDetail = new ProductDetail();
+				prodDetail.setProduct(product);
+				prodDetail.setUrl(rs.getString("prod_url"));
+				
+				EstimateBoard estimate = new EstimateBoard();
+				estimate.setGrade(rs.getInt("grade"));
+				estimate.setSubject(rs.getString("subject"));
+				estimate.setWriteDay(rs.getDate("writeday"));
+				
+				map.put(estimate, prodDetail);
+			}
+		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return map;

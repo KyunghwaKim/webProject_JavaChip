@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import model.dao.PersonDAO;
@@ -65,6 +67,10 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		return result;
 	}
+	
+	/*
+	 * °­Α¦Ε»Επ½Γ.. 
+	 */
 	@Override
 	public int updateStatus(String adminId, String customerId) throws SQLException {
 		Connection con = null;
@@ -150,4 +156,35 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		return result;
 	}
+	
+	@Override
+	public Person selectAdminById(String id) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Person person = null;
+		String sql = "SELECT * FROM PERSON WHERE STATUS=3 AND ID=?";
+		
+		try {			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				person = new Person(rs.getString("ID"), rs.getString("PWD"), rs.getString("NAME"), rs.getString("PHONE"),
+						rs.getString("GENDER"), rs.getInt("STATUS"));
+				
+				}
+			
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		
+		return person;
+	}
+	
+	
 }

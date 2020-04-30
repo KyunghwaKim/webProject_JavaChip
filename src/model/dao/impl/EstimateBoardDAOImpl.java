@@ -118,10 +118,11 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 
 				Product product = new Product();
 				product.setId(rs.getString("prod_id"));
-
+				product.setName(rs.getString("prod_name"));
+				
 				EstimateBoard estBoard = new EstimateBoard(rs.getInt("sequence"), rs.getString("subject"), customer,
 						product, rs.getDate("writeday"), rs.getInt("grade"));
-				
+				System.out.println("impl:"+estBoard);
 				list.add(estBoard);
 			}
 		} finally {
@@ -197,7 +198,7 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		EstimateBoard estBoard=null;
-		String sql = pro.getProperty("selectQnAByNo");
+		String sql = pro.getProperty("selectEstByNo");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -209,6 +210,7 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 				
 				Product product = new Product();
 				product.setId(rs.getString("prod_id"));
+				product.setName(rs.getString("prod_name"));
 				
 				estBoard = new EstimateBoard(rs.getInt("sequence"), rs.getString("subject"), customer
 						,product , rs.getDate("writeday"), rs.getInt("grade"));

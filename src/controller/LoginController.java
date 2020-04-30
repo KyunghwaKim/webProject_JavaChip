@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,8 @@ public class LoginController implements Controller {
 		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		ServletContext application = request.getServletContext();
+		String path = (String)application.getAttribute("path");
 		
 		if(id == null || id.equals("") || pwd == null || pwd.equals("")) {
 			throw new NotFoundException("입력값이 없습니다");
@@ -33,13 +36,12 @@ public class LoginController implements Controller {
 		
 		if(person.getStatus() == 3) {
 			
-			mv.setViewName("Admin/index.jsp");
+			mv.setViewName(path+"/javaChip?command=SelectCus");
 			
 		} else {
 			
 			mv.setViewName("marga/index.jsp");
 		}
-		
 		
 		return mv;
 	}

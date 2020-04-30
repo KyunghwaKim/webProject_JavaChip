@@ -130,14 +130,15 @@ table{
 				tea.style.display = 'inline-block';
 
 			} else {
-
+	
 				tea.style.display = 'none';
 			}
 		} */
 		
+		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록
-			alert($('option').val()+$('[name=content]').val());
-			//location.href="javaChip?command=insertEst?content="+$('[name=content]').val()+"&prodId="+$('option').val();
+			//alert($('option').val()+$('[name=content]').val());
+			location.href="../javaChip?command=insertEst&prodId="+$('option').val()+"&content="+$('[name=content]').val()+"&grade=5";
 		});
 	});//end load
 </script>
@@ -241,11 +242,10 @@ table{
 					<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 					<select>
 					<c:forEach items="${itemList}" var="item" varStatus="state">
-						<option value="111">${item.product.name}</option>
+						<option value="${item.product.id}">${item.product.name} / ${item.product.teacher.name}</option>
 					</c:forEach>
 					</select>
 				</div>
-				
 				<div class="mb-3">
 					<label for="title" style="font-weight: bold">별점주기</label>
 					<p id="star_grade">
@@ -261,7 +261,6 @@ table{
 					<label for="content" style="font-weight: bold">내용</label>
 					<textarea class="form-control" rows="5" name="content" id="content" placeholder="후기작성" ></textarea>
 				</div>	
-
 			</form>
 
 			<div >

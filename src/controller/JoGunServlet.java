@@ -57,17 +57,10 @@ public class JoGunServlet extends HttpServlet {
 				}		
 			} else {
 			
-				for(GangiMokRok g : list) {
-					
-					System.out.println("-------------------------------------------------");
-					System.out.println("value="+value);
-					System.out.println("value2="+value2);
-					System.out.println("강의목록에 강사명"+g.getProduct().getTeacher().getName());
-					System.out.println("-------------------------------------------------");
+				for(GangiMokRok g : list) {					
 					
 					if( g.getCategory().getName().equals(value) && g.getProduct().getTeacher().getName().equals(value2)) {
 						
-						System.out.println("몇개?");
 						Product pro = g.getProduct();
 						pro.setUploadDateConvert(pro.getUploadDate().toString());
 						pro.setUploadDate(null);					

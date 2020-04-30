@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +81,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="${path}/Admin/index.jsp">
+                <a href="${path}/javaChip?command=SelectCus">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -88,13 +89,13 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
-                            <a class="js-arrow" href="${path}/Admin/index.jsp">
+                            <a class="js-arrow" href="${path}/javaChip?command=SelectCus">
                                 <i class="fas fa-tachometer-alt"></i>대시보드</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">                               
                             </ul>
                         </li>                       
                         <li class="active">
-                            <a href="${path}/Admin/table.jsp">
+                            <a href="${path}/javaChip?command=selectAdminProd">
                                 <i class="fas fa-table"></i>판매품목</a>
                         </li>
                         <li>
@@ -177,86 +178,41 @@
                                    onclick="window.open('writeChapter.jsp','강의등록','width=700,height=540,location=no,status=no,scrollbars=yes');">
                                         <i class="zmdi zmdi-plus"></i>강의등록</button>
                                         
-                                        <hr>
-                                        
+                                        <hr>            
                                 <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
+                                    <table class="table table-borderless table-striped table-earning">                                        
+                                         <thead>
                                             <tr>
-                                                <th>date</th>
-                                                <th>order ID</th>
-                                                <th>name</th>
-                                                <th class="text-right">price</th>
-                                                <th class="text-right">quantity</th>
-                                                <th class="text-right">total</th>
+                                            	<th>등록일</th>
+                                                <th>상품번호</th>
+                                                <th>카테고리</th>
+                                                <th>상품이름</th>
+                                                <th>강사명</th>
+                                                <th>유효기간</th>                                                
+                                                <th class="text-right">금액</th>
+                                                <th>삭제</th>
+                                                
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody>                                        
+                                        <c:forEach items="${Gangi}" var="list">
                                             <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$999.00</td>
+                                            	<td>${list.product.uploadDate}</td>
+                                                <td>${list.product.id}</td>
+                                                <td>${list.category.name}</td>
+                                                <td>${list.product.name}</td>
+                                                <td>${list.product.teacher.name}</td>
+                                                <td>${list.product.validDate}일</td>
+                                                <td class="text-right">${list.product.price}원</td>
+                                                <td>
+                                                <form action="${path}/javaChip?command=deleteProd" method="post">
+                                                <input type="text" name="delete" value="${list.product.id}" style="color: black; display: none;">
+                                                <input type="submit" value="삭제" style="border: 1px solid; background-color: silver;">
+                                                </form>                                               
+                                                </td>                                                                                                
                                             </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td>Samsung S8 Black</td>
-                                                <td class="text-right">$756.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td>Game Console Controller</td>
-                                                <td class="text-right">$22.00</td>
-                                                <td class="text-right">2</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td>iPhone X 256Gb Black</td>
-                                                <td class="text-right">$1199.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100392</td>
-                                                <td>Smartwatch 4.0 LTE Wifi</td>
-                                                <td class="text-right">$199.00</td>
-                                                <td class="text-right">6</td>
-                                                <td class="text-right">$1494.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>100391</td>
-                                                <td>Camera C430W 4k</td>
-                                                <td class="text-right">$699.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$699.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                        </tbody>
+                                        </c:forEach>                                       
+                                        </tbody>                                       
                                     </table>
                                 </div>
                             </div>

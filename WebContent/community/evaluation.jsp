@@ -21,11 +21,8 @@
 table{
 	width: 1200px;
 	margin-top: 20px;
-
 }
 </style>
-
-
 </head>
 <body>
   <header class="site-navbar site-navbar-target bg-white" role="banner">		
@@ -159,7 +156,7 @@ table{
 	    		<th>평점</th>
 	    		<th>내용</th>	    		
 	    		<th>작성자</th>
-	    		<th>날짜</th>	    		
+	    		<th>작성일</th>	    		
 	    	</tr>
 	    </thead>
 	    <tbody>
@@ -167,7 +164,25 @@ table{
 	    	<tr>
 	    		<td>${state.count}</td>
 	    		<td><a href="javaChip?command=selectEstByNo&no=${est.estimateNo}">${est.product.name}</a></td>
-	    		<td><span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span></td> <!-- 평점 -->
+	    		<td>
+	    		<c:choose>
+							<c:when test="${est.grade == '5'}">
+							<span style="color:red">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 
+							</c:when>
+							<c:when test="${est.grade == '4'}">
+							<span style="color:red">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 
+							</c:when>
+							<c:when test="${est.grade == '3'}">
+							<span style="color:red">&#9733;&#9733; &#9733;&#9734;&#9734;</span> 
+							</c:when>
+							<c:when test="${est.grade == '2'}">
+							<span style="color:red">&#9733;&#9733;&#9734;&#9734;&#9734;</span> 
+							</c:when>
+							<c:when test="${est.grade == '1'}">
+							<span style="color:red">&#9733;&#9734;&#9734;&#9734;&#9734;</span> 
+							</c:when>
+						</c:choose>
+	    		</td>
 	    		<td>${est.subject}</td>
 	    		<td>${est.customer.id}</td>
 	    		<td>${est.writeDay}</td>
@@ -177,8 +192,9 @@ table{
 	    </table>
 	    
 	    <hr>
+	    <c:if test="${not empty itemList}"> <!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
 	    <button style="float: right" onclick="location.href='community/evaluateForm.jsp'">후기작성</button>
-		
+		</c:if>
       </div>     
     </div>
     <!-- /#page-content-wrapper -->

@@ -275,11 +275,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public Map<ProductDetail, EstimateBoard> selectProdInfo(String prodId) throws SQLException {
+	public Map<EstimateBoard, ProductDetail> selectProdInfo(String prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Map<ProductDetail, EstimateBoard> map = new HashMap<ProductDetail, EstimateBoard>();
+		Map<EstimateBoard, ProductDetail> map = new HashMap<EstimateBoard, ProductDetail>();
 		String sql = pro.getProperty("selectProdInfo");
 
 		try {
@@ -288,9 +288,13 @@ public class ProductDAOImpl implements ProductDAO {
 			ps.setString(1, prodId);
 			rs = ps.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
+				Teacher teacher = new Teacher();
+				teacher.setName(rs.getString("name"));
+				
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"));
+				product.setTeacher(teacher);
 				
 				ProductDetail prodDetail = new ProductDetail();
 				prodDetail.setProduct(product);
@@ -298,8 +302,10 @@ public class ProductDAOImpl implements ProductDAO {
 				
 				EstimateBoard estimate = new EstimateBoard();
 				estimate.setGrade(rs.getInt("grade"));
+				estimate.setSubject(rs.getString("subject"));
+				estimate.setWriteDay(rs.getDate("writeday"));
 				
-				map.put(prodDetail, estimate);
+				map.put(estimate, prodDetail);
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

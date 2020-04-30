@@ -38,9 +38,8 @@
 		 	var id = document.getElementById("id").value;
 			var name = document.getElementById("name").value;
 	 		var phone = document.getElementById("phone").value;
-	 		
-	 		var id = result;
-			if(id==null || id=="" || name=null || name=="" || phone==null || phone==""){
+
+			if(id==null || id=="" || name==null || name=="" || phone==null || phone==""){
 				
 				alert("입력값이 부족합니다");
 				return;				

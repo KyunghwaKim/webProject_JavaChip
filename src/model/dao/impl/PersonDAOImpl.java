@@ -114,6 +114,32 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		return id;
 	}
+	/**
+	 * id, 이름, 핸드폰번호로 pwd 찾기
+	 */
+	@Override
+	public String selectByIdAndNameAndPhone(String id, String name, String phone) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String pwd=null;
+		String sql = pro.getProperty("selectPersonByIdNamePhone");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(1, name);
+			ps.setString(2, phone);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				pwd = rs.getString("pwd");
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return pwd;
+	}
+	
 	@Override
 	public Person selectByIdAndPwd(String id, String pwd) throws SQLException {
 		Connection con = null;

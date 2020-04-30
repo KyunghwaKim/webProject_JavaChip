@@ -93,11 +93,11 @@ public class CustomerService {
 	 * id 이름 전화번호로 패스워드 찾기
 	 */
 	public static String findPwd(String id, String name, String phone) throws SQLException {
-		Person dbPerson = customerDAO.selectById(id);
+		String pwd = personDAO.selectByIdAndNameAndPhone(id, name, phone);
 
-		if (dbPerson == null || !name.equals(dbPerson.getName()) || !phone.equals(dbPerson.getPhone())) {
+		if (pwd == null) {
 			throw new SQLException("해당 정보가 없습니다");
 		}
-		return dbPerson.getPwd();
+		return pwd;
 	}
 }

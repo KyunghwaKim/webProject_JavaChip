@@ -185,11 +185,8 @@ table{
 
 	   </div>
 	 </div>
-    <!-- /#page-content-wrapper -->
-    
-
- 
-  <!-- /#wrapper -->
+    <!-- /#page-content-wrapper -->   
+  	<!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -86,7 +86,7 @@ td, th{
 	    		    		str+= "<p class='card-text'>"+item.product.description+"</p>"
 	    		    		str+= "</div>";
 	    		    		str+= "<div class='card-footer'>";
-	    		    		str+= "<a href='/webProject_JavaChip/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
+	    		    		str+= "<a href='${path}/javaChip?command=selectProdInfo&prodId="+item.product.id+"' class='btn btn-primary'>자세히보기</a>"
 	    		    		str+= "</div>";
 	    		    		str+= "</div>";
 	    		    		str+= "</div>";		    		    		
@@ -98,7 +98,7 @@ td, th{
 	    		    	
 	    		    } , 
 	    		    error:function(err){
-	    		    	alert("에럳 : "+err)
+	    		    	alert("에러 : "+err)
 	    		    } 
 	    		});
 	   		
@@ -137,7 +137,7 @@ td, th{
 	    		    		str+= "<p class='card-text'>"+item.product.description+"</p>"
 	    		    		str+= "</div>";
 	    		    		str+= "<div class='card-footer'>";
-	    		    		str+= "<a href='/webProject_JavaChip/detail_information/detail.jsp' class='btn btn-primary'>자세히보기</a>"
+	    		    		str+= "<a href='${path}/javaChip?command=selectProdInfo&prodId="+item.product.id+"' class='btn btn-primary'>자세히보기</a>"
 	    		    		str+= "</div>";
 	    		    		str+= "</div>";
 	    		    		str+= "</div>";		    		    		
@@ -299,7 +299,7 @@ td, th{
             <p class="card-text">${list.product.description}</p>
           </div>
           <div class="card-footer">
-            <a href="${path}/detail_information/detail.jsp" class="btn btn-primary">자세히보기</a>
+            <a href="${path}/javaChip?command=selectProdInfo&prodId=${list.product.id}" class="btn btn-primary">자세히보기</a>
           </div>
         </div>
       </div>

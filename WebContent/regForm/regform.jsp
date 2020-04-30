@@ -155,7 +155,7 @@
 		var string = /admin/gi;
 		
 		if(form.id.value.match(string)){
-			alert("단어");
+			alert("그 단어는 포함될 수 없습니다");
 			return false;
 		}
 		

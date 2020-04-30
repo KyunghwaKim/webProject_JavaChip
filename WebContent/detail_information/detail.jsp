@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +105,7 @@
     <div class="row">
 
       <div class="col-lg-3">
-        <h1 class="my-4"> Python 초보</h1>
+        <h1 class="my-4"> ${prodDetail.product.name}</h1>
         <div class="list-group">
           <h3 class="list-group-item active">다른강의</h3>
           <a href="#" class="list-group-item">Python 중급</a>
@@ -118,11 +120,19 @@
           <video src="video/videosample.mp4" width='820' height="400" controls>
           </video>          
           <div class="card-body">
-            <h3 class="card-title"> {prodDetail.product.description} Python 기본기를 다질 수 있는 강의</h3>
-            <h4 style="text-decoration: line-through;">230,000원</h4><h3 style="font-weight: bold">210,000원</h3>
-            <p class="card-text"> Python의 끝판왕 김민호 강사의 초급다지기!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
-            5.0 stars
+            <h3 class="card-title"> ${prodDetail.product.name} by${prodDetail.product.teacher.name}</h3>
+            <h4 style="text-decoration: line-through;">${salePrice}원</h4><h3 style="font-weight: bold">${prodDetail.product.price}원</h3>
+            <p class="card-text"> ${prodDetail.product.description}</p>
+            <span class="text-warning">
+            <c:forEach var="i" begin="1" end="${estimate.grade}">
+            	&#9733
+            </c:forEach>
+            <c:forEach var="j" begin="1" end="${whiteStar}">
+            	&#9734
+            </c:forEach>
+            </span>
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span> -->
+            ${estimate.grade} stars
           </div>
         </div>
         <!-- /.card -->

@@ -52,7 +52,6 @@ table{
 			}else{
 				location.href="javaChip?command=insertQnA&prodId"+$('option').val()+"&title="+$('#title').val()+"&content="+$('#content').val();
 			}
-			
 		});//end save
 	});//end load
 </script>

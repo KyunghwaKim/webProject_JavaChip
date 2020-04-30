@@ -13,6 +13,9 @@ public class Product {
 	private Date uploadDate;
 	private int validDate;
 	
+	
+	private String uploadDateConvert;
+	
 	public Product() {}
 	
 	public Product(String id, String name, int price, String description) {
@@ -109,4 +112,21 @@ public class Product {
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", level="
+				+ level + ", teacher=" + teacher + ", category=" + category + ", uploadDate=" + uploadDate
+				+ ", validDate=" + validDate + "]";
+	}
+
+	public String getUploadDateConvert() {
+		return uploadDateConvert;
+	}
+
+	public void setUploadDateConvert(String uploadDateConvert) {
+		this.uploadDateConvert = uploadDateConvert;
+	}
+	
+	
 }

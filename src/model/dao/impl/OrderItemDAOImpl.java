@@ -62,23 +62,24 @@ Properties pro = new Properties();
 	}
 
 	@Override
-	public int insert(OrderItem orderItem) throws SQLException {
-		Connection con = null;
+	public int insert(Connection con, OrderItem orderItem) throws SQLException {
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("insertOrderItem");
 		
 		try {
-			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
-			ps.setDate(1, (Date) orderItem.getEndDate());
+
+		    java.util.Date utilDate = orderItem.getEndDate();
+		    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+			ps.setDate(1, sqlDate);
 			ps.setInt(2, orderItem.getOrderLine().getLineNo());
 			ps.setString(3, orderItem.getProduct().getId());
 			
 			result = ps.executeUpdate();
+			if(result==0) throw new SQLException();
 		}finally {
-			DbUtil.dbClose(con, ps);
+			DbUtil.dbClose(null, ps);
 		}
 		return result;
 	}

@@ -16,8 +16,10 @@ import java.util.Set;
 
 import model.dao.ProductDAO;
 import model.domain.Category;
+import model.domain.EstimateBoard;
 import model.domain.GangiMokRok;
 import model.domain.Product;
+import model.domain.ProductDetail;
 import model.domain.Teacher;
 import util.DbUtil;
 
@@ -206,9 +208,10 @@ public class ProductDAOImpl implements ProductDAO {
 			ResultSet rs = null;
 			List<GangiMokRok> list = new ArrayList<GangiMokRok>();
 			String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
-					   + "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE "
+					   + "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME "
 					   + "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
-					   + "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID";
+					   + "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID "
+					   + "JOIN PERSON pe on pe.id = t.teacher_id";
 
 			try {
 				con = DbUtil.getConnection();
@@ -218,7 +221,7 @@ public class ProductDAOImpl implements ProductDAO {
 					Teacher teacher = new Teacher();
 					teacher.setId(rs.getString("teacher_id"));
 					teacher.setPictureName(rs.getString("picture_name"));
-					
+					teacher.setName(rs.getString("name"));
 					
 					Category category = new Category();
 					category.setId(rs.getInt("category_id"));
@@ -241,6 +244,36 @@ public class ProductDAOImpl implements ProductDAO {
 
 			return list;
 		
+	}
+
+	@Override
+	public Map<ProductDetail, EstimateBoard> selectProdInfo() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Map<ProductDetail, EstimateBoard> map = null;
+		String sql = pro.getProperty("selectProdInfo");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Teacher teacher = new Teacher();
+				teacher.setId(rs.getString("teacher_id"));
+
+				Category category = new Category();
+				category.setId(rs.getInt("category_id"));
+
+//				map = new Product(rs.getString("prod_id"), rs.getString("prod_name"), rs.getInt("prod_price"),
+//						rs.getString("description"), rs.getString("prod_level"), teacher, category,
+//						rs.getDate("upload_date"), rs.getInt("valid_date"));
+			}
+		} finally { 
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return map;
 	}
 
 }

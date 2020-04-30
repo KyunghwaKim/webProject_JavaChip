@@ -12,10 +12,10 @@
   <title>JavaChip-detail</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${path}/detail_information/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/shop-item.css" rel="stylesheet">
+  <link href="${path}/detail_information/css/shop-item.css" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -39,16 +39,16 @@
 			          <li class="nav-item active">
 			          </li>
 					  <li class="nav-item" id="login">
-					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
+					  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
 			          </li>
 			         <li class="nav-item">
-			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -64,7 +64,7 @@
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -76,16 +76,16 @@
 			            <a class="nav-link" href="${path}/javaChip?command=logout"><span style="color: white; font-weight: bold">로그아웃</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
+			            <a class="nav-link" href="${path}/mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-						<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
+						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -121,7 +121,7 @@
             <h3 class="card-title"> Python 기본기를 다질 수 있는 강의</h3>
             <h4 style="text-decoration: line-through;">230,000원</h4><h3 style="font-weight: bold">210,000원</h3>
             <p class="card-text"> Python의 끝판왕 김민호 강사의 초급다지기!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
             5.0 stars
           </div>
         </div>

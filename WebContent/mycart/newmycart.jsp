@@ -18,7 +18,7 @@
   <link href="${path}/mycart/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
-table{
+table{ 
 	width: 1200px;
 	margin-top: 20px;
 
@@ -106,41 +106,50 @@ table{
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
-
-
 */
-
-
-
-
 
 </style>
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
+// $(function(){
+// 	$("[name=delete]").click(function(){
+// 		$.ajax({
+// 			url:"javaChip?command=deleteCart",
+// 			data:"prodId="+$(this).val(),
+// 			success:function(){
+// 				alert("장바구니에서 삭제하였습니다."); 
+// 			}
+// 		});//end ajax
+// 	});//end click
+	
+// 	$("[name=order]").click(function(){
+// 		alert(1);
+// 		$.ajax({
+// 			url:"javaChip?command=insertOrderLine",
+// 			data:"prodId="+$(this).val()+"&prodId="+$('td>span').text(),
+// 			success:function(){
+// 				alert("주문이 완료되었습니다!");
+// 				$("[name=delete]").trigger("click");
+// 			}
+// 		});//end ajax
+		
+// 	});//end click
+// });//end load
+
 $(function(){
 	$("[name=delete]").click(function(){
-		$.ajax({
-			url:"javaChip?command=deleteCart",
-			data:"prodId="+$(this).val(),
-			success:function(){
-				alert("장바구니에서 삭제하였습니다.");
-			}
-		});//end ajax
+		confirm("정말 삭제하시겠습니까?");
+		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
 	});//end click
 	
 	$("[name=order]").click(function(){
-		alert(1);
-		$.ajax({
-			url:"javaChip?command=insertOrderLine",
-			data:"prodId="+$(this).val()+"&totalPrice="+$('td>span').text(),
-			success:function(){
-				alert("주문이 완료되었습니다!");
-			}
-		});//end ajax
-		
+		location.href="javaChip?command=insertOrderLine&prodId="+$(this).val()+"&prodId="+$('td>span').text();
+		alert("주문이 완료되었습니다!");
+		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
 	});//end click
-});//end load
+});
+
 </script>
 <body>
 
@@ -152,7 +161,7 @@ $(function(){
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -161,16 +170,16 @@ $(function(){
 			          <li class="nav-item active">
 			          </li>
 					  <li class="nav-item" id="login">
-					  <a class="nav-link" href="../Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
+					  <a class="nav-link" href="${path}/Login/login.jsp"><span style="color: white; font-weight: bold">로그인</span></a>
 			          </li>
 			         <li class="nav-item">
-			           <a class="nav-link" onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
+			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -186,7 +195,7 @@ $(function(){
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
-			      <a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			      <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			      </button>
@@ -198,16 +207,16 @@ $(function(){
 			            <a class="nav-link" href="${path}/javaChip?command=logout"><span style="color: white; font-weight: bold">로그아웃</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../mypage/mypage.jsp"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectByCusIdOrderLine"><span style="color: white; font-weight: bold">마이페이지/내강의실</span></a>
 			          </li>
 			          <li class="nav-item">
-						<a class="nav-link" href="../mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
+						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -226,8 +235,8 @@ $(function(){
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="newmycart.jsp" class="list-group-item list-group-item-action bg-light">장바구니</a>
-        <a href="../classlist/cart.jsp" class="list-group-item list-group-item-action bg-light">강의목록</a>
+        <a href="${path}/mycart/newmycart.jsp" class="list-group-item list-group-item-action bg-light">장바구니</a>
+        <a href="${path}/classlist/cart.jsp" class="list-group-item list-group-item-action bg-light">강의목록</a>
         
       </div>
     </div>
@@ -270,7 +279,7 @@ $(function(){
 	    <table class="table table-striped">
 	    	<thead>
 	    	<tr>
-	    		<th>물품번호</th>
+	    		<th>상품번호</th>
 	    		<th>이름</th>
 	    		<th>설명</th>	    		
 	    		<th>가격</th>
@@ -279,12 +288,12 @@ $(function(){
 	    	</tr>
 	    	</thead>
 	    	<tbody>
-	    	<c:forEach items="${cartList}" var="cart" varStatus="state">
+	    	<c:forEach items="${cartList}" var="cart">
 		    	<tr>
-		    		<td>${state.count}</td>
+		    		<td><span>${cart.product.id}</span></td>
 		    		<td>${cart.product.name}</td>
 		    		<td>${cart.product.description}</td>
-		    		<td><span>${cart.product.price}</span>원</td>
+		    		<td>${cart.product.price}원</td>
 		    		<td><button value="${cart.product.id}" name="order">주문하기</button></td>
 		    		<td><button value="${cart.product.id}" name="delete">삭제</button></td>
 		    	</tr>

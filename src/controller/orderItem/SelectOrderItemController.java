@@ -26,7 +26,7 @@ public class SelectOrderItemController implements Controller {
 		request.setAttribute("itemList", itemList);
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("");
+		mv.setViewName("community/writeform.jsp");
 
 		return mv;
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import exception.DuplicatedException;
 import model.dao.CategoryDAO;
 import model.dao.impl.CategoryDAOImpl;
+import model.domain.Category;
 import model.domain.Teacher;
 
 public class CategoryService {
@@ -24,6 +25,15 @@ public class CategoryService {
 	
 	public static List<Teacher> selectById(int categoryid) throws SQLException{
 		return categoryDAO.selectById(categoryid);
+	}
+	
+	/*
+	 *  Category 객체 모두 가져온다.
+	 */
+	public static List<Category> selectAll() throws SQLException{
+		
+		return categoryDAO.selectAll();
+		
 	}
 	
 	

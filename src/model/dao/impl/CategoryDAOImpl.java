@@ -21,7 +21,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	public CategoryDAOImpl() {
 		// sqlQuery.properties파일을 로딩하기
-		InputStream input = getClass().getClassLoader().getResourceAsStream("kosta/mvc/model/dao/sqlQuery.properties");
+		InputStream input = getClass().getClassLoader().getResourceAsStream("model/dao/sqlQuery.properties");
 		try {
 			pro.load(input);
 		} catch (IOException e) {
@@ -101,6 +101,40 @@ public class CategoryDAOImpl implements CategoryDAO {
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
+		return list;
+	}
+	
+	@Override
+	public List<Category> selectAll() throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Category> list = new ArrayList<Category>();
+		
+		String sql = "SELECT * FROM CATEGORY ORDER BY CATEGORY_ID ASC";
+		
+		try {
+			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Category category = new Category(rs.getInt("category_id"), rs.getString("category_name"));
+				
+				list.add(category);
+				
+			}
+			
+			
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		
+		
+		
 		return list;
 	}
 

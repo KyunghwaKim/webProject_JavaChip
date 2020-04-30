@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,28 +23,22 @@
 table{
 	width: 1200px;
 	margin-top: 20px;
-
 }
-
 /*
-
 .page{
 	text-align: center;
 	width: 50%;
 }
-
 .pagination{
 	list-style: none;
 	display: inline-block;
 	padding: 0;
 	margin-top: 20px;
 }
-
 .pagination li{
 	display: inline;
 	text-align: center;
 }
-
 .pagination a{
 	float:left;
 	display: block;
@@ -54,31 +49,23 @@ table{
 	line-height: 1.5;
 	
 }
-
 .first{
 	margin-right: 15px;
-
 }
-
 .last{
 	margin-left: 15px;
-
 }
-
 .first:hover, .last:hover, .left:hover, .right:hover {
 	color: #2e9cdf;
 	
 }
-
 .pagination a.active{
 	cursor : default;
 	color : #ffffff;
 }
-
 .pagination a:active{
 	outline: none;
 }
-
 .modal .num{
 	margin-left: 3px;
 	padding: 0;
@@ -89,17 +76,14 @@ table{
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
 }
-
 .modal .num:hover {
 	background-color: #2e9cdf;
 	color: #ffffff;
 }
-
 .modal .num.active, .modal .num:active{
 	background-color: #2e9cdf;
 	cursor: pointer;
 }
-
 .arrow-left{
 	width: 0px;
 	height: 0;
@@ -107,15 +91,11 @@ table{
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
-
-
 */
-
 #formpwd{
 	
 	display: none;
 }
-
 #star_grade a{
         text-decoration: none;
         color: gray;
@@ -124,50 +104,46 @@ table{
        
         color: red;
 }
-
 #teacher{
 	display: none; 
 }
-
 </style>
 
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <script>
+	$(function() {
 
-	$(function(){
-		
-		$('#star_grade a').click(function(){
-		    $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
-		    $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-		    return false;
+		$('#star_grade a').click(function() {
+			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			return false;
 		});
-	
-				
-			var cate = document.getElementById("category");
-			var tea = document.getElementById("teacher");				
-			
-			
-			cate.onclick = function(){
-			
-				if(cate.value != "cate"){
-					
-					tea.style.display = 'inline-block';
-					
-				} else {
-					
-					tea.style.display = 'none';
-				}			
-			
-			}
-			
-	});
 
+		/* var cate = document.getElementById("category");
+		var tea = document.getElementById("teacher");
+
+		cate.onclick = function() {
+
+			if (cate.value != "cate") {
+
+				tea.style.display = 'inline-block';
+
+			} else {
+
+				tea.style.display = 'none';
+			}
+		} */
+		
+		$('#btnSave').click(function() { //강의평 등록
+			alert($('option').val()+$('[name=content]').val());
+			//location.href="javaChip?command=insertEst?content="+$('[name=content]').val()+"&prodId="+$('option').val();
+		});
+	});//end load
 </script>
 
 
 </head>
-
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -196,13 +172,13 @@ table{
 			<a class="nav-link" href="../mycart/newmycart.jsp">장바구니</a>
 		  </li>    
           <li class="nav-item">
-            <a class="nav-link" href="../classlist/cart.jsp">강의목록</a>
+            <a class="nav-link" href="${path}/javaChip?command=selectProd">강의목록</a>
           </li>
           <li class="nav-item">
-			 <a class="nav-link" href="../mygangisil/mygangisil.jsp"><span style="color: white; font-weight: bold">내강의실</span></a>
+			 <a class="nav-link" href="../mygangisil/mygangisil.jsp">내강의실</a>
 		  </li>
           <li class="nav-item">
-            <a class="nav-link" href="../community/community.jsp">커뮤니티</a>
+            <a class="nav-link" href="../community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
           </li>
         </ul>
       </div>
@@ -215,8 +191,8 @@ table{
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="Q&Aboard.html" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="evaluation.html" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -262,22 +238,11 @@ table{
 			<form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
 				
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">강의명/강사명</label>
-					<select id="category">
-						<option value="cate">강의명</option>
-						<option value="java">JAVA</option>
-						<option value="python">Python</option>
-						<option value="html">HTML</option>
-						<option value="css">CSS</option>
-						<option value="javascript">JavaScript</option>
-					</select>					
-					<select id="teacher">
-						<option>강사명</option>
-						<option>김민호강사</option>
-						<option>신진섭강사</option>
-						<option>이영진강사</option>
-						<option>김경화강사</option>
-						<option>신선호강사</option>
+					<label for="title" style="font-weight: bold">강좌 선택</label> <br>
+					<select>
+					<c:forEach items="${itemList}" var="item" varStatus="state">
+						<option value="111">${item.product.name}</option>
+					</c:forEach>
 					</select>
 				</div>
 				
@@ -301,9 +266,9 @@ table{
 
 			<div >
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록</button>
 
-				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="evaluation.jsp"'>목록</button>
+				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
 
 			</div>
 

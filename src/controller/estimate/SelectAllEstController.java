@@ -25,11 +25,12 @@ public class SelectAllEstController implements Controller {
 			OrderLineDAO dao = new OrderLineDAOImpl();
 			List<OrderItem> itemList = dao.selectByCustomerId(userId);
 			if(itemList!=null) session.setAttribute("itemList", itemList); //id에 해당하는 구매내역이 있다면 세션에 저장
+			System.out.println(itemList);
 		}
 		
 		List<EstimateBoard> estimateList = EstimateService.selectAll();
 		request.setAttribute("estimateList", estimateList);
-
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("community/evaluation.jsp");
 		return mv;

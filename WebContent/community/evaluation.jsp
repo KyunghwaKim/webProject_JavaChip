@@ -21,7 +21,6 @@
 table{
 	width: 1200px;
 	margin-top: 20px;
-
 }
 </style>
 
@@ -159,10 +158,10 @@ table{
 	    		<th>평점</th>
 	    		<th>내용</th>	    		
 	    		<th>작성자</th>
-	    		<th>날짜</th>	    		
+	    		<th>작성일</th>	    		
 	    	</tr>
 	    </thead>
-	    <tbody>
+	    <tbody>${userId} / ${itemList} / ${estimateList}
 	    	<c:forEach items="${estimateList}" var="est" varStatus="state">
 	    	<tr>
 	    		<td>${state.count}</td>
@@ -177,8 +176,9 @@ table{
 	    </table>
 	    
 	    <hr>
+	    <c:if test="${not empty itemList}"> <!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
 	    <button style="float: right" onclick="location.href='community/evaluateForm.jsp'">후기작성</button>
-		
+		</c:if>
       </div>     
     </div>
     <!-- /#page-content-wrapper -->

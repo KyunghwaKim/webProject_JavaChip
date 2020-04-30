@@ -70,8 +70,8 @@ $(function(){
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
-        <a href="../javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
-        <a href="evaluation.jsp" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
+        <a href="${path}/javaChip?command=selectAllQnA" class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+        <a href="${path}/javaChip?command=selectAllEst" class="list-group-item list-group-item-action bg-light">강의평게시판</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
       </div>
     </div>
@@ -117,7 +117,7 @@ $(function(){
 			<form name="form" id="form" role="form" method="post" action="/webProject_JavaChip/board/saveBoard">
 	
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">제목</label>${qnaBoard}
+					<label for="title" style="font-weight: bold">제목</label>${userId}
 					<input type="text" class="form-control" name="title" id="title" value="${qnaBoard.title}" disabled>
 				</div>			
 				<div class="mb-3">

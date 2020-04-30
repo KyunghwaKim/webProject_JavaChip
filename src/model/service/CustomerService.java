@@ -39,9 +39,6 @@ public class CustomerService {
 	 */
 	public static int idCheck(String id) throws Exception{
 		int result = customerDAO.idCheck(id);
-		if (result!=0) {
-			throw new DuplicatedException("사용하실 수 없는 아이디입니다.");
-		}
 		
 		return result;
 	}

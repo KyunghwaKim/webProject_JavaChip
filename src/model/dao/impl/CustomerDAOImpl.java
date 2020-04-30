@@ -54,6 +54,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps.setString(4, customer.getPhone());
 			ps.setString(5, customer.getGender());
 			
+			
 			if(customer.getId()!=null) {
 				ps1 = con.prepareStatement(sql2);
 				
@@ -63,6 +64,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 			}
 
 			result = ps.executeUpdate();
+			System.out.println(result);
+			//admin 포함되어있는지 확인
+			String str = customer.getId();
+			str.toLowerCase();
+			boolean flag = str.contains("admin");
+			if(flag==true) {
+				result  = 0;
+			}
+			
 		} finally {
 			DbUtil.dbClose(con, ps);
 		}

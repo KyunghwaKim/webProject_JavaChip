@@ -41,6 +41,7 @@
                         <div class="input-group">
                             <input class="input--style-1" type="text" placeholder="아이디" id="inserid" name="id" style="width: 380px"
                             onkeydown="inputIdChk()">
+                            <font id="idcheck" size="2"></font>
                             <button class="btn btn--radius btn--green" onclick="button_onclick()" type="button">중복확인</button> 
                             <input type="hidden" id="idchk" value="N" />                          
                         </div>                        
@@ -56,7 +57,6 @@
                                 <div class="input-group">
                                     <input class="input--style-1 " type="text" placeholder="성함" name="name" id="namechk" 
                                     onKeyup="this.value=this.value.replace(/[^(ㄱ-힣a-zA-Z)]/gi,'');"/>
-                                    <font id="namecheck" size="2"></font>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -76,8 +76,9 @@
 						<div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1 " type="text" placeholder="전화번호 ( '-' 제외 입력)" name="phone">
-                                    
+                                    <input class="input--style-1 " type="text" placeholder="전화번호 ( '-' 제외 입력)" name="phone"
+                                    id="phonechk" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                                    <font id="phonecheck" size="2"></font>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -133,7 +134,7 @@
 		
 		$.ajax({
 			type : 'POST', data : "id="+over, dataType : 'text', 
-			url : '../javaChip?command=checkIdCus',
+			url : '../idCheckServlet',		
 			success : function(Data){
 				var chkRst = Data;
 				 if(chkRst==0){
@@ -153,6 +154,12 @@
 	
 	function checkValue() {
 		var form = document.userinfo;
+		var string = /admin/gi;
+		
+		if(form.id.value.match(string)){
+			alert("단어");
+			return false;
+		}
 		
 		if(!form.id.value){
 			alert("아이디를 입력하세요");
@@ -189,10 +196,19 @@
 	$(function(){
 		
 		var join = document.getElementById('join');
+		var inid = $('#inserid').val();
+		var string = /admin/gi;
 		
 		$('#password_1').keyup(function(){
 			$('#check').html('');
 		});
+		
+		/* $('#inserid').keyup(function{
+			if(inid.match(string)){
+				$('#idcheck').html('단어<br>');
+				$('#idcheck').attr('color', '#f82a2aa3');
+			}
+		}); */
 		
 		$('#password_1').keyup(function(){
 			if($('#password_1').val().length<1 || $('#password_1').val().length>10){
@@ -221,8 +237,15 @@
 		
 		$('#namechk').keyup(function(){
 			if(event.keyCode>=37 || event.keyCode<=40){
-				$('#namecheck').html('문자만 입력해주세요<br>');
-				$('#namecheck').attr('color', '#f82a2aa3');
+				$('#namechk').html('문자만 입력해주세요<br>');
+				$('#namechk').attr('color', '#f82a2aa3');
+			}
+		});
+		
+		$('#phonechk').keyup(function(){
+			if(event.keyCode<48 || event.keyCode>57){
+				$('#phonecheck').html('숫자만 입력해주세요<br>');
+				$('#phonecheck').attr('color', '#f82a2aa3');
 			}
 		});
 		

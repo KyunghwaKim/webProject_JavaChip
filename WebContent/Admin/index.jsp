@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +44,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="${path}/Admin/index.jsp">
+                        <a class="logo" href="${path}/javaChip?command=SelectCus">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -58,7 +59,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
-                            <a class="js-arrow" href="${path}/Admin/index.jsp">
+                            <a class="js-arrow" href="${path}/javaChip?command=SelectCus">
                                 <i class="fas fa-tachometer-alt"></i>대시보드</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                             </ul>
@@ -75,6 +76,7 @@
                 </div>
             </nav>
         </header>
+     </div>
         <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
@@ -88,7 +90,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="${path}/Admin/index.jsp">
+                            <a class="js-arrow" href="${path}/javaChip?command=SelectCus">
                                 <i class="fas fa-tachometer-alt"></i>대시보드</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">                               
                             </ul>
@@ -123,7 +125,7 @@
                                             <img src="images/icon/admin01.png" alt="JinSub_SHIN" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">JinSub_SHIN</a>
+                                            <a class="js-acc-btn" href="#">신진섭</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -134,7 +136,7 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">JinSub_SHIN</a>
+                                                        <a href="#">신진섭</a>
                                                     </h5>
                                                     <span class="email">JinSub@kosta.com</span>
                                                 </div>
@@ -154,7 +156,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="${path}/marga/index.jsp">
+                                                <a href="${path}/javaChip?command=logout">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -187,7 +189,7 @@
                                             </div>
                                             <br>
                                             <div class="text">
-                                                <h2>170</h2>
+                                                <h2>${size}</h2>
                                                 <span>총 회원수</span>
                                             </div>
                                         </div>                                       
@@ -203,7 +205,7 @@
                                             </div>
                                             <br>
                                             <div class="text">
-                                                <h2>1875</h2>
+                                                <h2>${num}</h2>
                                                 <span>총 판매수량</span>
                                             </div>                                    
                                         </div>                                       
@@ -219,7 +221,7 @@
                                             </div>
                                             <br>
                                             <div class="text">
-                                                <h2>36</h2>
+                                                <h2>${seven}</h2>
                                                 <span>금주 판매량</span>
                                             </div>
                                         </div>                                        
@@ -234,7 +236,7 @@
                                                 <i class="fas fa-won-sign"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>772,500</h2>
+                                                <h2>${total}원</h2>
                                                 <span>총 판매금액</span>
                                             </div>
                                         </div>                                       
@@ -249,79 +251,23 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>date</th>
-                                                <th>order ID</th>
-                                                <th>name</th>
-                                                <th class="text-right">price</th>
-                                                <th class="text-right">quantity</th>
-                                                <th class="text-right">total</th>
+                                                <th>결제일자</th>
+                                                <th>주문번호</th>
+                                                <th>상품ID</th>
+                                                <th>고객ID</th>
+                                                <th class="text-right">결제금액</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody>                                        
+                                        <c:forEach items="${orderlist}" var="orderlist">
                                             <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$999.00</td>
+                                                <td>${orderlist.orderLine.payDate}</td>
+                                                <td>${orderlist.orderLine.lineNo}</td>
+                                                <td>${orderlist.product.id}</td>
+                                                <td>${orderlist.orderLine.customer.id}</td>
+                                                <td class="text-right">${orderlist.orderLine.totalPrice}원</td>                                                
                                             </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td>Samsung S8 Black</td>
-                                                <td class="text-right">$756.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td>Game Console Controller</td>
-                                                <td class="text-right">$22.00</td>
-                                                <td class="text-right">2</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td>iPhone X 256Gb Black</td>
-                                                <td class="text-right">$1199.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100392</td>
-                                                <td>Smartwatch 4.0 LTE Wifi</td>
-                                                <td class="text-right">$199.00</td>
-                                                <td class="text-right">6</td>
-                                                <td class="text-right">$1494.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>100391</td>
-                                                <td>Camera C430W 4k</td>
-                                                <td class="text-right">$699.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$699.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
+                                        </c:forEach>                                       
                                         </tbody>
                                     </table>
                                 </div>

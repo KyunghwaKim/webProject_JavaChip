@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import model.domain.Customer;
 import model.domain.Person;
@@ -31,4 +32,12 @@ public interface PersonDAO {
 	  * 강사, 관리자 등록 - 관리자
 	  */
 	 int insert(String id, String pwd, String name, String phone, String gender, int status) throws SQLException;
+	 
+	 /**
+	  *  관리자 상세정보 가져오기...
+	  */	 
+	 Person selectAdminById(String id) throws SQLException;
+	 
+	 
+	 
 }

@@ -10,7 +10,7 @@ public interface OrderItemDAO {
 	/**
 	 * 결제내역 확인
 	 */
-	List<OrderItem> selectAll(String customerId) throws SQLException;
+	int selectAll() throws SQLException;
 	
 	/**
 	 * 주문하기
@@ -21,4 +21,26 @@ public interface OrderItemDAO {
 	 * 환불하기
 	 */
 	int update(int itemNo) throws SQLException;
+	
+	
+	/**
+	 * 7일동안판매수량
+	 * @return
+	 * @throws SQLException
+	 */
+	int selectBySevenDay() throws SQLException;
+	
+	/**
+	 * 총판매수량
+	 * @return
+	 * @throws SQLException
+	 */
+	long selectpriceAll() throws SQLException;
+	
+	
+	/**
+	 *  최근판매7개...
+	 */
+	List<OrderItem> selectBySevenitemlist() throws SQLException;
+	
 }

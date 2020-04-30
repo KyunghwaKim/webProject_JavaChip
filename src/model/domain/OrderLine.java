@@ -18,7 +18,7 @@ public class OrderLine {
 		this.totalPrice = totalPrice;
 		this.customer = customer;
 	}
-	
+		
 	public OrderLine(int lineNo, int total, Date payDate, Customer customer) {
 		this(total, customer);
 		this.lineNo = lineNo;

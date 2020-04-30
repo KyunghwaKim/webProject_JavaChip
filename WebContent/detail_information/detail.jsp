@@ -144,26 +144,37 @@
           	<c:forEach items="${estimateList}" var="estBoard">
           		<p>${estBoard.subject}</p>
           		<span class="text-warning">
-	            <c:forEach var="i" begin="1" end="${estBoard.grade}">
-	            	&#9733
-	            </c:forEach>
-	            <c:forEach var="j" begin="1" end="${estBoard.grade}">
-	            	&#9734
-	            </c:forEach>
+	            <c:choose>
+					<c:when test="${estBoard.grade == 5}">
+						&#9733; &#9733; &#9733; &#9733; &#9733;
+					</c:when>
+					<c:when test="${estBoard.grade == 4}">
+					 &#9733; &#9733; &#9733; &#9733; &#9734; 
+					</c:when>
+					<c:when test="${estBoard.grade == 3}">
+						&#9733; &#9733; &#9733; &#9734;
+					</c:when>
+					<c:when test="${estBoard.grade == 2}">
+						&#9733; &#9733; &#9734;&#9734;&#9734;
+					</c:when>
+					<c:when test="${estBoard.grade == 1}">
+						&#9733;&#9734;&#9734;&#9734;&#9734;
+					</c:when>
+				</c:choose>
 	            </span>
-	            <small class="text-muted">${estBoard.wirteDay}</small>
+	            <small class="text-muted">${estBoard.writeDay}</small>
           	</c:forEach>
-            <p>프로그래밍 이 강의로 입문했어요 진짜 너무 좋아요!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>이해가 쏙쏙!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>좋아요~~</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+<!--             <p>프로그래밍 이 강의로 입문했어요 진짜 너무 좋아요!</p> -->
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
+<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
+<!--             <hr> -->
+<!--             <p>이해가 쏙쏙!</p> -->
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
+<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
+<!--             <hr> -->
+<!--             <p>좋아요~~</p> -->
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
+<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
             <hr>
             <a href="#" class="btn btn-success">장바구니 담기</a>
           </div>

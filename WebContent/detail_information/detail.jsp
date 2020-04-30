@@ -117,7 +117,7 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <video src="video/${product.productDetail.url}" width='820' height="400" controls>
+          <video src="${path}/detail_information/video/${prodDetail.url}" width='820' height="400" controls>
           </video>          
           <div class="card-body">
             <h3 class="card-title"> ${prodDetail.product.name} by${prodDetail.product.teacher.name}</h3>
@@ -176,7 +176,7 @@
 <!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
 <!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
             <hr>
-            <a href="#" class="btn btn-success">장바구니 담기</a>
+            <a href="${path}/javaChip?command=insertCart&prodId=${prodDetail.product.id}" class="btn btn-success">장바구니 담기</a>
           </div>
         </div>
         <!-- /.card -->

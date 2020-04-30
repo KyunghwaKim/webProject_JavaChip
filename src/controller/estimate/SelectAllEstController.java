@@ -30,6 +30,8 @@ public class SelectAllEstController implements Controller {
 		
 		List<EstimateBoard> estimateList = EstimateService.selectAll();
 		request.setAttribute("estimateList", estimateList);
+		for(EstimateBoard est:estimateList) {
+				System.out.println(est.getGrade());}
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("community/evaluation.jsp");

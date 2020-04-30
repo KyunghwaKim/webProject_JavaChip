@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +23,13 @@
 <script>
 $(function(){
 	$('#btnSave').click(function(){
+		alert("수정되었습니다!");
 		location.href="javaChip?command=updateQnA&qaBoardNo="+${qnaBoard.qaBoardNo}+"&content="+$('#content').val();
 	});//end save
+	
+	$('#btnDel').click(function(){
+		location.href="javaChip?command=deleteQnA&qaBoardNo="+${qnaBoard.qaBoardNo};
+	});//end delete
 });//end load
 </script>
 <body>
@@ -117,12 +123,12 @@ $(function(){
 			<form name="form" id="form" role="form" method="post" action="/webProject_JavaChip/board/saveBoard">
 	
 				<div class="mb-3">
-					<label for="title" style="font-weight: bold">제목</label>${userId}
+					<label for="title" style="font-weight: bold">제목</label>
 					<input type="text" class="form-control" name="title" id="title" value="${qnaBoard.title}" disabled>
 				</div>			
 				<div class="mb-3">
 					<label for="content" style="font-weight: bold">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="${qnaBoard.subject}" ></textarea>
+					<textarea class="form-control" rows="5" name="content" id="content" value="${qnaBoard.subject}">${qnaBoard.subject}</textarea>
 				</div>
 		
 			<div class="mb-3" id="formpwd">
@@ -130,11 +136,13 @@ $(function(){
 					<input type="password" class="form-control" name="title" id="title" placeholder="최대4자리" maxlength="4">
 				</div>	
 			</form>
-
-			<div >
-
+			<div>
+			${userId} / ${qnaBoard.customer.id}
+			
+				<c:if test="${userId == qnaBoard.customer.id}"> <!-- 본인이 쓴 글이 아니면 수정, 삭제 불가능 -->
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>
-
+				<button type="button" class="btn btn-sm btn-primary" id="btnDel">삭제</button>
+				</c:if>
 				<button type="button" class="btn btn-sm btn-primary" onclick='location.href="${path}/javaChip?command=selectAllQnA"'>목록</button>
 
 			</div>

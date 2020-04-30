@@ -23,8 +23,6 @@ table{
 	margin-top: 20px;
 }
 </style>
-
-
 </head>
 <body>
   <header class="site-navbar site-navbar-target bg-white" role="banner">		
@@ -162,12 +160,28 @@ table{
 	    	</tr>
 	    </thead>
 	    <tbody>
-	    	<c:forEach items="${estimateList}" var="est" varStatus="state">${estimateList}
+	    	<c:forEach items="${estimateList}" var="est" varStatus="state">
 	    	<tr>
 	    		<td>${state.count}</td>
 	    		<td><a href="javaChip?command=selectEstByNo&no=${est.estimateNo}">${est.product.name}</a></td>
 	    		<td>
-	    		<!-- 평점 -->
+	    		<c:choose>
+							<c:when test="${est.grade == '5'}">
+							<span style="color:red">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 
+							</c:when>
+							<c:when test="${est.grade == '4'}">
+							<span style="color:red">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 
+							</c:when>
+							<c:when test="${est.grade == '3'}">
+							<span style="color:red">&#9733;&#9733; &#9733;&#9734;&#9734;</span> 
+							</c:when>
+							<c:when test="${est.grade == '2'}">
+							<span style="color:red">&#9733;&#9733;&#9734;&#9734;&#9734;</span> 
+							</c:when>
+							<c:when test="${est.grade == '1'}">
+							<span style="color:red">&#9733;&#9734;&#9734;&#9734;&#9734;</span> 
+							</c:when>
+						</c:choose>
 	    		</td>
 	    		<td>${est.subject}</td>
 	    		<td>${est.customer.id}</td>

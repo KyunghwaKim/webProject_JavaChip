@@ -116,27 +116,26 @@ $(function(){
 					action="/webProject_JavaChip/board/saveBoard">
 					
 					<div class="mb-3">
-						<label for="content" style="font-weight: bold">강의명</label> &nbsp;&nbsp;
+						<label for="content" style="font-weight: bold">강의명</label> &nbsp;
 						${estBoard.product.name}
 					</div>
 					<div class="mb-3">
 						<label for="content" style="font-weight: bold">평점</label>
-						${estBoard.grade}
 						<c:choose>
 							<c:when test="${estBoard.grade == 5}">
 							<span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span> 
 							</c:when>
 							<c:when test="${estBoard.grade == 4}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9733;</span> 
+							<span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 
 							</c:when>
 							<c:when test="${estBoard.grade == 3}">
-							<span style="color:red">&#9733; &#9733; &#9733;</span> 
+							<span style="color:red">&#9733; &#9733; &#9733; &#9734;</span> 
 							</c:when>
 							<c:when test="${estBoard.grade == 2}">
-							<span style="color:red">&#9733; &#9733; </span> 
+							<span style="color:red">&#9733; &#9733; &#9734;&#9734;&#9734;</span> 
 							</c:when>
 							<c:when test="${estBoard.grade == 1}">
-							<span style="color:red">&#9733;</span> 
+							<span style="color:red">&#9733;&#9734;&#9734;&#9734;&#9734;</span> 
 							</c:when>
 						</c:choose>
 					</div>

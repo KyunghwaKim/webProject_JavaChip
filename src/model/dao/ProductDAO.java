@@ -52,4 +52,11 @@ public interface ProductDAO {
 	 * : 강의명(prod_name), 설명(description), 가격(price), 동영상(url)
 	 */
 	Map<ProductDetail, EstimateBoard> selectProdInfo(String prodId) throws SQLException;
+	
+	
+	/**
+	 *  상품삭제 - 관리자기능
+	 */
+	int deleteProd(String id) throws SQLException;
+	
 }

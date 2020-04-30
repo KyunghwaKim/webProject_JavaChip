@@ -71,4 +71,14 @@ public class ProductService {
 	public static Map<ProductDetail, EstimateBoard> selectProdInfo(String prodId) throws SQLException {
 		return productDAO.selectProdInfo(prodId);
 	}
+	
+	
+	public static int deleteProd(String id) throws SQLException{
+		
+		return productDAO.deleteProd(id);
+	}
+	
+	
+	
+	
 }

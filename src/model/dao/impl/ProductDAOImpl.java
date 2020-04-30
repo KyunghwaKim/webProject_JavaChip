@@ -117,6 +117,33 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return list;
 	}
+	
+	@Override
+	public int deleteProd(String id) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int i = 0;
+		String sql = "UPDATE PRODUCT SET STATUS=2 WHERE PROD_ID=?";
+		
+		try {
+			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			i = ps.executeUpdate();
+			
+		} finally {
+			
+			DbUtil.dbClose(con, ps);
+			
+		}
+		return i;
+	}
+	
+	
+	
+	
 
 	@Override
 	public List<Product> selectByJogun(Map<String, String> map) throws SQLException {
@@ -209,9 +236,10 @@ public class ProductDAOImpl implements ProductDAO {
 		ResultSet rs = null;
 		List<GangiMokRok> list = new ArrayList<GangiMokRok>();
 		String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
-				+ "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME "
+				+ "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME, p.STATUS "
 				+ "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
-				+ "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID " + "JOIN PERSON pe on pe.id = t.teacher_id";
+				+ "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID " + "JOIN PERSON pe on pe.id = t.teacher_id " 
+				+ "WHERE P.STATUS=1";
 
 		try {
 			con = DbUtil.getConnection();
@@ -231,7 +259,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
-						category, rs.getDate("upload_date"), rs.getInt("valid_Date"));
+						category, rs.getDate("upload_date"), rs.getInt("valid_Date"), rs.getInt("STATUS"));
 
 				GangiMokRok gangimokrok = new GangiMokRok(product, category);
 

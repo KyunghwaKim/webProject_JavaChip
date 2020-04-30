@@ -12,6 +12,7 @@ public class Product {
 	private Category category;
 	private Date uploadDate;
 	private int validDate;
+	private int status;
 	
 	
 	private String uploadDateConvert;
@@ -43,6 +44,16 @@ public class Product {
 		this.teacher = teacher;
 		this.category = category;
 		this.uploadDate = uploadDate;
+	}
+	
+	public Product(String id, String name, int price, String description, String level, Teacher teacher,
+			Category category, Date uploadDate, int validDate, int status) {
+		this(id, name, price, description, validDate);
+		this.level = level;
+		this.teacher = teacher;
+		this.category = category;
+		this.uploadDate = uploadDate;
+		this.status = status;
 	}
 
 	public int getValidDate() {
@@ -117,11 +128,12 @@ public class Product {
 		this.uploadDate = uploadDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", level="
-				+ level + ", teacher=" + teacher + ", category=" + category + ", uploadDate=" + uploadDate
-				+ ", validDate=" + validDate + "]";
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public String getUploadDateConvert() {

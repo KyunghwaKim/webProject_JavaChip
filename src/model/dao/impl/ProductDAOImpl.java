@@ -261,8 +261,12 @@ public class ProductDAOImpl implements ProductDAO {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
+				Teacher teacher = new Teacher();
+				teacher.setName(rs.getString("name"));
+				
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"));
+				product.setTeacher(teacher);
 				
 				ProductDetail prodDetail = new ProductDetail();
 				prodDetail.setProduct(product);

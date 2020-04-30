@@ -24,11 +24,14 @@ public class SelectProductInfoController implements Controller {
 		
 		Map<ProductDetail, EstimateBoard> map = ProductService.selectProdInfo(prodId);
 		
-		for(ProductDetail key : map.keySet()) {
+		System.out.println(map + "map");
+		
+		for(ProductDetail key : map.keySet()) {			
 			request.setAttribute("prodDetail", key);
 			request.setAttribute("estimate", map.get(key));
+			request.setAttribute("whiteStar", 5-map.get(key).getGrade());
+			request.setAttribute("salePrice", (int)(key.getProduct().getPrice()*1.1));
 		}
-		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("detail_information/detail.jsp");

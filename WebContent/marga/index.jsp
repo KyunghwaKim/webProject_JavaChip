@@ -316,24 +316,12 @@ background-color: black;
           </div>
         </div>
       </div>
-    </div>
-    
-    
-	
-    
-    
-
-
+    </div>    
     <div class="site-section">
       <div class="container">
-       
-        
-        
         <div class="row align-items-stretch">
           <div class="col-lg-3 col-md-6 mb-5">
             <div class="post-entry-1 h-100">
-              
-           
             </div>
           </div>
           <div class="col-lg-3 col-md-6 mb-5">
@@ -345,20 +333,15 @@ background-color: black;
           <div class="col-lg-3 col-md-6 mb-5">
             <div class="post-entry-1 h-100">
               
-            
             </div>
           </div>
           <div class="col-lg-3 col-md-6 mb-5">
             <div class="post-entry-1 h-100">
-              
-              
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-
     
    <!-- Footer -->
   <footer class="py-5 bg-dark">

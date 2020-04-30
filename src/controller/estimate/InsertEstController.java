@@ -16,7 +16,7 @@ public class InsertEstController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String content = request.getParameter("content");
-		String customerId = (String) request.getSession().getAttribute("id");//id는 세션에서 가져오는 것으로 수정
+		String customerId = (String) request.getSession().getAttribute("userId");//id는 세션에서 가져오는 것으로 수정
 		String prodId = request.getParameter("prodId");
 		String grade = request.getParameter("grade");
 		System.out.println(customerId);
@@ -32,11 +32,9 @@ public class InsertEstController implements Controller {
 		product.setId(prodId);
 
 		EstimateBoard estBoard = new EstimateBoard(content, customer, product, Integer.parseInt(grade));
-
 		EstimateService.insert(estBoard);
-
-		ModelAndView mv = new ModelAndView(true, "");
-
+		String path = request.getContextPath();
+		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectAllEst");
 		return mv;
 	}
 

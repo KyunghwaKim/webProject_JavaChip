@@ -20,7 +20,6 @@ public class SelectAllQnAController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String userId = (String) request.getSession().getAttribute("userId");
-		System.out.println(userId);
 		
 		List<QnABoard> list = QnAService.selectAll();
 		request.setAttribute("QnAList", list);
@@ -28,7 +27,8 @@ public class SelectAllQnAController implements Controller {
 		OrderLineDAO dao = new OrderLineDAOImpl();
 		List<OrderItem> itemList = dao.selectByCustomerId(userId);
 		if(itemList!=null) session.setAttribute("itemList", itemList); //id에 해당하는 구매내역이 있다면 세션에 저장
-			
+		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("community/Q&Aboard.jsp");
 		return mv;

@@ -118,7 +118,8 @@ public class EstimateBoardDAOImpl implements EstimateBoardDAO {
 
 				Product product = new Product();
 				product.setId(rs.getString("prod_id"));
-
+				product.setName(rs.getString("prod_name"));
+				
 				EstimateBoard estBoard = new EstimateBoard(rs.getInt("sequence"), rs.getString("subject"), customer,
 						product, rs.getDate("writeday"), rs.getInt("grade"));
 				

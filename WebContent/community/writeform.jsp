@@ -23,7 +23,6 @@ table{
 
 }
 #formpwd{
-	
 	display: none;
 }
 </style>
@@ -52,9 +51,7 @@ table{
 	});//end load
 </script>
 </head>
-
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
@@ -188,11 +185,8 @@ table{
 
 	   </div>
 	 </div>
-    <!-- /#page-content-wrapper -->
-    
-
- 
-  <!-- /#wrapper -->
+    <!-- /#page-content-wrapper -->   
+  	<!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -13,11 +13,13 @@ public class SelectByNoEstController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String no = request.getParameter("no"); //게시글 번호
+		System.out.println(no);
 		
-		EstimateBoard estBoard = EstimateService.selectByNo(Integer.parseInt(no));
-		
+		EstimateBoard estBoard = EstimateService.selectByNo(Integer.parseInt(no));	
+		request.setAttribute("estBoard", estBoard);
+
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("");
+		mv.setViewName("community/estDetail.jsp");
 		return mv;
 	}
 

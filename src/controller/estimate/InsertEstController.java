@@ -33,7 +33,6 @@ public class InsertEstController implements Controller {
 
 		EstimateBoard estBoard = new EstimateBoard(content, customer, product, Integer.parseInt(grade));
 		EstimateService.insert(estBoard);
-		String path = request.getContextPath();
 		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectAllEst");
 		return mv;
 	}

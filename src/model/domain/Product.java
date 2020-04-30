@@ -18,6 +18,10 @@ public class Product {
 	
 	public Product() {}
 	
+	public Product(String id) {
+		this.id = id;
+	}
+	
 	public Product(String id, String name, int price, String description) {
 		super();
 		this.id = id;

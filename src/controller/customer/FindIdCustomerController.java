@@ -20,12 +20,11 @@ public class FindIdCustomerController implements Controller {
 		}
 
 		String findCustomerId = CustomerService.findId(name, phone);
-
+		System.out.println(findCustomerId);
 		request.setAttribute("findCustomerId", findCustomerId);
 
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("");
-
+		ModelAndView mv = new ModelAndView(false, "Login/idresult.jsp");
+		
 		return mv;
 	}
 

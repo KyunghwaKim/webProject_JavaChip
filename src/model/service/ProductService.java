@@ -68,7 +68,17 @@ public class ProductService {
 	 * [강의목록] > [자세히보기] 에 나올 정보
 	 * : 강의명(prod_name), 설명(description), 가격(price), 동영상(url)
 	 */
-	public static Map<ProductDetail, EstimateBoard> selectProdInfo(String prodId) throws SQLException {
+	public static Map<EstimateBoard, ProductDetail> selectProdInfo(String prodId) throws SQLException {
 		return productDAO.selectProdInfo(prodId);
 	}
+	
+	
+	public static int deleteProd(String id) throws SQLException{
+		
+		return productDAO.deleteProd(id);
+	}
+	
+	
+	
+	
 }

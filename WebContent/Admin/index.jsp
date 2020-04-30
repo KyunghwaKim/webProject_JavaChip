@@ -65,7 +65,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="${path}/Admin/table.jsp">
+                            <a href="${path}/javaChip?command=selectAdminProd">
                                 <i class="fas fa-table"></i>판매품목</a>
                         </li>
                         <li>
@@ -82,7 +82,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="${path}/Admin/index.jsp">
+                <a href="${path}/javaChip?command=SelectCus">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -96,7 +96,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="${path}/Admin/table.jsp">
+                            <a href="${path}/javaChip?command=selectAdminProd">
                                 <i class="fas fa-table"></i>판매품목</a>
                         </li>
                         <li>

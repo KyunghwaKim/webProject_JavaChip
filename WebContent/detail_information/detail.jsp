@@ -117,21 +117,21 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <video src="video/videosample.mp4" width='820' height="400" controls>
+          <video src="${path}/detail_information/video/${prodDetail.url}" width='820' height="400" controls>
           </video>          
           <div class="card-body">
             <h3 class="card-title"> ${prodDetail.product.name} by${prodDetail.product.teacher.name}</h3>
             <h4 style="text-decoration: line-through;">${salePrice}원</h4><h3 style="font-weight: bold">${prodDetail.product.price}원</h3>
             <p class="card-text"> ${prodDetail.product.description}</p>
             <span class="text-warning">
-            <c:forEach var="i" begin="1" end="${estimate.grade}">
+            <c:forEach var="i" begin="1" end="${aveGrade}">
             	&#9733
             </c:forEach>
             <c:forEach var="j" begin="1" end="${whiteStar}">
             	&#9734
             </c:forEach>
             </span>
-            ${estimate.grade} stars
+            ${aveGrade} stars
           </div>
         </div>
         <!-- /.card -->
@@ -141,19 +141,42 @@
             강의평
           </div>
           <div class="card-body">
-            <p>프로그래밍 이 강의로 입문했어요 진짜 너무 좋아요!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+          	<c:forEach items="${estimateList}" var="estBoard">
+          		<p>${estBoard.subject}</p>
+          		<span class="text-warning">
+	            <c:choose>
+					<c:when test="${estBoard.grade == 5}">
+						&#9733; &#9733; &#9733; &#9733; &#9733;
+					</c:when>
+					<c:when test="${estBoard.grade == 4}">
+					 &#9733; &#9733; &#9733; &#9733; &#9734; 
+					</c:when>
+					<c:when test="${estBoard.grade == 3}">
+						&#9733; &#9733; &#9733; &#9734;
+					</c:when>
+					<c:when test="${estBoard.grade == 2}">
+						&#9733; &#9733; &#9734;&#9734;&#9734;
+					</c:when>
+					<c:when test="${estBoard.grade == 1}">
+						&#9733;&#9734;&#9734;&#9734;&#9734;
+					</c:when>
+				</c:choose>
+	            </span>
+	            <small class="text-muted">${estBoard.writeDay}</small>
+          	</c:forEach>
+<!--             <p>프로그래밍 이 강의로 입문했어요 진짜 너무 좋아요!</p> -->
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
+<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
+<!--             <hr> -->
+<!--             <p>이해가 쏙쏙!</p> -->
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
+<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
+<!--             <hr> -->
+<!--             <p>좋아요~~</p> -->
+<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
+<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
             <hr>
-            <p>이해가 쏙쏙!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>좋아요~~</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">장바구니 담기</a>
+            <a href="${path}/javaChip?command=insertCart&prodId=${prodDetail.product.id}" class="btn btn-success">장바구니 담기</a>
           </div>
         </div>
         <!-- /.card -->

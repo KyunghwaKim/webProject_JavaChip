@@ -117,6 +117,33 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return list;
 	}
+	
+	@Override
+	public int deleteProd(String id) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int i = 0;
+		String sql = "UPDATE PRODUCT SET STATUS=2 WHERE PROD_ID=?";
+		
+		try {
+			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			i = ps.executeUpdate();
+			
+		} finally {
+			
+			DbUtil.dbClose(con, ps);
+			
+		}
+		return i;
+	}
+	
+	
+	
+	
 
 	@Override
 	public List<Product> selectByJogun(Map<String, String> map) throws SQLException {
@@ -209,9 +236,10 @@ public class ProductDAOImpl implements ProductDAO {
 		ResultSet rs = null;
 		List<GangiMokRok> list = new ArrayList<GangiMokRok>();
 		String sql = "select p.TEACHER_ID, T.PICTURE_NAME, p.CATEGORY_ID, CATEGORY_NAME, PROD_ID, PROD_NAME, PROD_PRICE, "
-				+ "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME "
+				+ "DESCRIPTION, PROD_LEVEL, UPLOAD_DATE, VALID_DATE, NAME, p.STATUS "
 				+ "FROM PRODUCT p JOIN CATEGORY C2 on p.CATEGORY_ID = C2.CATEGORY_ID "
-				+ "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID " + "JOIN PERSON pe on pe.id = t.teacher_id";
+				+ "JOIN TEACHER T on p.TEACHER_ID = T.TEACHER_ID " + "JOIN PERSON pe on pe.id = t.teacher_id " 
+				+ "WHERE P.STATUS=1";
 
 		try {
 			con = DbUtil.getConnection();
@@ -231,7 +259,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
-						category, rs.getDate("upload_date"), rs.getInt("valid_Date"));
+						category, rs.getDate("upload_date"), rs.getInt("valid_Date"), rs.getInt("STATUS"));
 
 				GangiMokRok gangimokrok = new GangiMokRok(product, category);
 
@@ -247,11 +275,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public Map<ProductDetail, EstimateBoard> selectProdInfo(String prodId) throws SQLException {
+	public Map<EstimateBoard, ProductDetail> selectProdInfo(String prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Map<ProductDetail, EstimateBoard> map = new HashMap<ProductDetail, EstimateBoard>();
+		Map<EstimateBoard, ProductDetail> map = new HashMap<EstimateBoard, ProductDetail>();
 		String sql = pro.getProperty("selectProdInfo");
 
 		try {
@@ -260,7 +288,7 @@ public class ProductDAOImpl implements ProductDAO {
 			ps.setString(1, prodId);
 			rs = ps.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Teacher teacher = new Teacher();
 				teacher.setName(rs.getString("name"));
 				
@@ -274,8 +302,10 @@ public class ProductDAOImpl implements ProductDAO {
 				
 				EstimateBoard estimate = new EstimateBoard();
 				estimate.setGrade(rs.getInt("grade"));
+				estimate.setSubject(rs.getString("subject"));
+				estimate.setWriteDay(rs.getDate("writeday"));
 				
-				map.put(prodDetail, estimate);
+				map.put(estimate, prodDetail);
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

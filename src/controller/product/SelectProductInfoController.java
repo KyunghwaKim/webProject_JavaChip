@@ -1,5 +1,7 @@
 package controller.product;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,26 +19,37 @@ public class SelectProductInfoController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String prodId = request.getParameter("prodId");
-		
-		if(prodId==null||prodId.equals("")) {
+
+		if (prodId == null || prodId.equals("")) {
 			throw new NotFoundException("존재하지 않는 상품번호입니다.");
 		}
-		
-		Map<ProductDetail, EstimateBoard> map = ProductService.selectProdInfo(prodId);
-		
+
+		Map<EstimateBoard, ProductDetail> map = ProductService.selectProdInfo(prodId);
+
 		System.out.println(map + "map");
-		
-		for(ProductDetail key : map.keySet()) {			
-			request.setAttribute("prodDetail", key);
-			request.setAttribute("estimate", map.get(key));
-			request.setAttribute("whiteStar", 5-map.get(key).getGrade());
-			request.setAttribute("salePrice", (int)(key.getProduct().getPrice()*1.1));
+		List<EstimateBoard> estList = new ArrayList<EstimateBoard>();
+		int aveGrade = 0;
+		int count = 0;
+
+		for (EstimateBoard key : map.keySet()) {
+			request.setAttribute("prodDetail", map.get(key));
+			request.setAttribute("salePrice", (int) (map.get(key).getProduct().getPrice() * 1.1));
+			aveGrade += key.getGrade();
+			if (count < 3) {
+				estList.add(key); // 강의평가는 3개만 뿌려준다
+			}
+			count++;
 		}
-		
+
+		request.setAttribute("estimateList", estList);
+
+		request.setAttribute("aveGrade", aveGrade / count);
+		request.setAttribute("whiteStar", 5 - aveGrade / count);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("detail_information/detail.jsp");
-		 
-		return mv; 
+
+		return mv;
 	}
 
 }

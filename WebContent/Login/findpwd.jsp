@@ -28,13 +28,38 @@
 	<link rel="stylesheet" type="text/css" href="${path}/Login/css/main.css">
 <!--===============================================================================================-->
 
+<script>
+
+	window.addEventListener("load", function(){
+		
+		findpwd.onclick = function(){			
+			
+			//var findid = document.getElementById("findCustomerId");
+		 	var id = document.getElementById("id").value;
+			var name = document.getElementById("name").value;
+	 		var phone = document.getElementById("phone").value;
+	 		
+	 		var id = result;
+			if(id==null || id=="" || name=null || name=="" || phone==null || phone==""){
+				
+				alert("입력값이 부족합니다");
+				return;				
+			} else {
+				alert(id);
+				//self.close();
+			}			
+		}		
+	});
+
+</script>
+
 </head>
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-90 p-b-30">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="../javaChip?command=findPwdCus" method="post">
 					<span class="login100-form-title p-b-40">
 						PWD 찾기
 					</span>
@@ -58,7 +83,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id="findpwd" type="submit">
 							비밀번호찾기
 						</button>
 					</div>		

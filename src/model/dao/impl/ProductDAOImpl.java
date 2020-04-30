@@ -274,6 +274,8 @@ public class ProductDAOImpl implements ProductDAO {
 				
 				EstimateBoard estimate = new EstimateBoard();
 				estimate.setGrade(rs.getInt("grade"));
+				estimate.setSubject(rs.getString("subject"));
+				estimate.setWriteDay(rs.getDate("writeday"));
 				
 				map.put(prodDetail, estimate);
 			}

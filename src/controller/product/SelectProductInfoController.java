@@ -1,5 +1,7 @@
 package controller.product;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,13 +27,26 @@ public class SelectProductInfoController implements Controller {
 		Map<ProductDetail, EstimateBoard> map = ProductService.selectProdInfo(prodId);
 		
 		System.out.println(map + "map");
+		List<EstimateBoard> estList = new ArrayList<EstimateBoard>();
+		EstimateBoard estimate = null;
+		int aveGrade = 0;
+		int count = 0;
 		
-		for(ProductDetail key : map.keySet()) {			
+		for(ProductDetail key : map.keySet()) {	
 			request.setAttribute("prodDetail", key);
-			request.setAttribute("estimate", map.get(key));
-			request.setAttribute("whiteStar", 5-map.get(key).getGrade());
 			request.setAttribute("salePrice", (int)(key.getProduct().getPrice()*1.1));
+			estimate = map.get(key);
+			aveGrade += estimate.getGrade();
+			if(count<3) {
+				estList.add(estimate);	//강의평가는 3개만 뿌려준다
+			}
+			count++;
 		}
+
+		request.setAttribute("estimateList", estList);
+		
+		request.setAttribute("aveGrade", aveGrade/count);
+		request.setAttribute("whiteStar", 5-aveGrade/count);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("detail_information/detail.jsp");

@@ -54,21 +54,6 @@ table {
 			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
 			return false;
 		});
-
-		/* var cate = document.getElementById("category");
-		var tea = document.getElementById("teacher");
-
-		cate.onclick = function() {
-
-			if (cate.value != "cate") {
-
-				tea.style.display = 'inline-block';
-
-			} else {
-	
-				tea.style.display = 'none';
-			}
-		} */
 		
 		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록

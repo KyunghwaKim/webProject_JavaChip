@@ -43,8 +43,10 @@ public class SelectProductInfoController implements Controller {
 
 		request.setAttribute("estimateList", estList);
 
-		request.setAttribute("aveGrade", aveGrade / count);
-		request.setAttribute("whiteStar", 5 - aveGrade / count);
+		if(count != 0) {
+			request.setAttribute("aveGrade", aveGrade / count);
+			request.setAttribute("whiteStar", 5 - aveGrade / count);
+		}
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("detail_information/detail.jsp");

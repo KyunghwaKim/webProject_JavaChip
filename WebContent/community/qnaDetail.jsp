@@ -134,6 +134,9 @@ $(function(){
 						${qnaBoard.customer.id}
 					</div>
 					<div class="mb-3">
+					<label for="title" style="font-weight: bold">강의명</label>
+					${qnaBoard.product.id}</div>
+					<div class="mb-3">
 						<label for="title" style="font-weight: bold">제목</label> <input
 							type="text" class="form-control" name="title" id="title"
 							value="${qnaBoard.title}" disabled>

@@ -48,12 +48,11 @@ table {
 <script>
 	$(function(){
 		$('#btnSave').click(function(){ //qna등록
-			if($('option').attr('name') == null || $('#title').val() == null || $('#content').val() == null){
+			/* if($('option').attr('name') == null || $('#title').val() == null || $('#content').val() == null){
 				alert("입력값이 부족합니다.");
 				return;
-			}else{
-				location.href="${path}/javaChip?command=insertQnA&prodId="+$('option').attr('name')+"&title="+$('#title').val()+"&content="+$('#content').val();
-			}
+			}else{ */
+				location.href="${path}/javaChip?command=insertQnA&prodId="+$(":selected").val()+"&title="+$('#title').val()+"&content="+$('#content').val();
 		});//end save
 	});//end load
 </script>
@@ -189,7 +188,7 @@ table {
 						<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 						<select>
 							<c:forEach items="${itemList}" var="item" varStatus="state">
-								<option name="${item.product.id}">${item.product.name}
+								<option value="${item.product.id}">${item.product.name}
 									/ ${item.product.teacher.name}</option>
 							</c:forEach>
 						</select>

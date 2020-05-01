@@ -72,8 +72,6 @@ table {
 		
 		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록
-			
-		
 			location.href="../javaChip?command=insertEst&prodId="+$('option').val()+"&content="+$('[name=content]').val()+"&grade=5";
 		});
 	});//end load

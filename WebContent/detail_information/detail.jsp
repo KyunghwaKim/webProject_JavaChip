@@ -111,8 +111,6 @@
           <c:forEach items="${sameCateProd}" var="prod">
           <a href="#" class="list-group-item">${prod}</a>
           </c:forEach>
-<!--           <a href="#" class="list-group-item">Python 중급</a> -->
-<!--           <a href="#" class="list-group-item">Python 고급</a> -->
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -167,17 +165,6 @@
 	            </span>
 	            <small class="text-muted">${estBoard.writeDay}</small>
           	</c:forEach>
-<!--             <p>프로그래밍 이 강의로 입문했어요 진짜 너무 좋아요!</p> -->
-<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
-<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
-<!--             <hr> -->
-<!--             <p>이해가 쏙쏙!</p> -->
-<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
-<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
-<!--             <hr> -->
-<!--             <p>좋아요~~</p> -->
-<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
-<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
             <hr>
             <a href="${path}/javaChip?command=insertCart&prodId=${prodDetail.product.id}" class="btn btn-success">장바구니 담기</a>
           </div>

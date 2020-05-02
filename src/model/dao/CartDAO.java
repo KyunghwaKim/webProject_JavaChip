@@ -13,6 +13,12 @@ public interface CartDAO {
 	List<Cart> selectAll(String customerId) throws SQLException;
 	
 	/**
+	 * 장바구니 상품 추가 전 이미 장바구니에 있는 상품인지 확인
+	 * @return int - 0: 장바구니에 없음 / 1:이미 장바구니에 담겨있음
+	 */
+	int checkCart(String customerId, String prodId) throws SQLException;
+	
+	/**
 	 * 장바구니 상품 추가
 	 * @return int - 0: 실패 / 0이 아니면 성공
 	 */

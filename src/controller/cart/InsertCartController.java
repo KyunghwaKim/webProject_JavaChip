@@ -19,7 +19,9 @@ public class InsertCartController implements Controller{
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
 		
-		CartService.insert(customerId, prodId);
+		if(CartService.checkCart(customerId, prodId) == 0) {
+			CartService.insert(customerId, prodId);
+		}
 
 		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectCart");
 		

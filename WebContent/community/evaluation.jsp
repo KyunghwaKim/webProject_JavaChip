@@ -26,6 +26,14 @@ table {
 }
 </style>
 </head>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$('button[name=adminDel]').click(function(){ //admin이 게시글 삭제
+		location.href="${path}/javaChip?command=deleteEst&estimateNo="+$(this).val();
+	});
+});
+</script>
 <body>
 	<header class="site-navbar site-navbar-target bg-white" role="banner">
 		<div class="container">
@@ -142,6 +150,8 @@ table {
 							<th>내용</th>
 							<th>작성자</th>
 							<th>작성일</th>
+							<c:if test="${userId == 'admin'}">
+							<th>삭제</th></c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -171,8 +181,9 @@ table {
 								<td>${est.subject}</td>
 								<td>${est.customer.id}</td>
 								<td>${est.writeDay}</td>
-								<c:if test="${userId == admin}">
-								<td value='${est.estimateNo}'>삭제</td></c:if>
+								<c:if test="${userId == 'admin'}">
+								<td><button value="${est.estimateNo}" name="adminDel">삭제</button>
+								</td></c:if>
 							</tr>
 						</c:forEach>
 					</tbody>

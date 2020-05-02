@@ -95,7 +95,7 @@ var grade;
 										<c:when test="${userId!=null}">
 											<li class="nav-item"><a class="nav-link"
 												href="${path}/javaChip?command=logout"><span
-													style="color: white; font-weight: bold">로그아웃</span></a></li>	
+													style="color: white; font-weight: bold">로그아웃</span></a></li>
 										</c:when>
 									</c:choose>
 									<li class="nav-item"><a class="nav-link"
@@ -189,13 +189,10 @@ var grade;
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">별점주기</label>
 						<p id="star_grade">
-	        			<a id="1">★</a>
-	        			<a id="2">★</a>
-	       				<a id="3">★</a>
-	        			<a id="4">★</a>
-	        			<a id="5">★</a>
+							<a id="1">★</a> <a id="2">★</a> <a id="3">★</a> <a id="4">★</a> <a
+								id="5">★</a>
 						</p>
-					</div>	
+					</div>
 					<div class="mb-3">
 						<label for="content" style="font-weight: bold">내용</label>
 						<textarea class="form-control" rows="5" name="content"
@@ -209,22 +206,12 @@ var grade;
 
 					<button type="button" class="btn btn-sm btn-primary"
 						onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
-
 				</div>
-
 			</div>
-
 		</div>
 	</div>
-
-
-
 	<!-- /#page-content-wrapper -->
-
-
-
 	<!-- /#wrapper -->
-
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

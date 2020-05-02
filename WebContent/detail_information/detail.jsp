@@ -109,7 +109,7 @@
         <div class="list-group">
           <h3 class="list-group-item active">다른강의</h3>
           <c:forEach items="${sameCateProd}" var="prod">
-          <a href="#" class="list-group-item">${prod}</a>
+          <a href="javaChip?command=selectProdInfo&prodId=${prod.id}" class="list-group-item">${prod.name}</a>
           </c:forEach>
         </div>
       </div>

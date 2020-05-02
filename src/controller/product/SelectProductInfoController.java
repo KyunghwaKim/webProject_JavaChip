@@ -11,6 +11,7 @@ import controller.Controller;
 import controller.ModelAndView;
 import exception.NotFoundException;
 import model.domain.EstimateBoard;
+import model.domain.Product;
 import model.domain.ProductDetail;
 import model.service.ProductService;
 
@@ -24,7 +25,7 @@ public class SelectProductInfoController implements Controller {
 			throw new NotFoundException("존재하지 않는 상품번호입니다.");
 		}
 		
-		List<String> sameCateProd = ProductService.selectSameCateProd(prodId);
+		List<Product> sameCateProd = ProductService.selectSameCateProd(prodId);
 		request.setAttribute("sameCateProd", sameCateProd);
 		
 		Map<EstimateBoard, ProductDetail> map = ProductService.selectProdInfo(prodId);

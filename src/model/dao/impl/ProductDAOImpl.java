@@ -288,7 +288,7 @@ public class ProductDAOImpl implements ProductDAO {
 			ps.setString(1, prodId);
 			rs = ps.executeQuery();
 
-			while (rs.next()) {
+			if (rs.next()) {
 				Teacher teacher = new Teacher();
 				teacher.setName(rs.getString("name"));
 				
@@ -300,12 +300,27 @@ public class ProductDAOImpl implements ProductDAO {
 				prodDetail.setProduct(product);
 				prodDetail.setUrl(rs.getString("prod_url"));
 				
-				EstimateBoard estimate = new EstimateBoard();
-				estimate.setGrade(rs.getInt("grade"));
-				estimate.setSubject(rs.getString("subject"));
-				estimate.setWriteDay(rs.getDate("writeday"));
+				sql = pro.getProperty("selectProdEstInfo");
+				ps = con.prepareStatement(sql);
+				ps.setString(1, prodId);
+				rs = ps.executeQuery();
+
+				int count = 0;
 				
-				map.put(estimate, prodDetail);
+				while(rs.next()) {
+					count++;
+					
+					EstimateBoard estimate = new EstimateBoard();
+					estimate.setGrade(rs.getInt("grade"));
+					estimate.setSubject(rs.getString("subject"));
+					estimate.setWriteDay(rs.getDate("writeday"));
+					
+					map.put(estimate, prodDetail);
+				}
+				if(count == 0) {
+					EstimateBoard estimate = new EstimateBoard();
+					map.put(estimate, prodDetail);
+				}
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
@@ -314,11 +329,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<String> selectSameCateProd(String prodId) throws SQLException {
+	public List<Product> selectSameCateProd(String prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<String> list = new ArrayList<String>();
+		List<Product> list = new ArrayList<Product>();
 		String sql = pro.getProperty("selectSameCateIdProd");
 
 		try {
@@ -336,8 +351,11 @@ public class ProductDAOImpl implements ProductDAO {
 				rs = ps.executeQuery();
 				
 				while(rs.next()) {
-					String prodName = rs.getString(1);
-					list.add(prodName);
+					Product prod = new Product();
+					prod.setId(rs.getString(1));
+					prod.setName(rs.getString(2));
+					
+					list.add(prod);
 				}
 			}
 

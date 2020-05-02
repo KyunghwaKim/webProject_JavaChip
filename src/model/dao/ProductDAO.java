@@ -56,7 +56,7 @@ public interface ProductDAO {
 	/**
 	 * 같은 카테고리 내 다른 상품 띄워주기
 	 */
-	List<String> selectSameCateProd(String prodId) throws SQLException;
+	List<Product> selectSameCateProd(String prodId) throws SQLException;
 	
 	/**
 	 *  상품삭제 - 관리자기능

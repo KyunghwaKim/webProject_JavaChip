@@ -75,7 +75,7 @@ public class ProductService {
 	/**
 	 * 같은 카테고리 내 다른 상품 띄워주기
 	 */
-	public static List<String> selectSameCateProd(String prodId) throws SQLException {
+	public static List<Product> selectSameCateProd(String prodId) throws SQLException {
 		return productDAO.selectSameCateProd(prodId);
 	}
 	

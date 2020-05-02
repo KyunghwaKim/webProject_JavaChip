@@ -141,13 +141,13 @@ $(function(){
 	$("[name=delete]").click(function(){
 		confirm("정말 삭제하시겠습니까?");
 		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
-	});//end click
+	});
 	
 	$("[name=order]").click(function(){
 		location.href="javaChip?command=insertOrderLine&prodId="+$(this).val()+"&prodId="+$('td>span').text();
-		alert("주문이 완료되었습니다!");
+			alert("주문이 완료되었습니다!");
 		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
-	});//end click
+	});
 });
 
 </script>

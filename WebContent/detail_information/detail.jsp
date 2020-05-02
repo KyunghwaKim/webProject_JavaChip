@@ -108,8 +108,11 @@
         <h1 class="my-4"> ${prodDetail.product.name}</h1>
         <div class="list-group">
           <h3 class="list-group-item active">다른강의</h3>
-          <a href="#" class="list-group-item">Python 중급</a>
-          <a href="#" class="list-group-item">Python 고급</a>
+          <c:forEach items="${sameCateProd}" var="prod">
+          <a href="#" class="list-group-item">${prod}</a>
+          </c:forEach>
+<!--           <a href="#" class="list-group-item">Python 중급</a> -->
+<!--           <a href="#" class="list-group-item">Python 고급</a> -->
         </div>
       </div>
       <!-- /.col-lg-3 -->

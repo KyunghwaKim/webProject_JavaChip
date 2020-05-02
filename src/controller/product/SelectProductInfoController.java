@@ -23,7 +23,10 @@ public class SelectProductInfoController implements Controller {
 		if (prodId == null || prodId.equals("")) {
 			throw new NotFoundException("존재하지 않는 상품번호입니다.");
 		}
-
+		
+		List<String> sameCateProd = ProductService.selectSameCateProd(prodId);
+		request.setAttribute("sameCateProd", sameCateProd);
+		
 		Map<EstimateBoard, ProductDetail> map = ProductService.selectProdInfo(prodId);
 
 		System.out.println(map + "map");

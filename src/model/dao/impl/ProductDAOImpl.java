@@ -313,4 +313,39 @@ public class ProductDAOImpl implements ProductDAO {
 		return map;
 	}
 
+	@Override
+	public List<String> selectSameCateProd(String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<String> list = new ArrayList<String>();
+		String sql = pro.getProperty("selectSameCateIdProd");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, prodId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				int cateId = rs.getInt(1);
+				
+				sql = pro.getProperty("selectSameCateProd");
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, cateId);
+				ps.setString(2, prodId);
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					String prodName = rs.getString(1);
+					list.add(prodName);
+				}
+			}
+
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+
+		return list;
+	}
+
 }

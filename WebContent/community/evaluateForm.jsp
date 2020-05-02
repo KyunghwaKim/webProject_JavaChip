@@ -47,18 +47,19 @@ table {
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <script>
+var grade;
 	$(function() {
-
 		$('#star_grade a').click(function() {
 			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
 			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			grade = $(this).attr('id');
 			return false;
 		});
-		
+
 		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록
 			//alert($(":selected").val());
-			location.href="../javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade=5";
+			location.href="../javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade="+grade;
 		});
 	});//end load
 </script>
@@ -185,6 +186,16 @@ table {
 							</c:forEach>
 						</select>
 					</div>
+					<div class="mb-3">
+						<label for="title" style="font-weight: bold">별점주기</label>
+						<p id="star_grade">
+	        			<a id="1">★</a>
+	        			<a id="2">★</a>
+	       				<a id="3">★</a>
+	        			<a id="4">★</a>
+	        			<a id="5">★</a>
+						</p>
+					</div>	
 					<div class="mb-3">
 						<label for="content" style="font-weight: bold">내용</label>
 						<textarea class="form-control" rows="5" name="content"

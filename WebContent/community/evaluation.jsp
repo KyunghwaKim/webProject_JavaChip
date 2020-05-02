@@ -182,7 +182,7 @@ table {
 				<c:if test="${not empty itemList}">
 					<!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
 					<button style="float: right"
-						onclick="location.href='community/evaluateForm.jsp'">후기작성</button>
+						onclick="location.href='community/evaluateForm.jsp'">강의평 작성</button>
 				</c:if>
 			</div>
 		</div>

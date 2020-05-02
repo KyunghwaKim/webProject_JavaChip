@@ -17,7 +17,8 @@ public class DeleteQnAController implements Controller {
 		if(qaBoardNo==null||qaBoardNo.equals("")) {
 			new NotFoundException("인자가 부족합니다.");
 		}
-		QnAService.delete(Integer.parseInt(qaBoardNo));
+		int result = QnAService.delete(Integer.parseInt(qaBoardNo));
+		System.out.println(result);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setRedirect(true);

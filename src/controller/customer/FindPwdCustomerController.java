@@ -21,11 +21,10 @@ public class FindPwdCustomerController implements Controller {
 		}
 		
 		String findCustomerPwd = CustomerService.findPwd(id, name, phone);
-
+		System.out.println(findCustomerPwd);
 		request.setAttribute("findCustomerPwd", findCustomerPwd);
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("");
+		
+		ModelAndView mv = new ModelAndView(false, "Login/pwdresult.jsp");
 
 		return mv;
 	}

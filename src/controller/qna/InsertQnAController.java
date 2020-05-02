@@ -17,7 +17,7 @@ public class InsertQnAController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String subject = request.getParameter("content");
 		//String id = request.getParameter("id");
-		String id = (String) request.getSession().getAttribute("id"); //세션에서 받는 것으로 수정
+		String id = (String) request.getSession().getAttribute("userId"); //세션에서 받는 것으로 수정
 		String prodId = request.getParameter("prodId");
 		String title = request.getParameter("title");
 		
@@ -36,7 +36,7 @@ public class InsertQnAController implements Controller {
 
 		QnAService.insert(qaBoard);
 		
-		ModelAndView mv = new ModelAndView(true, "");
+		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectAllQnA");
 		
 		return mv;
 	}

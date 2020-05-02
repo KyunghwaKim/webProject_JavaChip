@@ -5,21 +5,19 @@
 <html lang="en">
 
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
 <title>JavaChip-Community</title>
 
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/community/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/simple-sidebar.css" rel="stylesheet">
-
+<link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 <style>
 table {
 	width: 1200px;
@@ -29,37 +27,33 @@ table {
 #formpwd {
 	display: none;
 }
-
-#star_grade a {
-	text-decoration: none;
-	color: gray;
-}
-
-#star_grade a.on {
-	color: red;
-}
-
-#teacher {
-	display: none;
-}
 </style>
-
-<script src="vendor/jquery/jquery.min.js"></script>
-
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-	$(function() {
 
-		$('#star_grade a').click(function() {
-			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
-			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-			return false;
-		});
+	window.addEventListener("load", function(){
 		
-		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
-		$('#btnSave').click(function() { //강의평 등록
-			//alert($(":selected").val());
-			location.href="../javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade=5";
-		});
+		var secret = document.getElementById("secrettype");
+		var normal = document.getElementById("normaltype");
+		var formpwd = document.getElementById("formpwd");	
+		
+		secret.onclick = function(){
+			formpwd.style.display = 'inline-block';
+		}
+		normal.onclick = function(){
+			formpwd.style.display = 'none';
+		}
+});
+</script>
+<script>
+	$(function(){
+		$('#btnSave').click(function(){ //qna등록
+			/* if($('option').attr('name') == null || $('#title').val() == null || $('#content').val() == null){
+				alert("입력값이 부족합니다.");
+				return;
+			}else{ */
+				location.href="${path}/javaChip?command=insertQnA&prodId="+$(":selected").val()+"&title="+$('#title').val()+"&content="+$('#content').val();
+		});//end save
 	});//end load
 </script>
 </head>
@@ -83,6 +77,7 @@ table {
 									<li class="nav-item active"></li>
 									<c:choose>
 										<c:when test="${userId==null}">
+											<!-- 비로그인 상태 -->
 											<li class="nav-item"><a class="nav-link"
 												href="${path}/Login/login.jsp"><span
 													style="color: white; font-weight: bold">로그인</span></a></li>
@@ -92,17 +87,18 @@ table {
 											</a></li>
 										</c:when>
 										<c:when test="${userId!=null}">
+											<!-- 로그인 상태 -->
 											<li class="nav-item"><a class="nav-link"
 												href="${path}/javaChip?command=logout"><span
-													style="color: white; font-weight: bold">로그아웃</span></a></li>	
+													style="color: white; font-weight: bold">로그아웃</span></a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="${path}/mypage/mypage.jsp"><span
+													style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+											<li class="nav-item"><a class="nav-link"
+												href="${path}/mycart/newmycart.jsp"><span
+													style="color: white; font-weight: bold">장바구니</span></a></li>
 										</c:when>
 									</c:choose>
-									<li class="nav-item"><a class="nav-link"
-										href="${path}/mypage/mypage.jsp"><span
-											style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="${path}/mycart/newmycart.jsp"><span
-											style="color: white; font-weight: bold">장바구니</span></a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="${path}/classlist/cart.jsp"><span
 											style="color: white; font-weight: bold">강의목록</span></a></li>
@@ -170,12 +166,24 @@ table {
 			</nav>
 
 			<div class="container-fluid">
-				<h2 style="text-align: center; margin-top: 20px;">강의평 작성</h2>
+				<h2 style="text-align: center; margin-top: 20px;">질문하기</h2>
 				<hr>
-
 				<form name="form" id="form" role="form" method="post"
 					action="${pageContext.request.contextPath}/board/saveBoard">
-
+					<table style="width: 300px;">
+						<tr>
+							<th>옵션</th>
+							<th>일반글 &nbsp;<input type="radio" id="normaltype"
+								name="secret" value="normal" checked="checked"></th>
+							<th>비밀글 &nbsp;<input type="radio" id="secrettype"
+								name="secret" value="secret"></th>
+						</tr>
+					</table>
+					<p>
+					<div class="mb-3">
+						<label for="title" style="font-weight: bold">작성자</label> &nbsp;
+						${userId}
+					</div>${itemList}
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 						<select>
@@ -186,32 +194,34 @@ table {
 						</select>
 					</div>
 					<div class="mb-3">
+						<label for="title" style="font-weight: bold">제목</label> <input
+							type="text" class="form-control" name="title" id="title"
+							placeholder="제목을 입력해 주세요">
+					</div>
+					<div class="mb-3">
 						<label for="content" style="font-weight: bold">내용</label>
 						<textarea class="form-control" rows="5" name="content"
-							id="content" placeholder="강의평을 작성해주세요."></textarea>
+							id="content" placeholder="질문작성"></textarea>
+					</div>
+
+					<div class="mb-3" id="formpwd">
+						<label for="password" style="font-weight: bold">비밀번호</label> <input
+							type="password" class="form-control" name="title" id="title"
+							placeholder="최대4자리" maxlength="4">
 					</div>
 				</form>
 
 				<div>
 
-					<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록</button>
-
+					<button type="button" class="btn btn-sm btn-primary" id="btnSave">등록하기</button>
 					<button type="button" class="btn btn-sm btn-primary"
-						onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
-
+						onclick='location.href="../javaChip?command=selectAllQnA"'>목록</button>
 				</div>
-
 			</div>
 
 		</div>
 	</div>
-
-
-
 	<!-- /#page-content-wrapper -->
-
-
-
 	<!-- /#wrapper -->
 
 	<!-- Bootstrap core JavaScript -->
@@ -225,7 +235,7 @@ table {
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-
+	${id}
 </body>
 
 </html>

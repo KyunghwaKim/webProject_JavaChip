@@ -12,6 +12,11 @@ public interface PersonDAO {
 	 */
 	String selectByNameAndPhone(String name, String phone) throws SQLException;
 	
+	/**
+	 * id, 이름, 폰에 해당하는 비밀번호 검색
+	 */
+	String selectByIdAndNameAndPhone(String id, String name, String phone) throws SQLException;
+	
 	Person selectByIdAndPwd(String id, String pwd) throws SQLException;
 	
 	/**

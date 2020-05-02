@@ -18,7 +18,7 @@
 
   <!-- Custom styles for this template -->
   <link href="${path}/detail_information/css/shop-item.css" rel="stylesheet">
-
+ 
 </head>
 
 <body>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +17,9 @@
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-$(function(){
-	
-});//end load
+	$(function() {
+
+	});//end load
 </script>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -114,28 +114,36 @@ $(function(){
 				<hr>
 				<form name="form" id="form" role="form" method="post"
 					action="/webProject_JavaChip/board/saveBoard">
-					
+
 					<div class="mb-3">
 						<label for="content" style="font-weight: bold">강의명</label> &nbsp;
 						${estBoard.product.name}
 					</div>
 					<div class="mb-3">
+						<label for="content" style="font-weight: bold">작성자</label> &nbsp;
+						${estBoard.customer.id}
+					</div>
+					<div class="mb-3">
 						<label for="content" style="font-weight: bold">평점</label>
 						<c:choose>
 							<c:when test="${estBoard.grade == 5}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span> 
+								<span style="color: red">&#9733; &#9733; &#9733; &#9733;
+									&#9733;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 4}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 
+								<span style="color: red">&#9733; &#9733; &#9733; &#9733;
+									&#9734;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 3}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9734;</span> 
+								<span style="color: red">&#9733; &#9733; &#9733;
+									&#9734;&#9734;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 2}">
-							<span style="color:red">&#9733; &#9733; &#9734;&#9734;&#9734;</span> 
+								<span style="color: red">&#9733; &#9733;
+									&#9734;&#9734;&#9734;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 1}">
-							<span style="color:red">&#9733;&#9734;&#9734;&#9734;&#9734;</span> 
+								<span style="color: red">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
 							</c:when>
 						</c:choose>
 					</div>
@@ -153,12 +161,12 @@ $(function(){
 				</form>
 
 				<div>
-					
+
 					<!-- 강의평 상세보기에서 수정불가 -->
 					<%-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>--%>
 
 					<button type="button" class="btn btn-sm btn-primary"
-						onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button> 
+						onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
 
 				</div>
 			</div>
@@ -185,10 +193,10 @@ $(function(){
 
 	<!-- Menu Toggle Script -->
 	<script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
 </body>
 </html>

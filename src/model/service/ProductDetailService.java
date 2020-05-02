@@ -8,6 +8,7 @@ import model.dao.ProductDAO;
 import model.dao.ProductDetailDAO;
 import model.dao.impl.ProductDAOImpl;
 import model.dao.impl.ProductDetailDAOImpl;
+import model.domain.OrderItem;
 import model.domain.ProductDetail;
 
 public class ProductDetailService {
@@ -42,8 +43,17 @@ public class ProductDetailService {
 		if(result==0) throw new SQLException("삭제되지 않았습니다.");
 	}
 	
+	/**
+	 * 챕터페이지 정보 띄우기 - 강의에 대한 정보
+	 */
 	public static List<ProductDetail> selectAll(String prodId) throws SQLException {
 		return productDetailDAO.selectAll(prodId);
 	}
 
+	/**
+	 * 챕터페이지 정보 띄우기 - 언제부터 언제까지 들을 수 있는지
+	 */
+	public static OrderItem selectProdStartEndDay(String customerId, String prodId) throws SQLException {
+		return productDetailDAO.selectProdStartEndDay(customerId, prodId);
+	}
 }

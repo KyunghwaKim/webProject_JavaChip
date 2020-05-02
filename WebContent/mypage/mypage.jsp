@@ -180,14 +180,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <tr><th>강의명</th><th>강사명</th><th>수강종료기간</th></tr>
         <c:forEach items="${orderList}" var="list">
         	<tr>
-        		<td><a href="${path}/mychapter/mychapter.jsp">${list.product.name}</a></td>
+        		<td><a href="${path}/javaChip?command=selectProdDetail&prodId=${list.product.id}">${list.product.name}</a></td>
         		<td>${list.product.teacher.name}</td>
         		<td>${list.endDate}</td>
         	</tr>
         </c:forEach>
-<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA왕초보</a></td><td>김민호</td><td>~2020.05.05</td></tr> -->
-<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA고수</a></td><td>김민호</td><td>~2020.07.05</td></tr> -->
-<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA중수</a></td><td>김민호</td><td>~2020.07.05</td></tr>  -->
         </table> 
         </div>        
       </div>
@@ -209,9 +206,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         		<td>${list.orderLine.payDate}</td>
         	</tr>
         </c:forEach>
-<!--         <tr><td>JAVA왕초보</td><td>김민호</td><td>200,000원</td><td>2020.04.27</td></tr> -->
-<!--         <tr><td>JAVA고수</td><td>김민호</td><td>250,000원</td><td>2020.04.27</td></tr> -->
-<!--         <tr><td>JAVA중수</td><td>김민호</td><td>370,000원</td><td>2020.04.27</td></tr>  -->
         </table> 
         </div>        
       </div>

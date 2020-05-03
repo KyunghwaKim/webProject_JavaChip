@@ -177,7 +177,7 @@
                             <div class="col-lg-9" style="max-width: 100%">
                             <h2 class="title-1 m-b-25">판매품목</h2>
                                     <button class="au-btn au-btn-icon au-btn--blue" 
-                                   onclick="window.open('write.jsp','상품등록','width=700,height=540,location=no,status=no,scrollbars=yes');">
+                                   onclick="window.open('${path}/javaChip?command=Admininput','상품등록','width=700,height=540,location=no,status=no,scrollbars=yes');">                                   
                                         <i class="zmdi zmdi-plus"></i>상품등록</button>
                                     <button class="au-btn au-btn-icon au-btn--blue" 
                                    onclick="window.open('writeChapter.jsp','강의등록','width=700,height=540,location=no,status=no,scrollbars=yes');">

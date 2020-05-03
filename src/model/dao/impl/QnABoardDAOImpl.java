@@ -42,6 +42,8 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 			ps.setString(2, qaBoard.getTitle());
 			ps.setString(3, qaBoard.getProduct().getId());
 			ps.setString(4, qaBoard.getCustomer().getId());
+			ps.setInt(5, qaBoard.getStatus());
+			ps.setInt(6, qaBoard.getPwd());
 			result = ps.executeUpdate();
 		} finally {
 			DbUtil.dbClose(con, ps);
@@ -107,7 +109,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 				qaBoard.setQaBoardNo(rs.getInt("parentnumber"));
 
 				QnABoard qnABoard = new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday"),
-						customer, product, rs.getString("title"), qaBoard);
+						customer, product, rs.getString("title"), qaBoard, rs.getInt("status"), rs.getInt("password"));
 
 				list.add(qnABoard);
 			}
@@ -139,7 +141,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 				qaBoard.setQaBoardNo(rs.getInt("parentnumber"));
 
 				QnABoard qnABoard = new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday"),
-						customer, product, rs.getString("title"), qaBoard);
+						customer, product, rs.getString("title"), qaBoard, rs.getInt("status"), rs.getInt("password"));
 
 				list.add(qnABoard);
 			}
@@ -178,7 +180,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 				qaBoard.setQaBoardNo(rs.getInt("parentnumber"));
 
 				QnABoard qnABoard = new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday"),
-						customer, product, rs.getString("title"), qaBoard);
+						customer, product, rs.getString("title"), qaBoard, rs.getInt("status"), rs.getInt("password"));
 
 				list.add(qnABoard);
 			}
@@ -210,7 +212,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 				QnABoard qna = new QnABoard();
 				qnaBoard 
 				= new QnABoard(rs.getInt("sequence"), rs.getString("subject"), rs.getDate("writeday")
-						, customer, product, rs.getString("title"), qna);
+						, customer, product, rs.getString("title"), qna, rs.getInt("status"), rs.getInt("password"));
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

@@ -42,7 +42,6 @@ table {
 		normal.onclick = function(){
 			formpwd.style.display = 'none';
 		}
-		
 });
 </script>
 <script>

@@ -8,6 +8,14 @@ public class ProductDetail {
 	private Product product;
 	
 	public ProductDetail() {}
+	
+	public ProductDetail(String chapter, String url, String title, Product product) {
+		super();
+		this.chapter = chapter;
+		this.url = url;
+		this.title = title;
+		this.product = product;
+	}
 
 	public ProductDetail(String chapter, String url, String title, Storage storage, Product product) {
 		super();

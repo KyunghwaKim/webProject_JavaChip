@@ -36,20 +36,46 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = pro.getProperty("insertProdDetail");
+		String sql = "INSERT INTO PRODUCTDETAIL(SEQUENCE, PROD_ID, FILE_ID, PROD_URL, PROD_TITLE, CHAPTER) VALUES " +
+			    "(DetailSequence.nextval, ?, ?, ?, ?, ?)";
 		try {
 			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql);			
 			ps.setString(1, productDetail.getProduct().getId());
 			ps.setString(2, productDetail.getStorage().getId());
 			ps.setString(3, productDetail.getUrl());
 			ps.setString(4, productDetail.getTitle());
+			ps.setInt(5, Integer.parseInt(productDetail.getChapter()));
 			result = ps.executeUpdate();
 		} finally {
 			DbUtil.dbClose(con, ps);
 		}
 		return result;
 	}
+	
+	@Override
+	public int insertNoFile(ProductDetail productDetail) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = "INSERT INTO PRODUCTDETAIL(SEQUENCE, PROD_ID, PROD_URL, PROD_TITLE, CHAPTER) VALUES " +
+			    "(DetailSequence.nextval, ?, ?, ?, ?)";
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);			
+			ps.setString(1, productDetail.getProduct().getId());
+			ps.setString(2, productDetail.getUrl());
+			ps.setString(3, productDetail.getTitle());
+			ps.setInt(4, Integer.parseInt(productDetail.getChapter()));
+			result = ps.executeUpdate();
+		} finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	
+	
+	
 
 	@Override
 	public int update(ProductDetail productDetail) throws SQLException {
@@ -145,5 +171,35 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		}
 		return item;
 	}
+		
+	
+	@Override
+	public int checkChapter(String prodId, String chapter) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM PRODUCTDETAIL WHERE PROD_ID=? AND CHAPTER=?";
+		int i = 0;
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, prodId);
+			ps.setInt(2, Integer.parseInt(chapter));
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {				
+				i++;
+			}
+			
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		
+		return i;
+	}
+	
+	
 
 }

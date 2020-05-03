@@ -60,7 +60,7 @@
 				alert("입력값을 확인해주세요");
 				
 				document.getElementById("chapternum").focus();
-				
+				 
 			} else {
 		
 				$.ajax({

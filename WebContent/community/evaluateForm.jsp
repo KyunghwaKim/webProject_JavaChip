@@ -58,7 +58,10 @@ var grade;
 
 		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록
-			//alert($(":selected").val());
+			if($('[name=content]').val() == null || grade == null){
+				alert("별점과 내용을 모두 입력해주세요!");
+				return;
+			}
 			location.href="../javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade="+grade;
 		});
 	});//end load

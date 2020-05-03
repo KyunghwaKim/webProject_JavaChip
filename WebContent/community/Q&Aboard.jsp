@@ -154,8 +154,18 @@ $(function(){
 						<c:forEach items="${QnAList}" var="qna" varStatus="state">
 							<tr>
 								<td>${state.count}</td>
-								<td><a
-									href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}">${qna.title}</a></td>
+								
+								<c:choose>
+								<c:when test="${qna.status == 0}"> <!-- 일반글 -->
+									<td><a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}">${qna.title}</a></td>
+								</c:when>			
+								<c:when test="${qna.status == 1}"> <!-- 비밀글 -->
+									<td><a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}">비밀글 입니다.</a></td>
+								</c:when>
+								<c:otherwise>
+									<td>비밀글 입니다.</td>
+								</c:otherwise>
+								</c:choose>
 								<td>${qna.customer.id}</td>
 								<td>${qna.writeDay}</td>
 								<td>${qna.qaBoardNo}</td>

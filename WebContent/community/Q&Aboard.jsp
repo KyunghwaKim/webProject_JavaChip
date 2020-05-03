@@ -26,7 +26,13 @@ table{
 </style>
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+<script>
+$(function(){
+	$('button[name=adminDel]').click(function(){ //admin이 게시글 삭제
+		location.href="${path}/javaChip?command=deleteQnA&qaBoardNo="+$(this).val();
+	});
+});
+</script>
 <body>
 	<header class="site-navbar site-navbar-target bg-white" role="banner">
 		<div class="container">
@@ -141,6 +147,7 @@ table{
 							<th>작성자</th>
 							<th>작성일</th>
 							<th>조회수</th>
+							<c:if test="${userId == 'admin'}"><th>삭제</th></c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -154,7 +161,7 @@ table{
 								<td>${qna.qaBoardNo}</td>
 								<!-- admin에게는 삭제 버튼 보이기 -->
 								<c:if test="${userId == 'admin'}">
-									<td><button>삭제</button></td>
+									<td><button value="${qna.qaBoardNo}" name='adminDel'>삭제</button></td>
 								</c:if>
 							</tr>
 						</c:forEach>

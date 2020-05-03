@@ -63,6 +63,24 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
+	public int checkCart(String customerId, String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = pro.getProperty("checkCart");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, customerId);
+			ps.setString(2, prodId);
+			result = ps.executeUpdate();
+		} finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+
+	@Override
 	public int insert(String customerId, String prodId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;

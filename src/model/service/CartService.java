@@ -18,6 +18,14 @@ public class CartService {
 	public static List<Cart> selectAll(String customerId) throws SQLException {
 		return cartDAO.selectAll(customerId);
 	}
+
+	/**
+	 * 장바구니 상품 추가 전 이미 장바구니에 있는 상품인지 확인
+	 * @return int - 0: 장바구니에 없음 / 1:이미 장바구니에 담겨있음
+	 */
+	public static int checkCart(String customerId, String prodId) throws SQLException{
+		return cartDAO.checkCart(customerId, prodId);
+	}
 	
 	/**
 	 * 장바구니 담기

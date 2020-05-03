@@ -183,7 +183,7 @@ table {
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">작성자</label> &nbsp;
 						${userId}
-					</div>${itemList}
+					</div>
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 						<select>
@@ -235,7 +235,5 @@ table {
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-	${id}
 </body>
-
 </html>

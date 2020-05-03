@@ -53,6 +53,10 @@ public interface ProductDAO {
 	 */
 	Map<EstimateBoard, ProductDetail> selectProdInfo(String prodId) throws SQLException;
 	
+	/**
+	 * 같은 카테고리 내 다른 상품 띄워주기
+	 */
+	List<Product> selectSameCateProd(String prodId) throws SQLException;
 	
 	/**
 	 *  상품삭제 - 관리자기능

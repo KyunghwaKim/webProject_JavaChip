@@ -61,7 +61,7 @@
 				
 				document.getElementById("chapternum").focus();
 				 
-			} else {
+			} else { 
 		
 				$.ajax({
 					type : "post" ,					

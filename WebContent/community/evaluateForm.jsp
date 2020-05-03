@@ -104,7 +104,7 @@ table {
 										href="${path}/mycart/newmycart.jsp"><span
 											style="color: white; font-weight: bold">장바구니</span></a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="${path}/classlist/cart.jsp"><span
+										href="${path}/javaChip?command=selectProd"><span
 											style="color: white; font-weight: bold">강의목록</span></a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="${path}/community/community.jsp"><span
@@ -179,6 +179,7 @@ table {
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 						<select>
+								<option>강좌선택</option>
 							<c:forEach items="${itemList}" var="item" varStatus="state">
 								<option value="${item.product.id}">${item.product.name}
 									/ ${item.product.teacher.name}</option>

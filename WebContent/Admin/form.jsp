@@ -152,7 +152,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="${path}/marga/index.jsp">
+                                                <a href="${path}/javaChip?command=logout">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

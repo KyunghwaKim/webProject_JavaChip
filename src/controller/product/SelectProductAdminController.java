@@ -25,7 +25,7 @@ public class SelectProductAdminController implements Controller {
 		
  		ModelAndView mv = new ModelAndView();
  		mv.setRedirect(true); 		
- 		mv.setViewName(""); 
+ 		mv.setViewName("Admin/table.jsp"); 
 		 
  		return mv; 
 	}

@@ -70,7 +70,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -107,7 +107,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -131,21 +131,19 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <!-- Middle Column -->
     <div class="w3-col m7"> 
     
-    <h1>&nbsp;&nbsp;&nbsp;JAVA 왕초보</h1>  
+    <h1>&nbsp;&nbsp;&nbsp;${prodDetailList[0].product.name}</h1>  
       
       <div class="w3-container w3-card w3-white w3-round w3-margin" style="width: 900px;"><br> 
         <hr class="w3-clear" style="margin: 0">
         <table class="table table-striped" style="width: 880px; height: 150px; font-size: 20px; text-align: center;">
         <tr><th>챕터</th><th>강의명</th><th>강의자료</th></tr>
-        <tr><td>1강</td><td><a href="${path}/myvideo/myvideo.jsp">JAVA기본용어</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>2강</td><td><a href="${path}/myvideo/myvideo.jsp">제어문</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>3강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문1</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>
-        <tr><td>4강</td><td><a href="${path}/myvideo/myvideo.jsp">반복문2</a></td><td>업로드가능한자료</td></tr>        
+        <c:forEach items="${prodDetailList}" var="prodDetail" varStatus="state"> 
+        	<tr>
+        		<td>${state.count}</td>
+        		<td><a href="${path}/detail_information/video/${prodDetail.url}">${prodDetail.title}</a></td>
+        		<td>${prodDetail.storage.name}</td>
+        	</tr>
+        </c:forEach>
         </table> 
         </div>        
       </div>
@@ -159,7 +157,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <div class="card my-4">
           <h5 class="card-header">강의만료일</h5>
           <div class="card-body">
-             2020.02.05 ~ 2020.07.07
+             ${startEndDay.orderLine.payDate} ~ ${startEndDay.endDate}
           </div>
         </div>
        
@@ -171,7 +169,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
-                    <a href="${path}/community/Q&Aboard.jsp">질문게시판이동</a>
+                    <a href="${path}/javaChip?command=selectAllQnA">질문게시판이동</a>
                   </li>
                 </ul>
               </div>

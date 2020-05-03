@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Properties;
 
 import model.dao.ProductDetailDAO;
+import model.domain.OrderItem;
+import model.domain.OrderLine;
 import model.domain.Product;
 import model.domain.ProductDetail;
 import model.domain.Storage;
@@ -101,19 +103,47 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 			while (rs.next()) {
 				Product product = new Product();
 				product.setId(prodId);
+				product.setName(rs.getString("prod_name"));
 
 				Storage storage = new Storage();
-				storage.setId(rs.getString("file_id"));
+				storage.setName(rs.getString("file_name"));
 
-				ProductDetail productDetail = new ProductDetail(rs.getString("chapter"), rs.getString("prod_url"),
+				ProductDetail prodDetail = new ProductDetail(rs.getString("chapter"), rs.getString("prod_url"),
 						rs.getString("prod_title"), storage, product);
 
-				list.add(productDetail);
+				list.add(prodDetail);
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public OrderItem selectProdStartEndDay(String customerId, String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		OrderItem item = null;
+		String sql = pro.getProperty("selectProdStartEndDay");
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, prodId);
+			ps.setString(2, customerId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				OrderLine line = new OrderLine();
+				line.setPayDate(rs.getDate("pay_date"));
+				
+				item = new OrderItem();
+				item.setOrderLine(line);
+				item.setEndDate(rs.getDate("end_date"));
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return item;
 	}
 
 }

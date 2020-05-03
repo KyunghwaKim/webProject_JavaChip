@@ -31,8 +31,8 @@ public class OrderItemService {
 	
 	public static void update(List<Integer> list) throws SQLException{
 		for(int itemNo : list) {
-			int result = itemDAO.update(itemNo);
-			if(result==0) throw new SQLException("수정되지 않았습니다.");		
+//			int result = itemDAO.update(itemNo);
+//			if(result==0) throw new SQLException("수정되지 않았습니다.");		
 		}
 	}
 }

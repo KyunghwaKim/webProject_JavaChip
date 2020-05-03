@@ -101,7 +101,7 @@ background-color: black;
 
 position: fixed;
 z-index: 1000;
-left: 1170px;
+left: 1300px;
 bottom: 20px;
 width: 300px;
 height: 200px;
@@ -111,7 +111,7 @@ height: 200px;
 .toast_close2 span {
 position: fixed;
 z-index: 3000;
-left: 1430px;
+left: 1560px;
 bottom: 180px;
 width: 40px;
 height: 40px;   

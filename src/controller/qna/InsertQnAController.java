@@ -46,7 +46,6 @@ public class InsertQnAController implements Controller {
 		}
 		
 		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectAllQnA");
-		
 		return mv;
 	}
 

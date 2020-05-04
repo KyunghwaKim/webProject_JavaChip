@@ -25,11 +25,11 @@ public class PersonService {
 	 * 관리자가 유저(강사, 관리자) 등록
 	 * @throws SQLException 
 	 */
-
-	public static void insert(String id, String pwd, String name, String phone, String gender, int status) throws SQLException {
-		int result = personDAO.insert(id, pwd, name, phone, gender, status);
+	public static void insert(Person person) throws SQLException {
+		int result = personDAO.insert(person);
 		if(result == 0) {
 			throw new SQLException("등록에 실패하였습니다.");
+						
 		}
 	}
 }

@@ -79,4 +79,27 @@ public class TeacherDAOImpl implements TeacherDAO {
 		}
 		return teacher;
 	}
+	
+	
+	@Override
+	public int insert(Teacher teacher) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "INSERT INTO TEACHER(TEACHER_ID, CATEGORY_ID, PICTURE_NAME) VALUES (?,?,?)";
+		int result=0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, teacher.getId());
+			ps.setInt(2, teacher.getCategory().getId());
+			ps.setString(3, teacher.getPictureName());
+			result = ps.executeUpdate();
+		} finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return result;
+		
+	}	
+	
 }

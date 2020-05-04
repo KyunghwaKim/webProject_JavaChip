@@ -69,8 +69,12 @@
                                 <i class="fas fa-table"></i>판매품목</a>
                         </li>
                         <li>
-                            <a href="${path}/Admin/form.jsp">
-                                <i class="far fa-check-square"></i>고객관리</a>
+                            <a href="${path}/javaChip?command=teacherinput">
+                                <i class="far fa-check-square"></i>등록</a>
+                        </li>
+                        <li>
+                            <a href="${path}/javaChip?command=SelectAllperson">
+                                <i class="far fa-check-square"></i>회원목록</a>
                         </li>                        
                     </ul>
                 </div>
@@ -100,9 +104,13 @@
                                 <i class="fas fa-table"></i>판매품목</a>
                         </li>
                         <li>
-                            <a href="${path}/Admin/form.jsp">
-                                <i class="far fa-check-square"></i>고객관리</a>
-                        </li> 
+                            <a href="${path}/javaChip?command=teacherinput">
+                                <i class="far fa-check-square"></i>등록</a>
+                        </li>
+                        <li>
+                            <a href="${path}/javaChip?command=SelectAllperson">
+                                <i class="far fa-check-square"></i>회원목록</a>
+                        </li>  
                     </ul>
                 </nav>
             </div>
@@ -143,16 +151,12 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                    <a href="${path}/community/community.jsp">
+                                                        <i class="zmdi zmdi-account"></i>커뮤니티</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                    <a href="${path}/javaChip?command=selectProd">
+                                                        <i class="zmdi zmdi-settings"></i>자료등록</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
@@ -163,8 +167,8 @@
                                     </div>
                                 </div>
    					        </div>
-                           </div>
-                         </div>                    
+                         </div>
+                      </div>                    
             </header>
             <!-- HEADER DESKTOP-->
 

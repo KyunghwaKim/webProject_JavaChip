@@ -1,5 +1,6 @@
 package controller.orderLine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,14 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 		
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("user", customer);
+		
+		List<OrderItem> myLectureList = new ArrayList<OrderItem>();
+		for(OrderItem item : orderList) {
+			if(item.getIsRefund()==1) {
+				myLectureList.add(item);
+			}
+		}
+		request.setAttribute("myLectureList", myLectureList);
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/mypage.jsp");

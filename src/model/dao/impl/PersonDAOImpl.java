@@ -212,5 +212,31 @@ public class PersonDAOImpl implements PersonDAO {
 		return person;
 	}
 	
+
+	/**
+	 * id에 해당하는 person 검색
+	 */
+	@Override
+	public Person selectById(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = pro.getProperty("selectPersonByUserId");
+		Person person=null;
+		try {			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				person = new Person(rs.getString("id"), rs.getInt("status"));
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}	
+		return person;
+	}
+	
 	
 }

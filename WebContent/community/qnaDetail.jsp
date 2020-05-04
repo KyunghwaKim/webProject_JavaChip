@@ -24,10 +24,17 @@
 .secret {
 	display: none;
 }
+#answerForm {
+	display: none;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 	$(function() {
+		if(${userStatus} == 2 || ${userStatus} == 3){//관리자면 비밀글 show
+			$('.secret').show();
+			$('#formpwd').hide();
+		}
 		$("button[name=confrim]").click(function() {
 			 $.ajax({
 				url : "community/pwdCheck.jsp",
@@ -52,12 +59,21 @@
 		$('#btnDel').click(function() {
 			location.href = "javaChip?command=deleteQnA&qaBoardNo=" + ${qnaBoard.qaBoardNo};
 		});//end delete
+		
+		$('#answer').click(function(){
+			$('#answerForm').show();
+		});//end click
+		
+		$('#answerSave').click(function(){//답변 저장
+			location.href
+				="javaChip?command=insertQnA&no="+${qnaBoard.qaBoardNo}+"&content="+$('[name=answer]').val()+"&title="+$('[name=title]').val()+"&prodId="+$('.prodName').text();
+		});//end click
 	});//end load
 </script>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			<a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -157,8 +173,7 @@
 				<h2 style="text-align: center; margin-top: 20px;">QnA</h2>
 				<hr>
 				<c:choose>
-					<c:when test="${ qnaBoard.status == 0}">
-						<!-- 일반글 -->
+					<c:when test="${qnaBoard.status == 0}"> <!-- 일반글 -->
 						<form name="form" id="" role="form" method="post" class="normal">
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">작성자</label>
@@ -166,7 +181,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">강의명</label>
-								${qnaBoard.product.id}
+								<span class="prodName">${qnaBoard.product.id}</span>
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">제목</label> <input
@@ -180,8 +195,7 @@
 							</div>
 						</form>
 					</c:when>
-					<c:when test="${ qnaBoard.status == 1}">
-						<!-- 비밀글 -->
+					<c:when test="${qnaBoard.status == 1}"> <!-- 비밀글 -->
 						<form name="form" id="" role="form" method="post" class="secret">
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">작성자</label>
@@ -189,7 +203,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">강의명</label>
-								${qnaBoard.product.id}
+								<span class="prodName">${qnaBoard.product.id}</span>
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">제목</label> <input
@@ -203,12 +217,11 @@
 							</div>
 
 						</form>
-						*비밀글은 비밀번호를 입력해야 볼 수 있습니다.
-						<div class="mb-3" id="formpwd">
-							<label for="password" style="font-weight: bold">비밀번호</label> <input
-								type="password" class="form-control" name="pwd" id=""
-								placeholder="최대4자리" maxlength="4">
-							<button name="confrim">확인</button>
+						
+						<div class="mb-3" id="formpwd">*비밀글은 비밀번호 입력 후 확인 가능합니다.<br>
+							<label for="password" style="font-weight: bold">비밀번호</label> <br>
+							<input type="password" class="" name="pwd" placeholder="최대4자리" maxlength="4">
+							<button name="confrim" class="btn btn-sm btn-primary">확인</button>
 						</div>
 					</c:when>
 				</c:choose>
@@ -219,8 +232,20 @@
 						<button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>
 						<button type="button" class="btn btn-sm btn-primary" id="btnDel">삭제</button>
 					</c:if>
+					
+					<c:if test="${userStatus==2}"> <!-- 강사에게는 답변 작성 버튼 show -->
+						<button type="button" class="btn btn-sm btn-primary" id="answer">답변작성하기</button>
+					</c:if>
 					<button type="button" class="btn btn-sm btn-primary"
 						onclick='location.href="${path}/javaChip?command=selectAllQnA"'>목록</button>
+				</div>
+				
+				<div class="mb-3" id="answerForm"><!-- 답변 폼 -->
+					<hr>
+					<label for="content" style="font-weight: bold">답변 내용</label>
+					<textarea class="form-control" rows="5" name="answer"></textarea> <br>
+					<button type="button" class="btn btn-sm btn-primary" id="answerSave"
+						>저장</button>
 				</div>
 			</div>
 		</div>

@@ -43,6 +43,8 @@ public interface PersonDAO {
 	  */	 
 	 Person selectAdminById(String id) throws SQLException;
 	 
-	 
-	 
+	 /**
+	  * id에 해당하는 person 검색
+	  */
+	 Person selectById(String id) throws SQLException;
 }

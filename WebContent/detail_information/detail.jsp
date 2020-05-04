@@ -143,7 +143,8 @@
           </div>
           <div class="card-body">
           	<c:forEach items="${estimateList}" var="estBoard">
-          		<p>${estBoard.subject}</p>
+          		<p>
+          		${estBoard.subject}<br>
           		<span class="text-warning">
 	            <c:choose>
 					<c:when test="${estBoard.grade == 5}">
@@ -164,6 +165,7 @@
 				</c:choose>
 	            </span>
 	            <small class="text-muted">${estBoard.writeDay}</small>
+	            </p>
           	</c:forEach>
             <hr>
             <a href="${path}/javaChip?command=insertCart&prodId=${prodDetail.product.id}" class="btn btn-success">장바구니 담기</a>

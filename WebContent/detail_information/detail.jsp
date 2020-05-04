@@ -28,7 +28,7 @@
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
         <div class="container">
-          <div class="row align-items-center position-relative">          				
+          <div class="row align-items-center position-relative">		
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">

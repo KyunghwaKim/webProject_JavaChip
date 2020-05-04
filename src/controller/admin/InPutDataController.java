@@ -21,7 +21,7 @@ public class InPutDataController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("어드민인풋컨트롤러 호출됨...");		
+		System.out.println("어드민인풋컨트롤러 호출됨...");	 	
 		
 		// 레벨 Number 로 바꾸기?
 		

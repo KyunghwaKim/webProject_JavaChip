@@ -36,7 +36,7 @@ public interface PersonDAO {
 	 /**
 	  * 강사, 관리자 등록 - 관리자
 	  */
-	 int insert(String id, String pwd, String name, String phone, String gender, int status) throws SQLException;
+	 int insert(Person person) throws SQLException;
 	 
 	 /**
 	  *  관리자 상세정보 가져오기...

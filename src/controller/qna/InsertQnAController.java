@@ -36,9 +36,9 @@ public class InsertQnAController implements Controller {
 		product.setId(prodId);
 		
 		
-		if(pwd == null || pwd.equals("")) { //일반글인 경우 비밀번호 1234로 세팅..
+		if(pwd == null || pwd.equals("")) { //일반글인 경우 기본 비밀번호 0 세팅
 			QnABoard qaBoard=new QnABoard(subject, customer, product, title, Integer.parseInt(status));
-			qaBoard.setPwd(1234);
+			qaBoard.setPwd(0);
 			QnAService.insert(qaBoard);
 		}else {
 			QnABoard qaBoard = new QnABoard(subject, customer, product, title, Integer.parseInt(status), Integer.parseInt(pwd));

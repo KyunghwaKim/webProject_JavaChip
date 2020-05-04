@@ -15,10 +15,10 @@
 <title>JavaChip-Community</title>
 
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/community/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/simple-sidebar.css" rel="stylesheet">
+<link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 table {
@@ -62,7 +62,7 @@ var grade;
 				alert("별점과 내용을 모두 입력해주세요!");
 				return;
 			}
-			location.href="../javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade="+grade;
+			location.href="${path}/javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade="+grade;
 		});
 	});//end load
 </script>
@@ -172,9 +172,10 @@ var grade;
 					</ul>
 				</div>
 			</nav>
-
+			
 			<div class="container-fluid">
 				<h2 style="text-align: center; margin-top: 20px;">강의평 작성</h2>
+				
 				<hr>
 
 				<form name="form" id="form" role="form" method="post"
@@ -217,8 +218,8 @@ var grade;
 	<!-- /#page-content-wrapper -->
 	<!-- /#wrapper -->
 	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${path}/community/vendor/jquery/jquery.min.js"></script>
+	<script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Menu Toggle Script -->
 	<script>

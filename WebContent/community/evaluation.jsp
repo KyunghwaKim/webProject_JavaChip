@@ -32,6 +32,29 @@ $(function(){
 	$('button[name=adminDel]').click(function(){ //admin이 게시글 삭제
 		location.href="${path}/javaChip?command=deleteEst&estimateNo="+$(this).val();
 	});
+	
+	$('button[name=eval]').click(function(){ //목록에 이미 작성한 강의평이 있을 경우 alert
+		location.href="${path}/javaChip?command=selectByCusIdEst";
+		  /* $.ajax({
+			url : "community/estCheck.jsp",
+			type : "get",
+			data : "userId="+$('#userId').text(),
+			success : function(json){
+				if(json.status == 1){
+					alert(1);
+				}else if(json.status == -1){
+					alert(2);
+					//location.href="${path}/community/evaluateForm.jsp";
+				}
+			}
+		});//end ajax */
+		/* if(){
+			alert(2);
+			return;
+		}else{
+			location.href="${path}/community/evaluateForm.jsp";
+		} */
+	});
 });
 </script>
 <body>
@@ -75,7 +98,7 @@ $(function(){
 										</c:when>
 									</c:choose>
 									<li class="nav-item"><a class="nav-link"
-										href="${path}/classlist/cart.jsp"><span
+										href="${path}/javaChip?command=selectProd"><span
 											style="color: white; font-weight: bold">강의목록</span></a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="${path}/community/community.jsp"><span
@@ -179,7 +202,7 @@ $(function(){
 										</c:when>
 									</c:choose></td>
 								<td>${est.subject}</td>
-								<td>${est.customer.id}</td>
+								<td id="userId">${est.customer.id}</td>
 								<td>${est.writeDay}</td>
 								<c:if test="${userId == 'admin'}">
 								<td><button value="${est.estimateNo}" name="adminDel">삭제</button>
@@ -190,10 +213,11 @@ $(function(){
 				</table>
 
 				<hr>
+				*강의평은 수강한 강의에 한하여 한 번만 작성 가능합니다.
 				<c:if test="${not empty itemList}">
 					<!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
-					<button style="float: right"
-						onclick="location.href='community/evaluateForm.jsp'">강의평 작성</button>
+					<button style="float: right" name='eval'
+						onclick="">강의평 작성</button>
 				</c:if>
 			</div>
 		</div>

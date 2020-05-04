@@ -34,7 +34,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Teacher> list = new ArrayList<Teacher>();
-		String sql = pro.getProperty("selectAllTeacher");
+		String sql = "SELECT * FROM TEACHER JOIN PERSON P on TEACHER.TEACHER_ID = P.ID";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -43,9 +43,9 @@ public class TeacherDAOImpl implements TeacherDAO {
 				Category category = new Category();
 				category.setId(rs.getInt("category_id"));
 
-				Teacher teacher = new Teacher();
-						//(rs.getString("id"), rs.getString("pwd"), rs.getString("name"),
-						//rs.getString("phone"), rs.getString("gender"), rs.getInt("status"), category);
+				Teacher teacher = new Teacher(rs.getString("id"), rs.getString("pwd"), rs.getString("name"),
+						rs.getString("phone"), rs.getString("gender"), rs.getInt("status"), category, rs.getString("PICTURE_NAME"));
+				
 				list.add(teacher);
 			}
 		} finally {

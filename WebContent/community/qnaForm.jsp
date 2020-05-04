@@ -30,7 +30,6 @@ table {
 </style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-
 	window.addEventListener("load", function(){
 		
 		var secret = document.getElementById("secrettype");
@@ -48,11 +47,14 @@ table {
 <script>
 	$(function(){
 		$('#btnSave').click(function(){ //qna등록
-			/* if($('option').attr('name') == null || $('#title').val() == null || $('#content').val() == null){
-				alert("입력값이 부족합니다.");
-				return;
-			}else{ */
-				location.href="${path}/javaChip?command=insertQnA&prodId="+$(":selected").val()+"&title="+$('#title').val()+"&content="+$('#content').val();
+			 var status = $('input[name="secret"]:checked').val(); //옵션 값
+	         if(status==1){ //비밀글
+	        	 location.href
+	 			="${path}/javaChip?command=insertQnA&prodId="+$(":selected").val()+"&title="+$('#title').val()
+	 					+"&content="+$('#content').val()+"&status="+status+"&pwd="+$('input[name=password]').val();
+	         }else if(status==0){
+	        	 location.href="${path}/javaChip?command=insertQnA&prodId="+$(":selected").val()+"&title="+$('#title').val()+"&content="+$('#content').val()+"&status="+status;
+	         }
 		});//end save
 	});//end load
 </script>
@@ -100,7 +102,7 @@ table {
 										</c:when>
 									</c:choose>
 									<li class="nav-item"><a class="nav-link"
-										href="${path}/classlist/cart.jsp"><span
+										href="${path}/javaChip?command=selectProd"><span
 											style="color: white; font-weight: bold">강의목록</span></a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="${path}/community/community.jsp"><span
@@ -174,9 +176,9 @@ table {
 						<tr>
 							<th>옵션</th>
 							<th>일반글 &nbsp;<input type="radio" id="normaltype"
-								name="secret" value="normal" checked="checked"></th>
+								name="secret" value="0" checked="checked"></th>
 							<th>비밀글 &nbsp;<input type="radio" id="secrettype"
-								name="secret" value="secret"></th>
+								name="secret" value="1"></th>
 						</tr>
 					</table>
 					<p>
@@ -203,10 +205,9 @@ table {
 						<textarea class="form-control" rows="5" name="content"
 							id="content" placeholder="질문작성"></textarea>
 					</div>
-
 					<div class="mb-3" id="formpwd">
 						<label for="password" style="font-weight: bold">비밀번호</label> <input
-							type="password" class="form-control" name="title" id="title"
+							type="password" class="form-control" name="password" id=""
 							placeholder="최대4자리" maxlength="4">
 					</div>
 				</form>

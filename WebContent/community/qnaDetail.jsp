@@ -5,7 +5,6 @@
 <html lang="en">
 
 <head>
-
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -21,18 +20,39 @@
 <link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 </head>
+<style>
+.secret {
+	display: none;
+}
+</style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-$(function(){
-	$('#btnSave').click(function(){
-		alert("수정되었습니다!");
-		location.href="javaChip?command=updateQnA&qaBoardNo="+${qnaBoard.qaBoardNo}+"&content="+$('#content').val();
-	});//end save
-	
-	$('#btnDel').click(function(){
-		location.href="javaChip?command=deleteQnA&qaBoardNo="+${qnaBoard.qaBoardNo};
-	});//end delete
-});//end load
+	$(function() {
+		$("button[name=confrim]").click(function() {
+			 $.ajax({
+				url : "community/pwdCheck.jsp",
+				type : "post",
+				data : "no="+${qnaBoard.qaBoardNo}+"&pwd="+$('input[name=pwd]').val(),
+				success : function(jsonObj){
+					if(jsonObj.status == 1){
+						$('.secret').show();
+					}else if(jsonObj.status == -1){
+						alert(jsonObj.msg);
+					}else{
+						alert("잘못된 접근입니다.");
+					}			
+				}//end succ
+			});
+		});
+		$('#btnSave').click(function() {
+			alert("수정되었습니다!");
+			location.href = "javaChip?command=updateQnA&qaBoardNo=" + ${qnaBoard.qaBoardNo}+"&content=" + $('#content').val();
+		});//end save
+
+		$('#btnDel').click(function() {
+			location.href = "javaChip?command=deleteQnA&qaBoardNo=" + ${qnaBoard.qaBoardNo};
+		});//end delete
+	});//end load
 </script>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -46,26 +66,35 @@ $(function(){
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"></li>
+					<c:choose>
+						<c:when test="${userId==null}">
+							<!-- 비로그인 상태 -->
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/Login/login.jsp"><span
+									style="color: white; font-weight: bold">로그인</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');">
+									<span style="color: white; font-weight: bold">회원가입</span>
+							</a></li>
+						</c:when>
+						<c:when test="${userId!=null}">
+							<!-- 로그인 상태 -->
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/javaChip?command=logout"><span
+									style="color: white; font-weight: bold">로그아웃</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/mypage/mypage.jsp"><span
+									style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/mycart/newmycart.jsp"><span
+									style="color: white; font-weight: bold">장바구니</span></a></li>
+						</c:when>
+					</c:choose>
 					<li class="nav-item"><a class="nav-link"
-						href="../Login/login.jsp"><span
-							style="color: white; font-weight: bold">로그인</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../marga/index.jsp"><span
-							style="color: white; font-weight: bold">로그아웃</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span
-							style="color: white; font-weight: bold">회원가입</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../mypage/mypage.jsp"><span
-							style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../mycart/newmycart.jsp"><span
-							style="color: white; font-weight: bold">장바구니</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../classlist/cart.jsp"><span
+						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../community/community.jsp"><span
+						href="${path}/community/community.jsp"><span
 							style="color: white; font-weight: bold">커뮤니티</span></a></li>
 				</ul>
 			</div>
@@ -127,32 +156,63 @@ $(function(){
 				<!-- qna 상세 폼 시작 -->
 				<h2 style="text-align: center; margin-top: 20px;">QnA</h2>
 				<hr>
-				<form name="form" id="form" role="form" method="post"
-					action="/webProject_JavaChip/board/saveBoard">
-					<div class="mb-3">
-						<label for="title" style="font-weight: bold">작성자</label>
-						${qnaBoard.customer.id}
-					</div>
-					<div class="mb-3">
-					<label for="title" style="font-weight: bold">강의명</label>
-					${qnaBoard.product.id}</div>
-					<div class="mb-3">
-						<label for="title" style="font-weight: bold">제목</label> <input
-							type="text" class="form-control" name="title" id="title"
-							value="${qnaBoard.title}" disabled>
-					</div>
-					<div class="mb-3">
-						<label for="content" style="font-weight: bold">내용</label>
-						<textarea class="form-control" rows="5" name="content"
-							id="content" value="${qnaBoard.subject}">${qnaBoard.subject}</textarea>
-					</div>
+				<c:choose>
+					<c:when test="${ qnaBoard.status == 0}">
+						<!-- 일반글 -->
+						<form name="form" id="" role="form" method="post" class="normal">
+							<div class="mb-3">
+								<label for="title" style="font-weight: bold">작성자</label>
+								${qnaBoard.customer.id}
+							</div>
+							<div class="mb-3">
+								<label for="title" style="font-weight: bold">강의명</label>
+								${qnaBoard.product.id}
+							</div>
+							<div class="mb-3">
+								<label for="title" style="font-weight: bold">제목</label> <input
+									type="text" class="form-control" name="title" id="title"
+									value="${qnaBoard.title}" disabled>
+							</div>
+							<div class="mb-3">
+								<label for="content" style="font-weight: bold">내용</label>
+								<textarea class="form-control" rows="5" name="content"
+									id="content" value="${qnaBoard.subject}">${qnaBoard.subject}</textarea>
+							</div>
+						</form>
+					</c:when>
+					<c:when test="${ qnaBoard.status == 1}">
+						<!-- 비밀글 -->
+						<form name="form" id="" role="form" method="post" class="secret">
+							<div class="mb-3">
+								<label for="title" style="font-weight: bold">작성자</label>
+								${qnaBoard.customer.id}
+							</div>
+							<div class="mb-3">
+								<label for="title" style="font-weight: bold">강의명</label>
+								${qnaBoard.product.id}
+							</div>
+							<div class="mb-3">
+								<label for="title" style="font-weight: bold">제목</label> <input
+									type="text" class="form-control" name="title" id="title"
+									value="${qnaBoard.title}" disabled>
+							</div>
+							<div class="mb-3">
+								<label for="content" style="font-weight: bold">내용</label>
+								<textarea class="form-control" rows="5" name="content"
+									id="content" value="${qnaBoard.subject}">${qnaBoard.subject}</textarea>
+							</div>
 
-					<!-- <div class="mb-3" id="formpwd">
-						<label for="password" style="font-weight: bold">비밀번호</label> <input
-							type="password" class="form-control" name="title" id="title"
-							placeholder="최대4자리" maxlength="4">
-					</div> -->
-				</form>
+						</form>
+						*비밀글은 비밀번호를 입력해야 볼 수 있습니다.
+						<div class="mb-3" id="formpwd">
+							<label for="password" style="font-weight: bold">비밀번호</label> <input
+								type="password" class="form-control" name="pwd" id=""
+								placeholder="최대4자리" maxlength="4">
+							<button name="confrim">확인</button>
+						</div>
+					</c:when>
+				</c:choose>
+
 				<div>
 					<c:if test="${userId == qnaBoard.customer.id}">
 						<!-- 본인이 쓴 글인 경우 수정/삭제 버튼 보이기 -->
@@ -186,11 +246,11 @@ $(function(){
 
 	<!-- Menu Toggle Script -->
 	<script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
 
 </body>
 

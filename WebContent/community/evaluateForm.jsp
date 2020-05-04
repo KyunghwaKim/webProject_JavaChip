@@ -15,10 +15,10 @@
 <title>JavaChip-Community</title>
 
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/community/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/simple-sidebar.css" rel="stylesheet">
+<link href="${path}/community/css/simple-sidebar.css" rel="stylesheet">
 
 <style>
 table {
@@ -58,8 +58,11 @@ var grade;
 
 		//강의평 등록하기 - 내가 수강하는 강의에 한하여 등록할 수 있다
 		$('#btnSave').click(function() { //강의평 등록
-			//alert($(":selected").val());
-			location.href="../javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade="+grade;
+			if($('[name=content]').val() == null || grade == null){
+				alert("별점과 내용을 모두 입력해주세요!");
+				return;
+			}
+			location.href="${path}/javaChip?command=insertEst&prodId="+$(":selected").val()+"&content="+$('[name=content]').val()+"&grade="+grade;
 		});
 	});//end load
 </script>
@@ -105,7 +108,7 @@ var grade;
 										href="${path}/mycart/newmycart.jsp"><span
 											style="color: white; font-weight: bold">장바구니</span></a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="${path}/classlist/cart.jsp"><span
+										href="${path}/javaChip?command=selectProd"><span
 											style="color: white; font-weight: bold">강의목록</span></a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="${path}/community/community.jsp"><span
@@ -169,9 +172,10 @@ var grade;
 					</ul>
 				</div>
 			</nav>
-
+			
 			<div class="container-fluid">
 				<h2 style="text-align: center; margin-top: 20px;">강의평 작성</h2>
+				
 				<hr>
 
 				<form name="form" id="form" role="form" method="post"
@@ -180,6 +184,7 @@ var grade;
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">강좌 선택</label> <br>
 						<select>
+								<option>강좌선택</option>
 							<c:forEach items="${itemList}" var="item" varStatus="state">
 								<option value="${item.product.id}">${item.product.name}
 									/ ${item.product.teacher.name}</option>
@@ -213,8 +218,8 @@ var grade;
 	<!-- /#page-content-wrapper -->
 	<!-- /#wrapper -->
 	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${path}/community/vendor/jquery/jquery.min.js"></script>
+	<script src="${path}/community/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Menu Toggle Script -->
 	<script>

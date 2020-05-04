@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
+    <!-- Required meta tags--> 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
@@ -152,7 +152,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="${path}/marga/index.jsp">
+                                                <a href="${path}/javaChip?command=logout">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

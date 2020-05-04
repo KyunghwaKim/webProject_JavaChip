@@ -33,26 +33,35 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"></li>
+					<c:choose>
+						<c:when test="${userId==null}">
+							<!-- 비로그인 상태 -->
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/Login/login.jsp"><span
+									style="color: white; font-weight: bold">로그인</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');">
+									<span style="color: white; font-weight: bold">회원가입</span>
+							</a></li>
+						</c:when>
+						<c:when test="${userId!=null}">
+							<!-- 로그인 상태 -->
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/javaChip?command=logout"><span
+									style="color: white; font-weight: bold">로그아웃</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/mypage/mypage.jsp"><span
+									style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/mycart/newmycart.jsp"><span
+									style="color: white; font-weight: bold">장바구니</span></a></li>
+						</c:when>
+					</c:choose>
 					<li class="nav-item"><a class="nav-link"
-						href="../Login/login.jsp"><span
-							style="color: white; font-weight: bold">로그인</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../marga/index.jsp"><span
-							style="color: white; font-weight: bold">로그아웃</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span
-							style="color: white; font-weight: bold">회원가입</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../mypage/mypage.jsp"><span
-							style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../mycart/newmycart.jsp"><span
-							style="color: white; font-weight: bold">장바구니</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../classlist/cart.jsp"><span
+						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../community/community.jsp"><span
+						href="${path}/community/community.jsp"><span
 							style="color: white; font-weight: bold">커뮤니티</span></a></li>
 				</ul>
 			</div>

@@ -35,6 +35,11 @@
     <!-- Main CSS-->
     <link href="${path}/Admin/css/theme.css" rel="stylesheet" media="all">
 
+<script>
+</script>
+
+
+
 </head>
 
 <body class="animsition">
@@ -152,7 +157,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="${path}/marga/index.jsp">
+                                                <a href="${path}/javaChip?command=logout">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -172,7 +177,7 @@
                             <div class="col-lg-9" style="max-width: 100%">
                             <h2 class="title-1 m-b-25">판매품목</h2>
                                     <button class="au-btn au-btn-icon au-btn--blue" 
-                                   onclick="window.open('write.jsp','상품등록','width=700,height=540,location=no,status=no,scrollbars=yes');">
+                                   onclick="window.open('${path}/javaChip?command=Admininput','상품등록','width=700,height=540,location=no,status=no,scrollbars=yes');">                                   
                                         <i class="zmdi zmdi-plus"></i>상품등록</button>
                                     <button class="au-btn au-btn-icon au-btn--blue" 
                                    onclick="window.open('writeChapter.jsp','강의등록','width=700,height=540,location=no,status=no,scrollbars=yes');">
@@ -206,8 +211,8 @@
                                                 <td class="text-right">${list.product.price}원</td>
                                                 <td>
                                                 <form action="${path}/javaChip?command=deleteProd" method="post">
-                                                <input type="text" name="delete" value="${list.product.id}" style="color: black; display: none;">
-                                                <input type="submit" value="삭제" style="border: 1px solid; background-color: silver;">
+                                                <input type="text" name="delete" id="val" value="${list.product.id}" style="color: black; display: none;">
+                                                <input type="submit" value="삭제" id="de" style="border: 1px solid; background-color: silver;">
                                                 </form>                                               
                                                 </td>                                                                                                
                                             </tr>

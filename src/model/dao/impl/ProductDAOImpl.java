@@ -89,7 +89,7 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Product> list = new ArrayList<Product>();
-		String sql = "selectProdAll";
+		String sql = "SELECT * FROM PRODUCT";
 
 		try {
 			con = DbUtil.getConnection();
@@ -106,7 +106,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
-						category, rs.getDate("upload_date"), rs.getInt("valid_Date"));
+						category, rs.getDate("upload_date"), rs.getInt("valid_Date"), rs.getInt("STATUS"));
 
 				list.add(product);
 			}

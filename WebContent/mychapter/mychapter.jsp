@@ -141,7 +141,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         	<tr>
         		<td>${state.count}</td>
         		<td><a href="${path}/detail_information/video/${prodDetail.url}">${prodDetail.title}</a></td>
-        		<td>${prodDetail.storage.name}</td>
+        		<td>${prodDetail.fileName}</td>
         	</tr>
         </c:forEach>
         </table> 

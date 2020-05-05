@@ -15,6 +15,7 @@ import model.domain.OrderItem;
 import model.domain.OrderLine;
 import model.domain.Product;
 import model.domain.ProductDetail;
+import model.domain.Teacher;
 import util.DbUtil;
 
 public class ProductDetailDAOImpl implements ProductDetailDAO {
@@ -126,11 +127,16 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 			ps.setString(1, prodId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				Teacher teacher = new Teacher();
+				teacher.setName(rs.getString("name"));
+				
 				Product product = new Product();
 				product.setId(prodId);
 				product.setName(rs.getString("prod_name"));
+				product.setDescription(rs.getString("description"));
+				product.setTeacher(teacher);
 	
-				ProductDetail prodDetail = new ProductDetail(rs.getString("chapter"), rs.getString("prod_url"),
+				ProductDetail prodDetail = new ProductDetail(Integer.toString(rs.getInt("chapter")), rs.getString("prod_url"),
 						rs.getString("prod_title"), rs.getString("file_name"), product);
 
 				list.add(prodDetail);

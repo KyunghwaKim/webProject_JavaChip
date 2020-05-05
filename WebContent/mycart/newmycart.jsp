@@ -317,8 +317,8 @@ $(function(){
 -->	    
 	    
 	    <hr>
-	    <button style="float: right" onclick="">전체삭제</button>
-	    <button style="float: right" onclick="">전체주문</button>
+<!-- 	    <button style="float: right" onclick="">전체삭제</button> -->
+<!-- 	    <button style="float: right" onclick="">전체주문</button> -->
 		
       </div>     
     </div>

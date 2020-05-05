@@ -128,8 +128,8 @@ public class PersonDAOImpl implements PersonDAO {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
-			ps.setString(1, name);
-			ps.setString(2, phone);
+			ps.setString(2, name);
+			ps.setString(3, phone);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				pwd = rs.getString("pwd");

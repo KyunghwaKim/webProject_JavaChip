@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.ModelAndView;
-import model.domain.Customer;
+import exception.NotFoundException;
 import model.service.CustomerService;
 
 public class UpdatePwdController implements Controller {
@@ -17,9 +17,14 @@ public class UpdatePwdController implements Controller {
 		String id = (String) session.getAttribute("userId");
 		String pwd = request.getParameter("pwd");
 		
-		Customer customer = CustomerService.selectById(id);
+		if(id==null || id.equals("") || pwd==null|| pwd.equals("")) {
+			throw new NotFoundException("입력값이 부족합니다");
+		}
 		
-		return null;
+		CustomerService.updatePwd(id, pwd);
+		
+		ModelAndView mv = new ModelAndView(false, "mypage/mypage.jsp");
+		return mv;
 	}
 
 }

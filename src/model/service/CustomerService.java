@@ -4,13 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import exception.AddException;
-import exception.DuplicatedException;
 import model.dao.CustomerDAO;
 import model.dao.PersonDAO;
 import model.dao.impl.CustomerDAOImpl;
 import model.dao.impl.PersonDAOImpl;
 import model.domain.Customer;
-import model.domain.Person;
 
 public class CustomerService {
 	private static CustomerDAO customerDAO = new CustomerDAOImpl();

@@ -173,15 +173,6 @@
 	                    <a href="${path}/javaChip?command=selectProdDetail&goTo=myvideo&prodId=${detail.product.id}&chapter=${detail.chapter}">${detail.chapter}강 ${detail.title}</a>
 	                  </li>
                   </c:forEach>
-<!--                   <li> -->
-<%--                     <a href="${path}/myvideo/myvideo.jsp">2강 반복문</a> --%>
-<!--                   </li> -->
-<!--                   <li> -->
-<%--                     <a href="${path}/myvideo/myvideo.jsp">3강 제어문</a> --%>
-<!--                   </li> -->
-<!--                   <li> -->
-<%--                     <a href="${path}/myvideo/myvideo.jsp">4강 람다식</a> --%>
-<!--                   </li> -->
                 </ul>
               </div>
             </div>

@@ -187,7 +187,9 @@
                                                     <label for="text-input" class=" form-control-label">ID</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="Tid" name="Tid" placeholder="ID" class="form-control">                                                                                                        
+                                                    <input type="text" id="Tid" name="Tid" placeholder="ID" class="form-control">
+                                                    <button class="btn btn--radius btn--green" onclick="button_onclick()" type="button">중복확인</button>                                                                                                        
+                                                	<input type="hidden" id="idchk" value="N" />
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -269,10 +271,12 @@
                                         <form action="${path}/javaChip?command=InsertAdmin" method="post" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ID</label>
+                                                    <label for="text-input" class=" form-control-label" id="insertid">ID</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="Tid" name="Tid" placeholder="ID" class="form-control">                                                    
+                                                    <input type="text" id="Tid2" name="Tid2" placeholder="ID" class="form-control">                                                    
+                                                	<button class="btn btn--radius btn--green" onclick="button_onclick2()" type="button">중복확인</button>
+                                                	<input type="hidden" id="idchk" value="N" />
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -359,7 +363,60 @@
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
     </script>
-
+	
+	<script type="text/javascript">
+	function button_onclick(){
+		var over = $('#Tid').val();
+		
+		if(over == null || over == ""){
+			alert('아이디를 입력해주세요');
+			return false;
+		}
+		
+		$.ajax({
+			type : 'POST', data : "id="+over, dataType : 'text', 
+			url : '../idCheckServlet',		
+			success : function(Data){
+				var chkRst = Data;
+				 if(chkRst==0){
+					alert("등록가능합니다");
+					$("#idchk").val('Y');
+				}else{
+					alert("중복 아이디입니다");
+					$("#idchk").val('N');
+					
+				} 
+			}
+		});
+	} 
+	
+	function button_onclick2(){
+		var over = $('#Tid2').val();
+		
+		if(over == null || over == ""){
+			alert('아이디를 입력해주세요');
+			return false;
+		}
+		
+		$.ajax({
+			type : 'POST', data : "id="+over, dataType : 'text', 
+			url : '../idCheckServlet',		
+			success : function(Data){
+				var chkRst = Data;
+				 if(chkRst==0){
+					alert("등록가능합니다");
+					$("#idchk").val('Y');
+				}else{
+					alert("중복 아이디입니다");
+					$("#idchk").val('N');
+					
+				} 
+			}
+		});
+	}
+	
+	</script>
+	
     <!-- Main JS-->
     <script src="js/main.js"></script>
 

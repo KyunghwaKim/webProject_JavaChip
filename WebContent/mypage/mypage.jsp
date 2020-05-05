@@ -180,7 +180,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <tr><th>강의명</th><th>강사명</th><th>수강종료기간</th></tr>
         <c:forEach items="${myLectureList}" var="list">
         	<tr>
-        		<td><a href="${path}/javaChip?command=selectProdDetail&prodId=${list.product.id}">${list.product.name}</a></td>
+        		<td><a href="${path}/javaChip?command=selectProdDetail&goTo=mychapter&prodId=${list.product.id}">${list.product.name}</a></td>
         		<td>${list.product.teacher.name}</td>
         		<td>${list.endDate}</td>
         	</tr>

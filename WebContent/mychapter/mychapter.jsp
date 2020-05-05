@@ -140,7 +140,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <c:forEach items="${prodDetailList}" var="prodDetail" varStatus="state"> 
         	<tr>
         		<td>${state.count}</td>
-        		<td><a href="${path}/detail_information/video/${prodDetail.url}">${prodDetail.title}</a></td>
+        		<td><a href="${path}/javaChip?command=selectProdDetail&goTo=myvideo&prodId=${prodDetail.product.id}&chapter=${prodDetail.chapter}">${prodDetail.title}</a></td>
         		<td>${prodDetail.fileName}</td>
         	</tr>
         </c:forEach>

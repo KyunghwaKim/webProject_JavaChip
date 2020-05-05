@@ -28,14 +28,17 @@ table {
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-$(function(){
-	$('button[name=adminDel]').click(function(){ //admin이 게시글 삭제
-		location.href="${path}/javaChip?command=deleteEst&estimateNo="+$(this).val();
-	});
-	
-	$('button[name=eval]').click(function(){ //목록에 이미 작성한 강의평이 있을 경우 alert
-		location.href="${path}/javaChip?command=selectByCusIdEst";
-		  /* $.ajax({
+	$(function() {
+		$('button[name=adminDel]')
+				.click(
+						function() { //admin이 게시글 삭제
+							location.href = "${path}/javaChip?command=deleteEst&estimateNo="
+									+ $(this).val();
+						});
+
+		$('button[name=eval]').click(function() { //목록에 이미 작성한 강의평이 있을 경우 alert
+			location.href = "${path}/javaChip?command=selectByCusIdEst";
+			/* $.ajax({
 			url : "community/estCheck.jsp",
 			type : "get",
 			data : "userId="+$('#userId').text(),
@@ -47,15 +50,15 @@ $(function(){
 					//location.href="${path}/community/evaluateForm.jsp";
 				}
 			}
-		});//end ajax */
-		/* if(){
-			alert(2);
-			return;
-		}else{
-			location.href="${path}/community/evaluateForm.jsp";
-		} */
+			});//end ajax */
+			/* if(){
+				alert(2);
+				return;
+			}else{
+				location.href="${path}/community/evaluateForm.jsp";
+			} */
+		});
 	});
-});
 </script>
 <body>
 	<header class="site-navbar site-navbar-target bg-white" role="banner">
@@ -89,20 +92,28 @@ $(function(){
 											<li class="nav-item"><a class="nav-link"
 												href="${path}/javaChip?command=logout"><span
 													style="color: white; font-weight: bold">로그아웃</span></a></li>
-											<li class="nav-item"><a class="nav-link"
-												href="${path}/mypage/mypage.jsp"><span
-													style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-											<li class="nav-item"><a class="nav-link"
-												href="${path}/mycart/newmycart.jsp"><span
-													style="color: white; font-weight: bold">장바구니</span></a></li>
 										</c:when>
 									</c:choose>
+									<c:if
+										test="${sessionScope.userStatus == 1 || sessionScope.userStatus == 2}">
+										<li class="nav-item"><a class="nav-link"
+											href="${path}/mypage/mypage.jsp"><span
+												style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="${path}/mycart/newmycart.jsp"><span
+												style="color: white; font-weight: bold">장바구니</span></a></li>
+									</c:if>
 									<li class="nav-item"><a class="nav-link"
 										href="${path}/javaChip?command=selectProd"><span
 											style="color: white; font-weight: bold">강의목록</span></a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="${path}/community/community.jsp"><span
+										href="${path}/javaChip?command=community"><span
 											style="color: white; font-weight: bold">커뮤니티</span></a></li>
+									<c:if test="${sessionScope.userStatus == 3}">
+										<li class="nav-item"><a class="nav-link"
+											href="${path}/Admin/index.jsp"><span
+												style="color: white; font-weight: bold">관리자페이지</span></a></li>
+									</c:if>
 								</ul>
 							</div>
 						</div>
@@ -122,7 +133,6 @@ $(function(){
 					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -174,7 +184,8 @@ $(function(){
 							<th>작성자</th>
 							<th>작성일</th>
 							<c:if test="${userId == 'admin'}">
-							<th>삭제</th></c:if>
+								<th>삭제</th>
+							</c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -205,8 +216,9 @@ $(function(){
 								<td id="userId">${est.customer.id}</td>
 								<td>${est.writeDay}</td>
 								<c:if test="${userId == 'admin'}">
-								<td><button value="${est.estimateNo}" name="adminDel">삭제</button>
-								</td></c:if>
+									<td><button value="${est.estimateNo}" name="adminDel">삭제</button>
+									</td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -216,8 +228,7 @@ $(function(){
 				*강의평은 수강한 강의에 한하여 한 번만 작성 가능합니다.
 				<c:if test="${not empty itemList}">
 					<!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
-					<button style="float: right" name='eval'
-						onclick="">강의평 작성</button>
+					<button style="float: right" name='eval' onclick="">강의평 작성</button>
 				</c:if>
 			</div>
 		</div>

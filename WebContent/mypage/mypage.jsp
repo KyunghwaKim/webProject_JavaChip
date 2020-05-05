@@ -21,7 +21,7 @@
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
-
+<script src="${path}/mypage/js/jquery-3.3.1.min.js"></script>
 <script>
 
 	window.addEventListener("load", function(){
@@ -41,10 +41,29 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			
 		}
 		
-	});
+		$(".notrefund").click(function(){
+			
+			alert("환불 불가 상품입니다.");			
+			
+		});	
+		
+		
+		$(".canrefund").click(function(){
+			
+			var value = $(this).val();
+			
+			var result = confirm("환불하시겠습니까?");
+			
+			if(result){
+				
+				location.href="${path}/javaChip?command=canrefund&orderNo="+value;				
+			}
+			
+		});
+		
+	});	
 
 </script>
-
 
 <body class="w3-theme-l5">
 
@@ -176,11 +195,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-container w3-card w3-white w3-round w3-margin" style="width: 900px;"><br>        
        <h4>수강중인 목록</h4><br>
         <hr class="w3-clear" style="margin: 0">
-        <table style="width: 900px; height: 150px;">
+        <table class="table table-striped" style="width: 850px; height: 150px;">
         <tr><th>강의명</th><th>강사명</th><th>수강종료기간</th></tr>
         <c:forEach items="${myLectureList}" var="list">
         	<tr>
-        		<td><a href="${path}/javaChip?command=selectProdDetail&prodId=${list.product.id}">${list.product.name}</a></td>
+        		<td><a href="${path}/javaChip?command=selectProdDetail&goTo=mychapter&prodId=${list.product.id}">${list.product.name}</a></td>
         		<td>${list.product.teacher.name}</td>
         		<td>${list.endDate}</td>
         	</tr>
@@ -195,8 +214,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-container w3-card w3-white w3-round w3-margin" style="width: 900px;"><br>        
        <h4>결제내역</h4><br>
         <hr class="w3-clear" style="margin: 0">
-        <table style="width: 900px; height: 150px;">
-        <tr><th>강의명</th><th>강사명</th><th>결제금액</th><th>승인날짜</th></tr>
+        <table class="table table-striped" style="width: 850px; height: 150px;">
+        <tr><th>강의명</th><th>강사명</th><th>결제금액</th><th>승인날짜</th><th>환불</th></tr>
         
         <c:forEach items="${orderList}" var="list">
         	<tr>
@@ -204,6 +223,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         		<td>${list.product.teacher.name}</td>
         		<td>${list.product.price}</td>
         		<td>${list.orderLine.payDate}</td>
+        		<c:if test="${list.orderLine.canrefund eq true}">        		
+        		<td><button value="${list.itemNo}" class="canrefund">가능</button></td>        		
+        		</c:if>
+        		<c:if test="${list.orderLine.canrefund eq false}">
+        		<td><input type="button" value="불가" class="notrefund"></td>
+        		</c:if>
         	</tr>
         </c:forEach>
         </table> 
@@ -212,15 +237,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       
     <!-- End Middle Column -->
     </div>
-    
     <!-- End Right Column -->
     </div>
     
   <!-- End Grid -->  
 <!-- End Page Container -->
 <br>
-
-
 
   <footer class="py-5 bg-dark">
     <div class="container">

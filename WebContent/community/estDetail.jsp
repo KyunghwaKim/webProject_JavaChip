@@ -35,7 +35,6 @@
 					<li class="nav-item active"></li>
 					<c:choose>
 						<c:when test="${userId==null}">
-							<!-- 비로그인 상태 -->
 							<li class="nav-item"><a class="nav-link"
 								href="${path}/Login/login.jsp"><span
 									style="color: white; font-weight: bold">로그인</span></a></li>
@@ -45,24 +44,31 @@
 							</a></li>
 						</c:when>
 						<c:when test="${userId!=null}">
-							<!-- 로그인 상태 -->
 							<li class="nav-item"><a class="nav-link"
 								href="${path}/javaChip?command=logout"><span
 									style="color: white; font-weight: bold">로그아웃</span></a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${path}/mypage/mypage.jsp"><span
-									style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${path}/mycart/newmycart.jsp"><span
-									style="color: white; font-weight: bold">장바구니</span></a></li>
 						</c:when>
 					</c:choose>
+					<c:if
+						test="${sessionScope.userStatus == 1 || sessionScope.userStatus == 2}">
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/mypage/mypage.jsp"><span
+								style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/mycart/newmycart.jsp"><span
+								style="color: white; font-weight: bold">장바구니</span></a></li>
+					</c:if>
 					<li class="nav-item"><a class="nav-link"
 						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${path}/community/community.jsp"><span
+						href="${path}/javaChip?command=community"><span
 							style="color: white; font-weight: bold">커뮤니티</span></a></li>
+					<c:if test="${sessionScope.userStatus == 3}">
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/Admin/index.jsp"><span
+								style="color: white; font-weight: bold">관리자페이지</span></a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
@@ -76,7 +82,6 @@
 					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->

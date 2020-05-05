@@ -113,12 +113,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 			}
 			
 			//admin 포함되어있는지 확인
-			String str = rs.getString(id);
+			/*String str = rs.getString(id);
 			str.toLowerCase();
 			boolean flag = str.contains("admin");
 			if(flag==true) {
 				result  = 1;
-			}
+			}*/
 			
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

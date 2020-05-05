@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List; 
 import java.util.Properties;
 
 import model.dao.ProductDetailDAO;
@@ -15,7 +15,6 @@ import model.domain.OrderItem;
 import model.domain.OrderLine;
 import model.domain.Product;
 import model.domain.ProductDetail;
-import model.domain.Storage;
 import util.DbUtil;
 
 public class ProductDetailDAOImpl implements ProductDetailDAO {
@@ -42,7 +41,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);			
 			ps.setString(1, productDetail.getProduct().getId());
-			ps.setString(2, productDetail.getStorage().getId());
+			ps.setString(2, productDetail.getFileName());
 			ps.setString(3, productDetail.getUrl());
 			ps.setString(4, productDetail.getTitle());
 			ps.setInt(5, Integer.parseInt(productDetail.getChapter()));
@@ -86,7 +85,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, productDetail.getStorage().getId());
+			ps.setString(1, productDetail.getFileName());
 			ps.setString(2, productDetail.getProduct().getId());
 			ps.setString(3, productDetail.getChapter());
 			result = ps.executeUpdate();
@@ -130,12 +129,9 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 				Product product = new Product();
 				product.setId(prodId);
 				product.setName(rs.getString("prod_name"));
-
-				Storage storage = new Storage();
-				storage.setName(rs.getString("file_name"));
-
+	
 				ProductDetail prodDetail = new ProductDetail(rs.getString("chapter"), rs.getString("prod_url"),
-						rs.getString("prod_title"), storage, product);
+						rs.getString("prod_title"), rs.getString("file_name"), product);
 
 				list.add(prodDetail);
 			}

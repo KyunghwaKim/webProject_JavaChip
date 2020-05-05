@@ -42,6 +42,14 @@ public class CustomerService {
 		
 		return result;
 	}
+	/**
+	 * CustomerDAOImpl의 pwd 수정하는 메소드호출
+	 */
+	public static int updatePwd(String id, String pwd) throws Exception{
+		int result = customerDAO.updatePwd(id, pwd);
+		
+		return result;
+	}
 
 	/**
 	 * CustomerDAOImpl의 Id에 해당하는 레코드 검색하는 메소드 호출

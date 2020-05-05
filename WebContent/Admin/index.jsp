@@ -151,7 +151,7 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="${path}/community/community.jsp">
+                                                    <a href="${path}/javaChip?command=community">
                                                         <i class="zmdi zmdi-account"></i>커뮤니티</a>
                                                 </div>
                                                 <div class="account-dropdown__item">

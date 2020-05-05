@@ -24,17 +24,19 @@
 .secret {
 	display: none;
 }
+
 #answerForm {
 	display: none;
 }
-.userStatus{
+
+.userStatus {
 	display: none;
 }
 </style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 	$(function() {
-		if(${userStatus} == 2 || ${userStatus} == 3){//관리자면 비밀글 show
+		if(${sessionScope.userStatus} == 2 || ${sessionScope.userStatus} == 3){//관리자면 비밀글 show
 			$('.secret').show();
 			$('#formpwd').hide();
 		}
@@ -79,7 +81,8 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
+			<a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C
+				H I P</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -90,7 +93,6 @@
 					<li class="nav-item active"></li>
 					<c:choose>
 						<c:when test="${userId==null}">
-							<!-- 비로그인 상태 -->
 							<li class="nav-item"><a class="nav-link"
 								href="${path}/Login/login.jsp"><span
 									style="color: white; font-weight: bold">로그인</span></a></li>
@@ -100,24 +102,31 @@
 							</a></li>
 						</c:when>
 						<c:when test="${userId!=null}">
-							<!-- 로그인 상태 -->
 							<li class="nav-item"><a class="nav-link"
 								href="${path}/javaChip?command=logout"><span
 									style="color: white; font-weight: bold">로그아웃</span></a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${path}/mypage/mypage.jsp"><span
-									style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${path}/mycart/newmycart.jsp"><span
-									style="color: white; font-weight: bold">장바구니</span></a></li>
 						</c:when>
 					</c:choose>
+					<c:if
+						test="${sessionScope.userStatus == 1 || sessionScope.userStatus == 2}">
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/mypage/mypage.jsp"><span
+								style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/mycart/newmycart.jsp"><span
+								style="color: white; font-weight: bold">장바구니</span></a></li>
+					</c:if>
 					<li class="nav-item"><a class="nav-link"
 						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${path}/community/community.jsp"><span
+						href="${path}/javaChip?command=community"><span
 							style="color: white; font-weight: bold">커뮤니티</span></a></li>
+					<c:if test="${sessionScope.userStatus == 3}">
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/Admin/index.jsp"><span
+								style="color: white; font-weight: bold">관리자페이지</span></a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
@@ -133,7 +142,6 @@
 					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -179,15 +187,16 @@
 				<h2 style="text-align: center; margin-top: 20px;">QnA</h2>
 				<hr>
 				<c:choose>
-					<c:when test="${qnaBoard.status == 0}"> <!-- 일반글 -->
+					<c:when test="${qnaBoard.status == 0}">
+						<!-- 일반글 -->
 						<form name="form" role="form" method="post" class="normal">
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">작성자</label>
 								${qnaBoard.customer.id} <span class="userStatus">${requestScope.userStatus}</span>
 							</div>
 							<div class="mb-3">
-								<label for="title" style="font-weight: bold">강의명</label>
-								<span class="prodName">${qnaBoard.product.id}</span>
+								<label for="title" style="font-weight: bold">강의명</label> <span
+									class="prodName">${qnaBoard.product.id}</span>
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">제목</label> <input
@@ -201,15 +210,16 @@
 							</div>
 						</form>
 					</c:when>
-					<c:when test="${qnaBoard.status == 1}"> <!-- 비밀글 -->
+					<c:when test="${qnaBoard.status == 1}">
+						<!-- 비밀글 -->
 						<form name="form" role="form" method="post" class="secret">
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">작성자</label>
 								${qnaBoard.customer.id} <span class="userStatus">${requestScope.userStatus}</span>
 							</div>
 							<div class="mb-3">
-								<label for="title" style="font-weight: bold">강의명</label>
-								<span class="prodName">${qnaBoard.product.id}</span>
+								<label for="title" style="font-weight: bold">강의명</label> <span
+									class="prodName">${qnaBoard.product.id}</span>
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">제목</label> <input
@@ -223,10 +233,12 @@
 							</div>
 
 						</form>
-						
-						<div class="mb-3" id="formpwd">*비밀글은 비밀번호 입력 후 확인 가능합니다.<br>
-							<label for="password" style="font-weight: bold">비밀번호</label> <br>
-							<input type="password" class="" name="pwd" placeholder="최대4자리" maxlength="4">
+
+						<div class="mb-3" id="formpwd">
+							*비밀글은 비밀번호 입력 후 확인 가능합니다.<br> <label for="password"
+								style="font-weight: bold">비밀번호</label> <br> <input
+								type="password" class="" name="pwd" placeholder="최대4자리"
+								maxlength="4">
 							<button name="confrim" class="btn btn-sm btn-primary">확인</button>
 						</div>
 					</c:when>
@@ -238,20 +250,23 @@
 						<button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>
 						<button type="button" class="btn btn-sm btn-primary" id="btnDel">삭제</button>
 					</c:if>
-					
-					<c:if test="${userStatus==2}"> <!-- 강사에게는 답변 작성 버튼 show -->
+
+					<c:if test="${userStatus==2}">
+						<!-- 강사에게는 답변 작성 버튼 show -->
 						<button type="button" class="btn btn-sm btn-primary" id="answer">답변작성하기</button>
 					</c:if>
 					<button type="button" class="btn btn-sm btn-primary"
 						onclick='location.href="${path}/javaChip?command=selectAllQnA"'>목록</button>
 				</div>
-				
-				<div class="mb-3" id="answerForm"><!-- 답변 폼 -->
+
+				<div class="mb-3" id="answerForm">
+					<!-- 답변 폼 -->
 					<hr>
 					<label for="content" style="font-weight: bold">답변 내용</label>
-					<textarea class="form-control" rows="5" name="answer"></textarea> <br>
-					<button type="button" class="btn btn-sm btn-primary" id="answerSave"
-						>저장</button>
+					<textarea class="form-control" rows="5" name="answer"></textarea>
+					<br>
+					<button type="button" class="btn btn-sm btn-primary"
+						id="answerSave">저장</button>
 				</div>
 			</div>
 		</div>

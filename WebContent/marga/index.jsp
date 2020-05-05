@@ -291,57 +291,57 @@ background-color: black;
     </div>
 
     
-    <div class="site-section">
-      <div class="container">
-        <div class="row align-items-stretch">
-        <img src="images/image_99.jpg" height="900px">
-          <div class="col-lg-4">
-            <div class="h-100 bg-white box-29291">
-              <h2 class="heading-39291">Welcome To <br> Our Company</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo mollitia id ea ab in! Nam eligendi distinctio, vitae.</p>
-              <p>Alias odit ipsam quas unde obcaecati molestiae consequatur numquam cupiditate perferendis facere, nulla nemo id, accusantium corrupti tempora.</p>
+<!--     <div class="site-section"> -->
+<!--       <div class="container"> -->
+<!--         <div class="row align-items-stretch"> -->
+<!--         <img src="images/image_99.jpg" height="900px"> -->
+<!--           <div class="col-lg-4"> -->
+<!--             <div class="h-100 bg-white box-29291"> -->
+<!--               <h2 class="heading-39291">Welcome To <br> Our Company</h2> -->
+<!--               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo mollitia id ea ab in! Nam eligendi distinctio, vitae.</p> -->
+<!--               <p>Alias odit ipsam quas unde obcaecati molestiae consequatur numquam cupiditate perferendis facere, nulla nemo id, accusantium corrupti tempora.</p> -->
 
-              <p class="mt-5">
-                <span class="d-block font-weight-bold text-black">Bruce Smith</span>
-                <span class="d-block font-weight-bold text-muted">Founder, CEO</span>
+<!--               <p class="mt-5"> -->
+<!--                 <span class="d-block font-weight-bold text-black">Bruce Smith</span> -->
+<!--                 <span class="d-block font-weight-bold text-muted">Founder, CEO</span> -->
                 
-                <img src="images/signature.svg" alt="Image"  width="140">
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="owl-carousel owl-3">
+<!--                 <img src="images/signature.svg" alt="Image"  width="140"> -->
+<!--               </p> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="col-lg-8"> -->
+<!--             <div class="owl-carousel owl-3"> -->
               
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>    
-    <div class="site-section">
-      <div class="container">
-        <div class="row align-items-stretch">
-          <div class="col-lg-3 col-md-6 mb-5">
-            <div class="post-entry-1 h-100">
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-5">
-            <div class="post-entry-1 h-100">
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div>     -->
+<!--     <div class="site-section"> -->
+<!--       <div class="container"> -->
+<!--         <div class="row align-items-stretch"> -->
+<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
+<!--             <div class="post-entry-1 h-100"> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
+<!--             <div class="post-entry-1 h-100"> -->
               
               
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-5">
-            <div class="post-entry-1 h-100">
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
+<!--             <div class="post-entry-1 h-100"> --> 
               
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-5">
-            <div class="post-entry-1 h-100">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
+<!--             <div class="post-entry-1 h-100"> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
     
    <!-- Footer -->
   <footer class="py-5 bg-dark">

@@ -153,18 +153,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       <!-- 최근수강강의 --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container" style="text-align: center;">
-          <h4 class="w3-center" style="margin-top: 15px;">최근수강강의</h4>
-          <hr>
-          <p>
-          <!-- 최근수강 3개까지표현된다. -->
-            <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 1강 - 반복문</span></a><br>
-            <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 2강 - 제어문</span></a><br>
-            <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 3강 - 조건문</span></a>
-          </p>
-        </div>
-      </div>
+<!--       <div class="w3-card w3-round w3-white w3-hide-small"> -->
+<!--         <div class="w3-container" style="text-align: center;"> -->
+<!--           <h4 class="w3-center" style="margin-top: 15px;">최근수강강의</h4> -->
+<!--           <hr> -->
+<!--           <p> -->
+<!--           최근수강 3개까지표현된다. -->
+<!--             <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 1강 - 반복문</span></a><br> -->
+<!--             <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 2강 - 제어문</span></a><br> -->
+<!--             <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 3강 - 조건문</span></a> -->
+<!--           </p> -->
+<!--         </div> -->
+<!--       </div> -->
       <br>  
     
     <!-- End Left Column -->

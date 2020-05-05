@@ -35,7 +35,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		String sql = "INSERT INTO PRODUCTDETAIL(SEQUENCE, PROD_ID, FILE_ID, PROD_URL, PROD_TITLE, CHAPTER) VALUES " +
+		String sql = "INSERT INTO PRODUCTDETAIL(SEQUENCE, PROD_ID, FILE_NAME, PROD_URL, PROD_TITLE, CHAPTER) VALUES " +
 			    "(DetailSequence.nextval, ?, ?, ?, ?, ?)";
 		try {
 			con = DbUtil.getConnection();
@@ -97,7 +97,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 
 	@Override
 	public int delete(String prodId, String chapter) throws SQLException {
-		Connection con = null;
+		Connection con = null; 
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("deleteProdDetail");

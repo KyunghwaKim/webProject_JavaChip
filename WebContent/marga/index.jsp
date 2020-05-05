@@ -266,18 +266,18 @@ background-color: black;
           <div>
             <h1 class="text-uppercase mb-3">자칭 1등 프로그래밍 인터넷 강의</h1>
             <p class="mb-5"> 'KOSTA' 출신 명문강사들 총 집합!! </p>
-            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/javaChip?command=selectProd" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
           <div>
             <h2 class="text-uppercase mb-3">여러분들의 꿈을 자바칩에서 키우세요!</h2>
             <p class="mb-5"> 자바칩과 함께라면 어려울것이 없어요!</p>
-            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/javaChip?command=selectProd" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
 
           <div>
             <h2 class="text-uppercase mb-3">자랑스러운 취업률</h2> <h1>"100%" !</h1>
             <p class="mb-5">역대 최대 취업률을 경험하시려면 바로 신청하세요!</p>            
-            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/javaChip?command=selectProd" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
 
         </div>
@@ -289,59 +289,58 @@ background-color: black;
         
       </div>
     </div>
-
     
-<!--     <div class="site-section"> -->
-<!--       <div class="container"> -->
-<!--         <div class="row align-items-stretch"> -->
-<!--         <img src="images/image_99.jpg" height="900px"> -->
-<!--           <div class="col-lg-4"> -->
-<!--             <div class="h-100 bg-white box-29291"> -->
-<!--               <h2 class="heading-39291">Welcome To <br> Our Company</h2> -->
-<!--               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo mollitia id ea ab in! Nam eligendi distinctio, vitae.</p> -->
-<!--               <p>Alias odit ipsam quas unde obcaecati molestiae consequatur numquam cupiditate perferendis facere, nulla nemo id, accusantium corrupti tempora.</p> -->
+<!--<div class="site-section">
+      <div class="container">
+        <div class="row align-items-stretch">
+        <img src="images/image_99.jpg" height="900px">
+          <div class="col-lg-4">
+            <div class="h-100 bg-white box-29291">
+              <h2 class="heading-39291">Welcome To <br> Our Company</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo mollitia id ea ab in! Nam eligendi distinctio, vitae.</p>
+              <p>Alias odit ipsam quas unde obcaecati molestiae consequatur numquam cupiditate perferendis facere, nulla nemo id, accusantium corrupti tempora.</p>
 
-<!--               <p class="mt-5"> -->
-<!--                 <span class="d-block font-weight-bold text-black">Bruce Smith</span> -->
-<!--                 <span class="d-block font-weight-bold text-muted">Founder, CEO</span> -->
+              <p class="mt-5">
+                <span class="d-block font-weight-bold text-black">Bruce Smith</span>
+                <span class="d-block font-weight-bold text-muted">Founder, CEO</span>
                 
-<!--                 <img src="images/signature.svg" alt="Image"  width="140"> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--           <div class="col-lg-8"> -->
-<!--             <div class="owl-carousel owl-3"> -->
+                <img src="images/signature.svg" alt="Image"  width="140">
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="owl-carousel owl-3">
               
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div>     -->
-<!--     <div class="site-section"> -->
-<!--       <div class="container"> -->
-<!--         <div class="row align-items-stretch"> -->
-<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
-<!--             <div class="post-entry-1 h-100"> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
-<!--             <div class="post-entry-1 h-100"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <div class="site-section">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-3 col-md-6 mb-5">
+            <div class="post-entry-1 h-100">
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <div class="post-entry-1 h-100">
               
               
-<!--             </div> -->
-<!--           </div> -->
-<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
-<!--             <div class="post-entry-1 h-100"> --> 
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <div class="post-entry-1 h-100">
               
-<!--             </div> -->
-<!--           </div> -->
-<!--           <div class="col-lg-3 col-md-6 mb-5"> -->
-<!--             <div class="post-entry-1 h-100"> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <div class="post-entry-1 h-100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
     
    <!-- Footer -->
   <footer class="py-5 bg-dark">

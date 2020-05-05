@@ -47,6 +47,7 @@ public class HandlerMappingListener implements ServletContextListener {
     	//application영역에 저장한다.
     	application.setAttribute("map", map);
     	application.setAttribute("path", application.getContextPath());
+    	application.setAttribute("realPath", application.getRealPath("/"));
     }
 	
 }

@@ -38,7 +38,7 @@
 			
 		 	var pwd = document.getElementById("pwd").value;	 		
 		
-		 	if(pwd=="12345"){
+		 	if(!pwd){
 		 		
 		 		if(confirm("탈퇴처리 하시겠습니까?")){
 		 			
@@ -51,7 +51,7 @@
 		 			 		
 		 	} else {
 		 		
-		 		alert("비밀번호가 일치하지 않음");
+		 		alert("비밀번호를 입력해주세요");
 		 		
 		 	}
 		 	
@@ -70,7 +70,7 @@
 			
 			<!-- action 값 지정할것! -->
 			
-				<form class="login100-form validate-form" action="a.jsp" method="post">
+				<form class="login100-form validate-form" action="../javaChip?command=withdrawalCus" method="post">
 					<span class="login100-form-title p-b-40">
 						비밀번호입력
 					</span>

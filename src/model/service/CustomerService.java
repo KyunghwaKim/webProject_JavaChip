@@ -4,13 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import exception.AddException;
-import exception.DuplicatedException;
 import model.dao.CustomerDAO;
 import model.dao.PersonDAO;
 import model.dao.impl.CustomerDAOImpl;
 import model.dao.impl.PersonDAOImpl;
 import model.domain.Customer;
-import model.domain.Person;
 
 public class CustomerService {
 	private static CustomerDAO customerDAO = new CustomerDAOImpl();
@@ -39,6 +37,14 @@ public class CustomerService {
 	 */
 	public static int idCheck(String id) throws Exception{
 		int result = customerDAO.idCheck(id);
+		
+		return result;
+	}
+	/**
+	 * CustomerDAOImpl의 pwd 수정하는 메소드호출
+	 */
+	public static int updatePwd(String id, String pwd) throws Exception{
+		int result = customerDAO.updatePwd(id, pwd);
 		
 		return result;
 	}

@@ -45,13 +45,25 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			
 			alert("환불 불가 상품입니다.");			
 			
+		});	
+		
+		
+		$(".canrefund").click(function(){
+			
+			var value = $(this).val();
+			
+			var result = confirm("환불하시겠습니까?");
+			
+			if(result){
+				
+				location.href="${path}/javaChip?command=canrefund&orderNo="+value;				
+			}
+			
 		});
 		
-		
-	});
+	});	
 
 </script>
-
 
 <body class="w3-theme-l5">
 
@@ -211,8 +223,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         		<td>${list.product.teacher.name}</td>
         		<td>${list.product.price}</td>
         		<td>${list.orderLine.payDate}</td>
-        		<c:if test="${list.orderLine.canrefund eq true}">
-        		<td><input type="button" value="가능" id="${list.product.name}"></td>
+        		<c:if test="${list.orderLine.canrefund eq true}">        		
+        		<td><button value="${list.itemNo}" class="canrefund">가능</button></td>        		
         		</c:if>
         		<c:if test="${list.orderLine.canrefund eq false}">
         		<td><input type="button" value="불가" class="notrefund"></td>
@@ -225,15 +237,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       
     <!-- End Middle Column -->
     </div>
-    
     <!-- End Right Column -->
     </div>
     
   <!-- End Grid -->  
 <!-- End Page Container -->
 <br>
-
-
 
   <footer class="py-5 bg-dark">
     <div class="container">

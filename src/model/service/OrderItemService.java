@@ -35,4 +35,11 @@ public class OrderItemService {
 //			if(result==0) throw new SQLException("수정되지 않았습니다.");		
 		}
 	}
+	
+	public static void refund(int orderno) throws SQLException{
+		
+		int i = itemDAO.refund(orderno);
+		if(i==0) throw new SQLException("환불되지 않았습니다");
+		
+	}
 }

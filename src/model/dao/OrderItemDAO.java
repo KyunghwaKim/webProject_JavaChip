@@ -50,4 +50,13 @@ public interface OrderItemDAO {
 	 */
 	List<OrderItem> selectBySevenitemlist() throws SQLException;
 	
+	
+	/**
+	 *  환불 status 값 변경...
+	 * 
+	 */
+	
+	int refund(int orderno) throws SQLException;
+	
+	
 }

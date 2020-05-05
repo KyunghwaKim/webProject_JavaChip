@@ -210,5 +210,25 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		}
 		return date;
 	}
+	
+	@Override
+	public int refund(int orderno) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE ORDERITEM SET ISREFUND=2 WHERE ORDERITEM_NO=?";
+		int i = 0;
+		
+		try {			
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, orderno);
+			i = ps.executeUpdate();
+			
+		} finally {
+			DbUtil.dbClose(con, ps);			
+		}		
+		return i;
+	}
 
 }

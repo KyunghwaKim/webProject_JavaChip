@@ -97,7 +97,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 
 	@Override
 	public int delete(String prodId, String chapter) throws SQLException {
-		Connection con = null;
+		Connection con = null; 
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("deleteProdDetail");

@@ -26,13 +26,13 @@ public class InsertOrderLineController implements Controller {
 
 		Customer customer = new Customer();
 		customer.setId(customerId);
-		
+
 		OrderLine orderLine = new OrderLine();
 		orderLine.setCustomer(customer);
-		
+
 		Product product = new Product();
 		product.setId(prodId);
-		
+
 		OrderItem orderIem = new OrderItem(null, orderLine, product);
 
 		OrderLineService.insert(orderIem);

@@ -89,7 +89,7 @@ public class ProductDAOImpl implements ProductDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Product> list = new ArrayList<Product>();
-		String sql = "selectProdAll";
+		String sql = "SELECT * FROM PRODUCT";
 
 		try {
 			con = DbUtil.getConnection();
@@ -106,7 +106,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 				Product product = new Product(rs.getString("prod_id"), rs.getString("prod_name"),
 						rs.getInt("prod_price"), rs.getString("description"), rs.getString("prod_level"), teacher,
-						category, rs.getDate("upload_date"), rs.getInt("valid_Date"));
+						category, rs.getDate("upload_date"), rs.getInt("valid_Date"), rs.getInt("STATUS"));
 
 				list.add(product);
 			}
@@ -288,7 +288,7 @@ public class ProductDAOImpl implements ProductDAO {
 			ps.setString(1, prodId);
 			rs = ps.executeQuery();
 
-			while (rs.next()) {
+			if (rs.next()) {
 				Teacher teacher = new Teacher();
 				teacher.setName(rs.getString("name"));
 				
@@ -300,17 +300,70 @@ public class ProductDAOImpl implements ProductDAO {
 				prodDetail.setProduct(product);
 				prodDetail.setUrl(rs.getString("prod_url"));
 				
-				EstimateBoard estimate = new EstimateBoard();
-				estimate.setGrade(rs.getInt("grade"));
-				estimate.setSubject(rs.getString("subject"));
-				estimate.setWriteDay(rs.getDate("writeday"));
+				sql = pro.getProperty("selectProdEstInfo");
+				ps = con.prepareStatement(sql);
+				ps.setString(1, prodId);
+				rs = ps.executeQuery();
+
+				int count = 0;
 				
-				map.put(estimate, prodDetail);
+				while(rs.next()) {
+					count++;
+					
+					EstimateBoard estimate = new EstimateBoard();
+					estimate.setGrade(rs.getInt("grade"));
+					estimate.setSubject(rs.getString("subject"));
+					estimate.setWriteDay(rs.getDate("writeday"));
+					
+					map.put(estimate, prodDetail);
+				}
+				if(count == 0) {
+					EstimateBoard estimate = new EstimateBoard();
+					map.put(estimate, prodDetail);
+				}
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);
 		}
 		return map;
+	}
+
+	@Override
+	public List<Product> selectSameCateProd(String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Product> list = new ArrayList<Product>();
+		String sql = pro.getProperty("selectSameCateIdProd");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, prodId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				int cateId = rs.getInt(1);
+				
+				sql = pro.getProperty("selectSameCateProd");
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, cateId);
+				ps.setString(2, prodId);
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					Product prod = new Product();
+					prod.setId(rs.getString(1));
+					prod.setName(rs.getString(2));
+					
+					list.add(prod);
+				}
+			}
+
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+
+		return list;
 	}
 
 }

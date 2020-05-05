@@ -18,7 +18,7 @@
 
   <!-- Custom styles for this template -->
   <link href="${path}/detail_information/css/shop-item.css" rel="stylesheet">
-
+ 
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 		<c:choose>
 			<c:when test="${empty sessionScope.userId}">	<!-- 로그인하지 않았다면... -->	
         <div class="container">
-          <div class="row align-items-center position-relative">          				
+          <div class="row align-items-center position-relative">		
             <div class="col-lg-4">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
 			    <div class="container">
@@ -47,7 +47,7 @@
 			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -84,7 +84,7 @@
 						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -108,8 +108,9 @@
         <h1 class="my-4"> ${prodDetail.product.name}</h1>
         <div class="list-group">
           <h3 class="list-group-item active">다른강의</h3>
-          <a href="#" class="list-group-item">Python 중급</a>
-          <a href="#" class="list-group-item">Python 고급</a>
+          <c:forEach items="${sameCateProd}" var="prod">
+          <a href="javaChip?command=selectProdInfo&prodId=${prod.id}" class="list-group-item">${prod.name}</a>
+          </c:forEach>
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -117,7 +118,7 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <video src="${path}/detail_information/video/${prodDetail.url}" width='820' height="400" controls>
+          <video src="${realPath}save/${prodDetail.url}" width='820' height="400" controls>
           </video>          
           <div class="card-body">
             <h3 class="card-title"> ${prodDetail.product.name} by${prodDetail.product.teacher.name}</h3>
@@ -142,7 +143,8 @@
           </div>
           <div class="card-body">
           	<c:forEach items="${estimateList}" var="estBoard">
-          		<p>${estBoard.subject}</p>
+          		<p>
+          		${estBoard.subject}<br>
           		<span class="text-warning">
 	            <c:choose>
 					<c:when test="${estBoard.grade == 5}">
@@ -163,18 +165,8 @@
 				</c:choose>
 	            </span>
 	            <small class="text-muted">${estBoard.writeDay}</small>
+	            </p>
           	</c:forEach>
-<!--             <p>프로그래밍 이 강의로 입문했어요 진짜 너무 좋아요!</p> -->
-<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
-<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
-<!--             <hr> -->
-<!--             <p>이해가 쏙쏙!</p> -->
-<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
-<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
-<!--             <hr> -->
-<!--             <p>좋아요~~</p> -->
-<!--             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span> -->
-<!--             <small class="text-muted">Posted by Anonymous on 3/1/17</small> -->
             <hr>
             <a href="${path}/javaChip?command=insertCart&prodId=${prodDetail.product.id}" class="btn btn-success">장바구니 담기</a>
           </div>

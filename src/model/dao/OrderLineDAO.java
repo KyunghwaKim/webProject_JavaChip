@@ -14,9 +14,14 @@ public interface OrderLineDAO {
 	List<OrderLine> selectAll() throws SQLException;
 	
 	/**
+	 * 이미 구매된 상품인지 확인(유효기간이 남았는지, 환불되지 않았는지)
+	 */
+	int selectAlreadyInsertOrder(String customerId, String prodId) throws SQLException;
+	
+	/**
 	 * 주문하기(트랜잭션 오픈, 클로즈)
 	 */
-	void insert(OrderItem orderItem) throws SQLException, Exception;
+	void insert(OrderItem orderItem) throws Exception;
 	
 	/**
 	 * 주문하기

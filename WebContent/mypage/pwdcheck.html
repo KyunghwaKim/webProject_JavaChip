@@ -31,29 +31,22 @@
 
 	window.addEventListener("load", function(){
 		
-		
-		var pwdcheck = document.getElementById("pwdcheck");
-		
 		pwdcheck.onclick = function(){	
 			
 		 	var pwd = document.getElementById("pwd").value;	 		
 		
-		 	if(pwd=="12345"){
+		 	if(pwd==null || pwd==""){
 		 		
-		 		alert("비밀번호일치 수정페이지로이동하겠음");
-		 		
-		 		location.href="";	
-		 		
-		 		}
-		 		
-		 	} else {
+		 		alert("입력값이 부족합니다");
+		 		return;
+		 	
+		 	}/* else {	
 		 		
 		 		alert("비밀번호가 일치하지 않음");
 		 		
 		 	}
-		 	
-	
-		}		
+		
+ */		}		
 	});
 
 </script>
@@ -67,7 +60,7 @@
 			
 			<!-- action 값 지정할것! -->
 			
-				<form class="login100-form validate-form" action="a.jsp" method="post">
+				<form class="login100-form validate-form" action="../javaChip?command=pwdCheckController" method="post">
 					<span class="login100-form-title p-b-40">
 						비밀번호입력
 					</span>
@@ -78,7 +71,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id="pwdcheck" type="button">
+						<button class="login100-form-btn" id="pwdcheck" type="submit">
 							입력
 						</button>
 					</div>		

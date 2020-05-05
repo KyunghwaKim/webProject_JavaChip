@@ -21,7 +21,7 @@
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
-
+<script src="${path}/mypage/js/jquery-3.3.1.min.js"></script>
 <script>
 
 	window.addEventListener("load", function(){
@@ -41,10 +41,29 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			
 		}
 		
-	});
+		$(".notrefund").click(function(){
+			
+			alert("환불 불가 상품입니다.");			
+			
+		});	
+		
+		
+		$(".canrefund").click(function(){
+			
+			var value = $(this).val();
+			
+			var result = confirm("환불하시겠습니까?");
+			
+			if(result){
+				
+				location.href="${path}/javaChip?command=canrefund&orderNo="+value;				
+			}
+			
+		});
+		
+	});	
 
 </script>
-
 
 <body class="w3-theme-l5">
 
@@ -71,7 +90,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -108,7 +127,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -153,18 +172,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       <!-- 최근수강강의 --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container" style="text-align: center;">
-          <h4 class="w3-center" style="margin-top: 15px;">최근수강강의</h4>
-          <hr>
-          <p>
-          <!-- 최근수강 3개까지표현된다. -->
-            <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 1강 - 반복문</span></a><br>
-            <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 2강 - 제어문</span></a><br>
-            <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 3강 - 조건문</span></a>
-          </p>
-        </div>
-      </div>
+<!--       <div class="w3-card w3-round w3-white w3-hide-small"> -->
+<!--         <div class="w3-container" style="text-align: center;"> -->
+<!--           <h4 class="w3-center" style="margin-top: 15px;">최근수강강의</h4> -->
+<!--           <hr> -->
+<!--           <p> -->
+<!--           최근수강 3개까지표현된다. -->
+<!--             <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 1강 - 반복문</span></a><br> -->
+<!--             <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 2강 - 제어문</span></a><br> -->
+<!--             <a href=""><span class="w3-tag w3-small w3-theme-d5">JAVA 3강 - 조건문</span></a> -->
+<!--           </p> -->
+<!--         </div> -->
+<!--       </div> -->
       <br>  
     
     <!-- End Left Column -->
@@ -176,18 +195,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-container w3-card w3-white w3-round w3-margin" style="width: 900px;"><br>        
        <h4>수강중인 목록</h4><br>
         <hr class="w3-clear" style="margin: 0">
-        <table style="width: 900px; height: 150px;">
+        <table class="table table-striped" style="width: 850px; height: 150px;">
         <tr><th>강의명</th><th>강사명</th><th>수강종료기간</th></tr>
-        <c:forEach items="${orderList}" var="list">
+        <c:forEach items="${myLectureList}" var="list">
         	<tr>
-        		<td><a href="${path}/mychapter/mychapter.jsp">${list.product.name}</a></td>
+        		<td><a href="${path}/javaChip?command=selectProdDetail&goTo=mychapter&prodId=${list.product.id}">${list.product.name}</a></td>
         		<td>${list.product.teacher.name}</td>
         		<td>${list.endDate}</td>
         	</tr>
         </c:forEach>
-<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA왕초보</a></td><td>김민호</td><td>~2020.05.05</td></tr> -->
-<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA고수</a></td><td>김민호</td><td>~2020.07.05</td></tr> -->
-<!--         <tr><td><a href="../mychapter/mychapter.jsp">JAVA중수</a></td><td>김민호</td><td>~2020.07.05</td></tr>  -->
         </table> 
         </div>        
       </div>
@@ -198,8 +214,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-container w3-card w3-white w3-round w3-margin" style="width: 900px;"><br>        
        <h4>결제내역</h4><br>
         <hr class="w3-clear" style="margin: 0">
-        <table style="width: 900px; height: 150px;">
-        <tr><th>강의명</th><th>강사명</th><th>결제금액</th><th>승인날짜</th></tr>
+        <table class="table table-striped" style="width: 850px; height: 150px;">
+        <tr><th>강의명</th><th>강사명</th><th>결제금액</th><th>승인날짜</th><th>환불</th></tr>
         
         <c:forEach items="${orderList}" var="list">
         	<tr>
@@ -207,26 +223,26 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         		<td>${list.product.teacher.name}</td>
         		<td>${list.product.price}</td>
         		<td>${list.orderLine.payDate}</td>
+        		<c:if test="${list.orderLine.canrefund eq true}">        		
+        		<td><button value="${list.itemNo}" class="canrefund">가능</button></td>        		
+        		</c:if>
+        		<c:if test="${list.orderLine.canrefund eq false}">
+        		<td><input type="button" value="불가" class="notrefund"></td>
+        		</c:if>
         	</tr>
         </c:forEach>
-<!--         <tr><td>JAVA왕초보</td><td>김민호</td><td>200,000원</td><td>2020.04.27</td></tr> -->
-<!--         <tr><td>JAVA고수</td><td>김민호</td><td>250,000원</td><td>2020.04.27</td></tr> -->
-<!--         <tr><td>JAVA중수</td><td>김민호</td><td>370,000원</td><td>2020.04.27</td></tr>  -->
         </table> 
         </div>        
       </div>
       
     <!-- End Middle Column -->
     </div>
-    
     <!-- End Right Column -->
     </div>
     
   <!-- End Grid -->  
 <!-- End Page Container -->
 <br>
-
-
 
   <footer class="py-5 bg-dark">
     <div class="container">

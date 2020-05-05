@@ -71,7 +71,30 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 		return result;
 	}
+
 	
+	
+	@Override
+	public int updatePwd(String id, String pwd) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = pro.getProperty("updatePwd");
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, pwd);
+			ps.setString(2, id);
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(con, ps);
+		}
+		
+		return result;
+	}
+
 	@Override
 	public int update(Customer customer) throws SQLException {
 		Connection con = null;
@@ -113,12 +136,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 			}
 			
 			//admin 포함되어있는지 확인
-			String str = rs.getString(id);
+			/*String str = rs.getString(id);
 			str.toLowerCase();
 			boolean flag = str.contains("admin");
 			if(flag==true) {
 				result  = 1;
-			}
+			}*/
 			
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

@@ -141,13 +141,13 @@ $(function(){
 	$("[name=delete]").click(function(){
 		confirm("정말 삭제하시겠습니까?");
 		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
-	});//end click
+	});
 	
 	$("[name=order]").click(function(){
 		location.href="javaChip?command=insertOrderLine&prodId="+$(this).val()+"&prodId="+$('td>span').text();
-		alert("주문이 완료되었습니다!");
+			alert("주문이 완료되었습니다!");
 		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
-	});//end click
+	});
 });
 
 </script>
@@ -176,7 +176,7 @@ $(function(){
 			           <a class="nav-link" onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');"><span style="color: white; font-weight: bold">회원가입</span></a>
 			         </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -213,7 +213,7 @@ $(function(){
 						<a class="nav-link" href="${path}/mycart/newmycart.jsp"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/classlist/cart.jsp"><span style="color: white; font-weight: bold">강의목록</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
@@ -236,7 +236,7 @@ $(function(){
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
         <a href="${path}/mycart/newmycart.jsp" class="list-group-item list-group-item-action bg-light">장바구니</a>
-        <a href="${path}/classlist/cart.jsp" class="list-group-item list-group-item-action bg-light">강의목록</a>
+        <a href="${path}/javaChip?command=selectProd" class="list-group-item list-group-item-action bg-light">강의목록</a>
         
       </div>
     </div>
@@ -317,8 +317,8 @@ $(function(){
 -->	    
 	    
 	    <hr>
-	    <button style="float: right" onclick="">전체삭제</button>
-	    <button style="float: right" onclick="">전체주문</button>
+<!-- 	    <button style="float: right" onclick="">전체삭제</button> -->
+<!-- 	    <button style="float: right" onclick="">전체주문</button> -->
 		
       </div>     
     </div>

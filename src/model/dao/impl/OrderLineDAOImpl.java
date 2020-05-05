@@ -61,6 +61,29 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 	}
 
 	@Override
+	public int selectAlreadyInsertOrder(String customerId, String prodId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int itemNo = 0;
+		String sql = pro.getProperty("selectAlreadyInsertOrder");
+
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, customerId);
+			ps.setString(2, prodId);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				itemNo = rs.getInt(1);
+			}
+		} finally {
+			DbUtil.dbClose(con, ps, rs);
+		}
+		return itemNo;
+	}
+
+	@Override
 	public void insert(OrderItem orderItem) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -238,6 +261,7 @@ public class OrderLineDAOImpl implements OrderLineDAO {
 				orderItem.setOrderLine(orderLine);
 				orderItem.setProduct(product);
 				orderItem.setEndDate(rs.getDate("end_date"));
+				orderItem.setIsRefund(rs.getInt("isrefund"));
 
 				list.add(orderItem);
 			}

@@ -19,7 +19,7 @@ public class DeleteEstController implements Controller {
 		}
 		EstimateService.delete(Integer.parseInt(estimateNo));
 
-		ModelAndView mv = new ModelAndView(true, "");
+		ModelAndView mv = new ModelAndView(true, "javaChip?command=selectAllEst");
 		
 		return mv;
 	}

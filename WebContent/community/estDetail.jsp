@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +17,14 @@
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-$(function(){
-	
-});//end load
+	$(function() {
+
+	});//end load
 </script>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="../marga/index.jsp">J A V A C H I P</a>
+			<a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -33,27 +33,42 @@ $(function(){
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"></li>
+					<c:choose>
+						<c:when test="${userId==null}">
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/Login/login.jsp"><span
+									style="color: white; font-weight: bold">로그인</span></a></li>
+							<li class="nav-item"><a class="nav-link"
+								onclick="window.open('${path}/regForm/regform.jsp', '_blank', 'width=600, height=400');">
+									<span style="color: white; font-weight: bold">회원가입</span>
+							</a></li>
+						</c:when>
+						<c:when test="${userId!=null}">
+							<li class="nav-item"><a class="nav-link"
+								href="${path}/javaChip?command=logout"><span
+									style="color: white; font-weight: bold">로그아웃</span></a></li>
+						</c:when>
+					</c:choose>
+					<c:if
+						test="${sessionScope.userStatus == 1 || sessionScope.userStatus == 2}">
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/mypage/mypage.jsp"><span
+								style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/mycart/newmycart.jsp"><span
+								style="color: white; font-weight: bold">장바구니</span></a></li>
+					</c:if>
 					<li class="nav-item"><a class="nav-link"
-						href="../Login/login.jsp"><span
-							style="color: white; font-weight: bold">로그인</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../marga/index.jsp"><span
-							style="color: white; font-weight: bold">로그아웃</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						onclick="window.open('../regForm/regform.jsp', '_blank', 'width=600, height=400');"><span
-							style="color: white; font-weight: bold">회원가입</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../mypage/mypage.jsp"><span
-							style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../mycart/newmycart.jsp"><span
-							style="color: white; font-weight: bold">장바구니</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../classlist/cart.jsp"><span
+						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../community/community.jsp"><span
+						href="${path}/javaChip?command=community"><span
 							style="color: white; font-weight: bold">커뮤니티</span></a></li>
+					<c:if test="${sessionScope.userStatus == 3}">
+						<li class="nav-item"><a class="nav-link"
+							href="${path}/Admin/index.jsp"><span
+								style="color: white; font-weight: bold">관리자페이지</span></a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
@@ -67,7 +82,6 @@ $(function(){
 					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">회사정보</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -114,28 +128,36 @@ $(function(){
 				<hr>
 				<form name="form" id="form" role="form" method="post"
 					action="/webProject_JavaChip/board/saveBoard">
-					
+
 					<div class="mb-3">
 						<label for="content" style="font-weight: bold">강의명</label> &nbsp;
 						${estBoard.product.name}
 					</div>
 					<div class="mb-3">
+						<label for="content" style="font-weight: bold">작성자</label> &nbsp;
+						${estBoard.customer.id}
+					</div>
+					<div class="mb-3">
 						<label for="content" style="font-weight: bold">평점</label>
 						<c:choose>
 							<c:when test="${estBoard.grade == 5}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9733;</span> 
+								<span style="color: red">&#9733; &#9733; &#9733; &#9733;
+									&#9733;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 4}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 
+								<span style="color: red">&#9733; &#9733; &#9733; &#9733;
+									&#9734;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 3}">
-							<span style="color:red">&#9733; &#9733; &#9733; &#9734;</span> 
+								<span style="color: red">&#9733; &#9733; &#9733;
+									&#9734;&#9734;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 2}">
-							<span style="color:red">&#9733; &#9733; &#9734;&#9734;&#9734;</span> 
+								<span style="color: red">&#9733; &#9733;
+									&#9734;&#9734;&#9734;</span>
 							</c:when>
 							<c:when test="${estBoard.grade == 1}">
-							<span style="color:red">&#9733;&#9734;&#9734;&#9734;&#9734;</span> 
+								<span style="color: red">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
 							</c:when>
 						</c:choose>
 					</div>
@@ -153,12 +175,12 @@ $(function(){
 				</form>
 
 				<div>
-					
+
 					<!-- 강의평 상세보기에서 수정불가 -->
 					<%-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">수정</button>--%>
 
 					<button type="button" class="btn btn-sm btn-primary"
-						onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button> 
+						onclick='location.href="${path}/javaChip?command=selectAllEst"'>목록</button>
 
 				</div>
 			</div>
@@ -185,10 +207,10 @@ $(function(){
 
 	<!-- Menu Toggle Script -->
 	<script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
 </body>
 </html>

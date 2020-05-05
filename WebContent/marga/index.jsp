@@ -101,7 +101,7 @@ background-color: black;
 
 position: fixed;
 z-index: 1000;
-left: 1170px;
+left: 1300px;
 bottom: 20px;
 width: 300px;
 height: 200px;
@@ -111,7 +111,7 @@ height: 200px;
 .toast_close2 span {
 position: fixed;
 z-index: 3000;
-left: 1430px;
+left: 1560px;
 bottom: 180px;
 width: 40px;
 height: 40px;   
@@ -192,7 +192,7 @@ background-color: black;
 			            <a class="nav-link" href="${path}/javaChip?command=selectProd"><span style="color: white; font-weight: bold">강의목록</span></a>
 			          </li>
 			          <li class="nav-item">
-			            <a class="nav-link" href="${path}/community/community.jsp"><span style="color: white; font-weight: bold">커뮤니티</span></a>
+			            <a class="nav-link" href="${path}/javaChip?command=community"><span style="color: white; font-weight: bold">커뮤니티</span></a>
 			          </li>
 			        </ul>
 			      </div>
@@ -266,18 +266,18 @@ background-color: black;
           <div>
             <h1 class="text-uppercase mb-3">자칭 1등 프로그래밍 인터넷 강의</h1>
             <p class="mb-5"> 'KOSTA' 출신 명문강사들 총 집합!! </p>
-            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/javaChip?command=selectProd" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
           <div>
             <h2 class="text-uppercase mb-3">여러분들의 꿈을 자바칩에서 키우세요!</h2>
             <p class="mb-5"> 자바칩과 함께라면 어려울것이 없어요!</p>
-            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/javaChip?command=selectProd" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
 
           <div>
             <h2 class="text-uppercase mb-3">자랑스러운 취업률</h2> <h1>"100%" !</h1>
             <p class="mb-5">역대 최대 취업률을 경험하시려면 바로 신청하세요!</p>            
-            <p class="mb-0"><a href="${path}/classlist/cart.jsp" class="btn btn-primary rounded-0">바로신청하기!</a></p>
+            <p class="mb-0"><a href="${path}/javaChip?command=selectProd" class="btn btn-primary rounded-0">바로신청하기!</a></p>
           </div>
 
         </div>
@@ -289,9 +289,8 @@ background-color: black;
         
       </div>
     </div>
-
     
-    <div class="site-section">
+<!--<div class="site-section">
       <div class="container">
         <div class="row align-items-stretch">
         <img src="images/image_99.jpg" height="900px">
@@ -341,7 +340,7 @@ background-color: black;
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     
    <!-- Footer -->
   <footer class="py-5 bg-dark">

@@ -62,7 +62,7 @@
 						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${path}/community/community.jsp"><span
+						href="${path}/javaChip?command=community"><span
 							style="color: white; font-weight: bold">커뮤니티</span></a></li>
 					<c:if test="${sessionScope.userStatus == 3}">
 						<li class="nav-item"><a class="nav-link"

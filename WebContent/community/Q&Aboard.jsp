@@ -215,7 +215,6 @@ $(function(){
 			<p class="m-0 text-center text-white">Copyright &copy; KOSTA_2조
 				2020</p>
 		</div>
-		<!-- /.container -->
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->

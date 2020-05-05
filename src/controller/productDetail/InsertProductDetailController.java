@@ -8,10 +8,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import controller.Controller;
 import controller.ModelAndView;
-import exception.AddException;
 import model.domain.Product;
 import model.domain.ProductDetail;
-import model.domain.Storage;
 import model.service.ProductDetailService;
 
 public class InsertProductDetailController implements Controller {
@@ -40,9 +38,8 @@ public class InsertProductDetailController implements Controller {
 		if(m.getFilesystemName("text_file") != null && m.getFile("text_file").length() > 0 ) {
 			
 			// 강의자료가 존재한다면...
-			String textfileName = m.getFilesystemName("text_file");
-			Storage storage = new Storage(textfileName, textfileName);
-			pd = new ProductDetail(chapter, url, title, storage, product);
+			String textfileName = m.getFilesystemName("text_file");			
+			pd = new ProductDetail(chapter, url, title, textfileName, product);
 					
 		} else {
 			

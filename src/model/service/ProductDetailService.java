@@ -20,7 +20,7 @@ public class ProductDetailService {
 	 */
 	public static void insert(ProductDetail productDetail) throws Exception {
 		
-		if(productDetail.getStorage() == null) {			
+		if(productDetail.getFileName() == null) {			
 			int result = productDetailDAO.insertNoFile(productDetail);	
 			if(result==0) throw new SQLException("등록되지 않았습니다.");
 		} else {		

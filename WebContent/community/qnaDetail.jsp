@@ -27,6 +27,9 @@
 #answerForm {
 	display: none;
 }
+.userStatus{
+	display: none;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
@@ -34,6 +37,9 @@
 		if(${userStatus} == 2 || ${userStatus} == 3){//관리자면 비밀글 show
 			$('.secret').show();
 			$('#formpwd').hide();
+		}
+		if($('.userStatus').text()==2){ //작성자가 강사인 경우, 답글작성버튼 숨기기
+			$('#answer').hide();
 		}
 		$("button[name=confrim]").click(function() {
 			 $.ajax({
@@ -174,10 +180,10 @@
 				<hr>
 				<c:choose>
 					<c:when test="${qnaBoard.status == 0}"> <!-- 일반글 -->
-						<form name="form" id="" role="form" method="post" class="normal">
+						<form name="form" role="form" method="post" class="normal">
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">작성자</label>
-								${qnaBoard.customer.id}
+								${qnaBoard.customer.id} <span class="userStatus">${requestScope.userStatus}</span>
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">강의명</label>
@@ -196,10 +202,10 @@
 						</form>
 					</c:when>
 					<c:when test="${qnaBoard.status == 1}"> <!-- 비밀글 -->
-						<form name="form" id="" role="form" method="post" class="secret">
+						<form name="form" role="form" method="post" class="secret">
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">작성자</label>
-								${qnaBoard.customer.id}
+								${qnaBoard.customer.id} <span class="userStatus">${requestScope.userStatus}</span>
 							</div>
 							<div class="mb-3">
 								<label for="title" style="font-weight: bold">강의명</label>

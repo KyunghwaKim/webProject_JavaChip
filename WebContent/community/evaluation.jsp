@@ -29,34 +29,30 @@ table {
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 	$(function() {
-		$('button[name=adminDel]')
-				.click(
-						function() { //admin이 게시글 삭제
-							location.href = "${path}/javaChip?command=deleteEst&estimateNo="
-									+ $(this).val();
-						});
+		$.ajax({
+			url : "${path}/javaChip?command=selectByCusIdEst",
+			success : function(){
+			}
+		});
+		$('button[name=adminDel]').click(
+			function() { //admin이 게시글 삭제
+				location.href = "${path}/javaChip?command=deleteEst&estimateNo="+ $(this).val();
+		});
 
 		$('button[name=eval]').click(function() { //목록에 이미 작성한 강의평이 있을 경우 alert
-			location.href = "${path}/javaChip?command=selectByCusIdEst";
+			location.href="${path}/community/evaluateForm.jsp";
+			//location.href = "${path}/javaChip?command=selectByCusIdEst";
 			/* $.ajax({
-			url : "community/estCheck.jsp",
-			type : "get",
-			data : "userId="+$('#userId').text(),
+			url : "${path}/community/estCheck.jsp",
 			success : function(json){
-				if(json.status == 1){
+				if(json.status == 1){//작성한 강의평 없음
 					alert(1);
-				}else if(json.status == -1){
+				}else if(json.status == -1){//이미 작성함
 					alert(2);
 					//location.href="${path}/community/evaluateForm.jsp";
 				}
 			}
 			});//end ajax */
-			/* if(){
-				alert(2);
-				return;
-			}else{
-				location.href="${path}/community/evaluateForm.jsp";
-			} */
 		});
 	});
 </script>
@@ -215,7 +211,7 @@ table {
 								<td>${est.subject}</td>
 								<td id="userId">${est.customer.id}</td>
 								<td>${est.writeDay}</td>
-								<c:if test="${userId == 'admin'}">
+								<c:if test="${sessionScope.userStatus == 3}">
 									<td><button value="${est.estimateNo}" name="adminDel">삭제</button>
 									</td>
 								</c:if>
@@ -226,10 +222,7 @@ table {
 
 				<hr>
 				*강의평은 수강한 강의에 한하여 한 번만 작성 가능합니다.
-				<c:if test="${not empty itemList}">
-					<!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
-					<button style="float: right" name='eval' onclick="">강의평 작성</button>
-				</c:if>
+				<button style="float: right" name='eval'>강의평 작성</button>
 			</div>
 		</div>
 		<!-- /#page-content-wrapper -->

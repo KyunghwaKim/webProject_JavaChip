@@ -21,17 +21,29 @@ public class SelectByCustomerIdEstController implements Controller {
 			throw new NotFoundException("인자가 부족합니다.");
 		}
 		List<EstimateBoard> estimateList = EstimateService.selectByCustomerId(customerId);
-		ModelAndView mv=null;
 		System.out.println(estimateList);
-		if(estimateList.isEmpty()) { //작성한 강의평이 없음
+		request.setAttribute("estimateList", estimateList);
+		
+		//컨트롤러에서 수강한 강의에 대한 강의평 작성 data가 있는지 검사한다
+		for(EstimateBoard estBoard:estimateList) {
+			System.out.println(estBoard.getProduct().getId());
+		}
+		
+		
+		ModelAndView mv=new ModelAndView();
+		mv.setRedirect(true);
+		mv.setViewName("javaChip?command=selectAllEst");
+		
+		/*if(estimateList.isEmpty()) { //작성한 강의평이 없음
 			mv = new ModelAndView();
-			mv.setViewName("community/evaluateForm.jsp");
+			mv.setViewName("");//community/evaluateForm.jsp
 		}else { //작성한 강의평이 있음
 			mv = new ModelAndView();
 			mv.setRedirect(true);
-			mv.setViewName("javaChip?command=selectAllEst");
-		}
-		//request.setAttribute("estimateList", estimateList);
+			mv.setViewName("");//javaChip?command=selectAllEst
+			//request.setAttribute("estimateList", estimateList);
+		}*/
+		
 		return mv;
 	}
 

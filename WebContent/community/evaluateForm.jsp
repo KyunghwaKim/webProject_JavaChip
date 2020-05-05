@@ -187,10 +187,11 @@ var grade;
 					action="${pageContext.request.contextPath}/board/saveBoard">
 
 					<div class="mb-3">
-						<label for="title" style="font-weight: bold">강좌 선택</label> <br>
+						<label for="title" style="font-weight: bold">강좌 선택</label> <br> ${estimateList}
 						<select>
 								<option>강좌선택</option>
 							<c:forEach items="${itemList}" var="item" varStatus="state">
+							<c:if test=""></c:if>
 								<option value="${item.product.id}">${item.product.name}
 									/ ${item.product.teacher.name}</option>
 							</c:forEach>

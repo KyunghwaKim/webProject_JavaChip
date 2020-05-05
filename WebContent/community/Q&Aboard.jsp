@@ -194,7 +194,7 @@ $(function(){
 								<td>${qna.writeDay}</td>
 								<td>${qna.count}</td>
 								<!-- admin에게는 삭제 버튼 보이기 -->
-								<c:if test="${userId == 'admin'}">
+								<c:if test="${sessionScope.userStatus == 3}">
 									<td><button value="${qna.qaBoardNo}" name='adminDel'>삭제</button></td>
 								</c:if>
 							</tr>
@@ -203,11 +203,10 @@ $(function(){
 				</table>
 
 				<hr>
-				
 				<c:if test="${not empty itemList}">
 					<!-- 구매한 상품이 있으면 질문하기 버튼 보이기 -->
 					<button style="float: right"
-						onclick="location.href='community/qnaForm.jsp'">질문하기</button>${sessionScope.userStatus}
+						onclick="location.href='community/qnaForm.jsp'">질문하기</button>
 				</c:if>
 			</div>
 		</div>

@@ -159,7 +159,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
          <c:if test="${user.gender eq '여자'}">
          	<p class="w3-center"><img src="${path}/mypage/images/woman.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          </c:if>
-         <c:if test="${user.gender eq 'other'}">
+         <c:if test="${user.gender eq 'Other'}">
          	<p class="w3-center"><img src="${path}/mypage/images/other.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          </c:if>
          <hr>

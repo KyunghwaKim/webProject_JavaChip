@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>JavaChip - pwdUpdate</title>
+	<title>JavaChip - DestoryIdCheck</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -31,16 +33,33 @@
 
 	window.addEventListener("load", function(){
 		
-		pwdupdate.onclick = function(){	
-			
-		 	var pwd = document.getElementById("pwd").value;	 		
 		
-		 	if(pwd==null || pwd==""){
+		var pwdcheck = document.getElementById("pwdcheck");
+		
+		pwdcheck.onclick = function(){	
+			
+		 	var pwd = document.getElementById('pwd').value;	 		
+		
+		 	if(pwd==null){
 		 		
-		 		alert("입력값이 부족합니다");
-		 		return;
+		 		alert("비밀번호를 입력해주세요");
+		 			 		
+		 	} else {
+		 		
+		 		
+				if(confirm("탈퇴처리 하시겠습니까?")){
+		 			
+		 		alert("탈퇴처리 되었습니다");
+		 			
+		 		opener.location.href="../marga/index.jsp";
+		 			
+		 		window.close();
 		 		}
-		 	}		
+		 		
+		 	}
+		 	
+	
+		}		
 	});
 
 </script>
@@ -54,7 +73,7 @@
 			
 			<!-- action 값 지정할것! -->
 			
-				<form class="login100-form validate-form" action="../javaChip?command=updatePwdCus" method="post">
+				<form class="login100-form validate-form" action="../javaChip?command=withdrawalCus" method="post">
 					<span class="login100-form-title p-b-40">
 						비밀번호입력
 					</span>
@@ -65,8 +84,8 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id="pwdupdate" type="submit">
-							비밀번호 수정
+						<button class="login100-form-btn" id="pwdcheck" type="submit">
+							입력
 						</button>
 					</div>		
 				</form>

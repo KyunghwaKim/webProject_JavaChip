@@ -30,6 +30,7 @@ public class LoginController implements Controller {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("userId" , id);
+		session.setAttribute("userStatus" , person.getStatus());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setRedirect(true);

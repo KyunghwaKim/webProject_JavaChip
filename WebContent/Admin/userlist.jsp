@@ -36,10 +36,14 @@
     <link href="${path}/Admin/css/theme.css" rel="stylesheet" media="all">
 
 <script>
+	window.onload = function(){
+		var kickOutBt = document.getElementById('kickOut');
+		
+		kickOutBt.onclick = function(){
+			location.href="${path}/javaChip?command=kickOutCustomer&customerId="+$(this).val();
+		}
+	};
 </script>
-
-
-
 </head>
 
 <body class="animsition">
@@ -196,7 +200,7 @@
 										<td>${resultlist.phone}</td>
 										<td>${resultlist.gender}</td>
 										<td>${resultlist.uploadDateConvert}</td>
-										<td><button>강제탈퇴</button></td>
+										<td><button id="kickOut" value="${resultlist.id}">강제탈퇴</button></td>
 									</tr>								
 								</c:forEach>
 							</tbody>

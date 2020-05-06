@@ -20,7 +20,9 @@ public class pwdCheckController implements Controller {
 
 		Customer customer = CustomerService.selectById(id);
 		String getpwd = customer.getPwd();
+		
 		request.setAttribute("getpwd", getpwd);
+		
 		if(!pwd.equals(getpwd)) {
 			throw new NotFoundException("잘못된 비밀번호입니다");
 		}

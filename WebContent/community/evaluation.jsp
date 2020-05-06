@@ -29,30 +29,17 @@ table {
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 	$(function() {
-		$.ajax({
-			url : "${path}/javaChip?command=selectByCusIdEst",
-			success : function(){
-			}
-		});
 		$('button[name=adminDel]').click(
 			function() { //admin이 게시글 삭제
 				location.href = "${path}/javaChip?command=deleteEst&estimateNo="+ $(this).val();
 		});
 
-		$('button[name=eval]').click(function() { //목록에 이미 작성한 강의평이 있을 경우 alert
+		$('button[name=eval]').click(function() { //강의평 작성버튼
+			/* if(${userId}==null){
+				return;
+			} */
 			location.href="${path}/community/evaluateForm.jsp";
-			//location.href = "${path}/javaChip?command=selectByCusIdEst";
-			/* $.ajax({
-			url : "${path}/community/estCheck.jsp",
-			success : function(json){
-				if(json.status == 1){//작성한 강의평 없음
-					alert(1);
-				}else if(json.status == -1){//이미 작성함
-					alert(2);
-					//location.href="${path}/community/evaluateForm.jsp";
-				}
-			}
-			});//end ajax */
+			//location.href="${path}/javaChip?command=selectByCusIdEst";
 		});
 	});
 </script>
@@ -222,7 +209,8 @@ table {
 
 				<hr>
 				*강의평은 수강한 강의에 한하여 한 번만 작성 가능합니다.
-				<button style="float: right" name='eval'>강의평 작성</button>
+				<c:if test="${not empty itemList}">
+				<button style="float: right" name='eval'>강의평 작성</button></c:if>
 			</div>
 		</div>
 		<!-- /#page-content-wrapper -->

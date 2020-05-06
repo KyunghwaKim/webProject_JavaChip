@@ -48,7 +48,6 @@ table {
 	$(function() {
 		$('#btnSave').click(function() { //qna등록
 			//유효성 체크
-			
 			if($('[name=title]').val()==null || $('[name=title]').val()=="" 
 				|| $('[name=content]').val() ==null || $('[name=content]').val()==""){
 				alert("제목과 내용을 모두 입력해주세요!");

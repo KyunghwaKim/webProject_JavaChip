@@ -73,8 +73,7 @@ var grade;
 				<div class="col-lg-4">
 					<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 						<div class="container">
-							<a class="navbar-brand" href="${path}/marga/index.jsp">J A V
-								A C H I P</a>
+							<a class="navbar-brand" href="${path}/marga/index.jsp">J A V A C H I P</a>
 							<button class="navbar-toggler" type="button"
 								data-toggle="collapse" data-target="#navbarResponsive"
 								aria-controls="navbarResponsive" aria-expanded="false"
@@ -188,15 +187,22 @@ var grade;
 					action="${pageContext.request.contextPath}/board/saveBoard">
 
 					<div class="mb-3">
-						<label for="title" style="font-weight: bold">강좌 선택</label> <br> ${estimateList}
+						<label for="title" style="font-weight: bold">강좌 선택</label> <br> 
 						<select>
 								<option>강좌선택</option>
 							<c:forEach items="${itemList}" var="item" varStatus="state">
-							<c:if test=""></c:if>
 								<option value="${item.product.id}">${item.product.name}
 									/ ${item.product.teacher.name}</option>
 							</c:forEach>
 						</select>
+						<!-- 테스트... -->
+						<%-- <select>
+							<option>강좌선택</option>
+							<c:forEach items="${estPosList}" var="pos" varStatus="state">
+							<c:if test=""></c:if><!-- 해당강의에 대한 강의평 리스트가 있다면.. 목록 노출x -->
+								<option value="${pos.product.id}">${pos.product.name}</option>
+							</c:forEach>
+						</select> --%>
 					</div>
 					<div class="mb-3">
 						<label for="title" style="font-weight: bold">별점주기</label>

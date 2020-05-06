@@ -30,30 +30,32 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 		Customer customer = CustomerService.selectById(customerId);
 		
 		for(OrderItem oi : orderList) {
-			
-			Date sysdate = new Date();
-			Date date = oi.getOrderLine().getPayDate();
-			Calendar cal = Calendar.getInstance();			
-			 
-			cal.setTime(date);			
-			cal.add(Calendar.DATE, 7); 
-			
-			//7일이전이면 환불가능..
-			boolean result = sysdate.before(cal.getTime());
+			boolean result = false;
 			
 			oi.getOrderLine().setCanrefund(result);
-			
 		}
-		
-		request.setAttribute("orderList", orderList);
 		request.setAttribute("user", customer);
 		
 		List<OrderItem> myLectureList = new ArrayList<OrderItem>();
 		for(OrderItem item : orderList) {
 			if(item.getIsRefund()==1) {
 				myLectureList.add(item);
+				
+				Date sysdate = new Date();
+				Date date = item.getOrderLine().getPayDate();
+				Calendar cal = Calendar.getInstance();			
+				 
+				cal.setTime(date);			
+				cal.add(Calendar.DATE, 7); 
+				
+				//7일이전이면 환불가능..
+				boolean result = sysdate.before(cal.getTime());
+				
+				item.getOrderLine().setCanrefund(result);
 			}
 		}
+		
+		request.setAttribute("orderList", orderList);
 		request.setAttribute("myLectureList", myLectureList);
 
 		ModelAndView mv = new ModelAndView();

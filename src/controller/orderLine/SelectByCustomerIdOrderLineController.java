@@ -25,7 +25,7 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 		if (customerId == null || customerId.equals("")) {
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
-		
+		 
 		List<OrderItem> orderList = OrderLineService.selectByCustomerId(customerId);
 		Customer customer = CustomerService.selectById(customerId);
 		

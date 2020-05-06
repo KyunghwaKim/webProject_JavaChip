@@ -35,8 +35,7 @@
 		
 		pwdcheck.onclick = function(){	
 			
-		 	var pwd = document.getElementById("pwd").value;	 		
-		 	var getpwd = ${getpwd};
+		 	var pwd = document.getElementById("pwd").value;	 	
 		 	
 		 	if(pwd==null || pwd==""){
 		 		
@@ -44,10 +43,6 @@
 		 		return;
 		 		}
 		 	
-		 	 if(!pwd==getpwd){
-		 		alert("비밀번호를 확인해주세요");
-		 		return;
-		 	} 
 		 }		
 	});
 

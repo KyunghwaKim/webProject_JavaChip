@@ -189,6 +189,16 @@
 			return false;
 		}
 		
+		if(!form.age.value){
+			alert("나이를 입력해주세요");
+			return false;
+		}
+		
+		if(!form.email.value){
+			alert("e-mail을 입력해주세요");
+			return false;
+		}
+		
 	}
 	
 	$(function(){

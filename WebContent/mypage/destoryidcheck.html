@@ -36,22 +36,23 @@
 		
 		pwdcheck.onclick = function(){	
 			
-		 	var pwd = document.getElementById("pwd").value;	 		
+		 	var pwd = document.getElementById('pwd').value;	 		
 		
-		 	if(!pwd){
+		 	if(pwd==null){
 		 		
-		 		if(confirm("탈퇴처리 하시겠습니까?")){
-		 			
-		 			alert("탈퇴처리 되었습니다");
-		 			
-		 			opener.location.href="../marga/index.html";
-		 			
-		 			window.close();
-		 		}
+		 		alert("비밀번호를 입력해주세요");
 		 			 		
 		 	} else {
 		 		
-		 		alert("비밀번호를 입력해주세요");
+		 		
+				if(confirm("탈퇴처리 하시겠습니까?")){
+		 			
+		 		alert("탈퇴처리 되었습니다");
+		 			
+		 		opener.location.href="../marga/index.jsp";
+		 			
+		 		window.close();
+		 		}
 		 		
 		 	}
 		 	
@@ -81,7 +82,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id="pwdcheck" type="button">
+						<button class="login100-form-btn" id="pwdcheck" type="submit">
 							입력
 						</button>
 					</div>		

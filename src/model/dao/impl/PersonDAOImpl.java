@@ -222,7 +222,7 @@ public class PersonDAOImpl implements PersonDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = pro.getProperty("selectPersonByUserId");
+		String sql = "SELECT * FROM PERSON WHERE ID=?";
 		Person person=null;
 		try {			
 			con = DbUtil.getConnection();
@@ -231,7 +231,8 @@ public class PersonDAOImpl implements PersonDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				person = new Person(rs.getString("id"), rs.getInt("status"));
+				person = new Person(rs.getString("id"), rs.getString("PWD"), rs.getString("NAME"), 
+						rs.getString("PHONE"), rs.getString("GENDER"), rs.getInt("status"));
 			}
 		} finally {
 			DbUtil.dbClose(con, ps, rs);

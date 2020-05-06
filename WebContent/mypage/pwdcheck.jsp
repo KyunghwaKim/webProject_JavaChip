@@ -35,8 +35,7 @@
 		
 		pwdcheck.onclick = function(){	
 			
-		 	var pwd = document.getElementById("pwd").value;	 		
-			var msg = ${msg};
+		 	var pwd = document.getElementById("pwd").value;	 	
 		 	
 		 	if(pwd==null || pwd==""){
 		 		
@@ -44,10 +43,6 @@
 		 		return;
 		 		}
 		 	
-		 	if(){
-		 		alert(msg);
-		 		return;
-		 	}
 		 }		
 	});
 

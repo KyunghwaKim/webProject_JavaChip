@@ -2,7 +2,7 @@ package model.service;
 
 import java.sql.SQLException;
 
-import exception.NotFoundException;
+import exception.NotLoginExeception;
 import model.dao.PersonDAO;
 import model.dao.impl.PersonDAOImpl;
 import model.domain.Person;
@@ -17,7 +17,7 @@ public class PersonService {
 
 		Person person = personDAO.selectByIdAndPwd(id, pwd);
 				
-		if(person==null) throw new NotFoundException("잘못된 입력값입니다.");
+		if(person==null) throw new NotLoginExeception("아이디 혹은 비밀번호가 틀립니다.");
 		
 		return person;
 	}
@@ -32,4 +32,14 @@ public class PersonService {
 						
 		}
 	}
+	
+	/**
+	 *  강사id에 해당하는 강사정보를 가져온다.
+	 */
+	public static Person selectByTeacherid(String id) throws SQLException{
+		
+		return personDAO.selectById(id);
+				
+	}
+	
 }

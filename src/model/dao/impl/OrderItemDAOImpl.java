@@ -112,7 +112,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		List<OrderItem> list = new ArrayList<OrderItem>();
 		String sql = "SELECT * FROM (SELECT ROW_NUMBER() over (ORDER BY ORDERITEM_NO DESC) NUM, A.* "
 				+ "FROM ORDERITEM A ORDER BY ORDERITEM_NO DESC) NATURAL JOIN ORDERLINE "
-				+ "WHERE NUM<=7 ORDER BY NUM ASC";
+				+ "WHERE NUM<=7 AND ISREFUND<>2 ORDER BY NUM ASC";
 
 		try {
 

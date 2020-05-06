@@ -34,7 +34,7 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 			Date sysdate = new Date();
 			Date date = oi.getOrderLine().getPayDate();
 			Calendar cal = Calendar.getInstance();			
-			
+			 
 			cal.setTime(date);			
 			cal.add(Calendar.DATE, 7); 
 			

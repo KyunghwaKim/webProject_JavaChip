@@ -30,7 +30,7 @@ public class WithdrawalCustomerController implements Controller {
 		}
 		
 		CustomerService.withdrawal(id);
-
+		session.invalidate();
 		ModelAndView mv = new ModelAndView(true, "marga/index.jsp");
 		return mv;
 	}

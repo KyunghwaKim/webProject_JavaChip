@@ -46,6 +46,10 @@ public class DispatcherServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 			request.getRequestDispatcher("Login/login.jsp").forward(request, response);
+		}catch (NotFoundException e) {
+			e.printStackTrace();
+			request.setAttribute("errorMsg", e.getMessage());
+			request.getRequestDispatcher("successView/idConfirm.jsp").forward(request, response);
 		} catch (Exception e) {			
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

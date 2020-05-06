@@ -26,6 +26,9 @@ table{
 .qnaNo{
 	display: none;
 }
+.kickOut{
+	border:0px;
+}
 </style>
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -46,6 +49,18 @@ $(function(){
 		}); //end ajax
 	});//end count
 });
+
+window.onload = function(){
+	var kickOutBt = document.getElementsByClassName('kickOut');
+	
+	for(var i=0; i<kickOutBt.length; i++){
+		kickOutBt[i].onclick = function(){
+			if(confirm("강제탈퇴 시키시겠습니까?")){
+				location.href="${path}/javaChip?command=kickOutCustomer&customerId="+$(this).val();
+			}
+		}
+	}
+};
 </script>
 <body>
 	<header class="site-navbar site-navbar-target bg-white" role="banner">
@@ -195,7 +210,7 @@ $(function(){
 									<td>비밀글 입니다.</td>
 								</c:otherwise>
 								</c:choose>
-								<td>${qna.customer.id}</td>
+								<td><button class="kickOut" value="${qna.customer.id}">${qna.customer.id}</button></td>
 								<td>${qna.writeDay}</td>
 								<td>${qna.count}</td>
 								<!-- admin에게는 삭제 버튼 보이기 -->

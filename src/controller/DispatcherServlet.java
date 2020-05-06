@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import exception.NotFoundException;
 import exception.NotLoginExeception;
-import exception.RegExeception;
 
 /**
  * View의 모든 요청을 중앙집중적으로 관리하기 위한

@@ -7,10 +7,9 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.ModelAndView;
 import exception.NotFoundException;
-import model.domain.Customer;
 import model.service.CustomerService;
 
-public class WithdrawalCustomerController implements Controller {
+public class UpdatePwdController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,20 +17,13 @@ public class WithdrawalCustomerController implements Controller {
 		String id = (String) session.getAttribute("userId");
 		String pwd = request.getParameter("pwd");
 		
-		if (id == null || id.equals("")) {
-			throw new NotFoundException("입력값이 부족합니다.");
+		if(id==null || id.equals("") || pwd==null|| pwd.equals("")) {
+			throw new NotFoundException("입력값이 부족합니다");
 		}
 		
-		Customer customer = CustomerService.selectById(id);
-		String getpwd = customer.getPwd();
+		CustomerService.updatePwd(id, pwd);
 		
-		if(!pwd.equals(getpwd)) {
-			throw new NotFoundException("잘못된 비밀번호입니다");
-		}
-		
-		CustomerService.withdrawal(id);
-
-		ModelAndView mv = new ModelAndView(true, "marga/index.jsp");
+		ModelAndView mv = new ModelAndView(false, "mypage/mypage.jsp");
 		return mv;
 	}
 

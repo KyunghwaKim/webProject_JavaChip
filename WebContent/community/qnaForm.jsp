@@ -46,33 +46,36 @@ table {
 </script>
 <script>
 	$(function() {
-		$('#btnSave')
-				.click(
-						function() { //qna등록
-							var status = $('input[name="secret"]:checked')
-									.val(); //옵션 값
-							if (status == 1) { //비밀글
-								location.href = "${path}/javaChip?command=insertQnA&prodId="
-										+ $(":selected").val()
-										+ "&title="
-										+ $('#title').val()
-										+ "&content="
-										+ $('#content').val()
-										+ "&status="
-										+ status
-										+ "&pwd="
-										+ $('input[name=password]').val();
-							} else if (status == 0) {
-								location.href = "${path}/javaChip?command=insertQnA&prodId="
-										+ $(":selected").val()
-										+ "&title="
-										+ $('#title').val()
-										+ "&content="
-										+ $('#content').val()
-										+ "&status="
-										+ status;
-							}
-						});//end save
+		$('#btnSave').click(function() { //qna등록
+			//유효성 체크
+			if($('[name=title]').val()==null || $('[name=title]').val()=="" 
+				|| $('[name=content]').val() ==null || $('[name=content]').val()==""){
+				alert("제목과 내용을 모두 입력해주세요!");
+				return;
+			}
+			var status = $('input[name="secret"]:checked').val(); //옵션 값
+			if (status == 1) { //비밀글
+				location.href = "${path}/javaChip?command=insertQnA&prodId="
+						+ $(":selected").val()
+						+ "&title="
+						+ $('#title').val()
+						+ "&content="
+						+ $('#content').val()
+						+ "&status="
+						+ status
+						+ "&pwd="
+						+ $('input[name=password]').val();
+			} else if (status == 0) {
+				location.href = "${path}/javaChip?command=insertQnA&prodId="
+						+ $(":selected").val()
+						+ "&title="
+						+ $('#title').val()
+						+ "&content="
+						+ $('#content').val()
+						+ "&status="
+						+ status;
+			}
+		});//end save
 	});//end load
 </script>
 </head>
@@ -146,7 +149,7 @@ table {
 			<div class="sidebar-heading">Start Bootstrap</div>
 			<div class="list-group list-group-flush">
 				<a href="${path}/javaChip?command=selectAllQnA"
-					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+					class="list-group-item list-group-item-action bg-light">QnA게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
 			</div>

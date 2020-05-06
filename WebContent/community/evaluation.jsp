@@ -29,34 +29,14 @@ table {
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 	$(function() {
-		$('button[name=adminDel]')
-				.click(
-						function() { //admin이 게시글 삭제
-							location.href = "${path}/javaChip?command=deleteEst&estimateNo="
-									+ $(this).val();
-						});
+		$('button[name=adminDel]').click(
+			function() { //admin이 게시글 삭제
+				location.href = "${path}/javaChip?command=deleteEst&estimateNo="+ $(this).val();
+		});
 
-		$('button[name=eval]').click(function() { //목록에 이미 작성한 강의평이 있을 경우 alert
-			location.href = "${path}/javaChip?command=selectByCusIdEst";
-			/* $.ajax({
-			url : "community/estCheck.jsp",
-			type : "get",
-			data : "userId="+$('#userId').text(),
-			success : function(json){
-				if(json.status == 1){
-					alert(1);
-				}else if(json.status == -1){
-					alert(2);
-					//location.href="${path}/community/evaluateForm.jsp";
-				}
-			}
-			});//end ajax */
-			/* if(){
-				alert(2);
-				return;
-			}else{
-				location.href="${path}/community/evaluateForm.jsp";
-			} */
+		$('button[name=eval]').click(function() { //강의평 작성버튼
+			location.href="${path}/community/evaluateForm.jsp";
+			//location.href="${path}/javaChip?command=selectByCusIdEst";
 		});
 	});
 </script>
@@ -130,7 +110,7 @@ table {
 			<div class="sidebar-heading">Start Bootstrap</div>
 			<div class="list-group list-group-flush">
 				<a href="${path}/javaChip?command=selectAllQnA"
-					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+					class="list-group-item list-group-item-action bg-light">QnA게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
 			</div>
@@ -215,7 +195,7 @@ table {
 								<td>${est.subject}</td>
 								<td id="userId">${est.customer.id}</td>
 								<td>${est.writeDay}</td>
-								<c:if test="${userId == 'admin'}">
+								<c:if test="${sessionScope.userStatus == 3}">
 									<td><button value="${est.estimateNo}" name="adminDel">삭제</button>
 									</td>
 								</c:if>
@@ -227,9 +207,7 @@ table {
 				<hr>
 				*강의평은 수강한 강의에 한하여 한 번만 작성 가능합니다.
 				<c:if test="${not empty itemList}">
-					<!-- 구매한 상품이 없으면 강의평 작성 버튼 안보임 -->
-					<button style="float: right" name='eval' onclick="">강의평 작성</button>
-				</c:if>
+				<button style="float: right" name='eval'>강의평 작성</button></c:if>
 			</div>
 		</div>
 		<!-- /#page-content-wrapper -->

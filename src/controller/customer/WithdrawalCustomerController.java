@@ -31,7 +31,7 @@ public class WithdrawalCustomerController implements Controller {
 		
 		CustomerService.withdrawal(id);
 		session.invalidate();
-		ModelAndView mv = new ModelAndView(true, "marga/index.jsp");
+		ModelAndView mv = new ModelAndView(true, "Admin/deleteOk.jsp");
 		return mv;
 	}
 

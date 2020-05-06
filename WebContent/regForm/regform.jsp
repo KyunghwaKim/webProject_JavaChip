@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="p-t-20">
-                            <button class="btn btn--radius btn--green" type="submit" id="join" >가입</button>                            
+                            <button class="btn btn--radius btn--green" type="submit" id="join">가입</button>                            
                         </div>                        
                     </form>
                     
@@ -186,6 +186,16 @@
 		
 		if(!form.phone.value){
 			alert("전화번호를 입력해주세요");
+			return false;
+		}
+		
+		if(!form.age.value){
+			alert("나이를 입력해주세요");
+			return false;
+		}
+		
+		if(!form.email.value){
+			alert("e-mail을 입력해주세요");
 			return false;
 		}
 		

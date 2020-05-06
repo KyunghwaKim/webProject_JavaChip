@@ -127,7 +127,7 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <video src="${realPath}save/${prodDetail.url}" width='820' height="400" controls>
+          <video src="${path}/save/${prodDetail.url}" width='820' height="400" controls>
           </video>          
           <div class="card-body">
             <h3 class="card-title"> ${prodDetail.product.name} by${prodDetail.product.teacher.name}</h3>

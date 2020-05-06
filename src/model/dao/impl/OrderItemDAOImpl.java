@@ -169,16 +169,12 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		PreparedStatement ps = null;
 		int result = 0;
 		String sql = pro.getProperty("updateItem");
-		System.out.println("어디서");
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, isRefund);
-			System.out.println("에러가");
 			ps.setInt(2, itemNo);
-			System.out.println("나는");
 			ps.setString(3, customerId);
-			System.out.println("거냐");
 			result = ps.executeUpdate();
 			System.out.println(result);
 		} finally {
@@ -212,7 +208,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	}
 	
 	@Override
-	public int refund(int orderno) throws SQLException {
+	public int refund(int orderNo, String customerId, String prodId) throws SQLException {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -222,13 +218,44 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		try {			
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, orderno);
+			ps.setInt(1, orderNo);
 			i = ps.executeUpdate();
+			
+			sql = pro.getProperty("updateRefundBack");
+			if(i != 0) {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, customerId);
+				ps.setString(2, prodId);
+				i = ps.executeUpdate();
+			}
 			
 		} finally {
 			DbUtil.dbClose(con, ps);			
 		}		
 		return i;
+	}
+
+	@Override
+	public String selectByOrderItemNo(int itemNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String prodId = null;
+		String sql = pro.getProperty("selectByOrderItemNo");
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, itemNo);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				prodId = rs.getString(1);
+			}
+		} finally {
+			DbUtil.dbClose(con, ps);
+		}
+		return prodId;
 	}
 
 }

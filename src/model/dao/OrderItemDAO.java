@@ -55,8 +55,10 @@ public interface OrderItemDAO {
 	 *  환불 status 값 변경...
 	 * 
 	 */
+	int refund(int orderNo, String customerId, String prodId) throws SQLException;
 	
-	int refund(int orderno) throws SQLException;
-	
-	
+	/**
+	 * 환불하기 전 해당 상품의 상품번호값 찾아오기
+	 */
+	String selectByOrderItemNo(int itemNo) throws SQLException;
 }

@@ -154,10 +154,6 @@
                                                     <a href="${path}/javaChip?command=community">
                                                         <i class="zmdi zmdi-account"></i>커뮤니티</a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="${path}/javaChip?command=selectProd">
-                                                        <i class="zmdi zmdi-settings"></i>자료등록</a>
-                                                </div>
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="${path}/javaChip?command=logout">

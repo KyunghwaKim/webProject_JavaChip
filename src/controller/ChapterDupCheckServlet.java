@@ -15,7 +15,7 @@ import model.service.ProductDetailService;
 @WebServlet("/ChapterDupCheckServlet")
 public class ChapterDupCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("√©≈Õ√º≈© º≠∫Ì∏¥ »£√‚µ ...");

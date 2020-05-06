@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +28,9 @@ public class LoginController implements Controller {
 		}
 		
 		Person person = PersonService.login(id, pwd);
+		
+		PrintWriter out = response.getWriter();
+				
 		System.out.println(person.getStatus());
 		
 		HttpSession session = request.getSession();

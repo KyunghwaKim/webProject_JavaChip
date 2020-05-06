@@ -31,6 +31,7 @@
 
 </head>
 <body>
+
 	
 	<div class="limiter">
 		<div class="container-login100">
@@ -48,6 +49,7 @@
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="아이디를 입력하세요">
 						<input class="input100" type="text" name="id" placeholder="ID">
+						<span style="color:red">${errorMsg}</span>
 						<span class="focus-input100"></span>
 					</div>
 
@@ -113,6 +115,14 @@
 	<script src="${path}/Login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="${path}/Login/js/main.js"></script>
+	
+	<script type="text/javascript">
+	  $(function(){
+		
+		     
+		
+	  })
+	</script>
 
 </body>
 </html>

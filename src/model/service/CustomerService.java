@@ -10,7 +10,7 @@ import model.dao.impl.CustomerDAOImpl;
 import model.dao.impl.PersonDAOImpl;
 import model.domain.Customer;
 
-public class CustomerService {
+public class CustomerService { 
 	private static CustomerDAO customerDAO = new CustomerDAOImpl();
 	private static PersonDAO personDAO = new PersonDAOImpl();
 

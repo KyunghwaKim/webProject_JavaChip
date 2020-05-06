@@ -107,14 +107,19 @@
 									style="color: white; font-weight: bold">로그아웃</span></a></li>
 						</c:when>
 					</c:choose>
-						<li class="nav-item"><a class="nav-link"
-							href="${path}/mypage/mypage.jsp"><span
-								style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
-						<c:if test="${sessionScrop.userStatus==1}"><!-- customer에게만 장바구니 보이기 -->
-						<li class="nav-item"><a class="nav-link"
-							href="${path}/mycart/newmycart.jsp"><span
-								style="color: white; font-weight: bold">장바구니</span></a></li>
+					<c:if test="${sessionScope.userStatus == 1}">
+					<li class="nav-item"><a class="nav-link"
+						href="${path}/mypage/mypage.jsp"><span
+							style="color: white; font-weight: bold">마이페이지/내강의실</span></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${path}/mycart/newmycart.jsp"><span
+							style="color: white; font-weight: bold">장바구니</span></a></li>
 					</c:if>
+		        	<c:if test="${sessionScope.userStatus==2}">
+		         	<li class="nav-item">
+		          	 <a class="nav-link" href="${path}/javaChip?command=Tgangmok"><span style="color: white; font-weight: bold">마이페이지</span></a>
+		         	</li>
+		          	</c:if>
 					<li class="nav-item"><a class="nav-link"
 						href="${path}/javaChip?command=selectProd"><span
 							style="color: white; font-weight: bold">강의목록</span></a></li>

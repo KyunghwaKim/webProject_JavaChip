@@ -20,7 +20,6 @@ window.addEventListener("load", function(){
 	
 });
 
-
 </script>
 </head>
 <body>

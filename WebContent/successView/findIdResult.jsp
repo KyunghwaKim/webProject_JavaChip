@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ID 찾기</title>
 <style>
 #id{
 	display: none;

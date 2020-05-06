@@ -35,9 +35,6 @@ table {
 		});
 
 		$('button[name=eval]').click(function() { //강의평 작성버튼
-			/* if(${userId}==null){
-				return;
-			} */
 			location.href="${path}/community/evaluateForm.jsp";
 			//location.href="${path}/javaChip?command=selectByCusIdEst";
 		});

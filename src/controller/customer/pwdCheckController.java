@@ -25,7 +25,7 @@ public class pwdCheckController implements Controller {
 			throw new NotFoundException("잘못된 비밀번호입니다");
 		}
 		
-		ModelAndView mv = new ModelAndView(false, "mypage/mypage.jsp");
+		ModelAndView mv = new ModelAndView(false, "mypage/updatepwd.html");
 		
 		return mv;
 	}

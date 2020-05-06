@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import exception.AddException;
+import exception.NotFoundException;
 import model.dao.CustomerDAO;
 import model.dao.PersonDAO;
 import model.dao.impl.CustomerDAOImpl;
@@ -26,10 +27,15 @@ public class CustomerService {
 	 * CustomerDAOImpl의 레코드 삽입하는 메소드 호출
 	 */
 	public static void insert(Customer customer) throws Exception {
-		
-		int result = customerDAO.insert(customer);
-		if (result == 0)
-			throw new AddException("등록되지 않았습니다.");
+		int value = customerDAO.idCheck(customer.getId());
+		if(value>=1) {//중복id가 존재
+			throw new Exception("이미 존재하는 id입니다.");
+		}else {
+
+			int result = customerDAO.insert(customer);
+			if (result == 0)
+				throw new AddException("등록되지 않았습니다.");
+		}
 	}
 	
 	/**
@@ -87,11 +93,10 @@ public class CustomerService {
 	/**
 	 * 이름과 전화번호로 id찾기
 	 */
-	public static String findId(String name, String phone) throws SQLException {
+	public static String findId(String name, String phone) throws Exception {//SQLException
 		String id = personDAO.selectByNameAndPhone(name, phone);
 		if (id == null)
-			throw new SQLException("해당 정보가 없습니다");
-
+			throw new NotFoundException("해당 정보가 없습니다");
 		return id;
 	}
 

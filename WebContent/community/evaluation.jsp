@@ -208,9 +208,7 @@ table {
 						</c:forEach>
 					</tbody>
 				</table>
-
 				<hr>
-				*강의평은 수강한 강의에 한하여 한 번만 작성 가능합니다.
 				<c:if test="${not empty itemList}">
 				<button style="float: right" name='eval'>강의평 작성</button></c:if>
 			</div>

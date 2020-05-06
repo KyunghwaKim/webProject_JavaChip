@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.ModelAndView;
+import exception.NotFoundException;
 import model.domain.Customer;
 import model.service.CustomerService;
 
@@ -19,10 +20,10 @@ public class pwdCheckController implements Controller {
 
 		Customer customer = CustomerService.selectById(id);
 		String getpwd = customer.getPwd();
+		request.setAttribute("getpwd", getpwd);
 		
-		String msg = "비밀번호를 확인해주세요";
 		if(!pwd.equals(getpwd)) {
-			request.setAttribute("msg", msg);
+			throw new NotFoundException("잘못된 비밀번호입니다");
 		}
 		
 		ModelAndView mv = new ModelAndView(false, "mypage/updatepwd.jsp");

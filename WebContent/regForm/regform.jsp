@@ -256,7 +256,7 @@
 				$('#phonecheck').attr('color', '#f82a2aa3');
 			}
 		});
-		
+
 	});
 </script>
 

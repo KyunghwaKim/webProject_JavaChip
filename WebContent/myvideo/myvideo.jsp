@@ -118,7 +118,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <video src="${realPath}save/${prodDetail.url}" width='800' height="500" controls>
+        <video src="${path}/save/${prodDetail.url}" width='800' height="500" controls>
         </video>
 
         <hr>

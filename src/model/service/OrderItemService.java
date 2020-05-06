@@ -36,9 +36,9 @@ public class OrderItemService {
 		}
 	}
 	
-	public static void refund(int orderno) throws SQLException{
-		
-		int i = itemDAO.refund(orderno);
+	public static void refund(String customerId, int orderNo) throws SQLException{
+		String prodId = itemDAO.selectByOrderItemNo(orderNo);
+		int i = itemDAO.refund(orderNo, customerId, prodId);
 		if(i==0) throw new SQLException("환불되지 않았습니다");
 		
 	}

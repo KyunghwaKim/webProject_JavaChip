@@ -5,7 +5,6 @@ import java.util.List;
 
 import exception.AddException;
 import exception.NotFoundException;
-import exception.RegExeception;
 import model.dao.CustomerDAO;
 import model.dao.PersonDAO;
 import model.dao.impl.CustomerDAOImpl;

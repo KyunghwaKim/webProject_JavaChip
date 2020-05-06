@@ -110,7 +110,7 @@ table {
 			<div class="sidebar-heading">Start Bootstrap</div>
 			<div class="list-group list-group-flush">
 				<a href="${path}/javaChip?command=selectAllQnA"
-					class="list-group-item list-group-item-action bg-light">Q&A게시판</a>
+					class="list-group-item list-group-item-action bg-light">QnA게시판</a>
 				<a href="${path}/javaChip?command=selectAllEst"
 					class="list-group-item list-group-item-action bg-light">강의평게시판</a>
 			</div>

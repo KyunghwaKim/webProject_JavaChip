@@ -25,7 +25,7 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 		if (customerId == null || customerId.equals("")) {
 			throw new NotFoundException("입력값이 부족합니다.");
 		}
-		
+		 
 		List<OrderItem> orderList = OrderLineService.selectByCustomerId(customerId);
 		Customer customer = CustomerService.selectById(customerId);
 		
@@ -34,7 +34,7 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 			Date sysdate = new Date();
 			Date date = oi.getOrderLine().getPayDate();
 			Calendar cal = Calendar.getInstance();			
-			
+			 
 			cal.setTime(date);			
 			cal.add(Calendar.DATE, 7); 
 			

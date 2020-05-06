@@ -37,7 +37,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		int num = 0;
-		String sql = "SELECT ORDERITEM_NO FROM ORDERITEM";
+		String sql = "SELECT ORDERITEM_NO FROM ORDERITEM WHERE ISREFUND<>2";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		ResultSet rs = null;
 		int num = 0;
 		String sql = "SELECT * FROM ORDERITEM oi JOIN ORDERLINE ol ON oi.ORDER_NO = ol.ORDER_NO "
-				+ "WHERE ol.PAY_DATE >= TO_CHAR(SYSDATE-7,'YYYYMMDD')";
+				+ "WHERE ol.PAY_DATE >= TO_CHAR(SYSDATE-7,'YYYYMMDD') AND ISREFUND<>2";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -81,7 +81,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		long sum = 0;
-		String sql = "SELECT * FROM ORDERLINE";
+		String sql = "SELECT * FROM ORDERLINE NATURAL JOIN ORDERITEM WHERE ISREFUND<>2";
 
 		try {
 

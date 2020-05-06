@@ -31,13 +31,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 		
 		updatepwd.onclick = function(){
 			
-			window.open('${path}/mypage/pwdcheck.html', '_blank', 'width=600, height=400');
+			window.open('${path}/mypage/pwdcheck.jsp', '_blank', 'width=600, height=400');
 			
 		};
 		
 		destoryid.onclick = function(){
 			
-			window.open('${path}/mypage/destoryidcheck.html', '_blank', 'width=600, height=400');
+			window.open('${path}/mypage/destoryidcheck.jsp', '_blank', 'width=600, height=400');
 			
 		}
 		

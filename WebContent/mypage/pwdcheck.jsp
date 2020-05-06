@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>JavaChip - pwdUpdate</title>
+	<title>JavaChip - pwdCheck</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -31,16 +33,22 @@
 
 	window.addEventListener("load", function(){
 		
-		pwdupdate.onclick = function(){	
+		pwdcheck.onclick = function(){	
 			
 		 	var pwd = document.getElementById("pwd").value;	 		
-		
+			var msg = ${msg};
+		 	
 		 	if(pwd==null || pwd==""){
 		 		
 		 		alert("입력값이 부족합니다");
 		 		return;
 		 		}
-		 	}		
+		 	
+		 	if(){
+		 		alert(msg);
+		 		return;
+		 	}
+		 }		
 	});
 
 </script>
@@ -54,7 +62,7 @@
 			
 			<!-- action 값 지정할것! -->
 			
-				<form class="login100-form validate-form" action="../javaChip?command=updatePwdCus" method="post">
+				<form class="login100-form validate-form" action="../javaChip?command=pwdCheckController" method="post">
 					<span class="login100-form-title p-b-40">
 						비밀번호입력
 					</span>
@@ -65,8 +73,8 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id="pwdupdate" type="submit">
-							비밀번호 수정
+						<button class="login100-form-btn" id="pwdcheck" type="submit">
+							입력
 						</button>
 					</div>		
 				</form>

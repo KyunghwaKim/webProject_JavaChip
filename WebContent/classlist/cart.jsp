@@ -227,9 +227,8 @@ td, th{
 			          <c:if test="${sessionScope.userStatus==2}">
 			          <li class="nav-item">
 			            <a class="nav-link" href="${path}/javaChip?command=Tgangmok"><span style="color: white; font-weight: bold">마이페이지</span></a>
-			          </li>
-			          </c:if>
-			          <c:if test="${sessionScope.userStatus==1}"><!-- customer인 경우에만 장바구니 보이기 -->
+			          </li></c:if>
+			          <c:if test="${sessionScope.userStatus==1}"><!-- customer에게만 장바구니 보이기 -->
 			          <li class="nav-item">
 						<a class="nav-link" href="${path}/javaChip?command=selectCart&id=${userId}"><span style="color: white; font-weight: bold">장바구니</span></a>
 					  </li>

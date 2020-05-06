@@ -255,9 +255,9 @@ background-color: black;
               <div class="toast_ban" id="toast1">
               	<div class="toast_in">        
               	<a href="javascript:;" class="toast_close" id="x1"><span>X</span></a>
-             	<a href="192.168.0.168/notebookShop/index.jsp"><img src="images/tost.jpg" class='tost'></a>    
+             	<a href="192.168.0.104:8888/notebookShop"><img src="images/ganggo.jpg" class='tost'></a>    
               	</div> 
-              </div>
+              </div> 
               <div class="toast_ban" id="toast2">
               	<div class="toast_in">
               	<a href="javascript:;" class="toast_close2" id="x2"><span>X</span></a>

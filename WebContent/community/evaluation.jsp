@@ -24,6 +24,9 @@ table {
 	width: 1200px;
 	margin-top: 20px;
 }
+.kickOut{
+	border:0px;
+}
 </style>
 </head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -39,6 +42,18 @@ table {
 			//location.href="${path}/javaChip?command=selectByCusIdEst";
 		});
 	});
+	
+	window.onload = function(){
+		var kickOutBt = document.getElementsByClassName('kickOut');
+		
+		for(var i=0; i<kickOutBt.length; i++){
+			kickOutBt[i].onclick = function(){
+				if(confirm("강제탈퇴 시키시겠습니까?")){
+					location.href="${path}/javaChip?command=kickOutCustomer&customerId="+$(this).val();
+				}
+			}
+		}
+	};
 </script>
 <body>
 	<header class="site-navbar site-navbar-target bg-white" role="banner">
@@ -198,7 +213,7 @@ table {
 										</c:when>
 									</c:choose></td>
 								<td>${est.subject}</td>
-								<td id="userId">${est.customer.id}</td>
+								<td id="userId"><button class="kickOut" value="${est.customer.id}">${est.customer.id}</button></td>
 								<td>${est.writeDay}</td>
 								<c:if test="${sessionScope.userStatus == 3}">
 									<td><button value="${est.estimateNo}" name="adminDel">삭제</button>

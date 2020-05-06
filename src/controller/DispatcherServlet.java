@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import exception.NotFoundException;
 import exception.NotLoginExeception;
+import exception.RegExeception;
 
 /**
  * View의 모든 요청을 중앙집중적으로 관리하기 위한
@@ -46,6 +47,10 @@ public class DispatcherServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
 			request.getRequestDispatcher("Login/login.jsp").forward(request, response);
+		}catch (NotFoundException e) {
+			e.printStackTrace();
+			request.setAttribute("errorMsg", e.getMessage());
+			request.getRequestDispatcher("successView/idConfirm.jsp").forward(request, response);
 		} catch (Exception e) {			
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

@@ -247,7 +247,7 @@ public class QnABoardDAOImpl implements QnABoardDAO {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, subject);
-			ps.setString(2, title);
+			ps.setString(2, "[´äº¯]"+title);
 			ps.setString(3, prodId);
 			ps.setInt(4, parentNumber);
 			ps.setString(5, id);

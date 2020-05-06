@@ -53,7 +53,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps.setString(3, customer.getName());
 			ps.setString(4, customer.getPhone());
 			ps.setString(5, customer.getGender());
-			
+
+			result = ps.executeUpdate();
 			
 			if(customer.getId()!=null) {
 				ps1 = con.prepareStatement(sql2);
@@ -61,9 +62,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				ps1.setString(1, customer.getId());
 				ps1.setInt(2, customer.getAge());
 				ps1.setString(3, customer.getEmail());
+				result = ps1.executeUpdate();
 			}
-
-			result = ps.executeUpdate();
 			System.out.println(result);
 		
 		} finally {

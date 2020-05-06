@@ -251,7 +251,7 @@
 						<button type="button" class="btn btn-sm btn-primary" id="btnDel">삭제</button>
 					</c:if>
 
-					<c:if test="${userStatus==2}">
+					<c:if test="${sessionScope.userStatus==2}">
 						<!-- 강사에게는 답변 작성 버튼 show -->
 						<button type="button" class="btn btn-sm btn-primary" id="answer">답변작성하기</button>
 					</c:if>

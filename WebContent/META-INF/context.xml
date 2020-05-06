@@ -31,13 +31,8 @@
     <!-- DBCP기술 적용 -->
     <Resource name="jdbc/myoracle" auth="Container"
               type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
-<<<<<<< HEAD
               url="jdbc:oracle:thin:@192.168.0.187:1521:xe"
               username="cyber" password="cyber" maxTotal="20" maxIdle="10"
-=======
-              url="jdbc:oracle:thin:@192.168.0.116:1521:xe"
-              username="hr" password="hr" maxTotal="20" maxIdle="10"
->>>>>>> branch 'master' of https://github.com/KyunghwaKim/webProject_JavaChip.git
               maxWaitMillis="-1"/>
         
              <!--  <Resource name="jdbc/myoracle" auth="Container"

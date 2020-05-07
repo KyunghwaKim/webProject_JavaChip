@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.ModelAndView;
+import exception.NotLoginExeception;
 import model.domain.Customer;
 import model.service.CustomerService;
 import model.service.PersonService;
@@ -19,6 +20,12 @@ public class SelectCustomerAllController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String adminId = (String) request.getSession().getAttribute("userId");
+		Integer userStatus = (Integer) request.getSession().getAttribute("userStatus");
+
+		if (adminId == null || adminId.equals("") || userStatus != 3) {
+			throw new NotLoginExeception();
+		}
 		
 		List<Customer> list = CustomerService.selectAll();
 		List<Customer> resultlist = new ArrayList<Customer>();

@@ -1,6 +1,5 @@
 package controller.orderLine;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.ModelAndView;
-import exception.NotFoundException;
+import exception.NotLoginExeception;
 import model.domain.Customer;
 import model.domain.OrderItem;
 import model.service.CustomerService;
@@ -23,7 +22,7 @@ public class SelectByCustomerIdOrderLineController implements Controller {
 		String customerId = (String)request.getSession().getAttribute("userId");	//세션에서 로그인한 회원의 아이디를 받아온다
 		 		
 		if (customerId == null || customerId.equals("")) {
-			throw new NotFoundException("입력값이 부족합니다.");
+			throw new NotLoginExeception();
 		}
 		 
 		List<OrderItem> orderList = OrderLineService.selectByCustomerId(customerId);

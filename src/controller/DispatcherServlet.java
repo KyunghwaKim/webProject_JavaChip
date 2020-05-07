@@ -49,7 +49,7 @@ public class DispatcherServlet extends HttpServlet {
 		}catch (NotFoundException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());
-			request.getRequestDispatcher("successView/idConfirm.jsp").forward(request, response);
+			request.getRequestDispatcher("successView/noData.jsp").forward(request, response);
 		} catch (Exception e) {			
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getMessage());

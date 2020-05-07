@@ -103,11 +103,11 @@ public class CustomerService {
 	/**
 	 * id 이름 전화번호로 패스워드 찾기
 	 */
-	public static String findPwd(String id, String name, String phone) throws SQLException {
+	public static String findPwd(String id, String name, String phone) throws Exception {
 		String pwd = personDAO.selectByIdAndNameAndPhone(id, name, phone);
 
 		if (pwd == null) {
-			throw new SQLException("해당 정보가 없습니다");
+			throw new NotFoundException("해당 정보가 없습니다");
 		}
 		return pwd;
 	}

@@ -80,11 +80,11 @@
 					<br>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn"onclick="window.open('findid.jsp', '_blank', 'width=600, height=400');">
+						<button class="login100-form-btn"onclick="window.open('${path}/Login/findid.jsp', '_blank', 'width=600, height=400');">
 							ID찾기
 						</button>
 						
-						<button class="login100-form-btn" onclick="window.open('findpwd.jsp', '_blank', 'width=600, height=400');">
+						<button class="login100-form-btn" onclick="window.open('${path}/Login/findpwd.jsp', '_blank', 'width=600, height=400');">
 							비밀번호찾기
 						</button>
 					</div>
@@ -121,14 +121,6 @@
 	<script src="${path}/Login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="${path}/Login/js/main.js"></script>
-	
-	<script type="text/javascript">
-	  $(function(){
-		
-		     
-		
-	  })
-	</script>
 
 </body>
 </html>

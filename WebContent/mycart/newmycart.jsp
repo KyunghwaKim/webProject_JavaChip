@@ -139,8 +139,10 @@ table{
 
 $(function(){
 	$("[name=delete]").click(function(){
-		confirm("정말 삭제하시겠습니까?");
+		var result = confirm("정말 삭제하시겠습니까?");
+		if(result){
 		location.href="javaChip?command=deleteCart&prodId="+$(this).val();
+		}
 	});
 	
 	$("[name=order]").click(function(){

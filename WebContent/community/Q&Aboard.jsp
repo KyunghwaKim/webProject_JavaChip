@@ -210,7 +210,7 @@ window.onload = function(){
 								</c:when>			
 								<c:when test="${qna.status == 1}"> <!-- 비밀글 -->
 									<td class="count">
-									<a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}">비밀글 입니다.</a>
+									<a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}" name="qnaDetail">비밀글 입니다.</a>
 									<span class="qnaNo">${qna.qaBoardNo}</span></td>
 								</c:when>
 								<c:otherwise>

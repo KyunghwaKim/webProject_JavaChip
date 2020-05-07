@@ -40,7 +40,7 @@
 		 	if(pwd==null || pwd==""){
 		 		
 		 		alert("입력값이 부족합니다");
-		 		return;
+		 		return; 
 		 		}
 		 	}		
 	});

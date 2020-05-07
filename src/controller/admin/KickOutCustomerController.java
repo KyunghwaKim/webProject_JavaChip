@@ -18,7 +18,7 @@ public class KickOutCustomerController implements Controller {
 
 		if (adminId == null || adminId.equals("") || userStatus != 3) {
 			throw new NotLoginExeception();
-		}
+		} 
 		
 		String customerId = request.getParameter("customerId");
 

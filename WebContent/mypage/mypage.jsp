@@ -50,7 +50,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 		
 		$(".canrefund").click(function(){
 			
-			var value = $(this).val();
+			var value = $(this).val();			
 			
 			var result = confirm("환불하시겠습니까?");
 			

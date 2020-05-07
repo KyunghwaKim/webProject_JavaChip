@@ -29,7 +29,6 @@
 	<link rel="stylesheet" type="text/css" href="${path}/mypage/css/main.css">
 <!--===============================================================================================-->
 
-${path}
 <script>
 
 	window.addEventListener("load", function(){

@@ -23,7 +23,7 @@ public class UpdatePwdController implements Controller {
 		
 		CustomerService.updatePwd(id, pwd);
 		
-		ModelAndView mv = new ModelAndView(false, "mypage/mypage.jsp");
+		ModelAndView mv = new ModelAndView(false, "successView/completeUpdatePwd.jsp");//Admin/insertOk.jsp
 		return mv;
 	}
 

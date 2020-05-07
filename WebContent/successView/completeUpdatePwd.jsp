@@ -9,7 +9,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 $(function(){
-	alert("변경이 완료되었습니다. 다시 로그인해주세요!");
+	alert("비밀번호 변경이 완료되었습니다. 다시 로그인해주세요!");
 	opener.location.href="${path}/javaChip?command=logout";
 	window.close();
 });

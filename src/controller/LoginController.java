@@ -21,15 +21,12 @@ public class LoginController implements Controller {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		ServletContext application = request.getServletContext();
-		String path = (String)application.getAttribute("path");
 		
 		if(id == null || id.equals("") || pwd == null || pwd.equals("")) {
 			throw new NotFoundException("입력값이 없습니다");
 		}
 		
 		Person person = PersonService.login(id, pwd);
-		
-		PrintWriter out = response.getWriter();
 				
 		System.out.println(person.getStatus());
 		
@@ -42,7 +39,7 @@ public class LoginController implements Controller {
 		
 		if(person.getStatus() == 3) {
 			
-			mv.setViewName(path+"/javaChip?command=SelectCus");
+			mv.setViewName("javaChip?command=SelectCus");
 			
 		} else {
 			

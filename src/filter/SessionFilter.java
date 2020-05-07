@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {"/Admin/index.jsp", "/myvideo/myvideo.jsp"})
 public class SessionFilter implements Filter {
 
-
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 		HttpServletRequest req = (HttpServletRequest) request;		

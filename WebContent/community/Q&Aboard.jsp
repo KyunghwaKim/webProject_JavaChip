@@ -38,7 +38,7 @@ $(function(){
 		location.href="${path}/javaChip?command=deleteQnA&qaBoardNo="+$(this).val();
 	});
 	
-	$('td[class=count]').click(function(){ //세션 id가 있으면 조회수증가
+	$('td[class=count]').click(function(){ 
 		$.ajax({
 			url : "${path}/javaChip?command=addViewCount",
 			type : "get",
@@ -48,6 +48,13 @@ $(function(){
 			}
 		}); //end ajax
 	});//end count
+	
+	$('a[name=qnaDetail]').click(function(e){
+		if(${sessionScope.userId==null}){
+			alert('로그인이 필요합니다.');
+			e.preventDefault();
+		}
+	});
 });
 
 window.onload = function(){
@@ -198,7 +205,7 @@ window.onload = function(){
 								<c:choose>
 								<c:when test="${qna.status == 0}"> <!-- 일반글 -->
 									<td class="count">
-									<a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}">${qna.title}</a>
+									<a href="${path}/javaChip?command=selectQnAByNo&no=${qna.qaBoardNo}" name="qnaDetail">${qna.title}</a>
 									<span class="qnaNo">${qna.qaBoardNo}</span></td>
 								</c:when>			
 								<c:when test="${qna.status == 1}"> <!-- 비밀글 -->

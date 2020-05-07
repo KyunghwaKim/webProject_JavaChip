@@ -136,7 +136,7 @@ table{
 		
 // 	});//end click
 // });//end load
-
+ 
 $(function(){
 	$("[name=delete]").click(function(){
 		var result = confirm("정말 삭제하시겠습니까?");

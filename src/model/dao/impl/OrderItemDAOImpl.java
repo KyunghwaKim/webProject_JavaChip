@@ -212,6 +212,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		String sql = "UPDATE ORDERITEM SET ISREFUND=2 WHERE ORDERITEM_NO=?";
 		int i = 0;
 		
@@ -221,20 +222,20 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 			ps.setInt(1, orderNo);
 			i = ps.executeUpdate();
 			
-			sql = pro.getProperty("findYunjang");
 			if(i != 0) {
+				sql = pro.getProperty("findYunjang");
 				ps = con.prepareStatement(sql);
 				ps.setString(1, customerId);
 				ps.setString(2, prodId);
-				i = ps.executeUpdate();
-			}
-			
-			sql = pro.getProperty("updateRefundBack");
-			if(i != 0) {
-				ps = con.prepareStatement(sql);
-				ps.setString(1, customerId);
-				ps.setString(2, prodId);
-				i = ps.executeUpdate();
+				rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					sql = pro.getProperty("updateRefundBack");
+					ps = con.prepareStatement(sql);
+					ps.setString(1, customerId);
+					ps.setString(2, prodId);
+					i = ps.executeUpdate();
+				}
 			}
 			
 		} finally {

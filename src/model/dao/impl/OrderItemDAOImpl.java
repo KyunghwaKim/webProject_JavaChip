@@ -221,6 +221,14 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 			ps.setInt(1, orderNo);
 			i = ps.executeUpdate();
 			
+			sql = pro.getProperty("findYunjang");
+			if(i != 0) {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, customerId);
+				ps.setString(2, prodId);
+				i = ps.executeUpdate();
+			}
+			
 			sql = pro.getProperty("updateRefundBack");
 			if(i != 0) {
 				ps = con.prepareStatement(sql);

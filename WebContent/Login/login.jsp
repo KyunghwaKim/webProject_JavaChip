@@ -121,14 +121,6 @@
 	<script src="${path}/Login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="${path}/Login/js/main.js"></script>
-	
-	<script type="text/javascript">
-	  $(function(){
-		
-		     
-		
-	  })
-	</script>
 
 </body>
 </html>

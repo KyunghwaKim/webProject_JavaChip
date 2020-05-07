@@ -29,7 +29,6 @@
 	<link rel="stylesheet" type="text/css" href="${path}/mypage/css/main.css">
 <!--===============================================================================================-->
 
-${path}
 <script>
 
 	window.addEventListener("load", function(){
@@ -37,7 +36,7 @@ ${path}
 		pwdupdate.onclick = function(){	
 			
 		 	var pwd = document.getElementById("pwd").value;	 		
-		
+		 
 		 	if(pwd==null || pwd==""){
 		 		
 		 		alert("입력값이 부족합니다");
